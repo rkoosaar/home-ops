@@ -1,0 +1,25 @@
+---
+kubernetes:
+  children:
+    master:
+      hosts:
+        orange:
+          ansible_user: dadmin
+          ansible_host: 10.1.1.41
+        passionfruit:
+          ansible_user: dadmin
+          ansible_host: 10.1.1.42
+        papaya:
+          ansible_user: dadmin
+          ansible_host: 10.1.1.43
+    worker:
+      hosts:
+        peach:
+          ansible_user: dadmin
+          ansible_host: 10.1.1.44
+        pear:
+          ansible_user: dadmin
+          ansible_host: 10.1.1.45
+        persimmon:
+          ansible_user: dadmin
+          ansible_host: 10.1.1.46
