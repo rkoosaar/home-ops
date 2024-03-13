@@ -13,3 +13,4 @@ resources:
   - ./postfinance.yaml
   - ./stakater.yaml
   - ./xenitab.yaml
+  - ./external-secrets.yaml
