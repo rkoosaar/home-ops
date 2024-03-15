@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
-  name: &app external-dns-cloudflare
+  name: &app external-dns
 spec:
   interval: 30m
   chart:
@@ -27,7 +27,7 @@ spec:
       - name: CF_API_TOKEN
         valueFrom:
           secretKeyRef:
-            name: external-dns-cloudflare-secret
+            name: external-dns-secret
             key: api-token
     extraArgs:
       - --ingress-class=external
@@ -42,4 +42,4 @@ spec:
     serviceMonitor:
       enabled: true
     podAnnotations:
-      secret.reloader.stakater.com/reload: external-dns-cloudflare-secret
+      secret.reloader.stakater.com/reload: external-dns-secret

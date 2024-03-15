@@ -23,3 +23,5 @@ Brewfile.lock.json
 wiki
 # Bootstrap
 /config.yaml
+# Temp exclusions
+kubernetes_bckup
