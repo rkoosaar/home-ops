@@ -21,7 +21,7 @@ spec:
     remediation:
       retries: 3
   values:
-    providerRegex: ^(orange.kvshs.xyz|passionfruit.kvshs.xyz|papaya.kvshs.xyz|peach.kvshs.xyz|pear.kvshs.xyz|persimmon.kvshs.xyz)$
+    providerRegex: ^(mango.kvshs.xyz|melon.kvshs.xyz|nectarine.kvshs.xyz)$
     bypassDnsResolution: true
     metrics:
       enable: true

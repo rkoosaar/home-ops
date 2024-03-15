@@ -20,96 +20,54 @@ cniConfig:
   name: none
 
 nodes:
-  - hostname: "orange.kvshs.xyz"
-    ipAddress: "10.1.1.41"
-    installDisk: "/dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_drive-scsi0"
+  - hostname: "mango.kvshs.xyz"
+    ipAddress: "10.1.1.31"
+    installDisk: "/dev/nvme0n1"
     talosImageURL: factory.talos.dev/installer/62b8226665af462f9802654f5237abede15fcbad111e2eca508e41239bdf937a
     controlPlane: true
     networkInterfaces:
       - interface: eth0
         dhcp: false
         addresses:
-          - "10.1.1.41/24"
+          - "10.1.1.31/24"
         mtu: 1500
         routes:
           - network: 0.0.0.0/0
             gateway: "10.1.1.1"
         vip:
           ip: "10.5.0.2"
-  - hostname: "passionfruit.kvshs.xyz"
-    ipAddress: "10.1.1.42"
-    installDisk: "/dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_drive-scsi0"
+  - hostname: "melon.kvshs.xyz"
+    ipAddress: "10.1.1.32"
+    installDisk: "/dev/nvme0n1"
     talosImageURL: factory.talos.dev/installer/62b8226665af462f9802654f5237abede15fcbad111e2eca508e41239bdf937a
     controlPlane: true
     networkInterfaces:
       - interface: eth0
         dhcp: false
         addresses:
-          - "10.1.1.42/24"
+          - "10.1.1.32/24"
         mtu: 1500
         routes:
           - network: 0.0.0.0/0
             gateway: "10.1.1.1"
         vip:
           ip: "10.5.0.2"
-  - hostname: "papaya.kvshs.xyz"
-    ipAddress: "10.1.1.43"
-    installDisk: "/dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_drive-scsi0"
+  - hostname: "nectarine.kvshs.xyz"
+    ipAddress: "10.1.1.33"
+    installDisk: "/dev/nvme0n1"
     talosImageURL: factory.talos.dev/installer/62b8226665af462f9802654f5237abede15fcbad111e2eca508e41239bdf937a
     controlPlane: true
     networkInterfaces:
       - interface: eth0
         dhcp: false
         addresses:
-          - "10.1.1.43/24"
+          - "10.1.1.33/24"
         mtu: 1500
         routes:
           - network: 0.0.0.0/0
             gateway: "10.1.1.1"
         vip:
           ip: "10.5.0.2"
-  - hostname: "peach.kvshs.xyz"
-    ipAddress: "10.1.1.44"
-    installDisk: "/dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_drive-scsi0"
-    talosImageURL: factory.talos.dev/installer/62b8226665af462f9802654f5237abede15fcbad111e2eca508e41239bdf937a
-    controlPlane: false
-    networkInterfaces:
-      - interface: eth0
-        dhcp: false
-        addresses:
-          - "10.1.1.44/24"
-        mtu: 1500
-        routes:
-          - network: 0.0.0.0/0
-            gateway: "10.1.1.1"
-  - hostname: "pear.kvshs.xyz"
-    ipAddress: "10.1.1.45"
-    installDisk: "/dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_drive-scsi0"
-    talosImageURL: factory.talos.dev/installer/62b8226665af462f9802654f5237abede15fcbad111e2eca508e41239bdf937a
-    controlPlane: false
-    networkInterfaces:
-      - interface: eth0
-        dhcp: false
-        addresses:
-          - "10.1.1.45/24"
-        mtu: 1500
-        routes:
-          - network: 0.0.0.0/0
-            gateway: "10.1.1.1"
-  - hostname: "persimmon.kvshs.xyz"
-    ipAddress: "10.1.1.46"
-    installDisk: "/dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_drive-scsi0"
-    talosImageURL: factory.talos.dev/installer/62b8226665af462f9802654f5237abede15fcbad111e2eca508e41239bdf937a
-    controlPlane: false
-    networkInterfaces:
-      - interface: eth0
-        dhcp: false
-        addresses:
-          - "10.1.1.46/24"
-        mtu: 1500
-        routes:
-          - network: 0.0.0.0/0
-            gateway: "10.1.1.1"
 
 patches:
   # Configure containerd
