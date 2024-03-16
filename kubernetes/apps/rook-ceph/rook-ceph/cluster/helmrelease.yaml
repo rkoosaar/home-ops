@@ -89,7 +89,7 @@ spec:
         useAllNodes: true
         useAllDevices: true
         #deviceFilter: "^sd."
-        deviceFilter: "^sd."
+        deviceFilter: "sda"
         config:
           osdsPerDevice: "1"
       placement:
