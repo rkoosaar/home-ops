@@ -23,7 +23,7 @@ nodes:
   - hostname: "mango.kvshs.xyz"
     ipAddress: "10.1.1.31"
     installDisk: "/dev/nvme0n1"
-    talosImageURL: factory.talos.dev/installer/62b8226665af462f9802654f5237abede15fcbad111e2eca508e41239bdf937a
+    talosImageURL: factory.talos.dev/installer/0ed0ff97fdef26392e978948b7d36633f7987400b93fa5743c789a03e0b0c1fb
     controlPlane: true
     networkInterfaces:
       - interface: eth0
@@ -39,7 +39,7 @@ nodes:
   - hostname: "melon.kvshs.xyz"
     ipAddress: "10.1.1.32"
     installDisk: "/dev/nvme0n1"
-    talosImageURL: factory.talos.dev/installer/62b8226665af462f9802654f5237abede15fcbad111e2eca508e41239bdf937a
+    talosImageURL: factory.talos.dev/installer/0ed0ff97fdef26392e978948b7d36633f7987400b93fa5743c789a03e0b0c1fb
     controlPlane: true
     networkInterfaces:
       - interface: eth0
@@ -55,7 +55,7 @@ nodes:
   - hostname: "nectarine.kvshs.xyz"
     ipAddress: "10.1.1.33"
     installDisk: "/dev/nvme0n1"
-    talosImageURL: factory.talos.dev/installer/62b8226665af462f9802654f5237abede15fcbad111e2eca508e41239bdf937a
+    talosImageURL: factory.talos.dev/installer/0ed0ff97fdef26392e978948b7d36633f7987400b93fa5743c789a03e0b0c1fb
     controlPlane: true
     networkInterfaces:
       - interface: eth0
