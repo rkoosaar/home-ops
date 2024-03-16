@@ -26,7 +26,7 @@ nodes:
     talosImageURL: factory.talos.dev/installer/1637ef03428e5918ba2df082f2620cec37abb5b380389ac4a4c3bfb658901126
     controlPlane: true
     networkInterfaces:
-      - interface: enp0s1
+      - interface: eth1
         dhcp: false
         addresses:
           - "10.1.1.31/24"
@@ -42,7 +42,7 @@ nodes:
     talosImageURL: factory.talos.dev/installer/1637ef03428e5918ba2df082f2620cec37abb5b380389ac4a4c3bfb658901126
     controlPlane: true
     networkInterfaces:
-      - interface: enp0s1
+      - interface: eth1
         dhcp: false
         addresses:
           - "10.1.1.32/24"
@@ -58,7 +58,7 @@ nodes:
     talosImageURL: factory.talos.dev/installer/1637ef03428e5918ba2df082f2620cec37abb5b380389ac4a4c3bfb658901126
     controlPlane: true
     networkInterfaces:
-      - interface: enp0s1
+      - interface: eth1
         dhcp: false
         addresses:
           - "10.1.1.33/24"

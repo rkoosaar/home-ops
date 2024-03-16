@@ -40,7 +40,7 @@ nodes:
     #% endif %#
     controlPlane: #{ (item.controller) | string | lower }#
     networkInterfaces:
-      - interface: enp0s1
+      - interface: eth1
         dhcp: false
         #% if bootstrap_talos.vlan %#
         vlans:
