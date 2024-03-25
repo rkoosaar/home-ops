@@ -6,6 +6,7 @@ resources:
   - ./bitnami.yaml
   - ./bjw-s.yaml
   - ./cilium.yaml
+  - ./cloudnative-pg.yaml
   - ./external-dns.yaml
   - ./ingress-nginx.yaml
   - ./external-secrets.yaml
