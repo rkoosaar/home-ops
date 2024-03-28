@@ -18,3 +18,4 @@ resources:
   - ./xenitab.yaml
   - ./rook-ceph.yaml
   - ./piraeus.yaml
+  - ./stevehipwell.yaml
