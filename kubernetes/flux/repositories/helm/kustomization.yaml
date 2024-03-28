@@ -19,3 +19,4 @@ resources:
   - ./rook-ceph.yaml
   - ./piraeus.yaml
   - ./stevehipwell.yaml
+  - ./prometheus-community.yaml
