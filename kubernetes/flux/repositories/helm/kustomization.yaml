@@ -20,3 +20,4 @@ resources:
   - ./piraeus.yaml
   - ./stevehipwell.yaml
   - ./prometheus-community.yaml
+  - ./grafana.yaml
