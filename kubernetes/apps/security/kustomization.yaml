@@ -7,4 +7,4 @@ resources:
   - ./namespace.yaml
   # Flux-Kustomizations
   - ./external-secrets/ks.yaml
-  - ./lldap/ks.yaml
+  #- ./lldap/ks.yaml
