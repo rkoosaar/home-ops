@@ -6,7 +6,7 @@ metadata:
   name: &app authelia
   namespace: flux-system
 spec:
-  targetNamespace: default
+  targetNamespace: security
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
@@ -14,7 +14,7 @@ spec:
     - name: cloudnative-pg-cluster
     - name: dragonfly-cluster
     - name: external-secrets-stores
-  path: ./kubernetes/apps/default/authelia/app
+  path: ./kubernetes/apps/security/authelia/app
   prune: true
   sourceRef:
     kind: GitRepository
