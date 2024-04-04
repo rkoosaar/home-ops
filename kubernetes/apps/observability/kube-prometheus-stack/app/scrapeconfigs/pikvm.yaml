@@ -6,7 +6,7 @@ metadata:
   name: &name pikvm
 spec:
   staticConfigs:
-    - targets: ["pikvm.turbo.ac"]
+    - targets: ["pikvm.kvshs.xyz"]
   metricsPath: /api/export/prometheus/metrics
   relabelings:
     - action: replace

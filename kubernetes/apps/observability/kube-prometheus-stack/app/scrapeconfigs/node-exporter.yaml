@@ -7,8 +7,8 @@ metadata:
 spec:
   staticConfigs:
     - targets:
-        - pikvm.turbo.ac:9100
-        - vyos.turbo.ac:9100
+        - pikvm.kvshs.xyz:9100
+        - vyos.kvshs.xyz:9100
   metricsPath: /metrics
   relabelings:
     - action: replace
