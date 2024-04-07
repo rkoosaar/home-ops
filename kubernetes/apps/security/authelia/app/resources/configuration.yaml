@@ -78,7 +78,7 @@ identity_providers:
         authorization_policy: one_factor
         pre_configured_consent_duration: 1y
         scopes: ["openid", "profile", "groups", "email"]
-        redirect_uris: ["https://grafana.kvshs.cc/login/generic_oauth"]
+        redirect_uris: ["https://grafana.${SECRET_DOMAIN}/login/generic_oauth"]
         userinfo_signed_response_alg: none
 
       - client_name: Miniflux
