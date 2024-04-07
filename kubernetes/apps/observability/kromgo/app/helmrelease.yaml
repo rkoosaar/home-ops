@@ -38,15 +38,6 @@ spec:
               PROMETHEUS_URL: http://thanos-query-frontend.observability.svc.cluster.local:10902
               PORT: &port 80
             probes:
-              # liveness:
-              #   enabled: true
-              # readiness:
-              #   enabled: true
-              # startup:
-              #   enabled: true
-              #   spec:
-              #     failureThreshold: 30
-              #     periodSeconds: 5
               liveness: &probes
                 enabled: true
                 custom: true
