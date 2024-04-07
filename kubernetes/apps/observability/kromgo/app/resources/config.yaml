@@ -1,6 +1,6 @@
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/kashalls/kromgo/main/config.schema.json
 metrics:
-  - name: talos_version
-    query: node_os_info{name="Talos"}
-    label: version_id
+  - name: kubernetes_version
+    query: kubernetes_build_info{service="kubernetes"}
+    label: git_version
