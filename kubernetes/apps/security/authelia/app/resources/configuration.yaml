@@ -33,10 +33,10 @@ session:
   expiration: 1h
   remember_me: 1M
   cookies:
-    - name: kvshs_cc_session
-      domain: kvshs.cc
-      authelia_url: https://auth.kvshs.cc
-      default_redirection_url: https://kvshs.cc
+    - name: authelia_session
+      domain: ${SECRET_DOMAIN}
+      authelia_url: https://auth.${SECRET_DOMAIN}
+      default_redirection_url: https://${SECRET_DOMAIN}
   redis:
     database_index: 2
     host: dragonfly.database.svc.cluster.local
