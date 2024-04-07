@@ -45,7 +45,7 @@ spec:
             env:
               BASE_URL: https://miniflux.${SECRET_DOMAIN}
               CREATE_ADMIN: "1"
-              # DEBUG: "1"
+              DEBUG: "1"
               LOG_DATE_TIME: "1"
               METRICS_ALLOWED_NETWORKS: 10.42.0.0/16
               METRICS_COLLECTOR: "1"
