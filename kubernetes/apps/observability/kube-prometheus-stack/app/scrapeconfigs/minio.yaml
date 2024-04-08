@@ -1,0 +1,26 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/monitoring.coreos.com/scrapeconfig_v1alpha1.json
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: ScrapeConfig
+metadata:
+  name: &name minio
+spec:
+  staticConfigs:
+    - targets: ["minio.kvshs.xyz"]
+  metricsPath: /metrics/minio/v2/metrics/cluster
+  relabelings:
+    - action: replace
+      targetLabel: job
+      replacement: *name
+
+
+# global:
+#    scrape_interval: 15s
+
+# scrape_configs:
+#    - job_name: minio-job
+#      bearer_token: TOKEN
+#      metrics_path: /minio/v2/metrics/cluster
+#      scheme: https
+#      static_configs:
+#      - targets: [minio.example.net]
