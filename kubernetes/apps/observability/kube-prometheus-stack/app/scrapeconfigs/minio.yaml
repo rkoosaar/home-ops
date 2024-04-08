@@ -8,6 +8,7 @@ spec:
   staticConfigs:
     - targets: ["minio.kvshs.xyz"]
   metricsPath: /metrics/minio/v2/metrics/cluster
+  scheme: HTTPS
   relabelings:
     - action: replace
       targetLabel: job
