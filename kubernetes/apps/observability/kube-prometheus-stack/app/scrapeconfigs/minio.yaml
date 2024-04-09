@@ -13,15 +13,9 @@ spec:
     - action: replace
       targetLabel: job
       replacement: *name
+  authorization:
+    credentials:
+      name: minio-prometheus-auth-token-secret
+      key: "{{ .MINIO_PROMETHEUS_AUTH_TOKEN }}"
+    type: Bearer
 
-
-# global:
-#    scrape_interval: 15s
-
-# scrape_configs:
-#    - job_name: minio-job
-#      bearer_token: TOKEN
-#      metrics_path: /minio/v2/metrics/cluster
-#      scheme: https
-#      static_configs:
-#      - targets: [minio.example.net]
