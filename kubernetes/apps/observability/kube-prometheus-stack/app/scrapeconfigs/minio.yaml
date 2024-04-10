@@ -3,11 +3,11 @@
 apiVersion: monitoring.coreos.com/v1alpha1
 kind: ScrapeConfig
 metadata:
-  name: &name minio-job
+  name: &name minio
 spec:
   staticConfigs:
     - targets: ["s3.kvshs.xyz"]
-  metricsPath: /metrics/minio/v2/metrics/cluster
+  metricsPath: /minio/v2/metrics/cluster
   scheme: HTTPS
   relabelings:
     - action: replace
