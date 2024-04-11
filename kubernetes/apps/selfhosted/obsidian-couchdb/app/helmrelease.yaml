@@ -81,11 +81,11 @@ spec:
 
     ingress:
       app:
-        className: "external-nginx"
+        className: external
         annotations:
           external-dns.alpha.kubernetes.io/target: external.${SECRET_DOMAIN}
         hosts:
-          - host: &hostName obsidian-db.${SECRET_DOMAIN}
+          - host: &host obsidian-db.${SECRET_DOMAIN}
             paths:
               - path: /
                 service:
