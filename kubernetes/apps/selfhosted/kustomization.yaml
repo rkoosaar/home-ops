@@ -6,4 +6,4 @@ resources:
   # Pre Flux-Kustomizations
   - ./namespace.yaml
   # Flux-Kustomizations
-  - ./obsidian-couchdb/ks.yaml
+  #- ./obsidian-couchdb/ks.yaml
