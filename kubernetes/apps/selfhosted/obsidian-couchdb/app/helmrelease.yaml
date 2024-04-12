@@ -3,14 +3,13 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
-  name: obsidian-couchdb
+  name: &app obsidian-couchdb
 spec:
   interval: 30m
   chart:
     spec:
       chart: app-template
       version: 3.1.0
-      interval: 30m
       sourceRef:
         kind: HelmRepository
         name: bjw-s
@@ -105,7 +104,7 @@ spec:
               - path: /tmp/config
       data:
         enabled: true
-        existingClaim: *app
+        existingClaim: obsidian-couchdb-data
         advancedMounts:
           obsidian-couchdb:
             app:
