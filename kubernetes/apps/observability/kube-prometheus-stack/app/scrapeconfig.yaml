@@ -6,7 +6,7 @@ metadata:
   name: &name minio
 spec:
   staticConfigs:
-    - targets: ["s3.kvshs.xyz"]
+    - targets: ["s3.${SECRET_DOMAIN}"]
   metricsPath: /minio/v2/metrics/cluster
   scheme: HTTPS
   relabelings:
