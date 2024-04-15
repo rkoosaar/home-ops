@@ -6,7 +6,6 @@ metadata:
   name: &name minio
 spec:
   staticConfigs:
-    #- targets: ["s3.kvshs.xyz"]
     - targets: ["$ALERTMANAGER_MINIO_FQDN"]
   metricsPath: /minio/v2/metrics/cluster
   scheme: HTTPS
