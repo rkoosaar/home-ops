@@ -6,7 +6,7 @@ metadata:
   name: &name minio
 spec:
   staticConfigs:
-    - targets: ["s3.${SECRET_DOMAIN}"]
+    - targets: ["${ALERTMANAGER_MINIO_FQDN}"]
   metricsPath: /minio/v2/metrics/cluster
   scheme: HTTPS
   relabelings:
