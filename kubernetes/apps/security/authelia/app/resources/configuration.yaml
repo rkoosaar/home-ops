@@ -4,28 +4,26 @@ log:
   level: 'debug'
 
 authentication_backend:
-  password_reset:
-    disable: true
-  refresh_interval: 1m
   ldap:
-    address: ldap://lldap.security.svc.cluster.local:389
+    address: ldap://glauth.default.svc.cluster.local:389
     implementation: custom
     timeout: 5s
     start_tls: false
-    base_dn: dc=kvshs,dc=cc
-    additional_users_dn: ou=people
-    users_filter: (&({username_attribute}={input})(objectClass=person))
-    additional_groups_dn: ou=groups
-    groups_filter: (member={dn})
-    group_search_mode: filter
-    user: uid=admin,ou=people,dc=kvshs,dc=cc
-    password: password
+    base_dn: dc=home,dc=arpa
+    additional_users_dn: ou=people,ou=users
+    users_filter: (&({username_attribute}={input})(objectClass=posixAccount))
+    additional_groups_dn: ou=users
+    groups_filter: (&(uniqueMember={dn})(objectClass=posixGroup))
+    user: cn=search,ou=svcaccts,ou=users,dc=home,dc=arpa
     attributes:
       username: uid
-      display_name: displayName
+      display_name: givenName
+      group_name: ou
       mail: mail
       member_of: memberOf
-      group_name: cn
+  password_reset:
+    disable: true
+  refresh_interval: 1m
 
 session:
   same_site: lax
@@ -79,14 +77,4 @@ identity_providers:
         pre_configured_consent_duration: 1y
         scopes: ["openid", "profile", "groups", "email"]
         redirect_uris: ["https://grafana.${SECRET_DOMAIN}/login/generic_oauth"]
-        userinfo_signed_response_alg: none
-
-      - client_name: Miniflux
-        client_id: miniflux
-        client_secret: "$${MINIFLUX_OAUTH_CLIENT_SECRET}"
-        public: false
-        authorization_policy: one_factor
-        pre_configured_consent_duration: 1y
-        scopes: ["openid", "profile", "groups", "email"]
-        redirect_uris: ["https://miniflux.${SECRET_DOMAIN}/oauth2/oidc/callback"]
         userinfo_signed_response_alg: none
