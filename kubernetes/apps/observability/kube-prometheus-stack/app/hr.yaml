@@ -39,12 +39,9 @@ spec:
         enabled: true
         pathType: Prefix
         ingressClassName: internal
-        hosts:
-          - &host alertmanager.${SECRET_DOMAIN}
-        tls:
-          - hosts: [*host]
+        hosts: ["alertmanager.devbu.io"]
       alertmanagerSpec:
-        replicas: 2
+        replicas: 3
         useExistingSecret: true
         configSecret: alertmanager-secret
         storage:
@@ -80,9 +77,9 @@ spec:
     kubeControllerManager:
       enabled: true
       endpoints: &cp
-        - 10.1.1.31
-        - 10.1.1.32
-        - 10.1.1.33
+        - 192.168.42.10
+        - 192.168.42.11
+        - 192.168.42.12
     kubeEtcd:
       enabled: true
       endpoints: *cp
@@ -96,10 +93,7 @@ spec:
         enabled: true
         ingressClassName: internal
         pathType: Prefix
-        hosts:
-          - &host prometheus.${SECRET_DOMAIN}
-        tls:
-          - hosts: [*host]
+        hosts: ["prometheus.devbu.io"]
       thanosService:
         enabled: true
       thanosServiceMonitor:
@@ -108,7 +102,7 @@ spec:
         podMetadata:
           annotations:
             secret.reloader.stakater.com/reload: &secret thanos-objstore-config
-        replicas: 2
+        replicas: 3
         replicaExternalLabelName: __replica__
         scrapeInterval: 1m # Must match interval in Grafana Helm chart
         ruleSelectorNilUsesHelmValues: false
