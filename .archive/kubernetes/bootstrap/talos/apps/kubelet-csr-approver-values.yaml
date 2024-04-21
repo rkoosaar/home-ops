@@ -1,0 +1,3 @@
+---
+providerRegex: ^(mango.kvshs.xyz|melon.kvshs.xyz|nectarine.kvshs.xyz)$
+bypassDnsResolution: true
