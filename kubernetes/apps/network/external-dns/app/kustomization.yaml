@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - ./dnsendpoint-crd.yaml
   - ./bind
-  #- ./cloudflare
+  - ./cloudflare
