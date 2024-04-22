@@ -23,9 +23,9 @@ spec:
     remediation:
       strategy: rollback
       retries: 3
-  dependsOn:
-    - name: snapshot-controller
-      namespace: volsync-system
+  # dependsOn:
+  #   - name: snapshot-controller
+  #     namespace: volsync-system
   values:
     csi:
       provisioner:
