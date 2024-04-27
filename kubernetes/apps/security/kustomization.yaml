@@ -8,5 +8,5 @@ resources:
   # Flux-Kustomizations
   - ./external-secrets/ks.yaml
   - ./glauth/ks.yaml
-  #- ./authelia/ks.yaml
+  - ./authelia/ks.yaml
 
