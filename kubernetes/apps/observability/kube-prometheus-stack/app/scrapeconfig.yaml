@@ -18,11 +18,10 @@ spec:
 apiVersion: monitoring.coreos.com/v1alpha1
 kind: ScrapeConfig
 metadata:
-  name: &name nas.kvshs.xyz
+  name: &name node-exporter
 spec:
   staticConfigs:
-    - targets:
-        - nas.kvshs.xyz:9100
+    - targets: ["nas.kvshs.xyz:9100"]
   metricsPath: /metrics
   relabelings:
     - action: replace
