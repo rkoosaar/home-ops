@@ -3,12 +3,12 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - ./externalsecret.yaml
+  - ./objectbucketclaim.yaml
   - ./helmrelease.yaml
-  #- ../../../../templates/gatus/external
+  # - ./pushsecret.yaml
 configMapGenerator:
-  - name: authelia-configmap
+  - name: thanos-cache-configmap
     files:
-      - configuration.yaml=./resources/configuration.yaml
+      - cache.yaml=./resources/cache.yaml
 generatorOptions:
   disableNameSuffixHash: true

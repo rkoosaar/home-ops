@@ -5,10 +5,9 @@ kind: Kustomization
 resources:
   - ./externalsecret.yaml
   - ./helmrelease.yaml
-  #- ../../../../templates/gatus/external
 configMapGenerator:
-  - name: authelia-configmap
+  - name: vector-aggregator-configmap
     files:
-      - configuration.yaml=./resources/configuration.yaml
+      - vector.yaml=./resources/vector.yaml
 generatorOptions:
   disableNameSuffixHash: true
