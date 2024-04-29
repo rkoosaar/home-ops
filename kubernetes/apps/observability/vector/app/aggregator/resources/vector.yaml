@@ -22,15 +22,10 @@ sources:
     version: "2"
     address: 0.0.0.0:6001
 
-  # vyos_syslog:
-  #   type: syslog
-  #   mode: tcp
-  #   address: 0.0.0.0:6002
-
   nas_syslog:
     type: syslog
     mode: tcp
-    address: 0.0.0.0:6003
+    address: 0.0.0.0:6002
     path: /tmp/nas_syslog
 
 # Transforms

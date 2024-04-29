@@ -76,10 +76,8 @@ spec:
             port: 6000
           journald-logs:
             port: 6001
-          vyos-syslog:
-            port: 6002
           nas-syslog:
-            port: 6003
+            port: 6002
     persistence:
       config:
         type: configMap
