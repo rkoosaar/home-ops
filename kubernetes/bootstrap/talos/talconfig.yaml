@@ -88,7 +88,7 @@ patches:
       time:
         disabled: false
         servers:
-          - 10.1.1.1
+          - time.cloudflare.com
   - "@./patches/global/cluster-discovery.yaml"
   - "@./patches/global/containerd.yaml"
   - "@./patches/global/disable-search-domain.yaml"
