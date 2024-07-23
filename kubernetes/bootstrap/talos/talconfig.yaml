@@ -1,0 +1,92 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/budimanjojo/talhelper/master/pkg/config/schemas/talconfig.json
+---
+# renovate: datasource=docker depName=ghcr.io/siderolabs/installer
+talosVersion: v1.7.5
+# renovate: datasource=docker depName=ghcr.io/siderolabs/kubelet
+kubernetesVersion: v1.30.3
+
+clusterName: "Europe/London"
+endpoint: https://10.1.1.30:6443
+clusterPodNets:
+  - "10.69.0.0/16"
+clusterSvcNets:
+  - "10.96.0.0/16"
+additionalApiServerCertSans: &sans
+  - "10.1.1.30"
+  - 127.0.0.1 # KubePrism
+  - "k8s-api.kvshs.cc"
+additionalMachineCertSans: *sans
+
+# Disable built-in Flannel to use Cilium
+cniConfig:
+  name: none
+
+nodes:
+  - hostname: "mango"
+    ipAddress: ""
+    installDisk: "/dev/sda"
+    talosImageURL: factory.talos.dev/installer/52281aa5de1f838a2019b14dd597671ff3f364525016a85f059c27d6c68fbbf6
+    controlPlane: true
+    networkInterfaces:
+      - deviceSelector:
+          hardwareAddr: "00:02:c9:e8:b4:81"
+        dhcp: true
+        mtu: 1500
+        vip:
+          ip: "10.1.1.30"
+  - hostname: "melon"
+    ipAddress: ""
+    installDisk: "/dev/sda"
+    talosImageURL: factory.talos.dev/installer/52281aa5de1f838a2019b14dd597671ff3f364525016a85f059c27d6c68fbbf6
+    controlPlane: true
+    networkInterfaces:
+      - deviceSelector:
+          hardwareAddr: "00:02:c9:3b:b2:61"
+        dhcp: true
+        mtu: 1500
+        vip:
+          ip: "10.1.1.30"
+  - hostname: "nectarine"
+    ipAddress: ""
+    installDisk: "/dev/sda"
+    talosImageURL: factory.talos.dev/installer/52281aa5de1f838a2019b14dd597671ff3f364525016a85f059c27d6c68fbbf6
+    controlPlane: true
+    networkInterfaces:
+      - deviceSelector:
+          hardwareAddr: "00:02:c9:3b:b1:41"
+        dhcp: true
+        mtu: 1500
+        vip:
+          ip: "10.1.1.30"
+
+# Global patches
+patches:
+  - # Force nameserver
+    |-
+    machine:
+      network:
+        nameservers:
+          - 10.1.1.1
+  - # Configure NTP
+    |-
+    machine:
+      time:
+        disabled: false
+        servers:
+          - 10.1.1.1
+  - "@./patches/global/cluster-discovery.yaml"
+  - "@./patches/global/containerd.yaml"
+  - "@./patches/global/disable-search-domain.yaml"
+  - "@./patches/global/hostdns.yaml"
+  - "@./patches/global/kubelet.yaml"
+  - "@./patches/global/openebs-local.yaml"
+  - "@./patches/global/sysctl.yaml"
+
+# Controller patches
+controlPlane:
+  patches:
+    - "@./patches/controller/api-access.yaml"
+    - "@./patches/controller/cluster.yaml"
+    - "@./patches/controller/disable-admission-controller.yaml"
+    - "@./patches/controller/etcd.yaml"
+
