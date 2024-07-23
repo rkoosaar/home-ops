@@ -23,38 +23,53 @@ cniConfig:
 
 nodes:
   - hostname: "mango"
-    ipAddress: ""
+    ipAddress: "10.1.1.31"
     installDisk: "/dev/sda"
     talosImageURL: factory.talos.dev/installer/52281aa5de1f838a2019b14dd597671ff3f364525016a85f059c27d6c68fbbf6
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
           hardwareAddr: "00:02:c9:e8:b4:81"
-        dhcp: true
+        dhcp: false
+        addresses:
+          - "10.1.1.31/24"
+        routes:
+          - network: 0.0.0.0/0
+            gateway: "10.1.1.1"
         mtu: 1500
         vip:
           ip: "10.1.1.30"
   - hostname: "melon"
-    ipAddress: ""
+    ipAddress: "10.1.1.32"
     installDisk: "/dev/sda"
     talosImageURL: factory.talos.dev/installer/52281aa5de1f838a2019b14dd597671ff3f364525016a85f059c27d6c68fbbf6
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
           hardwareAddr: "00:02:c9:3b:b2:61"
-        dhcp: true
+        dhcp: false
+        addresses:
+          - "10.1.1.32/24"
+        routes:
+          - network: 0.0.0.0/0
+            gateway: "10.1.1.1"
         mtu: 1500
         vip:
           ip: "10.1.1.30"
   - hostname: "nectarine"
-    ipAddress: ""
+    ipAddress: "10.1.1.33"
     installDisk: "/dev/sda"
     talosImageURL: factory.talos.dev/installer/52281aa5de1f838a2019b14dd597671ff3f364525016a85f059c27d6c68fbbf6
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
           hardwareAddr: "00:02:c9:3b:b1:41"
-        dhcp: true
+        dhcp: false
+        addresses:
+          - "10.1.1.33/24"
+        routes:
+          - network: 0.0.0.0/0
+            gateway: "10.1.1.1"
         mtu: 1500
         vip:
           ip: "10.1.1.30"
