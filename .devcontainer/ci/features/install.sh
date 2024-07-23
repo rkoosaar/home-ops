@@ -59,6 +59,9 @@ tee /home/vscode/.config/fish/conf.d/aliases.fish > /dev/null <<EOF
 alias ls lsd
 alias kubectl kubecolor
 alias k kubectl
+alias reload-alias '/home/vscode/.config/fish/conf.d/aliases.fish'
+alias edit-alias 'vim /home/vscode/.config/fish/conf.d/aliases.fish'
+alias gtoken 'ssh-add -D /workspace/github-deploy.key.pub; ssh-add -T /workspace/github-deploy.key.pub'
 EOF
 
 # Custom fish prompt
