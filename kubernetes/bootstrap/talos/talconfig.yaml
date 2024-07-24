@@ -24,7 +24,7 @@ cniConfig:
 nodes:
   - hostname: "mango"
     ipAddress: "10.1.1.31"
-    installDisk: "/dev/sda"
+    installDisk: "/dev/nvme0n1"
     talosImageURL: factory.talos.dev/installer/7d6c7a162a7b340377ebca7026d317fcd50528794746b332bd058158935e2b60
     controlPlane: true
     networkInterfaces:
@@ -41,7 +41,7 @@ nodes:
           ip: "10.1.1.30"
   - hostname: "melon"
     ipAddress: "10.1.1.32"
-    installDisk: "/dev/sda"
+    installDisk: "/dev/nvme0n1"
     talosImageURL: factory.talos.dev/installer/7d6c7a162a7b340377ebca7026d317fcd50528794746b332bd058158935e2b60
     controlPlane: true
     networkInterfaces:
@@ -58,7 +58,7 @@ nodes:
           ip: "10.1.1.30"
   - hostname: "nectarine"
     ipAddress: "10.1.1.33"
-    installDisk: "/dev/sda"
+    installDisk: "/dev/nvme0n1"
     talosImageURL: factory.talos.dev/installer/7d6c7a162a7b340377ebca7026d317fcd50528794746b332bd058158935e2b60
     controlPlane: true
     networkInterfaces:
