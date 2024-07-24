@@ -23,53 +23,38 @@ cniConfig:
 
 nodes:
   - hostname: "mango"
-    ipAddress: "10.1.1.31"
+    ipAddress: ""
     installDisk: "/dev/sda"
-    talosImageURL: factory.talos.dev/installer/52281aa5de1f838a2019b14dd597671ff3f364525016a85f059c27d6c68fbbf6
+    talosImageURL: factory.talos.dev/installer/7d6c7a162a7b340377ebca7026d317fcd50528794746b332bd058158935e2b60
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
           hardwareAddr: "00:02:c9:e8:b4:81"
-        dhcp: false
-        addresses:
-          - "10.1.1.31/24"
-        routes:
-          - network: 0.0.0.0/0
-            gateway: "10.1.1.1"
+        dhcp: true
         mtu: 1500
         vip:
           ip: "10.1.1.30"
   - hostname: "melon"
-    ipAddress: "10.1.1.32"
+    ipAddress: ""
     installDisk: "/dev/sda"
-    talosImageURL: factory.talos.dev/installer/52281aa5de1f838a2019b14dd597671ff3f364525016a85f059c27d6c68fbbf6
+    talosImageURL: factory.talos.dev/installer/7d6c7a162a7b340377ebca7026d317fcd50528794746b332bd058158935e2b60
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
           hardwareAddr: "00:02:c9:3b:b2:61"
-        dhcp: false
-        addresses:
-          - "10.1.1.32/24"
-        routes:
-          - network: 0.0.0.0/0
-            gateway: "10.1.1.1"
+        dhcp: true
         mtu: 1500
         vip:
           ip: "10.1.1.30"
   - hostname: "nectarine"
-    ipAddress: "10.1.1.33"
+    ipAddress: ""
     installDisk: "/dev/sda"
-    talosImageURL: factory.talos.dev/installer/52281aa5de1f838a2019b14dd597671ff3f364525016a85f059c27d6c68fbbf6
+    talosImageURL: factory.talos.dev/installer/7d6c7a162a7b340377ebca7026d317fcd50528794746b332bd058158935e2b60
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
           hardwareAddr: "00:02:c9:3b:b1:41"
-        dhcp: false
-        addresses:
-          - "10.1.1.33/24"
-        routes:
-          - network: 0.0.0.0/0
-            gateway: "10.1.1.1"
+        dhcp: true
         mtu: 1500
         vip:
           ip: "10.1.1.30"
