@@ -1,8 +1,9 @@
 ---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2.json
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: &app external-dns
+  name: &app external-dns-cloudflare
 spec:
   interval: 30m
   chart:
@@ -25,13 +26,14 @@ spec:
       retries: 3
   values:
     fullnameOverride: *app
-    provider: cloudflare
+    provider:
+      name: cloudflare
     env:
       - name: CF_API_TOKEN
         valueFrom:
           secretKeyRef:
-            name: external-dns-secret
-            key: api-token
+            name: external-dns-cloudflare-secret
+            key: CF_API_TOKEN
     extraArgs:
       - --ingress-class=external
       - --cloudflare-proxied
@@ -45,4 +47,4 @@ spec:
     serviceMonitor:
       enabled: true
     podAnnotations:
-      secret.reloader.stakater.com/reload: external-dns-secret
+      secret.reloader.stakater.com/reload: external-dns-cloudflare-secret
