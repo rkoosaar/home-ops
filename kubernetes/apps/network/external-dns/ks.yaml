@@ -31,8 +31,8 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  dependsOn:
-    - name: external-secrets-stores
+  # dependsOn:
+  #   - name: external-secrets-stores
   path: ./kubernetes/apps/network/external-dns/unifi
   prune: true
   sourceRef:
