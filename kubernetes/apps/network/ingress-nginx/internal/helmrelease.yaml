@@ -25,18 +25,11 @@ spec:
   values:
     fullnameOverride: ingress-nginx-internal
     controller:
-
       service:
-        enabled: true
-        type: LoadBalancer
         annotations:
           external-dns.alpha.kubernetes.io/hostname: "internal.${SECRET_DOMAIN}"
           io.cilium/lb-ipam-ips: "10.1.1.28"
         externalTrafficPolicy: Cluster
-
-      publishService:
-        enabled: true
-
       ingressClassResource:
         name: internal
         default: true
