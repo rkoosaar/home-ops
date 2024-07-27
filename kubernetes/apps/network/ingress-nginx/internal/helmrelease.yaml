@@ -3,7 +3,6 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: ingress-nginx-internal
-  namespace: network
 spec:
   interval: 30m
   chart:
@@ -26,6 +25,7 @@ spec:
     controller:
       service:
         annotations:
+          external-dns.alpha.kubernetes.io/hostname: "internal.${SECRET_DOMAIN}"
           io.cilium/lb-ipam-ips: "10.1.1.28"
         externalTrafficPolicy: Cluster
       ingressClassResource:
