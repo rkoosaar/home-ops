@@ -12,9 +12,11 @@ cluster:
 cni:
   exclusive: false
 # NOTE: devices might need to be set if you have more than one active NIC on your hosts
-devices: enp+
+#devices: enp+
 endpointRoutes:
   enabled: true
+envoy:
+  enabled: false
 hubble:
   enabled: false
 ipam:
