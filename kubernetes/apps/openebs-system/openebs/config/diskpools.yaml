@@ -3,7 +3,7 @@ apiVersion: "openebs.io/v1beta2"
 kind: DiskPool
 metadata:
   name: mango-nvme
-  namespace: openebs
+  namespace: openebs-system
 spec:
   node: mango
   disks: ["/dev/disk/by-id/usb-SSK_SSK_Storage_DD56419883935-0:0"]
@@ -12,7 +12,7 @@ apiVersion: "openebs.io/v1beta2"
 kind: DiskPool
 metadata:
   name: melon-nvme
-  namespace: openebs
+  namespace: openebs-system
 spec:
   node: melon
   disks: ["/dev/disk/by-id/usb-SSK_SSK_Storage_012345678913-0:0"]
@@ -21,7 +21,7 @@ apiVersion: "openebs.io/v1beta2"
 kind: DiskPool
 metadata:
   name: nectarine-nvme
-  namespace: openebs
+  namespace: openebs-system
 spec:
   node: nectarine
   disks: ["/dev/disk/by-id/usb-SSK_SSK_Storage_012345678913-0:0"]
