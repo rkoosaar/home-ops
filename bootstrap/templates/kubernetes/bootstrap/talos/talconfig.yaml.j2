@@ -26,6 +26,8 @@ cniConfig:
 nodes:
   #% for item in bootstrap_node_inventory %#
   - hostname: "#{ item.name }#"
+    nodeLabels: &nodeLabels
+      openebs.io/engine: mayastor
     ipAddress: "#{ item.address }#"
     #% if item.disk.startswith('/') %#
     installDisk: "#{ item.disk }#"

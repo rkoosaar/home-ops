@@ -1,5 +1,5 @@
----
 # yaml-language-server: $schema=https://raw.githubusercontent.com/budimanjojo/talhelper/master/pkg/config/schemas/talconfig.json
+---
 # renovate: datasource=docker depName=ghcr.io/siderolabs/installer
 talosVersion: v1.7.5
 # renovate: datasource=docker depName=ghcr.io/siderolabs/kubelet
@@ -42,7 +42,8 @@ nodes:
         vip:
           ip: "10.1.1.30"
   - hostname: "melon"
-    nodeLabels: *nodeLabels
+    nodeLabels: &nodeLabels
+      openebs.io/engine: mayastor
     ipAddress: "10.1.1.32"
     installDisk: "/dev/nvme0n1"
     talosImageURL: factory.talos.dev/installer/7d6c7a162a7b340377ebca7026d317fcd50528794746b332bd058158935e2b60
@@ -60,7 +61,8 @@ nodes:
         vip:
           ip: "10.1.1.30"
   - hostname: "nectarine"
-    nodeLabels: *nodeLabels
+    nodeLabels: &nodeLabels
+      openebs.io/engine: mayastor
     ipAddress: "10.1.1.33"
     installDisk: "/dev/nvme0n1"
     talosImageURL: factory.talos.dev/installer/7d6c7a162a7b340377ebca7026d317fcd50528794746b332bd058158935e2b60
