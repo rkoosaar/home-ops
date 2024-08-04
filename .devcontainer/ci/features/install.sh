@@ -51,6 +51,7 @@ tee /home/vscode/.config/fish/conf.d/hooks.fish > /dev/null <<EOF
 if status is-interactive
     direnv hook fish | source
     starship init fish | source
+    set -gx PATH $PATH $HOME/.krew/bin
 end
 EOF
 
@@ -78,3 +79,6 @@ EOF
 
 # Set ownership vscode .config directory to the vscode user
 chown -R vscode:vscode /home/vscode/.config
+
+# Install Krew plugin for kubectl
+krew install krew

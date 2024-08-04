@@ -65,7 +65,6 @@ spec:
         persistence:
           storageClass: openebs-hostpath
       io_engine:
-        cpuCount: "1"
         resources:
           requests:
             cpu: 100m
