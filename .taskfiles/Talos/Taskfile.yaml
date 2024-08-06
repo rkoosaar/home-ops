@@ -14,6 +14,23 @@ env:
 
 tasks:
 
+  # apply-config:
+  #   desc: Apply Talos configuration to a node
+  #   cmd: |
+  #     sops --decrypt {{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/talos/assets/{{.hostname}}.secret.sops.yaml | \
+  #         $GOPATH/bin/envsubst | \
+  #             talosctl --context {{.cluster}} apply-config --mode={{.mode}} --nodes {{.hostname}} --file /dev/stdin
+  #   env: *vars
+  #   vars:
+  #     mode: '{{.mode | default "no-reboot"}}'
+  #   requires:
+  #     vars: ["cluster", "hostname"]
+  #   preconditions:
+  #     - test -f {{.KUBERNETES_DIR}}/{{.cluster}}/talosconfig
+  #     - test -f {{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/talos/assets/{{.hostname}}.secret.sops.yaml
+  #     - talosctl --context {{.cluster}} --nodes {{.hostname}} get machineconfig >/dev/null 2>&1
+
+
   bootstrap:
     desc: Bootstrap the Talos cluster
     dir: "{{.KUBERNETES_DIR}}/bootstrap/talos"
