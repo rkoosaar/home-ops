@@ -65,6 +65,7 @@ spec:
         persistence:
           storageClass: openebs-hostpath
       io_engine:
+        envcontext: "iova-mode=pa"
         resources:
           requests:
             cpu: 100m
