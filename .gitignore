@@ -26,5 +26,5 @@ wiki
 /config.yaml
 config.old.yaml
 #temp ignore
-kubernetes/flux/repositories/helm-old
-kubernetes/apps/observability-old
+kubernetes/flux/repositories/helm-old/*
+kubernetes/apps/observability-old/*
