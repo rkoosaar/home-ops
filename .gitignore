@@ -25,3 +25,6 @@ wiki
 # Bootstrap
 /config.yaml
 config.old.yaml
+#temp ignore
+kubernetes/flux/repositories/helm-old
+kubernetes/apps/observability-old
