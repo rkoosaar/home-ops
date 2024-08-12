@@ -80,4 +80,4 @@ spec:
       storageClass:
         enabled: false
     metrics:
-      enabled: false
+      enabled: true
