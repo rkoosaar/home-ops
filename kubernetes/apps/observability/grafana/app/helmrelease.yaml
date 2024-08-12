@@ -94,6 +94,9 @@ spec:
           gnetId: 12171
           revision: 1
           datasource: Prometheus
+        openebs-diskpool:
+          url: https://raw.githubusercontent.com/openebs/monitoring/develop/deploy/charts/dashboards/mayastor/diskpool.json
+          datasource: Prometheus
         apc-ups:
           # renovate: depName="APC UPS (SNMP)"
           gnetId: 12340
