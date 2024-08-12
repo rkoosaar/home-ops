@@ -89,6 +89,11 @@ spec:
               path: /var/lib/grafana/dashboards/default
     dashboards:
       default:
+        openebs:
+          # renovate: depName="OpenEBS"
+          gnetId: 12171
+          revision: 1
+          datasource: Prometheus
         apc-ups:
           # renovate: depName="APC UPS (SNMP)"
           gnetId: 12340
