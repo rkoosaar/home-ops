@@ -97,6 +97,9 @@ spec:
         openebs-diskpool:
           url: https://raw.githubusercontent.com/openebs/monitoring/develop/deploy/charts/dashboards/mayastor/diskpool.json
           datasource: Prometheus
+        openebs-volume:
+          url: https://raw.githubusercontent.com/openebs/monitoring/develop/deploy/charts/dashboards/mayastor/volume.json
+          datasource: Prometheus
         apc-ups:
           # renovate: depName="APC UPS (SNMP)"
           gnetId: 12340
