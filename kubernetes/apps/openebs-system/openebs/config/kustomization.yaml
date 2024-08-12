@@ -6,4 +6,3 @@ resources:
   - diskpools.yaml
   - snapshotclass.yaml
   - storageclass.yaml
-  - ./servicemonitor.yaml
