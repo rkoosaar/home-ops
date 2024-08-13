@@ -10,7 +10,7 @@ spec:
   chart:
     spec:
       chart: loki
-      version: 6.10.0
+      version: 6.9.0
       sourceRef:
         kind: HelmRepository
         name: grafana
@@ -57,8 +57,10 @@ spec:
       replicas: 1
       persistence:
         enabled: true
-        storageClass: openebs-hostpath
+        storageClass: mayastor-1
         size: 50Gi
+        accessModes:
+          - ReadWriteOnce
     gateway:
       replicas: 0
     backend:
