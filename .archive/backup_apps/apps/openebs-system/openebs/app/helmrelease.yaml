@@ -65,7 +65,7 @@ spec:
         persistence:
           storageClass: openebs-hostpath
       io_engine:
-        coreList: [5,6]
+        coreList: [4,5]
         envcontext: "iova-mode=pa"
         resources:
           requests:

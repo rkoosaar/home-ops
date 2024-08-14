@@ -1,7 +1,7 @@
 machine:
   install:
     extraKernelArgs:
-      - isolcpus=5,6
+      - isolcpus=4,5
   kubelet:
     extraMounts:
       - destination: /var/openebs/local
