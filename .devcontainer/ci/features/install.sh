@@ -5,7 +5,7 @@ set -o noglob
 apk add --no-cache \
     age bash bind-tools ca-certificates curl direnv gettext python3 \
     py3-pip moreutils jq git iputils openssh-client \
-    starship fzf fish yq helm
+    starship fzf fish yq helm k9s
 
 apk add --no-cache \
     --repository=https://dl-cdn.alpinelinux.org/alpine/edge/community \
