@@ -12,7 +12,7 @@ spec:
       version: 1.14.5
       sourceRef:
         kind: HelmRepository
-        name: external-dns
+        name: kubernetes-sigs-external-dns
         namespace: flux-system
   install:
     remediation:
@@ -33,10 +33,7 @@ spec:
           tag: v0.2.1@sha256:5690d19149103e1f9fa7bed6783e5e9c7935fd347487d0e3cafe02589b2173f2
         env:
           - name: UNIFI_HOST
-            valueFrom:
-              secretKeyRef:
-                name: &secret external-dns-unifi-secret
-                key: EXTERNAL_DNS_UNIFI_HOST
+            value: https://10.1.1.1
           - name: UNIFI_USER
             valueFrom:
               secretKeyRef:
