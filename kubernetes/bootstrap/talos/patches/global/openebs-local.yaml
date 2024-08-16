@@ -1,28 +1,4 @@
 machine:
-  hostname: mango
-  install:
-    disks:
-    - device: /dev/disk/by-id/usb-SSK_SSK_Storage_DD56419883935-0:0
-      partitions:
-      - mountpoint: /var/lib/longhorn
-
-machine:
-  hostname: melon
-  install:
-    disks:
-    - device: /dev/disk/by-id/usb-SSK_SSK_Storage_012345678913-0:0
-      partitions:
-      - mountpoint: /var/lib/longhorn
-
-machine:
-  hostname: nectarine
-  install:
-    disks:
-    - device: /dev/disk/by-id/usb-SSK_SSK_Storage_012345678913-0:0
-      partitions:
-      - mountpoint: /var/lib/longhorn
-
-machine:
   install:
     extraKernelArgs:
       - isolcpus=4,5
@@ -31,15 +7,6 @@ machine:
       - destination: /var/openebs/local
         type: bind
         source: /var/openebs/local
-        options:
-          - bind
-          - rshared
-          - rw
-  kubelet:
-    extraMounts:
-      - destination: /var/lib/longhorn
-        type: bind
-        source: /var/lib/longhorn
         options:
           - bind
           - rshared
