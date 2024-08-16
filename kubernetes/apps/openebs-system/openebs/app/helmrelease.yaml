@@ -1,5 +1,4 @@
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2.json
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
@@ -21,14 +20,20 @@ spec:
     cleanupOnFail: true
     remediation:
       retries: 3
-  uninstall:
-    keepHistory: false
   values:
+    engines:
+      local:
+        lvm:
+          enabled: false
+        zfs:
+          enabled: false
+      replicated:
+        mayastor:
+          enabled: false
     openebs-crds:
       csi:
         volumeSnapshots:
           enabled: false
-          keep: false
     localpv-provisioner:
       localpv:
         image:
@@ -41,44 +46,3 @@ spec:
         name: openebs-hostpath
         isDefaultClass: false
         basePath: /var/openebs/local
-    zfs-localpv:
-      enabled: false
-    lvm-localpv:
-      enabled: false
-    engines:
-      local:
-        lvm:
-          enabled: false
-        zfs:
-          enabled: false
-      replicated:
-        mayastor:
-          enabled: true
-    mayastor:
-      csi:
-        node:
-          initContainers:
-            enabled: false
-      etcd:
-        localpvScConfig:
-          enabled: false
-        persistence:
-          storageClass: openebs-hostpath
-      io_engine:
-        coreList: [4,5]
-        envcontext: "iova-mode=pa"
-        # resources:
-        #   requests:
-        #     cpu: 100m
-        #   limits:
-        #     cpu: 500m
-      loki-stack:
-        enabled: false
-        localpvScConfig:
-          enabled: false
-      promtail:
-        enabled: false
-      storageClass:
-        enabled: false
-    metrics:
-      enabled: true
