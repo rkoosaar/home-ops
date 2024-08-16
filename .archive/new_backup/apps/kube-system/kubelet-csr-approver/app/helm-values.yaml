@@ -1,0 +1,3 @@
+---
+providerRegex: ^(mango|melon|nectarine)$
+bypassDnsResolution: true
