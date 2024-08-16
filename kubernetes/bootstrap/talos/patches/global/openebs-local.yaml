@@ -11,3 +11,15 @@ machine:
           - bind
           - rshared
           - rw
+    extraMounts:
+      - destination: /var/lib/longhorn
+        type: bind
+        source: /var/lib/longhorn
+        options:
+          - bind
+          - rshared
+          - rw
+  disks:
+    - device: /dev/sda
+      partitions:
+        - mountpoint: /var/lib/longhorn
