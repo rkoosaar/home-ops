@@ -89,6 +89,11 @@ spec:
               path: /var/lib/grafana/dashboards/default
     dashboards:
       default:
+        longhorn:
+          # renovate: depName="longhorn"
+          gnetId: 16888
+          revision: 1
+          datasource: Prometheus
         openebs:
           # renovate: depName="OpenEBS"
           gnetId: 12171
@@ -253,6 +258,10 @@ spec:
       ingressClassName: internal
       hosts: ["grafana.${SECRET_DOMAIN}"]
     persistence:
-      enabled: false
+      enabled: true
+      storageClassName: longhorn
+      size: 1Gi
+      accessModes:
+        - ReadWriteOnce
     testFramework:
       enabled: false
