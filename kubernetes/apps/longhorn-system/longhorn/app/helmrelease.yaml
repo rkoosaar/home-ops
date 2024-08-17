@@ -46,14 +46,14 @@ spec:
       enabled: true
       ingressClassName: internal
       annotations:
-        external-dns.alpha.kubernetes.io/target: internal.${SECRET_DOMAIN}
+        external-dns.alpha.kubernetes.io/target: "internal.${SECRET_DOMAIN}"
         gethomepage.dev/enabled: "true"
         gethomepage.dev/group: Storage
         gethomepage.dev/name: Longhorn
         gethomepage.dev/icon: longhorn.svg
         gethomepage.dev/description: Verwaltung des Speichers
-      host: longhorn.${SECRET_DOMAIN}
-      tls: true
+      host: ["longhorn.${SECRET_DOMAIN}"]
+      tls: false
     metrics:
       serviceMonitor:
         enabled: true
