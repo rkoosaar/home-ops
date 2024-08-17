@@ -258,7 +258,7 @@ spec:
       ingressClassName: internal
       hosts: ["grafana.${SECRET_DOMAIN}"]
     persistence:
-      enabled: true
+      enabled: false
       storageClassName: longhorn
       size: 1Gi
       accessModes:
