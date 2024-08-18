@@ -28,6 +28,7 @@ resources:
   - ./kubernetes-sigs-nfd.yaml
   - ./kyverno.yaml
   - ./longhorn.yaml
+  - ./nfs-subdir-external-provisioner-charts.yaml
   - ./openebs.yaml
   - ./piraeus.yaml
   - ./postfinance.yaml
