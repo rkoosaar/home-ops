@@ -11,7 +11,7 @@ spec:
       version: 3.12.1
       sourceRef:
         kind: HelmRepository
-        name: kubernetes-sigs-metrics-server
+        name: metricskubernetes-sigs-metrics-server
         namespace: flux-system
   install:
     remediation:
