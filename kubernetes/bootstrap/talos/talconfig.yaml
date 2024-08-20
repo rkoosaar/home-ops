@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/budimanjojo/talhelper/master/pkg/config/schemas/talconfig.json
 ---
 # renovate: datasource=docker depName=ghcr.io/siderolabs/installer
-talosVersion: v1.7.5
+talosVersion: v1.7.6
 # renovate: datasource=docker depName=ghcr.io/siderolabs/kubelet
 kubernetesVersion: v1.30.3
 
@@ -27,7 +27,7 @@ nodes:
       openebs.io/engine: mayastor
     ipAddress: "10.1.1.31"
     installDisk: "/dev/nvme0n1"
-    talosImageURL: factory.talos.dev/installer/7d6c7a162a7b340377ebca7026d317fcd50528794746b332bd058158935e2b60
+    talosImageURL: factory.talos.dev/installer/e516b2e8be9d355d436a2917772a2f87b4d9d00f00cc1ebef766fdf3c1ed181b
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
@@ -46,7 +46,7 @@ nodes:
       openebs.io/engine: mayastor
     ipAddress: "10.1.1.32"
     installDisk: "/dev/nvme0n1"
-    talosImageURL: factory.talos.dev/installer/7d6c7a162a7b340377ebca7026d317fcd50528794746b332bd058158935e2b60
+    talosImageURL: factory.talos.dev/installer/e516b2e8be9d355d436a2917772a2f87b4d9d00f00cc1ebef766fdf3c1ed181b
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
@@ -65,7 +65,7 @@ nodes:
       openebs.io/engine: mayastor
     ipAddress: "10.1.1.33"
     installDisk: "/dev/nvme0n1"
-    talosImageURL: factory.talos.dev/installer/7d6c7a162a7b340377ebca7026d317fcd50528794746b332bd058158935e2b60
+    talosImageURL: factory.talos.dev/installer/e516b2e8be9d355d436a2917772a2f87b4d9d00f00cc1ebef766fdf3c1ed181b
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
@@ -93,6 +93,7 @@ patches:
   - "@./patches/global/disable-search-domain.yaml"
   - "@./patches/global/hostdns.yaml"
   - "@./patches/global/kubelet.yaml"
+  - "@./patches/global/longhorn.yaml"
   - "@./patches/global/openebs-local.yaml"
   - "@./patches/global/sysctl.yaml"
 
