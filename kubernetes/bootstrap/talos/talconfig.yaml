@@ -26,8 +26,7 @@ nodes:
     nodeLabels: &nodeLabels
       openebs.io/engine: mayastor
     ipAddress: "10.1.1.31"
-    installDiskSelector:
-      serial: "pci0000:00/0000:00:1b.0/0000:02:00.0/nvme/nvme0/nvme0n1"
+    installDisk: "/dev/nvme0n1"
     talosImageURL: factory.talos.dev/installer/e516b2e8be9d355d436a2917772a2f87b4d9d00f00cc1ebef766fdf3c1ed181b
     controlPlane: true
     networkInterfaces:
@@ -46,8 +45,7 @@ nodes:
     nodeLabels: &nodeLabels
       openebs.io/engine: mayastor
     ipAddress: "10.1.1.32"
-    installDiskSelector:
-      serial: "pci0000:00/0000:00:1b.0/0000:02:00.0/nvme/nvme0/nvme0n1"
+    installDisk: "/dev/nvme0n1"
     talosImageURL: factory.talos.dev/installer/e516b2e8be9d355d436a2917772a2f87b4d9d00f00cc1ebef766fdf3c1ed181b
     controlPlane: true
     networkInterfaces:
@@ -66,8 +64,7 @@ nodes:
     nodeLabels: &nodeLabels
       openebs.io/engine: mayastor
     ipAddress: "10.1.1.33"
-    installDiskSelector:
-      serial: "pci0000:00/0000:00:1b.0/0000:02:00.0/nvme/nvme0/nvme0n1"
+    installDisk: "/dev/nvme0n1"
     talosImageURL: factory.talos.dev/installer/e516b2e8be9d355d436a2917772a2f87b4d9d00f00cc1ebef766fdf3c1ed181b
     controlPlane: true
     networkInterfaces:
