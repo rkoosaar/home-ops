@@ -25,69 +25,48 @@ nodes:
   - hostname: "mango"
     nodeLabels: &nodeLabels
       openebs.io/engine: mayastor
-    ipAddress: "10.1.1.31"
-    installDisk: "/dev/nvme0n1"
+    ipAddress: ""
+    installDisk: "/pci0000:00/0000:00:1b.0/0000:02:00.0/nvme/nvme0/nvme0n1"
     talosImageURL: factory.talos.dev/installer/e516b2e8be9d355d436a2917772a2f87b4d9d00f00cc1ebef766fdf3c1ed181b
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
           hardwareAddr: "00:02:c9:e8:b4:81"
-        dhcp: false
-        addresses:
-          - "10.1.1.31/24"
-        routes:
-          - network: 0.0.0.0/0
-            gateway: "10.1.1.1"
+        dhcp: true
         mtu: 1500
         vip:
           ip: "10.1.1.30"
   - hostname: "melon"
     nodeLabels: &nodeLabels
       openebs.io/engine: mayastor
-    ipAddress: "10.1.1.32"
-    installDisk: "/dev/nvme0n1"
+    ipAddress: ""
+    installDisk: "/pci0000:00/0000:00:1b.0/0000:02:00.0/nvme/nvme0/nvme0n1"
     talosImageURL: factory.talos.dev/installer/e516b2e8be9d355d436a2917772a2f87b4d9d00f00cc1ebef766fdf3c1ed181b
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
           hardwareAddr: "00:02:c9:3b:b2:61"
-        dhcp: false
-        addresses:
-          - "10.1.1.32/24"
-        routes:
-          - network: 0.0.0.0/0
-            gateway: "10.1.1.1"
+        dhcp: true
         mtu: 1500
         vip:
           ip: "10.1.1.30"
   - hostname: "nectarine"
     nodeLabels: &nodeLabels
       openebs.io/engine: mayastor
-    ipAddress: "10.1.1.33"
-    installDisk: "/dev/nvme0n1"
+    ipAddress: ""
+    installDisk: "/pci0000:00/0000:00:1b.0/0000:02:00.0/nvme/nvme0/nvme0n1"
     talosImageURL: factory.talos.dev/installer/e516b2e8be9d355d436a2917772a2f87b4d9d00f00cc1ebef766fdf3c1ed181b
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
           hardwareAddr: "00:02:c9:3b:b1:41"
-        dhcp: false
-        addresses:
-          - "10.1.1.33/24"
-        routes:
-          - network: 0.0.0.0/0
-            gateway: "10.1.1.1"
+        dhcp: true
         mtu: 1500
         vip:
           ip: "10.1.1.30"
 
 # Global patches
 patches:
-  - # Force nameserver
-    |-
-    machine:
-      network:
-        nameservers:
-          - 10.1.1.1
   - "@./patches/global/cluster-discovery.yaml"
   - "@./patches/global/containerd.yaml"
   - "@./patches/global/disable-search-domain.yaml"
