@@ -27,11 +27,11 @@ nodes:
       openebs.io/engine: mayastor
     ipAddress: "10.1.1.31"
     installDisk: "/dev/nvme0n1"
-    talosImageURL: factory.talos.dev/installer/e516b2e8be9d355d436a2917772a2f87b4d9d00f00cc1ebef766fdf3c1ed181b
+    talosImageURL: factory.talos.dev/installer/87521388a0ade6d1e9e0ae8ed108d529bdb16508c3d8e46d8b8e2636bc366c86
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
-          hardwareAddr: "8c:16:45:80:2d:80"
+          hardwareAddr: "00:02:c9:e8:b4:80"
         dhcp: false
         addresses:
           - "10.1.1.31/24"
@@ -46,7 +46,7 @@ nodes:
       openebs.io/engine: mayastor
     ipAddress: "10.1.1.32"
     installDisk: "/dev/nvme0n1"
-    talosImageURL: factory.talos.dev/installer/e516b2e8be9d355d436a2917772a2f87b4d9d00f00cc1ebef766fdf3c1ed181b
+    talosImageURL: factory.talos.dev/installer/87521388a0ade6d1e9e0ae8ed108d529bdb16508c3d8e46d8b8e2636bc366c86
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
@@ -65,7 +65,7 @@ nodes:
       openebs.io/engine: mayastor
     ipAddress: "10.1.1.33"
     installDisk: "/dev/nvme0n1"
-    talosImageURL: factory.talos.dev/installer/e516b2e8be9d355d436a2917772a2f87b4d9d00f00cc1ebef766fdf3c1ed181b
+    talosImageURL: factory.talos.dev/installer/87521388a0ade6d1e9e0ae8ed108d529bdb16508c3d8e46d8b8e2636bc366c86
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
