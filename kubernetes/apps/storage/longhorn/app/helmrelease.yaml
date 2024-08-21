@@ -57,3 +57,11 @@ spec:
     metrics:
       serviceMonitor:
         enabled: true
+        selector:
+          matchLabels:
+            app: longhorn-manager
+        namespaceSelector:
+          matchNames:
+            - storage
+        endpoints:
+          - port: manager
