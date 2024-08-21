@@ -5,4 +5,4 @@ resources:
   - ./helmrelease.yaml
   - ./prometheusrule.yaml
   #- ./servicemonitor.yaml
-##  - ../../../../templates/gatus/guarded
+  #- ../../../../templates/gatus/guarded
