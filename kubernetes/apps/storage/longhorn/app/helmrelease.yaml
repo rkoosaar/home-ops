@@ -56,4 +56,4 @@ spec:
       tls: false
     metrics:
       serviceMonitor:
-        enabled: false
+        enabled: true
