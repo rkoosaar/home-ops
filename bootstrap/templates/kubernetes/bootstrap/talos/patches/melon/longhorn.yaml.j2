@@ -1,8 +1,4 @@
 machine:
-  disks:
-    - device: /dev/disk/by-id/usb-SSK_SSK_Storage_012345678913-0:0
-      partitions:
-        - mountpoint: /var/lib/longhorn
   kubelet:
     extraMounts:
       - destination: /var/lib/longhorn
@@ -12,3 +8,7 @@ machine:
           - bind
           - rshared
           - rw
+  disks:
+    - device: /dev/sda
+      partitions:
+        - mountpoint: /var/lib/longhorn
