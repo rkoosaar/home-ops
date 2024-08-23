@@ -41,6 +41,8 @@ nodes:
         mtu: 1500
         vip:
           ip: "10.1.1.30"
+    patches:
+      - "@./patches/mango/longhorn.yaml"
   - hostname: "melon"
     nodeLabels: &nodeLabels
       openebs.io/engine: mayastor
@@ -60,6 +62,8 @@ nodes:
         mtu: 1500
         vip:
           ip: "10.1.1.30"
+    patches:
+      - "@./patches/melon/longhorn.yaml"
   - hostname: "nectarine"
     nodeLabels: &nodeLabels
       openebs.io/engine: mayastor
@@ -79,6 +83,8 @@ nodes:
         mtu: 1500
         vip:
           ip: "10.1.1.30"
+    patches:
+      - "@./patches/nectarine/longhorn.yaml"
 
 # Global patches
 patches:
