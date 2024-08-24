@@ -61,12 +61,12 @@ spec:
       app:
         className: internal
         annotations:
-          gethomepage.dev/enabled: "true"
-          gethomepage.dev/group: Home
-          gethomepage.dev/name: Actual
-          gethomepage.dev/icon: actual.png
-          gethomepage.dev/description: Budget Management Software
-          external-dns.alpha.kubernetes.io/target: internal.${SECRET_DOMAIN}
+          # gethomepage.dev/enabled: "true"
+          # gethomepage.dev/group: Home
+          # gethomepage.dev/name: Actual
+          # gethomepage.dev/icon: actual.png
+          # gethomepage.dev/description: Budget Management Software
+          external-dns.alpha.kubernetes.io/target: "internal.${SECRET_DOMAIN}"
         hosts:
           - host: "{{ .Release.Name }}.${SECRET_DOMAIN}"
             paths:
