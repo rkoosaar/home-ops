@@ -37,6 +37,16 @@ spec:
             image:
               repository: ghcr.io/actualbudget/actual-server
               tag: 24.8.0
+            probes:
+              liveness:
+                enabled: true
+              readiness:
+                enabled: true
+              startup:
+                enabled: true
+                spec:
+                  failureThreshold: 30
+                  periodSeconds: 5
             env:
               GENERIC_TIMEZONE: Europe/London
             resources:
@@ -78,3 +88,7 @@ spec:
     persistence:
       data:
         existingClaim: *app
+        advancedMounts:
+          actual:
+            app:
+              - path: /data
