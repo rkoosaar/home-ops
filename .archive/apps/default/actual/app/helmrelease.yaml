@@ -3,32 +3,41 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: actual
+  name: &app actual
 spec:
   interval: 30m
   chart:
     spec:
       chart: app-template
       version: 3.3.2
-      interval: 30m
       sourceRef:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      strategy: rollback
+      retries: 3
+  dependsOn:
+    - name: longhorn
+      namespace: storage
+    - name: volsync
+      namespace: storage
   values:
     controllers:
       actual:
         annotations:
           reloader.stakater.com/auto: "true"
-
         pod:
           securityContext:
             runAsUser: 2000
             runAsGroup: 2000
             fsGroup: 2000
             fsGroupChangePolicy: "OnRootMismatch"
-
         containers:
           app:
             image:
@@ -44,36 +53,47 @@ spec:
                 spec:
                   failureThreshold: 30
                   periodSeconds: 5
+            env:
+              GENERIC_TIMEZONE: Europe/London
             resources:
               requests:
-                cpu: 12m
-                memory: 128M
+                cpu: 15m
+                memory: 80M
               limits:
-                memory: 512M
-
+                memory: 256M
+    # defaultPodOptions:
+    #   securityContext:
+    #     runAsNonRoot: true
+    #     runAsUser: 65534
+    #     runAsGroup: 65534
+    #     seccompProfile: { type: RuntimeDefault }
     service:
       app:
-        controller: actual
+        controller: *app
         ports:
           http:
             port: 5006
-
     ingress:
       app:
-        className: "internal"
+        className: internal
         annotations:
+          # gethomepage.dev/enabled: "true"
+          # gethomepage.dev/group: Home
+          # gethomepage.dev/name: Actual
+          # gethomepage.dev/icon: actual.png
+          # gethomepage.dev/description: Budget Management Software
           external-dns.alpha.kubernetes.io/target: "internal.${SECRET_DOMAIN}"
         hosts:
-          - host: "actual.${SECRET_DOMAIN}"
+          - host: "{{ .Release.Name }}.${SECRET_DOMAIN}"
             paths:
               - path: /
+                pathType: Prefix
                 service:
                   identifier: app
                   port: http
-
     persistence:
       data:
-        existingClaim: actual
+        existingClaim: *app
         advancedMounts:
           actual:
             app:
