@@ -7,4 +7,6 @@ resources:
   - ./namespace.yaml
   # Flux-Kustomizations
   - ./actual/ks.yaml
+  - ./sonarr/ks.yaml
+
 
