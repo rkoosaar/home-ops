@@ -8,7 +8,7 @@ resources:
   # Flux-Kustomizations
   - ./actual/ks.yaml
   - ./calibre/ks.yaml
-  - ./lidarr/ks.yaml
+  #- ./lidarr/ks.yaml
   - ./sabnzbd/ks.yaml
   - ./sonarr/ks.yaml
   - ./radarr/ks.yaml
