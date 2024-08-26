@@ -9,8 +9,9 @@ resources:
   - ./actual/ks.yaml
   - ./calibre/ks.yaml
   - ./lidarr/ks.yaml
-  - ./sabnzbd/ks.yaml
-  - ./sonarr/ks.yaml
+  - ./overseerr/ks.yaml
   - ./radarr/ks.yaml
   - ./readarr/ks.yaml
+  - ./sabnzbd/ks.yaml
+  - ./sonarr/ks.yaml
 
