@@ -46,7 +46,7 @@ spec:
               repository: ghcr.io/onedr0p/readarr-develop
               tag: 0.3.32.2587@sha256:ac8af2920cf9a4b9b6fee396b771ab63d756455c1db0a9c2466fcc6fee3d00af
             env:
-              READARR__APP__INSTANCENAME: readarr
+              READARR__APP__INSTANCENAME: Readarr
               READARR__APP__THEME: dark
               READARR__AUTH__METHOD: External
               READARR__AUTH__REQUIRED: DisabledForLocalAddresses
