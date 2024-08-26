@@ -38,8 +38,10 @@ spec:
             env:
               TZ: Europe/London
               TITLE: Calibre
-              PUID: 65534
-              PGID: 65534
+              # PUID: 65534
+              # PGID: 65534
+              PUID: "1026"
+              PGID: "1000"
             probes:
               liveness:
                 enabled: true
@@ -50,24 +52,24 @@ spec:
                 spec:
                   failureThreshold: 30
                   periodSeconds: 5
-            securityContext:
-              allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
-              capabilities:
-                drop: ["ALL"]
-                add: ["seccomp:unconfined"]
+            # securityContext:
+            #   allowPrivilegeEscalation: false
+            #   readOnlyRootFilesystem: true
+            #   capabilities:
+            #     drop: ["ALL"]
+            #     add: ["seccomp:unconfined"]
             resources:
               requests:
                 cpu: 15m
                 memory: 324M
               limits:
                 memory: 604M
-    defaultPodOptions:
-      securityContext:
-        runAsNonRoot: false
-        runAsUser: 65534
-        runAsGroup: 65534
-        seccompProfile: { type: RuntimeDefault }
+    # defaultPodOptions:
+    #   securityContext:
+    #     runAsNonRoot: false
+    #     runAsUser: 65534
+    #     runAsGroup: 65534
+    #     seccompProfile: { type: RuntimeDefault }
     service:
       app:
         controller: calibre
