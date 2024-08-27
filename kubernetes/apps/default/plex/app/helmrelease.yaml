@@ -1,9 +1,10 @@
 ---
-# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2beta2.schema.json
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: &app tautulli
+  name: &app plex
+  namespace: default
 spec:
   interval: 30m
   chart:
@@ -23,50 +24,55 @@ spec:
       strategy: rollback
       retries: 3
   dependsOn:
+    - name: intel-device-plugin-gpu
+      namespace: kube-system
     - name: longhorn
       namespace: storage
     - name: volsync
       namespace: storage
   values:
     controllers:
-      tautulli:
+      plex:
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
           app:
             image:
-              repository: ghcr.io/tautulli/tautulli
-              tag: v2.14.4@sha256:4316ed82bd1334852c56460d0dc2c3ff4fc84ac55e71944bcb0f27838ed7a53e
+              repository: ghcr.io/onedr0p/plex
+              tag: 1.40.5.8897-e5987a19d@sha256:6ff4d26ac66291fb01518ee8023841f50915dcc036ab6c55c3b56aab78e989c1
             env:
-              TZ: America/New_York
-            command: ["/usr/local/bin/python", "Tautulli.py"]
-            args: [
-              "--config", "/config/config.ini",
-              "--datadir", "/config",
-              "--port", "80"
-            ]
+              TZ: Europe/London
+              PLEX_ADVERTISE_URL: https://plex.${SECRET_DOMAIN}:443,http://10.45.0.5:32400
+              PLEX_NO_AUTH_NETWORKS: 10.0.0.0/16,10.1.0.0/16
             probes:
               liveness: &probes
                 enabled: true
                 custom: true
                 spec:
                   httpGet:
-                    path: /status
-                    port: &port 80
+                    path: /identity
+                    port: 32400
                   initialDelaySeconds: 0
                   periodSeconds: 10
                   timeoutSeconds: 1
                   failureThreshold: 3
               readiness: *probes
+              startup:
+                enabled: true
+                spec:
+                  failureThreshold: 30
+                  periodSeconds: 10
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
               capabilities: { drop: ["ALL"] }
             resources:
               requests:
-                cpu: 10m
+                gpu.intel.com/i915: 1
+                cpu: 100m
               limits:
-                memory: 1Gi
+                gpu.intel.com/i915: 1
+                memory: 10Gi
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
@@ -74,18 +80,25 @@ spec:
         runAsGroup: 568
         fsGroup: 568
         fsGroupChangePolicy: OnRootMismatch
+        supplementalGroups: [44, 10000]
         seccompProfile: { type: RuntimeDefault }
+      nodeSelector:
+        intel.feature.node.kubernetes.io/gpu: "true"
     service:
       app:
         controller: *app
+        type: LoadBalancer
+        annotations:
+          io.cilium/lb-ipam-ips: 10.45.0.5
         ports:
           http:
-            port: *port
+            port: 32400
     ingress:
       app:
         className: internal
         annotations:
           external-dns.alpha.kubernetes.io/target: "internal.${SECRET_DOMAIN}"
+          nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
         hosts:
           - host: "{{ .Release.Name }}.${SECRET_DOMAIN}"
             paths:
@@ -93,16 +106,26 @@ spec:
                 service:
                   identifier: app
                   port: http
+    # TODO: If setting up Plex for the first time, you'll want to add the globalMounts section
+    # globalMounts:
+    #   - path: /config/Library/Application Support/Plex Media Server
+    # Separate PVC for cache to avoid backing up cache files
     persistence:
       config:
         existingClaim: *app
-      cache:
-        existingClaim: tautulli-cache
         globalMounts:
-          - path: /config/cache
+          - path: /config
       logs:
         type: emptyDir
         globalMounts:
-          - path: /config/logs
+          - path: /config/Library/Application Support/Plex Media Server/Logs
       tmp:
         type: emptyDir
+      transcode:
+        type: emptyDir
+      media:
+        type: nfs
+        server: nas.kvshs.xyz
+        path: /media
+        globalMounts:
+          - path: /data/media
