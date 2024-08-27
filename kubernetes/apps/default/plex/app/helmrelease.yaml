@@ -4,7 +4,6 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: &app plex
-  namespace: default
 spec:
   interval: 30m
   chart:
@@ -68,7 +67,6 @@ spec:
               capabilities: { drop: ["ALL"] }
             resources:
               requests:
-                gpu.intel.com/i915: 1
                 cpu: 100m
               limits:
                 gpu.intel.com/i915: 1
@@ -115,6 +113,10 @@ spec:
         existingClaim: *app
         globalMounts:
           - path: /config
+      cache:
+        existingClaim: plex-cache
+        globalMounts:
+          - path: /config/Library/Application Support/Plex Media Server/Cache
       logs:
         type: emptyDir
         globalMounts:
