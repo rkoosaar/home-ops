@@ -69,7 +69,7 @@ spec:
               requests:
                 cpu: 100m
               limits:
-                gpu.intel.com/i915: 1
+                # gpu.intel.com/i915: 1
                 memory: 10Gi
     defaultPodOptions:
       securityContext:
@@ -80,8 +80,8 @@ spec:
         fsGroupChangePolicy: OnRootMismatch
         supplementalGroups: [44, 10000]
         seccompProfile: { type: RuntimeDefault }
-      nodeSelector:
-        intel.feature.node.kubernetes.io/gpu: "true"
+      # nodeSelector:
+      #   intel.feature.node.kubernetes.io/gpu: "true"
     service:
       app:
         controller: *app

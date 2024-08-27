@@ -25,9 +25,22 @@ spec:
       strategy: rollback
       retries: 3
   values:
+    prometheus:
+      enable: true
+    master:
+      resources:
+        requests:
+          cpu: 21m
+          memory: 51Mi
+        limits:
+          memory: 51Mi
     worker:
       config:
         core:
           sources: ["pci", "system", "usb"]
-    prometheus:
-      enable: true
+      resources:
+        requests:
+          cpu: 5m
+          memory: 48Mi
+        limits:
+          memory: 48Mi
