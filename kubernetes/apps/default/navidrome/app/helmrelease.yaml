@@ -55,7 +55,7 @@ spec:
               ND_PORT: &port 8080
               ND_PROMETHEUS_ENABLED: true
               # ND_REVERSEPROXYUSERHEADER: Remote-User
-              # ND_REVERSEPROXYWHITELIST: 10.1.0.0/16
+              ND_REVERSEPROXYWHITELIST: 10.0.0.0/8
               #ND_SCANSCHEDULE: "@every 1h"
             # envFrom:
             #   - secretRef:
