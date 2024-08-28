@@ -51,12 +51,12 @@ spec:
               ND_ENABLEGRAVATAR: true
               ND_ENABLESHARING: true
               ND_LOGLEVEL: info
-              ND_MUSICFOLDER: /media/Music
+              #ND_MUSICFOLDER: /media/Music
               ND_PORT: &port 8080
               ND_PROMETHEUS_ENABLED: true
               ND_REVERSEPROXYUSERHEADER: Remote-User
               ND_REVERSEPROXYWHITELIST: 10.0.0.0/8
-              ND_SCANSCHEDULE: "@every 1h"
+              #ND_SCANSCHEDULE: "@every 1h"
             # envFrom:
             #   - secretRef:
             #       name: navidrome-secret
