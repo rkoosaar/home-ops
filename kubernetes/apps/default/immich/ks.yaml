@@ -1,9 +1,9 @@
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/kustomization-kustomize-v1.json
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app lidarr
+  name: &app immich
   namespace: flux-system
 spec:
   targetNamespace: default
@@ -13,11 +13,11 @@ spec:
   dependsOn:
     - name: external-secrets-stores
     - name: cloudnative-pg-cluster
-  path: ./kubernetes/apps/default/lidarr/app
+  path: ./kubernetes/apps/default//immich/app
   prune: true
   sourceRef:
     kind: GitRepository
-    name: home-kubernetes
+    name: k8s-home-ops
   wait: false
   interval: 30m
   retryInterval: 1m
@@ -25,4 +25,4 @@ spec:
   postBuild:
     substitute:
       APP: *app
-      VOLSYNC_CAPACITY: 1Gi
+#      VOLSYNC_CAPACITY: 1Gi
