@@ -8,6 +8,7 @@ resources:
   # Flux-Kustomizations
   - ./actual/ks.yaml
   - ./calibre/ks.yaml
+  - ./calibre-web/ks.yaml
   - ./lidarr/ks.yaml
   - ./metube/ks.yaml
   - ./navidrome/ks.yaml
