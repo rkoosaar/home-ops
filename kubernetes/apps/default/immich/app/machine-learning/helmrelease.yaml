@@ -27,7 +27,7 @@ spec:
   dependsOn:
     - name: immich-server
       namespace: default
-    - name: dragonfly-operator
+    - name: dragonfly
       namespace: databases
   values:
     defaultPodOptions:

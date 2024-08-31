@@ -25,7 +25,7 @@ spec:
   uninstall:
     keepHistory: false
   dependsOn:
-    - name: dragonfly-operator
+    - name: dragonfly
       namespace: databases
   values:
     defaultPodOptions:
