@@ -48,7 +48,7 @@ spec:
         type: statefulset
         annotations:
           configmap.reloader.stakater.com/reload: &configMap immich-configmap
-          secret.reloader.stakater.com/reload: &secret immich
+          secret.reloader.stakater.com/reload: &secret immich-secret
         containers:
           app:
             image:
