@@ -26,7 +26,7 @@ spec:
     keepHistory: false
   dependsOn:
     - name: dragonfly
-      namespace: databases
+      namespace: database
   values:
     defaultPodOptions:
       securityContext:
