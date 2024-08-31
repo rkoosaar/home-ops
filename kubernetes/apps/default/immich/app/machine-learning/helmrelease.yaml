@@ -4,7 +4,6 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: &app immich-machine-learning
-  namespace: selfhosted
 spec:
   interval: 30m
   chart:
@@ -27,7 +26,7 @@ spec:
     keepHistory: false
   dependsOn:
     - name: immich-server
-      namespace: selfhosted
+      namespace: default
     - name: dragonfly-operator
       namespace: databases
   values:
@@ -73,7 +72,9 @@ spec:
     persistence:
       library:
         enabled: true
-        existingClaim: immich-nfs
+        type: nfs
+        server: nas.kvshs.xyz
+        path: /media/photos/test
         globalMounts:
           - path: /usr/src/app/upload
       cache:

@@ -5,12 +5,8 @@ kind: Kustomization
 resources:
   - ./externalsecret.yaml
   - ./configmap.yaml
-  - ./nfs-pvc.yaml
   - ./server
   - ./microservices
   - ./machine-learning
+  - ../../../../templates/gatus/guarded
 
-  # - ./externalsecret.yaml
-  # - ./helmrelease.yaml
-  # - ../../../../templates/volsync
-  # - ../../../../templates/gatus/guarded
