@@ -8,5 +8,4 @@ resources:
   - ./server
   - ./microservices
   - ./machine-learning
-  #- ../../../../templates/gatus/guarded
 
