@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: &app komga
+  name: &app kavita
 spec:
   interval: 30m
   chart:
@@ -29,7 +29,7 @@ spec:
       namespace: storage
   values:
     controllers:
-      komga:
+      kavita:
         # labels:
         #   nfsMount: "true"
         annotations:
@@ -37,30 +37,38 @@ spec:
         containers:
           app:
             image:
-              repository: gotson/komga
-              tag: "1.12.0@sha256:991dec61de420112faf629f1a41fbb6a9edab997609498d74a1a4b7b412442e9"
+              repository: ghcr.io/kareadita/kavita
+              tag: 0.8.2@sha256:3fbd326ca5bde61318200751289a289ef0040b4c842874814ffaf05107d91fe8
             env:
               TZ: Europe/London
-              SERVER_PORT: &port 8080
             resources:
               requests:
                 cpu: 15m
-                memory: 1Gi
+                memory: 300Mi
               limits:
-                memory: 4Gi
+                memory: 1Gi
     service:
       app:
         controller: *app
         ports:
           http:
-            port: *port
+            port: 5000
     ingress:
       app:
         className: internal
         annotations:
+          # gethomepage.dev/enabled: "true"
+          # gethomepage.dev/group: Books
+          # gethomepage.dev/name: Kavita
+          # gethomepage.dev/icon: kavita.png
+          # gethomepage.dev/description: Comic/Ebook Web Reader
+          # gethomepage.dev/widget.type: kavita
+          # gethomepage.dev/widget.url: http://kavita.media:5000
+          # gethomepage.dev/widget.username: "{{ `{{HOMEPAGE_VAR_KAVITA_USERNAME}}` }}"
+          # gethomepage.dev/widget.password: "{{ `{{HOMEPAGE_VAR_KAVITA_PASSWORD}}` }}"
           external-dns.alpha.kubernetes.io/target: internal.${SECRET_DOMAIN}
         hosts:
-          - host: "{{ .Release.Name }}.${SECRET_DOMAIN}"
+          - host: "comics.${SECRET_DOMAIN}"
             paths:
               - path: /
                 service:
@@ -69,6 +77,8 @@ spec:
     persistence:
       config:
         existingClaim: *app
+        globalMounts:
+          - path: /kavita/config
       media:
         type: nfs
         server: nas.kvshs.xyz
