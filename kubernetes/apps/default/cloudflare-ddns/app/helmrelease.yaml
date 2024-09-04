@@ -25,6 +25,7 @@ spec:
   values:
     controllers:
       cloudflare-ddns:
+        replicas: 1
         type: cronjob
         cronjob:
           schedule: "@hourly"
