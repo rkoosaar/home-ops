@@ -50,3 +50,9 @@ spec:
             #     cpu: 5m
             #   limits:
             #     memory: 16Mi
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        seccompProfile: { type: RuntimeDefault }
