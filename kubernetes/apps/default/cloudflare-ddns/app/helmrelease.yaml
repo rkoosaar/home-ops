@@ -25,28 +25,28 @@ spec:
   values:
     controllers:
       cloudflare-ddns:
-        replicas: 1
-        type: cronjob
-        cronjob:
-          schedule: "@hourly"
-          successfulJobsHistory: 0
-        containers: &container
+        containers:
           app:
             image:
-              repository: ghcr.io/onedr0p/kubanetics
-              tag: 2024.8.1@sha256:45ffec868c477b1ae0e339dffb0bcec4dddb4de5ff3ac2562002401fccb201a8
-            command: ["/app/cloudflare-ddns.sh"]
-            resources:
-              requests:
-                cpu: 5m
-              limits:
-                memory: 16Mi
-    persistence:
-      config:
-        type: secret
-        name: cloudflare-ddns-secret
-        defaultMode: 0775
-        globalMounts:
-          - path: /app/cloudflare-ddns.sh
-            subPath: cloudflare-ddns.sh
-            readOnly: true
+              repository: docker.io/favonia/cloudflare-ddns
+              tag: 1.11.0
+            env:
+              - name: TZ
+                value: Europe/London
+              - name: IP6_PROVIDER
+                value: none
+              - name: CF_API_TOKEN
+                valueFrom:
+                  secretKeyRef:
+                    name: &secret cloudflare-ddns-secret
+                    key: CF_API_TOKEN
+              - name: DOMAINS
+                valueFrom:
+                  secretKeyRef:
+                    name: *secret
+                    key: DOMAINS
+            # resources:
+            #   requests:
+            #     cpu: 5m
+            #   limits:
+            #     memory: 16Mi
