@@ -44,7 +44,7 @@ spec:
                 valueFrom:
                   secretKeyRef:
                     name: *secret
-                    key: DOMAINS
+                    key: CF_DDNS_DOMAIN
             # resources:
             #   requests:
             #     cpu: 5m
