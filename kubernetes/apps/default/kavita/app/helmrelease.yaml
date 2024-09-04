@@ -79,6 +79,14 @@ spec:
         existingClaim: *app
         globalMounts:
           - path: /kavita/config
+      cache:
+        type: emptyDir
+        globalMounts:
+          - path: /kavita/config/cache
+      logs:
+        type: emptyDir
+        globalMounts:
+          - path: /kavita/config/logs
       media:
         type: nfs
         server: nas.kvshs.xyz
