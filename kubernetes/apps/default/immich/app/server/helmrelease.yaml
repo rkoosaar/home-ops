@@ -27,8 +27,6 @@ spec:
   dependsOn:
     - name: dragonfly-operator
       namespace: database
-    - name: immich-db
-      namespace: database
   values:
     defaultPodOptions:
       securityContext:
