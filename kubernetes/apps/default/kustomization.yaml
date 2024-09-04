@@ -9,7 +9,7 @@ resources:
   - ./actual/ks.yaml
   - ./calibre/ks.yaml
   - ./calibre-web/ks.yaml
-  - ./cloudflare-ddns/ks.yaml
+#  - ./cloudflare-ddns/ks.yaml
   - ./homepage/ks.yaml
   - ./immich/ks.yaml
   - ./kavita/ks.yaml
