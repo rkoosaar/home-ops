@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: &app navidrome
+  name: &app sonarr
 spec:
   interval: 30m
   chart:
@@ -29,37 +29,33 @@ spec:
       namespace: storage
   values:
     controllers:
-      navidrome:
+      sonarr:
         annotations:
           reloader.stakater.com/auto: "true"
-        pod:
-          securityContext:
-            runAsUser: 2000
-            runAsGroup: 2000
-            runAsNonRoot: true
-            fsGroup: 2000
-            fsGroupChangePolicy: OnRootMismatch
+        initContainers:
+          init-db:
+            image:
+              repository: ghcr.io/onedr0p/postgres-init
+              tag: 16
+            envFrom: &envFrom
+              - secretRef:
+                  name: sonarr-secret
         containers:
           app:
             image:
-              repository: ghcr.io/navidrome/navidrome
-              tag: 0.52.5@sha256:b154aebe8b33bae82c500ad0a3eb743e31da54c3bfb4e7cc3054b9a919b685c7
+              repository: ghcr.io/onedr0p/sonarr-develop
+              tag: 4.0.9.2342@sha256:e638ab3ece6488d4b19b205c3e268c94c7e02a01d10a0cf73783b18124444db5
             env:
+              SONARR__APP__INSTANCENAME: Sonarr
+              SONARR__APP__THEME: dark
+              SONARR__AUTH__METHOD: External
+              SONARR__AUTH__REQUIRED: DisabledForLocalAddresses
+              SONARR__LOG__DBENABLED: "False"
+              SONARR__LOG__LEVEL: info
+              SONARR__SERVER__PORT: &port 80
+              SONARR__UPDATE__BRANCH: develop
               TZ: Europe/London
-              ND_AUTHREQUESTLIMIT: 0
-              ND_DATAFOLDER: /config
-              ND_ENABLEGRAVATAR: true
-              ND_ENABLESHARING: true
-              ND_LOGLEVEL: info
-              ND_MUSICFOLDER: /data/media/music
-              ND_PORT: &port 8080
-              ND_PROMETHEUS_ENABLED: true
-              ND_REVERSEPROXYUSERHEADER: Remote-User
-              ND_REVERSEPROXYWHITELIST: 10.0.0.0/8
-              #ND_SCANSCHEDULE: "@every 1h"
-            # envFrom:
-            #   - secretRef:
-            #       name: navidrome-secret
+            envFrom: *envFrom
             probes:
               liveness: &probes
                 enabled: true
@@ -73,14 +69,25 @@ spec:
                   timeoutSeconds: 1
                   failureThreshold: 3
               readiness: *probes
-              # startup:
-              #   enabled: false
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
             resources:
               requests:
-                cpu: 50m
-                memory: 100Mi
+                cpu: 20m
+                memory: 384Mi
               limits:
-                memory: 300Mi
+                memory: 2Gi
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 568
+        runAsGroup: 568
+        fsGroup: 568
+        fsGroupChangePolicy: OnRootMismatch
+        supplementalGroups: [10000]
+        seccompProfile: { type: RuntimeDefault }
     service:
       app:
         controller: *app
@@ -96,17 +103,19 @@ spec:
           - host: "{{ .Release.Name }}.${SECRET_DOMAIN}"
             paths:
               - path: /
-                pathType: Prefix
                 service:
                   identifier: app
                   port: http
     persistence:
       config:
         existingClaim: *app
+      add-ons:
+        type: emptyDir
+      tmp:
+        type: emptyDir
       media:
         type: nfs
         server: nas.kvshs.xyz
         path: /media
         globalMounts:
           - path: /data/media
-            readOnly: true
