@@ -124,6 +124,9 @@ spec:
         path: /media
         globalMounts:
           - path: /data/media
-        # globalMounts:
-        #   - path: /media/Downloads/sabnzbd
-        #     subPath: Downloads/sabnzbd
+      downloads:
+        type: nfs
+        server: nas.kvshs.xyz
+        path: /media/Downloads
+        globalMounts:
+          - path: /config/Downloads
