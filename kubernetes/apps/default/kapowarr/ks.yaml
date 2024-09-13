@@ -13,7 +13,7 @@ spec:
   dependsOn:
     - name: external-secrets-stores
     - name: cloudnative-pg-cluster
-  path: ./kubernetes/apps/downloads/kapowarr/app
+  path: ./kubernetes/apps/default/kapowarr/app
   prune: true
   sourceRef:
     kind: GitRepository
