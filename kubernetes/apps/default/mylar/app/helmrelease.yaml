@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: &app komga
+  name: &app mylar
 spec:
   interval: 30m
   chart:
@@ -29,35 +29,51 @@ spec:
       namespace: storage
   values:
     controllers:
-      komga:
-        # labels:
-        #   nfsMount: "true"
+      mylar:
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
           app:
             image:
-              repository: gotson/komga
-              tag: "1.12.1@sha256:49837d45c6ab713e15772784b44422a21a89bf3f78a30086c7f01483b3197c7b"
+              repository: ghcr.io/linuxserver/mylar3
+              tag: version-v0.7.6@sha256:0dbc84954e0b3d13cf42f5b1f42e845cb0d211d9d627642e5b9101a49cb6c0b0
             env:
               TZ: Europe/London
-              SERVER_PORT: &port 8080
+              UID: 1000
+              GID: 1000
             resources:
               requests:
                 cpu: 15m
-                memory: 1Gi
+                memory: 700M
               limits:
-                memory: 4Gi
+                memory: 1200M
+    # defaultPodOptions:
+    #   securityContext:
+    #     runAsNonRoot: true
+    #     runAsUser: 568
+    #     runAsGroup: 568
+    #     fsGroup: 568
+    #     fsGroupChangePolicy: OnRootMismatch
+    #     supplementalGroups: [10000]
+    #     seccompProfile: { type: RuntimeDefault }
     service:
       app:
         controller: *app
         ports:
           http:
-            port: *port
+            port: 8090
     ingress:
       app:
         className: internal
         annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/group: Downloads
+          gethomepage.dev/name: Mylar
+          gethomepage.dev/icon: mylar.png
+          gethomepage.dev/description: Comic Downloads
+          gethomepage.dev/widget.type: mylar
+          gethomepage.dev/widget.url: http://mylar.downloads:8090
+          gethomepage.dev/widget.key: "{{ `{{HOMEPAGE_VAR_MYLAR_TOKEN}}` }}"
           external-dns.alpha.kubernetes.io/target: internal.${SECRET_DOMAIN}
         hosts:
           - host: "{{ .Release.Name }}.${SECRET_DOMAIN}"

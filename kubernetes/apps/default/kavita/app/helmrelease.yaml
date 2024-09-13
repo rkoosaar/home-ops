@@ -92,4 +92,4 @@ spec:
         server: nas.kvshs.xyz
         path: /media
         globalMounts:
-          - path: /data/media
+          - path: /media
