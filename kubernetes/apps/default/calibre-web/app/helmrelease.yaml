@@ -32,7 +32,6 @@ spec:
   values:
     controllers:
       calibre-web:
-        type: statefulset
         strategy: RollingUpdate
         containers:
           app:
