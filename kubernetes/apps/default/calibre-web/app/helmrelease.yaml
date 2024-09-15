@@ -87,6 +87,10 @@ spec:
     persistence:
       config:
         existingClaim: *app
+        advancedMounts:
+          calibre-web:
+            app:
+              - path: /config
       cache:
         type: emptyDir
         globalMounts:
