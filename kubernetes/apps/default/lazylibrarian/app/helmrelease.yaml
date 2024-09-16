@@ -39,6 +39,8 @@ spec:
               tag: version-646c1d02@sha256:2a0ed38defeee6400b92f04c99f4caef4b96ebe5a9e39d59dba68919d63d2970
             env:
               TZ: Europe/London
+              UID: 1000
+              GID: 1000
             # probes:
             #   liveness: &probes
             #     enabled: true
