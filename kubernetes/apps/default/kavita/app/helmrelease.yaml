@@ -43,10 +43,10 @@ spec:
               TZ: Europe/London
             resources:
               requests:
-                cpu: 15m
-                memory: 300Mi
-              limits:
+                cpu: 50m
                 memory: 1Gi
+              limits:
+                memory: 2Gi
     service:
       app:
         controller: *app
