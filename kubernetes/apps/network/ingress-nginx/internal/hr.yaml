@@ -1,8 +1,9 @@
 ---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2.json
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: ingress-nginx-external
+  name: nginx-internal
 spec:
   interval: 30m
   chart:
@@ -21,28 +22,24 @@ spec:
     remediation:
       strategy: rollback
       retries: 3
-  dependsOn:
-    - name: cloudflared
-      namespace: network
   values:
-    fullnameOverride: ingress-nginx-external
+    fullnameOverride: nginx-internal
     controller:
       replicaCount: 2
       service:
         annotations:
-          external-dns.alpha.kubernetes.io/hostname: "external.${SECRET_DOMAIN}"
-          io.cilium/lb-ipam-ips: "10.45.0.3"
-        externalTrafficPolicy: Cluster
+          external-dns.alpha.kubernetes.io/hostname: internal.devbu.io
+          io.cilium/lb-ipam-ips: 192.168.42.121
       ingressClassResource:
-        name: external
-        default: false
-        controllerValue: k8s.io/external
+        name: internal
+        default: true
+        controllerValue: k8s.io/internal
       admissionWebhooks:
         objectSelector:
           matchExpressions:
             - key: ingress-class
               operator: In
-              values: ["external"]
+              values: ["internal"]
       allowSnippetAnnotations: true
       config:
         block-user-agents: "GPTBot,~*GPTBot*,ChatGPT-User,~*ChatGPT-User*,Google-Extended,~*Google-Extended*,CCBot,~*CCBot*,Omgilibot,~*Omgilibot*,FacebookBot,~*FacebookBot*" # taken from https://github.com/superseriousbusiness/gotosocial/blob/main/internal/web/robots.go
@@ -75,7 +72,7 @@ spec:
           namespaceSelector:
             any: true
       extraArgs:
-        default-ssl-certificate: "network/${SECRET_DOMAIN/./-}-production-tls"
+        default-ssl-certificate: network/devbu-io-tls
       terminationGracePeriodSeconds: 120
       topologySpreadConstraints:
         - maxSkew: 1
@@ -84,7 +81,7 @@ spec:
           labelSelector:
             matchLabels:
               app.kubernetes.io/name: ingress-nginx
-              app.kubernetes.io/instance: ingress-nginx-external
+              app.kubernetes.io/instance: nginx-internal
               app.kubernetes.io/component: controller
       resources:
         requests:
