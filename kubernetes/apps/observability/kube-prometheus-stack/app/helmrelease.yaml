@@ -10,7 +10,7 @@ spec:
   chart:
     spec:
       chart: kube-prometheus-stack
-      version: 62.7.0
+      version: 62.6.0
       sourceRef:
         kind: HelmRepository
         name: prometheus-community
@@ -92,10 +92,10 @@ spec:
         retention: 14d
         retentionSize: 70GB
         resources:
-          # requests:
-          #   cpu: 100m
-          # limits:
-          #   memory: 1500Mi
+          requests:
+            cpu: 100m
+          limits:
+            memory: 1500Mi
         storageSpec:
           volumeClaimTemplate:
             spec:
