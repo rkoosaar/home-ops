@@ -78,11 +78,11 @@ spec:
         pathType: Prefix
       prometheusSpec:
         scrapeInterval: 1m # Must match interval in Grafana Helm chart
-        ruleSelectorNilUsesHelmValues: false
-        serviceMonitorSelectorNilUsesHelmValues: false
         podMonitorSelectorNilUsesHelmValues: false
         probeSelectorNilUsesHelmValues: false
+        ruleSelectorNilUsesHelmValues: false
         scrapeConfigSelectorNilUsesHelmValues: false
+        serviceMonitorSelectorNilUsesHelmValues: false
         enableAdminAPI: true
         walCompression: true
         enableFeatures:
@@ -93,7 +93,7 @@ spec:
         retentionSize: 70GB
         resources:
           requests:
-            cpu: 200m
+            cpu: 100m
           limits:
             memory: 1500Mi
         storageSpec:
