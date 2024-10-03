@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: grafana
+  name: &app grafana
 spec:
   interval: 30m
   chart:
@@ -95,17 +95,6 @@ spec:
           revision: 1
           datasource:
             - { name: DS_PROMETHEUS, value: Prometheus }
-        openebs:
-          # renovate: depName="OpenEBS"
-          gnetId: 12171
-          revision: 1
-          datasource: Prometheus
-        openebs-diskpool:
-          url: https://raw.githubusercontent.com/openebs/monitoring/develop/deploy/charts/dashboards/mayastor/diskpool.json
-          datasource: Prometheus
-        openebs-volume:
-          url: https://raw.githubusercontent.com/openebs/monitoring/develop/deploy/charts/dashboards/mayastor/volume.json
-          datasource: Prometheus
         apc-ups:
           # renovate: depName="APC UPS (SNMP)"
           gnetId: 12340
@@ -147,22 +136,22 @@ spec:
         kubernetes-global:
           # renovate: depName="Kubernetes / Views / Global"
           gnetId: 15757
-          revision: 37
+          revision: 41
           datasource: Prometheus
         kubernetes-namespaces:
           # renovate: depName="Kubernetes / Views / Namespaces"
           gnetId: 15758
-          revision: 35
+          revision: 37
           datasource: Prometheus
         kubernetes-nodes:
           # renovate: depName="Kubernetes / Views / Nodes"
           gnetId: 15759
-          revision: 29
+          revision: 31
           datasource: Prometheus
         kubernetes-pods:
           # renovate: depName="Kubernetes / Views / Pods"
           gnetId: 15760
-          revision: 28
+          revision: 31
           datasource: Prometheus
         kubernetes-volumes:
           # renovate: depName="K8s / Storage / Volumes / Cluster"
@@ -189,7 +178,7 @@ spec:
         prometheus:
           # renovate: depName="Prometheus"
           gnetId: 19105
-          revision: 3
+          revision: 4
           datasource: Prometheus
         smart:
           # renovate: depName="Dashboard for smartctl_exporter"
