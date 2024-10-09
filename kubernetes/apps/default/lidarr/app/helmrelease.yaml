@@ -43,8 +43,8 @@ spec:
         containers:
           app:
             image:
-              repository: ghcr.io/onedr0p/lidarr-develop
-              tag: 2.5.2.4316@sha256:6b1b51ca85dad4f0376b6f86df4cb24d1d6c621ba9d47c1bde26cdb940f2aeb6
+              repository: ghcr.io/rkoosaar/lidarr-develop
+              tag: 2.6.2.4379@sha256:de93464254f991d4a53c3019ef9948927c53107ac8834eddf2b60662efa93ce3
             env:
               LIDARR__APP__INSTANCENAME: lidarr
               LIDARR__APP__THEME: dark
