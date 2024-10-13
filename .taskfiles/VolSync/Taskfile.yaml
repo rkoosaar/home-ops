@@ -47,6 +47,7 @@ tasks:
       - { msg: "List template not found",        sh: "test -f {{.templatesDir}}/list.tmpl.yaml" }
     silent: true
 
+  # Example: task volsync:unlock cluster=admin@home-kubernetes ns=default app=calibre
   unlock:
     desc: Unlock a Restic repository for an application
     summary: |
