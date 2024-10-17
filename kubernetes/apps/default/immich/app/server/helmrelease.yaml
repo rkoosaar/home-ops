@@ -72,7 +72,7 @@ spec:
         controller: *app
         ports:
           http:
-            port: 3001
+            port: 2283
     ingress:
       app:
         className: external
