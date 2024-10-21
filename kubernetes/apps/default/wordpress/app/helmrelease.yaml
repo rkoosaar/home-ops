@@ -50,16 +50,16 @@ spec:
               TZ: Europe/London
             #   PUID: "1026"
             #   PGID: "1000"
-            # probes:
-            #   liveness:
-            #     enabled: true
-            #   readiness:
-            #     enabled: true
-            #   startup:
-            #     enabled: true
-            #     spec:
-            #       failureThreshold: 30
-            #       periodSeconds: 5
+            probes:
+              liveness:
+                enabled: true
+              readiness:
+                enabled: true
+              startup:
+                enabled: true
+                spec:
+                  failureThreshold: 30
+                  periodSeconds: 5
             # resources:
             #   requests:
             #     cpu: 15m
@@ -95,14 +95,6 @@ spec:
                   port: http
     metrics:
       enabled: true
-
     persistence:
       config:
         existingClaim: *app
-      # media:
-      #   type: nfs
-      #   server: nas.kvshs.xyz
-      #   path: /media
-      #   globalMounts:
-      #     - path: /media
-
