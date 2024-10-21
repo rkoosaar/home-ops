@@ -43,7 +43,7 @@ spec:
         containers:
           app:
             image:
-              repository: bitnami/wordpress
+              repository: wordpress
               tag: 6.6.2
             envFrom: *envFrom
             env:
@@ -67,11 +67,11 @@ spec:
             #   limits:
             #     memory: 604M
     externalDatabase:
-      database: ${WORDPRESS_DATABASE_NAME}
-      host: ${WORDPRESS_DATABASE_HOST}
+      database: ${WORDPRESS_DB_NAME}
+      host: ${WORDPRESS_DB_HOST}
       port: ${WORDPRESS_DATABASE_PORT_NUMBER}
-      user: ${WORDPRESS_DATABASE_USER}
-      password: ${WORDPRESS_DATABASE_PASSWORD}
+      user: ${WORDPRESS_DB_USER}
+      password: ${WORDPRESS_DB_PASSWORD}
     mariadb:
       enabled: false
     service:
