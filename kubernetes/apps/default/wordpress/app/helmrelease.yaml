@@ -66,12 +66,12 @@ spec:
             #     memory: 324M
             #   limits:
             #     memory: 604M
-    # externalDatabase:
-    #   database: ${SECRET_WP_1_MARIADB_DB}
-    #   host: ${SECRET_MARIADB_SERVER}
-    #   port:
-    #   user: ${SECRET_WP_1_MARIADB_USER}
-    #   password: ${SECRET_WP_1_MARIADB_PASS}
+    externalDatabase:
+      database: ${WORDPRESS_DATABASE_NAME}
+      host: ${WORDPRESS_DATABASE_HOST}
+      port: ${WORDPRESS_DATABASE_PORT_NUMBER}
+      user: ${WORDPRESS_DATABASE_USER}
+      password: ${WORDPRESS_DATABASE_PASSWORD}
     mariadb:
       enabled: false
     service:
