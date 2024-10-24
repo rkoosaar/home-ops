@@ -1,8 +1,9 @@
 ---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2beta2.schema.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
-  name: phpmyadmin
+  name: &app phpmyadmin
 spec:
   interval: 30m
   chart:
@@ -13,25 +14,21 @@ spec:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-  maxHistory: 2
   install:
-    createNamespace: true
     remediation:
       retries: 3
   upgrade:
     cleanupOnFail: true
     remediation:
+      strategy: rollback
       retries: 3
-  uninstall:
-    keepHistory: false
   values:
     controllers:
       phpmyadmin:
         annotations:
           reloader.stakater.com/auto: "true"
-
         containers:
-          phpmyadmin:
+          app:
             image:
               repository: registry.skysolutions.fi/docker.io/phpmyadmin
               tag: 5.2.1-apache
@@ -45,23 +42,21 @@ spec:
                 memory: 512Mi
 
     service:
-      phpmyadmin:
-        controller: phpmyadmin
+      app:
+        controller: *app
         ports:
           http:
             port: 80
     ingress:
-      main:
-        enabled: true
-        className: "internal-nginx"
+      app:
+        className: internal
+        annotations:
+          external-dns.alpha.kubernetes.io/target: "internal.${SECRET_DOMAIN}"
         hosts:
-          - host: "phpmyadmin.skylab.fi"
+          - host: "{{ .Release.Name }}.${SECRET_DOMAIN}"
             paths:
               - path: "/"
                 pathType: Prefix
                 service:
-                  identifier: phpmyadmin
-                  port: 80
-        tls:
-          - hosts:
-              - "phpmyadmin.skylab.fi"
+                  identifier: app
+                  port: http

@@ -36,7 +36,7 @@ spec:
   dependsOn:
     - name: mariadb-operator
     - name: external-secrets-stores
-  path: ./kubernetes/main/apps/database/mariadb/resources
+  path: ./kubernetes/apps/database/mariadb/resources
   prune: true
   sourceRef:
     kind: GitRepository
