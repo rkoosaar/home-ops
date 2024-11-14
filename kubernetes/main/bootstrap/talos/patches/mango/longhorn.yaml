@@ -1,0 +1,14 @@
+machine:
+  kubelet:
+    extraMounts:
+      - destination: /var/lib/longhorn
+        type: bind
+        source: /var/lib/longhorn
+        options:
+          - bind
+          - rshared
+          - rw
+  disks:
+    - device: /dev/disk/by-id/usb-SSK_SSK_Storage_DD56419883935-0:0
+      partitions:
+        - mountpoint: /var/lib/longhorn
