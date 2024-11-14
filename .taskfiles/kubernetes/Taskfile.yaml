@@ -11,8 +11,8 @@ tasks:
     desc: Apply a Flux KS for a cluster [PATH=required]
     cmd: >
       flux build --namespace flux-system ks {{base .PATH}}
-      --kustomization-file {{.KUBERNETES_DIR}}/apps/{{.PATH}}/ks.yaml
-      --path {{.KUBERNETES_DIR}}/apps/{{.PATH}}{{- if contains "not found" .KS }}--dry-run \{{ end }}
+      --kustomization-file {{.CLUSTER_DIR}}/apps/{{.PATH}}/ks.yaml
+      --path {{.CLUSTER_DIR}}/apps/{{.PATH}}{{- if contains "not found" .KS }}--dry-run \{{ end }}
       | yq 'with(select(.apiVersion == "kustomize.toolkit.fluxcd.io/v1" and .kind == "Kustomization"); .metadata.namespace = "flux-system")' -
       | kubectl apply --server-side --field-manager=kustomize-controller --filename -
     requires:
@@ -21,7 +21,7 @@ tasks:
       KS:
         sh: flux --namespace flux-system get kustomizations {{base .PATH}} 2>&1
     preconditions:
-      - test -f {{.KUBERNETES_DIR}}/apps/{{.PATH}}/ks.yaml
+      - test -f {{.CLUSTER_DIR}}/apps/{{.PATH}}/ks.yaml
       - which flux kubectl yq
 
   reconcile:
@@ -33,7 +33,7 @@ tasks:
 
   kubeconform:
     desc: Validate Kubernetes manifests with kubeconform
-    cmd: bash {{.KUBECONFORM_SCRIPT}} {{.KUBERNETES_DIR}}
+    cmd: bash {{.KUBECONFORM_SCRIPT}} {{.CLUSTER_DIR}}
     preconditions:
       - test -f {{.KUBECONFORM_SCRIPT}}
       - which kubeconform
