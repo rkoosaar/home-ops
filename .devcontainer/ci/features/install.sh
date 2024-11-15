@@ -4,12 +4,13 @@ set -o noglob
 
 apk add --no-cache \
     age bash bind-tools ca-certificates curl direnv fish fzf \
-    gettext git github-cli helm iputils jq k9s python3 py3-pip \
+    gettext git github-cli helm iputils jq python3 py3-pip \
     moreutils openssh-client openssl starship yq
 
+# https://pkgs.alpinelinux.org/packages
 apk add --no-cache \
     --repository=https://dl-cdn.alpinelinux.org/alpine/edge/community \
-        flux kubectl kustomize go-task sops
+        flux kubectl kustomize go-task sops k9s
 
 apk add --no-cache \
     --repository=https://dl-cdn.alpinelinux.org/alpine/edge/testing \
