@@ -10,14 +10,13 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  path: ./kubernetes/apps/storage/longhorn/app
+  path: ./kubernetes/main/apps/storage/longhorn/app
   prune: true
   sourceRef:
     kind: GitRepository
     name: home-kubernetes
   wait: false # no flux ks dependents
   interval: 30m
-  retryInterval: 1m
   timeout: 5m
   postBuild:
     substitute:
@@ -36,13 +35,11 @@ spec:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: longhorn
-  path: ./kubernetes/apps/storage/longhorn/storageclass
+  path: ./kubernetes/main/apps/storage/longhorn/storageclass
   prune: true
-  force: true
   sourceRef:
     kind: GitRepository
     name: home-kubernetes
   wait: false # no flux ks dependents
   interval: 30m
-  retryInterval: 1m
   timeout: 5m

@@ -12,12 +12,11 @@ spec:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: longhorn
-  path: ./kubernetes/apps/storage/snapshot-controller/app
+  path: ./kubernetes/main/apps/storage/snapshot-controller/app
   prune: true
   sourceRef:
     kind: GitRepository
     name: home-kubernetes
-  wait: false
+  wait: false # no flux ks dependents
   interval: 30m
-  retryInterval: 1m
   timeout: 5m
