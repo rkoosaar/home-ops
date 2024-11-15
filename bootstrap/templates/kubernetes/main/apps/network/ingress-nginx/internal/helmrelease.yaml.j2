@@ -26,6 +26,7 @@ spec:
     controller:
       service:
         annotations:
+          external-dns.alpha.kubernetes.io/hostname: "internal.${SECRET_DOMAIN}"
           lbipam.cilium.io/ips: "#{ bootstrap_cloudflare.ingress_vip }#"
         #% if bgp.enabled %#
         externalTrafficPolicy: Local
