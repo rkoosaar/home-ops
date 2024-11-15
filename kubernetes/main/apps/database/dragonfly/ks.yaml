@@ -12,14 +12,13 @@ spec:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: external-secrets-stores
-  path: ./kubernetes/apps/database/dragonfly/app
+  path: ./kubernetes/main/apps/database/dragonfly/app
   prune: true
   sourceRef:
     kind: GitRepository
     name: home-kubernetes
   wait: true
   interval: 30m
-  retryInterval: 1m
   timeout: 5m
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
@@ -35,12 +34,11 @@ spec:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: dragonfly
-  path: ./kubernetes/apps/database/dragonfly/cluster
+  path: ./kubernetes/main/apps/database/dragonfly/cluster
   prune: true
   sourceRef:
     kind: GitRepository
     name: home-kubernetes
   wait: true
   interval: 30m
-  retryInterval: 1m
   timeout: 5m
