@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: ingress-nginx
-      version: 4.11.2
+      version: 4.11.3
       sourceRef:
         kind: HelmRepository
         name: ingress-nginx
@@ -26,6 +26,7 @@ spec:
     controller:
       service:
         annotations:
+          external-dns.alpha.kubernetes.io/hostname: "internal.${SECRET_DOMAIN}"
           lbipam.cilium.io/ips: "10.45.0.1"
         externalTrafficPolicy: Cluster
       ingressClassResource:
