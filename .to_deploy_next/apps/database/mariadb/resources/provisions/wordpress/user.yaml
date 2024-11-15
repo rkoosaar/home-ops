@@ -1,0 +1,12 @@
+---
+apiVersion: k8s.mariadb.com/v1alpha1
+kind: User
+metadata:
+  name: wordpress
+spec:
+  mariaDbRef:
+    name: mariadb-galera
+  passwordSecretKeyRef:
+    name: wordpress-db-credentials
+    key: password
+  maxUserConnections: 20

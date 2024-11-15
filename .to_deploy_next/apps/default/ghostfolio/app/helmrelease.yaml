@@ -1,0 +1,97 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app ghostfolio
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 3.5.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      strategy: rollback
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    controllers:
+      ghostfolio:
+        strategy: RollingUpdate
+        annotations:
+          reloader.stakater.com/auto: "true"
+        initContainers:
+          init-db:
+            image:
+              repository: ghcr.io/rkoosaar/postgres-init
+              tag: 16
+            envFrom: &envFrom
+              - secretRef:
+                  name: ghostfolio-secret
+        containers:
+          app:
+            image:
+              repository: docker.io/ghostfolio/ghostfolio
+              tag: 2.122.0@sha256:b2a4e21a1dcd19e54b70e33d19bb845c3058f740f0f54c2f9dbd5dc8927328db
+            env:
+              NODE_ENV: production
+              REDIS_HOST: dragonfly.database.svc.cluster.local.
+              REDIS_PORT: 6379
+            envFrom: *envFrom
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /api/v1/health
+                    port: &port 3333
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
+              startup:
+                enabled: false
+            resources:
+              requests:
+                cpu: 100m
+                memory: 256Mi
+    service:
+      app:
+        controller: *app
+        ports:
+          http:
+            port: *port
+    ingress:
+      app:
+        className: internal
+        annotations:
+          external-dns.alpha.kubernetes.io/target: "internal.${SECRET_DOMAIN}"
+          # hajimari.io/icon: mdi:cash-multiple
+          # gethomepage.dev/enabled: "true"
+          # gethomepage.dev/name: Ghostfolio
+          # gethomepage.dev/description: NVR with realtime local object detection for IP cameras
+          # gethomepage.dev/group: Applications
+          # gethomepage.dev/icon: ghostfolio.png
+          # gethomepage.dev/pod-selector: >-
+          #   app in (
+          #     ghostfolio
+          #   )
+        hosts:
+          - host: "{{ .Release.Name }}.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: http

@@ -6,8 +6,11 @@ resources:
   # Pre Flux-Kustomizations
   - ./namespace.yaml
   # Flux-Kustomizations
-  - ./cloudflared/ks.yaml
-  - ./cloudflare-ddns/ks.yaml
-  - ./echo-server/ks.yaml
-  - ./external-dns/ks.yaml
-  - ./ingress-nginx/ks.yaml
+  - ./cilium/ks.yaml
+  - ./coredns/ks.yaml
+  - ./intel-device-plugin/ks.yaml
+  - ./kubelet-csr-approver/ks.yaml
+  - ./metrics-server/ks.yaml
+  - ./node-feature-discovery/ks.yaml
+  - ./reloader/ks.yaml
+  - ./spegel/ks.yaml

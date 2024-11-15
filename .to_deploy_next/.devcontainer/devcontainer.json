@@ -1,0 +1,23 @@
+{
+  "$schema": "https://raw.githubusercontent.com/devcontainers/spec/main/schemas/devContainer.schema.json",
+  "name": "Flux Cluster Template",
+  "image": "ghcr.io/onedr0p/cluster-template/devcontainer:latest",
+  "initializeCommand": "docker pull ghcr.io/onedr0p/cluster-template/devcontainer:latest",
+  "postCreateCommand": {
+    "setup": "bash ${containerWorkspaceFolder}/.devcontainer/postCreateCommand.sh"
+  },
+  "postStartCommand": {
+    "git": "git config --global --add safe.directory ${containerWorkspaceFolder}"
+  },
+  // Podman below here are all podman settings
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,Z",
+  "workspaceFolder": "/workspace",
+  "runArgs": [
+    "--userns=keep-id:uid=1000,gid=1000"
+   ],
+   "containerUser": "vscode",
+   "updateRemoteUserUID": true,
+   "containerEnv": {
+     "HOME": "/home/vscode"
+   }
+}
