@@ -15,7 +15,7 @@ clusterSvcNets:
 
 additionalApiServerCertSans: &sans
   - "10.1.1.30"
-  - "k8s-api.kvshs.cc"
+  - "k8s-api.kvshs.xyz"
   - "127.0.0.1"
 additionalMachineCertSans: *sans
 
@@ -41,6 +41,8 @@ nodes:
         mtu: 1500
         vip:
           ip: "10.1.1.30"
+    patches:
+      - "@./patches/mango/longhorn.yaml"
   - hostname: "melon"
     ipAddress: "10.1.1.32"
     installDisk: "/dev/nvme0n1"
@@ -58,6 +60,8 @@ nodes:
         mtu: 1500
         vip:
           ip: "10.1.1.30"
+    patches:
+      - "@./patches/melon/longhorn.yaml"
   - hostname: "nectarine"
     ipAddress: "10.1.1.33"
     installDisk: "/dev/nvme0n1"
@@ -75,8 +79,26 @@ nodes:
         mtu: 1500
         vip:
           ip: "10.1.1.30"
+    patches:
+      - "@./patches/nectarine/longhorn.yaml"
 
 # Global patches
 patches:
+  - "@./patches/global/cluster-discovery.yaml"
+  - "@./patches/global/containerd.yaml"
+  - "@./patches/global/disable-search-domain.yaml"
+  - "@./patches/global/dns.yaml"
+  - "@./patches/global/hostdns.yaml"
+  - "@./patches/global/kubelet.yaml"
+  - "@./patches/global/ntp.yaml"
+  - "@./patches/global/openebs-local.yaml"
+  - "@./patches/global/sysctl.yaml"
 
+# Controller patches
+controlPlane:
+  patches:
+    - "@./patches/controller/api-access.yaml"
+    - "@./patches/controller/cluster.yaml"
+    - "@./patches/controller/disable-admission-controller.yaml"
+    - "@./patches/controller/etcd.yaml"
 
