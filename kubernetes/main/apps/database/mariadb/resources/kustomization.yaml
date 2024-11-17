@@ -8,6 +8,7 @@ resources:
   - ./gatus.yaml
   - ./mariadb.yaml
   - ./provisions
+  - ./restore.yaml # use this only when you need to restore DBs
 labels:
   - pairs:
       app.kubernetes.io/name: mariadb
