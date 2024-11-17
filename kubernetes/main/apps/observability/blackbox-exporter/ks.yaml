@@ -3,27 +3,18 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app pgadmin
+  name: &app blackbox-exporter
   namespace: flux-system
 spec:
-  targetNamespace: database
+  targetNamespace: observability
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  path: ./kubernetes/main/apps/database/pgadmin/app
+  path: ./kubernetes/main/apps/observability/blackbox-exporter/app
   prune: true
   sourceRef:
     kind: GitRepository
     name: home-kubernetes
   wait: false
   interval: 30m
-  timeout: 5m
-  healthChecks:
-    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
-      kind: HelmRelease
-      name: pgadmin
-      namespace: database
-  postBuild:
-    substitute:
-      APP: *app
-      VOLSYNC_CAPACITY: 1Gi
+  timeout: 15m

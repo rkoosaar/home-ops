@@ -7,12 +7,11 @@ metadata:
   namespace: flux-system
 spec:
   targetNamespace: database
-  path: ./kubernetes/apps/database/phpmyadmin/app
+  path: ./kubernetes/main/apps/database/phpmyadmin/app
   prune: true
   sourceRef:
     kind: GitRepository
     name: home-kubernetes
   wait: false
   interval: 30m
-  retryInterval: 1m
   timeout: 5m
