@@ -43,7 +43,7 @@ spec:
       endpointURL: https://s3.kvshs.xyz
       # Note: serverName version needs to be inclemented
       # when recovering from an existing cnpg cluster
-      serverName: &currentCluster immich-db-v2
+      serverName: &currentCluster immich-db-v3
       s3Credentials:
         accessKeyId:
           name: cloudnative-pg-secret
@@ -56,7 +56,7 @@ spec:
   # cluster when recovering from an existing cnpg cluster
   bootstrap:
     recovery:
-      source: &previousCluster immich-db-v1
+      source: &previousCluster immich-db-v2
   # Note: externalClusters is needed when recovering from an existing cnpg cluster
   externalClusters:
     - name: *previousCluster
