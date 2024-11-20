@@ -51,8 +51,8 @@ jobs:
       pull-requests: write
     strategy:
       matrix:
-        paths: ["kubernetes"]
-        #paths: ${{ fromJSON(needs.changed-clusters.outputs.matrix) }} # use this once moved to cluster structure
+        #paths: ["kubernetes"]
+        paths: ${{ fromJSON(needs.changed-clusters.outputs.matrix) }} # use this once moved to cluster structure
       max-parallel: 4
       fail-fast: false
     outputs:
