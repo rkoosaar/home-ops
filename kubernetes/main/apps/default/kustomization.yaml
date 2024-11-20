@@ -21,10 +21,10 @@ resources:
   - ./navidrome/ks.yaml
   - ./overseerr/ks.yaml
   - ./plex/ks.yaml
-  #- ./prowlarr/ks.yaml
-  #- ./radarr/ks.yaml
-  #- ./readarr/ks.yaml
-  #- ./sabnzbd/ks.yaml
-  #- ./sonarr/ks.yaml
-  #- ./tautulli/ks.yaml
+  - ./prowlarr/ks.yaml
+  - ./radarr/ks.yaml
+  - ./readarr/ks.yaml
+  - ./sabnzbd/ks.yaml
+  - ./sonarr/ks.yaml
+  - ./tautulli/ks.yaml
   #- ./wordpress/ks.yaml
