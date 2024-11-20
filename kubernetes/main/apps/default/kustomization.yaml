@@ -16,7 +16,7 @@ resources:
   #- ./immich/ks.yaml
   - ./kavita/ks.yaml
   - ./komga/ks.yaml
-  - ./lidarr/ks.yaml1
+  - ./lidarr/ks.yaml
   - ./metube/ks.yaml
   - ./navidrome/ks.yaml
   - ./overseerr/ks.yaml
