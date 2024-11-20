@@ -16,11 +16,11 @@ resources:
   #- ./immich/ks.yaml
   - ./kavita/ks.yaml
   - ./komga/ks.yaml
-  - ./lidarr/ks.yaml
+  - ./lidarr/ks.yaml1
   - ./metube/ks.yaml
   - ./navidrome/ks.yaml
-  #- ./overseerr/ks.yaml
-  #- ./plex/ks.yaml
+  - ./overseerr/ks.yaml
+  - ./plex/ks.yaml
   #- ./prowlarr/ks.yaml
   #- ./radarr/ks.yaml
   #- ./readarr/ks.yaml
