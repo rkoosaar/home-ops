@@ -59,7 +59,19 @@ spec:
         hosts:
           - sso.${SECRET_DOMAIN}
         https: false
+      resources:
+        requests:
+          cpu: 100m
+          memory: 512Mi
+        limits:
+          memory: 512Mi
     worker:
       autoscaling:
         enabled: true
         minReplicas: 2
+      resources:
+        requests:
+          cpu: 100m
+          memory: 512Mi
+        limits:
+          memory: 512Mi
