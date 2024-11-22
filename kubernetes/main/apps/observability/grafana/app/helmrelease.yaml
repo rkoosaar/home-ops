@@ -190,8 +190,8 @@ spec:
           # renovate: depName="NEW Dashboard for smartctl_exporter"
           gnetId: 22381
           revision: 1
-          datasource:
-            - { name: DS_PROMETHEUS, value: Prometheus }
+          datasource: Prometheus
+            #- { name: DS_PROMETHEUS, value: Prometheus }
         unifi-insights:
           # renovate: depName="UniFi-Poller: Client Insights - Prometheus"
           gnetId: 11315
@@ -267,9 +267,9 @@ spec:
       hosts: ["grafana.${SECRET_DOMAIN}"]
     persistence:
       enabled: false
-      storageClassName: longhorn
-      size: 1Gi
-      accessModes:
-        - ReadWriteOnce
+      # storageClassName: longhorn
+      # size: 1Gi
+      # accessModes:
+      #   - ReadWriteOnce
     testFramework:
       enabled: false
