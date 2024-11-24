@@ -68,7 +68,7 @@ spec:
           requireMsgr2: true
       storage:
         useAllNodes: true
-        useAllDevices: false
+        useAllDevices: true
         devicePathFilter: '/dev/disk/by-id/nvme-Samsung_SSD_990_EVO*|/dev/disk/by-id/usb-SSK_SSK_Storage*'
         config:
           osdsPerDevice: "1"
