@@ -47,8 +47,6 @@ spec:
       bdev_enable_discard = true
       bdev_async_discard = true
       osd_class_update_on_start = false
-      osd_encrypted_default_on = false
-      osd_allow_unsupported_bus_types = true
     cephClusterSpec:
       crashCollector:
         disable: false
@@ -70,12 +68,12 @@ spec:
           requireMsgr2: true
       storage:
         useAllNodes: true
-        useAllDevices: false
-        devices:
-        - name: "/dev/disk/by-id/nvme-Samsung_SSD_990_EVO_1TB_S7GCNS0X142364J"
-        - name: "/dev/disk/by-id/nvme-Samsung_SSD_990_EVO_1TB_S7GCNS0X214218J"
-        - name: "/dev/disk/by-id/nvme-Samsung_SSD_990_EVO_1TB_S7GCNS0X158506R"
-        - name: "sda"
+        useAllDevices: true
+        # devices:
+        # - name: "/dev/disk/by-id/nvme-Samsung_SSD_990_EVO_1TB_S7GCNS0X142364J"
+        # - name: "/dev/disk/by-id/nvme-Samsung_SSD_990_EVO_1TB_S7GCNS0X214218J"
+        # - name: "/dev/disk/by-id/nvme-Samsung_SSD_990_EVO_1TB_S7GCNS0X158506R"
+        # - name: "sda"
         #devicePathFilter: '/dev/disk/by-id/nvme-Samsung_SSD_990_EVO*|/dev/disk/by-id/usb-SSK_SSK_Storage*'
         config:
           osdsPerDevice: "1"
