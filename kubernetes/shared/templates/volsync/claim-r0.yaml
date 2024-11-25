@@ -11,5 +11,6 @@ spec:
     name: "${APP}-dst"
   resources:
     requests:
-      storage: "${VOLSYNC_CAPACITY:-2Gi}"
+      #storage: "${VOLSYNC_CAPACITY:-2Gi}"
+      storage: "${VOLSYNC_CAPACITY}"
   storageClassName: "${VOLSYNC_STORAGECLASS:-ceph-block}"
