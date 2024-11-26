@@ -36,7 +36,7 @@ spec:
           app:
             image:
               repository: ghcr.io/rkoosaar/tautulli
-              tag: 2.14.6@sha256:e93ff664fdf96eff22ecb5bca91d3eb36fbfff106aac377ed326daebdcebdfaa
+              tag: 2.15.0@sha256:4b4adb85f25a4e881c485ed73c80c323e57491bdba7c9bb0a54340243c145627
             env:
               TZ: Europe/London
             command: ["/usr/local/bin/python", "Tautulli.py"]
