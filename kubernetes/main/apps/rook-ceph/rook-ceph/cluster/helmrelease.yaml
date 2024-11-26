@@ -64,6 +64,8 @@ spec:
         modules:
           - name: pg_autoscaler
             enabled: true
+          - name: rook # This enables the rook module.
+            enabled: true
       network:
         provider: host
         connections:
