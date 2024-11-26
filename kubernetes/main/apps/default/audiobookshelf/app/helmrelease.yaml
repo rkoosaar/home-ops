@@ -23,8 +23,8 @@ spec:
       strategy: rollback
       retries: 3
   dependsOn:
-    - name: longhorn
-      namespace: storage
+    - name: rook-ceph
+      namespace: rook-ceph
     - name: volsync
       namespace: storage
   values:
