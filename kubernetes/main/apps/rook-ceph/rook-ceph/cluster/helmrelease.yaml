@@ -53,6 +53,8 @@ spec:
       csi:
         readAffinity:
           enabled: true
+        nfs:
+          enabled: false
       dashboard:
         enabled: true
         urlPrefix: /
