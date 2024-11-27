@@ -10,7 +10,7 @@ resources:
   # - ./calibre/ks.yaml
   # - ./calibre-web/ks.yaml
   # - ./firefly/ks.yaml
-  # - ./ghostfolio/ks.yaml
+  - ./ghostfolio/ks.yaml
   # - ./homepage/ks.yaml
   # - ./immich/ks.yaml
   # - ./kavita/ks.yaml
@@ -26,4 +26,4 @@ resources:
   # - ./sabnzbd/ks.yaml
   # - ./sonarr/ks.yaml
   # - ./tautulli/ks.yaml
-  #- ./wordpress/ks.yaml
+  # - ./wordpress/ks.yaml
