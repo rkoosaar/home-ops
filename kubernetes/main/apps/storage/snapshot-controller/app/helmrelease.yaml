@@ -29,19 +29,14 @@ spec:
       serviceMonitor:
         create: true
       volumeSnapshotClasses:
-          - name: ceph-rbd-snapclass  # Choose a suitable name
+          - name: longhorn-snapclass
             annotations:
               snapshot.storage.kubernetes.io/is-default-class: "true"
-            driver: rbd.csi.ceph.com   # Use the Ceph RBD CSI driver
+            driver: driver.longhorn.io
             deletionPolicy: Delete
-          # - name: longhorn-snapclass
-          #   annotations:
-          #     snapshot.storage.kubernetes.io/is-default-class: "true"
-          #   driver: driver.longhorn.io
-          #   deletionPolicy: Delete
-          #   parameters:
-          #     # needed for successful VolumeSnapshots
-          #     # see: https://github.com/longhorn/longhorn/issues/2534#issuecomment-1010508714
-          #     type: snap
+            parameters:
+              # needed for successful VolumeSnapshots
+              # see: https://github.com/longhorn/longhorn/issues/2534#issuecomment-1010508714
+              type: snap
     webhook:
       enabled: false
