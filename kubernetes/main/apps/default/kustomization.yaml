@@ -8,12 +8,12 @@ resources:
   # Flux-Kustomizations
   - ./audiobookshelf/ks.yaml
   - ./calibre/ks.yaml
-  #- ./calibre-web/ks.yaml
-  #- ./firefly/ks.yaml
+  - ./calibre-web/ks.yaml
+  - ./firefly/ks.yaml
   - ./ghostfolio/ks.yaml
   - ./homepage/ks.yaml
   - ./immich/ks.yaml
-################################### reverse from above here
+
   # - ./kavita/ks.yaml
   # - ./komga/ks.yaml
   # - ./lidarr/ks.yaml
@@ -27,4 +27,5 @@ resources:
   # - ./sabnzbd/ks.yaml
   # - ./sonarr/ks.yaml
   # - ./tautulli/ks.yaml
+  # MariaDB
   # - ./wordpress/ks.yaml
