@@ -24,3 +24,4 @@ spec:
       GATUS_SUBDOMAIN: requests
       GATUS_PATH: /api/v1/status
       VOLSYNC_CAPACITY: 5Gi
+      VOLSYNC_CACHE_CAPACITY: 2Gi
