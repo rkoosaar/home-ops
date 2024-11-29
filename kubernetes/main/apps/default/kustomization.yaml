@@ -9,12 +9,11 @@ resources:
   - ./audiobookshelf/ks.yaml
   - ./calibre/ks.yaml
   - ./calibre-web/ks.yaml
-  - ./firefly/ks.yaml
+  #- ./firefly/ks.yaml
   - ./ghostfolio/ks.yaml
   - ./homepage/ks.yaml
   - ./immich/ks.yaml
-
-  # - ./kavita/ks.yaml
+  - ./kavita/ks.yaml
   # - ./komga/ks.yaml
   # - ./lidarr/ks.yaml
   # - ./metube/ks.yaml
