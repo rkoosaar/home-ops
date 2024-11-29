@@ -11,8 +11,7 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   dependsOn:
-    # - name: longhorn
-    - name: rook-ceph
+    - name: longhorn
   path: ./kubernetes/main/apps/storage/snapshot-controller/app
   prune: true
   sourceRef:
