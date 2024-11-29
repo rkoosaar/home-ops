@@ -33,7 +33,7 @@ spec:
         fsGroupChangePolicy: OnRootMismatch
     controllers:
       pgadmin:
-        type: statefulset
+        #type: statefulset
         containers:
           app:
             image:
