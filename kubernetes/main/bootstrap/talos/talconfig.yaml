@@ -3,7 +3,7 @@
 # renovate: datasource=docker depName=ghcr.io/siderolabs/installer
 talosVersion: v1.8.3
 # renovate: datasource=docker depName=ghcr.io/siderolabs/kubelet
-kubernetesVersion: v1.31.3
+kubernetesVersion: v1.31.2
 
 clusterName: "home-kubernetes"
 endpoint: https://10.1.1.30:6443
@@ -42,6 +42,8 @@ nodes:
         mtu: 1500
         vip:
           ip: "10.1.1.30"
+    patches:
+      - "@./patches/mango/longhorn.yaml"
   - hostname: "melon"
     ipAddress: "10.1.1.32"
     installDiskSelector:
@@ -60,6 +62,8 @@ nodes:
         mtu: 1500
         vip:
           ip: "10.1.1.30"
+    patches:
+      - "@./patches/melon/longhorn.yaml"
   - hostname: "nectarine"
     ipAddress: "10.1.1.33"
     installDiskSelector:
@@ -78,6 +82,8 @@ nodes:
         mtu: 1500
         vip:
           ip: "10.1.1.30"
+    patches:
+      - "@./patches/nectarine/longhorn.yaml"
 
 # Global patches
 patches:

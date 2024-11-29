@@ -31,8 +31,8 @@ resources:
   - ./openebs.yaml
   - ./piraeus.yaml
   - ./postfinance.yaml
-  - ./prometheus-community.yaml
   - ./rook-ceph.yaml
+  - ./prometheus-community.yaml
   - ./spegel.yaml
   - ./stakater.yaml
   - ./stevehipwell.yaml

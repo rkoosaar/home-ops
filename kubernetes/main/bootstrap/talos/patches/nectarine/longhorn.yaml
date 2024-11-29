@@ -1,0 +1,15 @@
+machine:
+  kubelet:
+    extraMounts:
+      - destination: /var/lib/longhorn
+        type: bind
+        source: /var/lib/longhorn
+        options:
+          - bind
+          - rshared
+          - rw
+  disks:
+    - device: /dev/disk/by-id/nvme-Samsung_SSD_990_EVO_1TB_S7GCNS0X158506R
+      partitions:
+        - mountpoint: /var/lib/longhorn
+
