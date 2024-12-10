@@ -26,7 +26,8 @@ cniConfig:
 nodes:
   - hostname: "mango"
     ipAddress: "10.1.1.31"
-    installDisk: "/pci0000:00/0000:00:17.0/ata2/host2/target2:0:0/2:0:0:0"
+    installDiskSelector:
+      model: "Samsung SSD 860"
     talosImageURL: factory.talos.dev/installer/87521388a0ade6d1e9e0ae8ed108d529bdb16508c3d8e46d8b8e2636bc366c86
     controlPlane: true
     networkInterfaces:
@@ -45,7 +46,8 @@ nodes:
       - "@./patches/mango/longhorn.yaml"
   - hostname: "melon"
     ipAddress: "10.1.1.32"
-    installDisk: "/pci0000:00/0000:00:17.0/ata2/host2/target2:0:0/2:0:0:0"
+    installDiskSelector:
+      model: "Samsung SSD 860"
     talosImageURL: factory.talos.dev/installer/87521388a0ade6d1e9e0ae8ed108d529bdb16508c3d8e46d8b8e2636bc366c86
     controlPlane: true
     networkInterfaces:
@@ -64,7 +66,8 @@ nodes:
       - "@./patches/melon/longhorn.yaml"
   - hostname: "nectarine"
     ipAddress: "10.1.1.33"
-    installDisk: "/pci0000:00/0000:00:17.0/ata2/host2/target2:0:0/2:0:0:0"
+    installDiskSelector:
+      model: "Samsung SSD 860"
     talosImageURL: factory.talos.dev/installer/87521388a0ade6d1e9e0ae8ed108d529bdb16508c3d8e46d8b8e2636bc366c86
     controlPlane: true
     networkInterfaces:
