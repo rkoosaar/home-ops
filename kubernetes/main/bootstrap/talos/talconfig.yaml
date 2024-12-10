@@ -3,7 +3,7 @@
 # renovate: datasource=docker depName=ghcr.io/siderolabs/installer
 talosVersion: v1.8.3
 # renovate: datasource=docker depName=ghcr.io/siderolabs/kubelet
-kubernetesVersion: v1.31.3
+kubernetesVersion: v1.31.2
 
 clusterName: "home-kubernetes"
 endpoint: https://10.1.1.30:6443
@@ -27,12 +27,12 @@ nodes:
   - hostname: "mango"
     ipAddress: "10.1.1.31"
     installDiskSelector:
-      serial: "Z0JPH7LCQUM1"
+      serial: "Samsung SSD 860"
     talosImageURL: factory.talos.dev/installer/87521388a0ade6d1e9e0ae8ed108d529bdb16508c3d8e46d8b8e2636bc366c86
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
-          hardwareAddr: "00:02:c9:e8:b4:81"
+          hardwareAddr: "00:e0:4c:68:07:c2"
         dhcp: false
         addresses:
           - "10.1.1.31/24"
@@ -47,12 +47,12 @@ nodes:
   - hostname: "melon"
     ipAddress: "10.1.1.32"
     installDiskSelector:
-      serial: "Z0JPH7LVQUM1"
+      serial: "Samsung SSD 860"
     talosImageURL: factory.talos.dev/installer/87521388a0ade6d1e9e0ae8ed108d529bdb16508c3d8e46d8b8e2636bc366c86
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
-          hardwareAddr: "00:02:c9:3b:b2:61"
+          hardwareAddr: "00:e0:4c:68:04:0d"
         dhcp: false
         addresses:
           - "10.1.1.32/24"
@@ -67,12 +67,12 @@ nodes:
   - hostname: "nectarine"
     ipAddress: "10.1.1.33"
     installDiskSelector:
-      serial: "Z0JPH7LSQUM1"
+      serial: "Samsung SSD 860"
     talosImageURL: factory.talos.dev/installer/87521388a0ade6d1e9e0ae8ed108d529bdb16508c3d8e46d8b8e2636bc366c86
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
-          hardwareAddr: "00:02:c9:3b:b1:41"
+          hardwareAddr: "00:e0:4c:68:06:1f"
         dhcp: false
         addresses:
           - "10.1.1.33/24"
