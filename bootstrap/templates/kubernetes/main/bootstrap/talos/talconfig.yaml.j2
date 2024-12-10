@@ -29,6 +29,7 @@ nodes:
   #% for item in bootstrap_node_inventory %#
   - hostname: "#{ item.name }#"
     ipAddress: "#{ item.address }#"
+    # TODO look to change installdisk to include model and buspath
     #% if item.disk.startswith('/') %#
     installDisk: "#{ item.disk }#"
     #% else %#
