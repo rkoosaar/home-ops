@@ -99,14 +99,14 @@ spec:
         type: emptyDir
       transcode:
         type: emptyDir
-      media:
-        type: nfs
-        server: nas.kvshs.xyz
-        path: /media
-        # globalMounts:
-        #   - path: /data
-        #     subPath: media
-        #     readOnly: true
-        globalMounts:
-          - path: /media
-            readOnly: true
+      # media:
+      #   type: nfs
+      #   server: nas.kvshs.xyz
+      #   path: /media
+      #   # globalMounts:
+      #   #   - path: /data
+      #   #     subPath: media
+      #   #     readOnly: true
+      #   globalMounts:
+      #     - path: /media
+      #       readOnly: true
