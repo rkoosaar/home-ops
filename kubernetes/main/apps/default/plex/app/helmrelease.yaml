@@ -38,7 +38,7 @@ spec:
           app:
             image:
               repository: ghcr.io/rkoosaar/plex
-              tag: 1.41.2.9200-c6bbc1b53@sha256:18c52271d6174e128d43d2fd3ef9d869db02674dae2e7fd5fb41a601eefc5cc6
+              tag: 1.41.3.9292-bc7397402@sha256:b7f0909b4e2a844a9e485d1c76d55eec43eb4f541fdc100b72e5e70c6cc8c144
             env:
               TZ: Europe/London
               PLEX_ADVERTISE_URL: https://plex.${SECRET_DOMAIN}:443,http://10.45.0.5:32400
