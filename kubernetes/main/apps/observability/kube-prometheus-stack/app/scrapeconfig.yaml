@@ -6,7 +6,8 @@ metadata:
   name: &name minio
 spec:
   staticConfigs:
-    - targets: ["s3.kvshs.xyz"]
+    - targets:
+        - s3.kvshs.xyz
   metricsPath: /minio/v2/metrics/cluster
   scheme: HTTPS
   relabelings:
@@ -21,7 +22,8 @@ metadata:
   name: &name node-exporter
 spec:
   staticConfigs:
-    - targets: ["nas.kvshs.xyz:9100"]
+    - targets:
+        - nas.kvshs.xyz:9100"
   metricsPath: /metrics
   relabelings:
     - action: replace

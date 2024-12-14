@@ -6,7 +6,6 @@ metadata:
   name: loki
 spec:
   interval: 30m
-  timeout: 15m
   chart:
     spec:
       chart: loki
@@ -26,8 +25,8 @@ spec:
       strategy: rollback
       retries: 3
   dependsOn:
-    - name: longhorn
-      namespace: storage
+    - name: rook-ceph-cluster
+      namespace: rook-ceph
   values:
     deploymentMode: SingleBinary
     loki:
@@ -61,8 +60,8 @@ spec:
       replicas: 1
       persistence:
         enabled: true
-        storageClass: longhorn
-        size: 50Gi
+        storageClass: ceph-block
+        size: 52Gi
     gateway:
       replicas: 0
     backend:
@@ -79,3 +78,8 @@ spec:
       enabled: false
     test:
       enabled: false
+    sidecar:
+      image:
+        repository: ghcr.io/kiwigrid/k8s-sidecar
+      rules:
+        searchNamespace: ALL
