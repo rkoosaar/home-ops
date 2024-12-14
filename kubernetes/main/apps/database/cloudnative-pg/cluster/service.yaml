@@ -5,7 +5,7 @@ metadata:
   name: postgres-lb
   annotations:
     external-dns.alpha.kubernetes.io/hostname: "postgres.${SECRET_DOMAIN}"
-    io.cilium/lb-ipam-ips: 10.45.0.4
+    lbipam.cilium.io/ips: 10.45.0.4
 spec:
   type: LoadBalancer
   ports:
@@ -23,7 +23,7 @@ metadata:
   name: immich-db-lb
   annotations:
     external-dns.alpha.kubernetes.io/hostname: "immich-db.${SECRET_DOMAIN}"
-    io.cilium/lb-ipam-ips: 10.45.0.6
+    lbipam.cilium.io/ips: 10.45.0.6
 spec:
   type: LoadBalancer
   ports:
