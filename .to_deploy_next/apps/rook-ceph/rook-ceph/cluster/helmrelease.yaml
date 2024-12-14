@@ -5,6 +5,8 @@ kind: HelmRelease
 metadata:
   name: rook-ceph-cluster
 spec:
+  # driftDetection:
+  #   mode: enabled
   interval: 30m
   timeout: 15m
   chart:
@@ -77,7 +79,7 @@ spec:
         - name: "/dev/disk/by-id/nvme-Samsung_SSD_990_EVO_1TB_S7GCNS0X142364J"
         - name: "/dev/disk/by-id/nvme-Samsung_SSD_990_EVO_1TB_S7GCNS0X214218J"
         - name: "/dev/disk/by-id/nvme-Samsung_SSD_990_EVO_1TB_S7GCNS0X158506R"
-        - name: "sda"
+        #- name: "sda"
         #devicePathFilter: '/dev/disk/by-id/nvme-Samsung_SSD_990_EVO*|/dev/disk/by-id/usb-SSK_SSK_Storage*'
         config:
           osdsPerDevice: "1"
@@ -96,7 +98,7 @@ spec:
             cpu: 100m
             memory: 512Mi
           limits:
-            memory: 2Gi
+            memory: 1Gi
         mon:
           requests:
             cpu: 50m
@@ -108,7 +110,7 @@ spec:
             cpu: 500m
             memory: 2Gi
           limits:
-            memory: 6Gi
+            memory: 4Gi
         mgr-sidecar:
           requests:
             cpu: 50m
