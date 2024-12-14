@@ -88,10 +88,8 @@ spec:
           - { name: ndots, value: "1" }
       securityContext:
         runAsNonRoot: true
-        runAsUser: 65534
-        runAsGroup: 65534
-        fsGroup: 65534
-        fsGroupChangePolicy: OnRootMismatch
+        runAsUser: 1000
+        runAsGroup: 1000
         seccompProfile: { type: RuntimeDefault }
     service:
       app:
@@ -110,11 +108,11 @@ spec:
             scrapeTimeout: 10s
     ingress:
       app:
-        annotations:
-          external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
+        # annotations:
+        #   external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
         className: external
         hosts:
-          - host: "status.${SECRET_DOMAIN}"
+          - host: status.${SECRET_DOMAIN}
             paths:
               - path: /
                 service:
