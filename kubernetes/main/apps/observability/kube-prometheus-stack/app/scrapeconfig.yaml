@@ -23,7 +23,7 @@ metadata:
 spec:
   staticConfigs:
     - targets:
-        - nas.kvshs.xyz:9100"
+        - nas.kvshs.xyz:9100
   metricsPath: /metrics
   relabelings:
     - action: replace
