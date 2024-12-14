@@ -31,7 +31,6 @@ spec:
       devices:
         - /dev/sda
         - /dev/nvme0n1
-        - /dev/nvme1n1
     serviceMonitor:
       enabled: true
     prometheusRules:
