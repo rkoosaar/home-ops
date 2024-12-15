@@ -7,8 +7,8 @@ resources:
   - ./namespace.yaml
   # Flux-Kustomizations
   - ./audiobookshelf/ks.yaml
-  # - ./calibre/ks.yaml
-  # - ./calibre-web/ks.yaml
+  - ./calibre/ks.yaml
+  - ./calibre-web/ks.yaml
   # #- ./ersatztv/ks.yaml
   - ./firefly/ks.yaml
   - ./ghostfolio/ks.yaml
