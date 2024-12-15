@@ -25,8 +25,8 @@ spec:
   dependsOn:
     - name: intel-device-plugin-gpu
       namespace: kube-system
-    - name: rook-ceph-cluster
-      namespace: rook-ceph
+    - name: longhorn
+      namespace: storage
     - name: volsync
       namespace: storage
   values:
