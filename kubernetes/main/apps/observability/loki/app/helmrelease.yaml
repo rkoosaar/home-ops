@@ -25,8 +25,8 @@ spec:
       strategy: rollback
       retries: 3
   dependsOn:
-    - name: rook-ceph-cluster
-      namespace: rook-ceph
+    - name: longhorn
+      namespace: storage
   values:
     deploymentMode: SingleBinary
     loki:
@@ -60,7 +60,7 @@ spec:
       replicas: 1
       persistence:
         enabled: true
-        storageClass: ceph-block
+        storageClass: longhorn
         size: 52Gi
     gateway:
       replicas: 0
