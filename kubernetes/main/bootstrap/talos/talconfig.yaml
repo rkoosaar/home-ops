@@ -28,7 +28,7 @@ nodes:
     ipAddress: "10.1.1.31"
     # TODO look to change installdisk to include model and buspath
     installDiskSelector:
-      model: "Samsung SSD 860"
+      serial: "S7GCNS0X142364J"
     talosImageURL: factory.talos.dev/installer/87521388a0ade6d1e9e0ae8ed108d529bdb16508c3d8e46d8b8e2636bc366c86
     controlPlane: true
     networkInterfaces:
@@ -49,7 +49,7 @@ nodes:
     ipAddress: "10.1.1.32"
     # TODO look to change installdisk to include model and buspath
     installDiskSelector:
-      model: "Samsung SSD 860"
+      serial: "S7GCNS0X214218J"
     talosImageURL: factory.talos.dev/installer/87521388a0ade6d1e9e0ae8ed108d529bdb16508c3d8e46d8b8e2636bc366c86
     controlPlane: true
     networkInterfaces:
@@ -70,7 +70,7 @@ nodes:
     ipAddress: "10.1.1.33"
     # TODO look to change installdisk to include model and buspath
     installDiskSelector:
-      model: "Samsung SSD 860"
+      serial: "S7GCNS0X158506R"
     talosImageURL: factory.talos.dev/installer/87521388a0ade6d1e9e0ae8ed108d529bdb16508c3d8e46d8b8e2636bc366c86
     controlPlane: true
     networkInterfaces:

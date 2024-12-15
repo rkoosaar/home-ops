@@ -34,7 +34,7 @@ nodes:
     installDisk: "#{ item.disk }#"
     #% else %#
     installDiskSelector:
-      model: "#{ item.disk }#"
+      serial: "#{ item.disk }#"
     #% endif %#
     #% if bootstrap_secureboot.enabled %#
     machineSpec:
