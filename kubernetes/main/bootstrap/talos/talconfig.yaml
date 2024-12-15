@@ -43,6 +43,8 @@ nodes:
         mtu: 1500
         vip:
           ip: "10.1.1.30"
+    patches:
+      - "@./patches/mango/longhorn.yaml"
   - hostname: "melon"
     ipAddress: "10.1.1.32"
     # TODO look to change installdisk to include model and buspath
@@ -62,6 +64,8 @@ nodes:
         mtu: 1500
         vip:
           ip: "10.1.1.30"
+    patches:
+      - "@./patches/melon/longhorn.yaml"
   - hostname: "nectarine"
     ipAddress: "10.1.1.33"
     # TODO look to change installdisk to include model and buspath
@@ -81,6 +85,8 @@ nodes:
         mtu: 1500
         vip:
           ip: "10.1.1.30"
+    patches:
+      - "@./patches/nectarine/longhorn.yaml"
 
 # Global patches
 patches:
