@@ -5,8 +5,8 @@ name: "Flux Diff"
 on:
   pull_request:
     branches: ["main"]
-#    paths: ["kubernetes/**"]
-    paths: ["kubernetes/**", "bootstrap/**"]
+    paths: ["kubernetes/**"]
+    # paths: ["kubernetes/**", "bootstrap/**"]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
@@ -37,11 +37,11 @@ jobs:
         uses: tj-actions/changed-files@v45
         with:
           files: |
-            bootstrap/**
             kubernetes/**
+#            bootstrap/**
           dir_names: true
-          #dir_names_max_depth: 2
-          dir_names_max_depth: 3
+          dir_names_max_depth: 2
+          # dir_names_max_depth: 3
           matrix: true
 
       - name: List All Changed Clusters
