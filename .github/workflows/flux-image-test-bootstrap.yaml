@@ -1,6 +1,6 @@
 ---
 # yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
-name: "Flux Image Test"
+name: "Flux Image Test Bootstrap"
 
 on:
   pull_request:
