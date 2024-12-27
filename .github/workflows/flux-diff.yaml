@@ -6,7 +6,6 @@ on:
   pull_request:
     branches: ["main"]
     paths: ["kubernetes/**"]
-    # paths: ["kubernetes/**", "bootstrap/**"]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
@@ -36,12 +35,10 @@ jobs:
         id: changed-clusters
         uses: tj-actions/changed-files@v45
         with:
-          files: |
-            kubernetes/**
-#            bootstrap/**
+          files: kubernetes/**
+          files_ignore: kubernetes/shared/**
           dir_names: true
           dir_names_max_depth: 2
-          # dir_names_max_depth: 3
           matrix: true
 
       - name: List All Changed Clusters
@@ -52,12 +49,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: ["changed-clusters"]
     permissions:
-      #contents: read
       pull-requests: write
     strategy:
       matrix:
-        #paths: ["kubernetes"]
-        paths: ${{ fromJSON(needs.changed-clusters.outputs.matrix) }} # use this once moved to cluster structure
+        paths: ${{ fromJSON(needs.changed-clusters.outputs.matrix) }}
         resources: ["helmrelease", "kustomization"]
       max-parallel: 4
       fail-fast: false
@@ -81,9 +76,6 @@ jobs:
           token: "${{ steps.app-token.outputs.token }}"
           ref: "${{ github.event.repository.default_branch }}"
           path: default
-
-      - name: Print "matrix.paths"
-        run: echo ${{ matrix.paths }}
 
       - name: Diff Resources
         uses: docker://ghcr.io/allenporter/flux-local:v6.1.1

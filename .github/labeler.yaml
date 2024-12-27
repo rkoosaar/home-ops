@@ -1,4 +1,5 @@
 ---
+# Areas
 area/bootstrap:
   - changed-files:
       - any-glob-to-any-file: bootstrap/**/*
@@ -10,5 +11,10 @@ area/kubernetes:
       - any-glob-to-any-file: kubernetes/**/*
 area/taskfile:
   - changed-files:
-      - any-glob-to-any-file: .taskfiles/**/*
-      - any-glob-to-any-file: Taskfile*
+      - any-glob-to-any-file:
+          - ".taskfiles/**/*"
+          - "Taskfile.yaml"
+# Clusters
+cluster/main:
+  - changed-files:
+      - any-glob-to-any-file: "kubernetes/main/**/*"
