@@ -44,7 +44,8 @@
   "kubernetes": {
     "fileMatch": [
       "(^|/)\\.taskfiles/.+\\.ya?ml$",
-      "(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$"
+      "(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$",
+      "(^|/)kubernetes/main/bootstrap/.+\\.ya?ml(?:\\.j2)?$"
     ]
   }
 }
