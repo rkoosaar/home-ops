@@ -36,6 +36,7 @@ jobs:
         uses: tj-actions/changed-files@v45
         with:
           files: kubernetes/**
+          files_ignore: kubernetes/shared/**
           dir_names: true
           dir_names_max_depth: 2
           matrix: true
@@ -51,8 +52,7 @@ jobs:
       pull-requests: write
     strategy:
       matrix:
-        #paths: ["kubernetes"]
-        paths: ${{ fromJSON(needs.changed-clusters.outputs.matrix) }} # use this once moved to cluster structure
+        paths: ${{ fromJSON(needs.changed-clusters.outputs.matrix) }}
       max-parallel: 4
       fail-fast: false
     outputs:
