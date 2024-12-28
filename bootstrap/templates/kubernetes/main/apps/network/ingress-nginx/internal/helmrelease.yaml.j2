@@ -3,7 +3,6 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: ingress-nginx-internal
-  namespace: network
 spec:
   interval: 30m
   chart:
@@ -26,7 +25,6 @@ spec:
     controller:
       service:
         annotations:
-          external-dns.alpha.kubernetes.io/hostname: "internal.${SECRET_DOMAIN}"
           lbipam.cilium.io/ips: "#{ bootstrap_cloudflare.ingress_vip }#"
         #% if bgp.enabled %#
         externalTrafficPolicy: Local
