@@ -60,7 +60,7 @@ spec:
             port: 8080
     ingress:
       app:
-        className: external
+        className: internal
         hosts:
           - host: "{{ .Release.Name }}.${SECRET_DOMAIN}"
             paths:
