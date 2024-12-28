@@ -21,7 +21,6 @@ resources:
   - ./lidarr/ks.yaml
   - ./metube/ks.yaml
   - ./navidrome/ks.yaml
-  - ./overseerr/ks.yaml
   - ./plex/ks.yaml
   - ./prowlarr/ks.yaml
   - ./radarr/ks.yaml
