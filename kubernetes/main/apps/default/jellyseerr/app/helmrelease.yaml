@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: &app overseerr
+  name: &app jellyseerr
 spec:
   interval: 30m
   chart:
@@ -25,22 +25,23 @@ spec:
   dependsOn:
     - name: longhorn
       namespace: storage
-    - name: volsync
-      namespace: storage
   values:
     controllers:
-      overseerr:
+      jellyseerr:
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
           app:
             image:
-              repository: ghcr.io/sct/overseerr
-              tag: 1.33.2@sha256:714ea6db2bc007a2262d112bef7eec74972eb33d9c72bddb9cbd98b8742de950
+              repository: docker.io/fallenbagel/jellyseerr
+              tag: 2.1.0@sha256:af5563771964282e5bfb6a4f30b05c75c8d30661a920f0399086f575217d0573
             env:
               TZ: Europe/London
               LOG_LEVEL: "info"
               PORT: &port 80
+            envFrom:
+              - secretRef:
+                  name: jellyseerr-secret
             probes:
               liveness: &probes
                 enabled: true
@@ -66,9 +67,9 @@ spec:
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
-        runAsUser: 568
-        runAsGroup: 568
-        fsGroup: 568
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
         fsGroupChangePolicy: OnRootMismatch
         seccompProfile: { type: RuntimeDefault }
     service:
@@ -80,10 +81,17 @@ spec:
     ingress:
       app:
         className: external
-        annotations:
-          external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
+        # annotations:
+        #   gethomepage.dev/enabled: "true"
+        #   gethomepage.dev/group: Video
+        #   gethomepage.dev/name: jellyseerr
+        #   gethomepage.dev/icon: jellyseerr.png
+        #   gethomepage.dev/description: Media Request Management
+        #   gethomepage.dev/widget.type: jellyseerr
+        #   gethomepage.dev/widget.url: http://jellyseerr.media:5055
+        #   gethomepage.dev/widget.key: "{{ `{{HOMEPAGE_VAR_JELLYSEERR_TOKEN}}` }}"
         hosts:
-          - host: "old-requests.${SECRET_DOMAIN}"
+          - host: requests.${SECRET_DOMAIN}
             paths:
               - path: /
                 service:
@@ -94,6 +102,10 @@ spec:
         existingClaim: *app
         globalMounts:
           - path: /app/config
+      cache:
+        existingClaim: jellyseerr-cache
+        globalMounts:
+          - path: /app/config/cache
       logs:
         type: emptyDir
         globalMounts:

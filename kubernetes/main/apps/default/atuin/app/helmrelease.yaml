@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: &app overseerr
+  name: atuin
 spec:
   interval: 30m
   chart:
@@ -23,31 +23,27 @@ spec:
       strategy: rollback
       retries: 3
   dependsOn:
-    - name: longhorn
-      namespace: storage
-    - name: volsync
-      namespace: storage
+    - name: rook-ceph-cluster
+      namespace: rook-ceph
   values:
     controllers:
-      overseerr:
-        annotations:
-          reloader.stakater.com/auto: "true"
+      atuin:
         containers:
           app:
             image:
-              repository: ghcr.io/sct/overseerr
-              tag: 1.33.2@sha256:714ea6db2bc007a2262d112bef7eec74972eb33d9c72bddb9cbd98b8742de950
+              repository: ghcr.io/onedr0p/atuin-server-sqlite
+              tag: v18.3.0@sha256:9d8e8b983d8a8113d87a72111b158552d49ad050ef98ebfe3e7bdd12a5207466
             env:
-              TZ: Europe/London
-              LOG_LEVEL: "info"
-              PORT: &port 80
+              ATUIN_PORT: &port 80
+              ATUIN_OPEN_REGISTRATION: "true"
+              TZ: America/New_York
             probes:
               liveness: &probes
                 enabled: true
                 custom: true
                 spec:
                   httpGet:
-                    path: /api/v1/status
+                    path: /
                     port: *port
                   initialDelaySeconds: 0
                   periodSeconds: 10
@@ -62,28 +58,27 @@ spec:
               requests:
                 cpu: 10m
               limits:
-                memory: 2Gi
+                memory: 256Mi
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
-        runAsUser: 568
-        runAsGroup: 568
-        fsGroup: 568
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
         fsGroupChangePolicy: OnRootMismatch
         seccompProfile: { type: RuntimeDefault }
     service:
       app:
-        controller: *app
+        controller: atuin
         ports:
           http:
+            primary: true
             port: *port
     ingress:
       app:
-        className: external
-        annotations:
-          external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
+        className: internal
         hosts:
-          - host: "old-requests.${SECRET_DOMAIN}"
+          - host: sh.devbu.io
             paths:
               - path: /
                 service:
@@ -91,12 +86,4 @@ spec:
                   port: http
     persistence:
       config:
-        existingClaim: *app
-        globalMounts:
-          - path: /app/config
-      logs:
-        type: emptyDir
-        globalMounts:
-          - path: /app/config/logs
-      tmp:
-        type: emptyDir
+        existingClaim: atuin

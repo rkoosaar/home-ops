@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: &app overseerr
+  name: pinchflat
 spec:
   interval: 30m
   chart:
@@ -23,23 +23,21 @@ spec:
       strategy: rollback
       retries: 3
   dependsOn:
-    - name: longhorn
-      namespace: storage
-    - name: volsync
-      namespace: storage
+    - name: rook-ceph-cluster
+      namespace: rook-ceph
   values:
     controllers:
-      overseerr:
+      pinchflat:
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
           app:
             image:
-              repository: ghcr.io/sct/overseerr
-              tag: 1.33.2@sha256:714ea6db2bc007a2262d112bef7eec74972eb33d9c72bddb9cbd98b8742de950
+              repository: ghcr.io/kieraneglin/pinchflat
+              tag: v2024.12.10@sha256:2ea6c9d0c17e97df9862406e5bbd99e448c967571155aaa44e9a37efbef878e8
             env:
-              TZ: Europe/London
-              LOG_LEVEL: "info"
+              TZ: America/New_York
+              TZ_DATA_DIR: /tmp/elixir_tz_data
               PORT: &port 80
             probes:
               liveness: &probes
@@ -47,7 +45,7 @@ spec:
                 custom: true
                 spec:
                   httpGet:
-                    path: /api/v1/status
+                    path: /healthcheck
                     port: *port
                   initialDelaySeconds: 0
                   periodSeconds: 10
@@ -62,28 +60,30 @@ spec:
               requests:
                 cpu: 10m
               limits:
-                memory: 2Gi
+                gpu.intel.com/i915: 1
+                memory: 8Gi
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
-        runAsUser: 568
-        runAsGroup: 568
-        fsGroup: 568
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
         fsGroupChangePolicy: OnRootMismatch
+        supplementalGroups: [44]
         seccompProfile: { type: RuntimeDefault }
+      nodeSelector:
+        intel.feature.node.kubernetes.io/gpu: "true"
     service:
       app:
-        controller: *app
+        controller: pinchflat
         ports:
           http:
             port: *port
     ingress:
       app:
-        className: external
-        annotations:
-          external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
+        className: internal
         hosts:
-          - host: "old-requests.${SECRET_DOMAIN}"
+          - host: "{{ .Release.Name }}.devbu.io"
             paths:
               - path: /
                 service:
@@ -91,12 +91,19 @@ spec:
                   port: http
     persistence:
       config:
-        existingClaim: *app
-        globalMounts:
-          - path: /app/config
-      logs:
-        type: emptyDir
-        globalMounts:
-          - path: /app/config/logs
+        existingClaim: pinchflat
       tmp:
         type: emptyDir
+      yt-dlp:
+        type: emptyDir
+        globalMounts:
+          - path: /etc/yt-dlp
+      media:
+        type: nfs
+        server: expanse.internal
+        path: /mnt/eros/Media
+        advancedMounts:
+          pinchflat:
+            app:
+              - path: /downloads
+                subPath: Library/YouTube
