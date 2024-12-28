@@ -1,8 +1,10 @@
 ---
+# yaml-language-server: $schema=https://kube-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2.json
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: ingress-nginx-internal
+  name: nginx-internal
+  namespace: &namespace network
 spec:
   interval: 30m
   chart:
@@ -22,13 +24,13 @@ spec:
       strategy: rollback
       retries: 3
   values:
-    fullnameOverride: ingress-nginx-internal
+    fullnameOverride: nginx-internal
     controller:
       replicaCount: 2
       service:
         annotations:
           external-dns.alpha.kubernetes.io/hostname: &hostname internal.${SECRET_DOMAIN}
-          lbipam.cilium.io/ips: "10.45.0.1"
+          lbipam.cilium.io/ips: ${SVC_NGINX_INTERNAL:=temp}
         externalTrafficPolicy: Cluster
       ingressClassResource:
         name: internal
@@ -72,7 +74,7 @@ spec:
           namespaceSelector:
             any: true
       extraArgs:
-        default-ssl-certificate: "network/${SECRET_DOMAIN/./-}-production-tls"
+        default-ssl-certificate: network/${SECRET_DOMAIN}-tls
         publish-status-address: *hostname
       terminationGracePeriodSeconds: 120
       publishService:
@@ -84,7 +86,7 @@ spec:
           labelSelector:
             matchLabels:
               app.kubernetes.io/name: ingress-nginx
-              app.kubernetes.io/instance: ingress-nginx-internal
+              app.kubernetes.io/instance: nginx-internal
               app.kubernetes.io/component: controller
       resources:
         requests:
