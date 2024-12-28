@@ -14,7 +14,7 @@ resources:
   - ./ghostfolio/ks.yaml
   - ./homepage/ks.yaml
   - ./immich/ks.yaml
-  #- ./it-tools/ks.yaml
+  - ./it-tools/ks.yaml
   - ./kavita/ks.yaml
   - ./komga/ks.yaml
   - ./lidarr/ks.yaml
