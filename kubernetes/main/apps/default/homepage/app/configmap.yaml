@@ -148,7 +148,6 @@ data:
     - kubernetes:
         cluster:
           cpu: true
-          label: cluster
           memory: true
           show: true
           showLabel: true
