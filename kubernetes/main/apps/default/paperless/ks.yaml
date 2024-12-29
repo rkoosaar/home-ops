@@ -6,16 +6,16 @@ metadata:
   name: &app paperless
   namespace: flux-system
 spec:
-  targetNamespace: self-hosted
+  targetNamespace: default
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
   dependsOn:
-    - name: crunchy-postgres-stores
+    - name: cloudnative-pg-cluster
     - name: dragonfly-cluster
     - name: external-secrets-stores
     - name: volsync
-  path: ./kubernetes/main/apps/self-hosted/paperless/app
+  path: ./kubernetes/main/apps/default/paperless/app
   prune: true
   sourceRef:
     kind: GitRepository
@@ -28,3 +28,4 @@ spec:
     substitute:
       APP: *app
       VOLSYNC_CAPACITY: 15Gi
+      VOLSYNC_CACHE_CAPACITY: 1Gi

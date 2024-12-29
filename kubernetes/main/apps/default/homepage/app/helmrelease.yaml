@@ -53,12 +53,11 @@ spec:
     ingress:
       app:
         className: internal
-        annotations:
-          external-dns.alpha.kubernetes.io/target: "internal.${SECRET_DOMAIN}"
         hosts:
           - host: "hp0.${SECRET_DOMAIN}"
             paths:
               - path: /
+                pathType: Prefix
                 service:
                   identifier: app
                   port: http
