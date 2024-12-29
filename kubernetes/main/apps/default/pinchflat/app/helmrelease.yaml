@@ -105,5 +105,5 @@ spec:
         advancedMounts:
           pinchflat:
             app:
-              - path: /media
-                # subPath: Downloads/youtube
+              - path: /downloads
+                subPath: Downloads/youtube
