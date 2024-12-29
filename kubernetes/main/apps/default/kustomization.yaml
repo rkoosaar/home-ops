@@ -28,6 +28,7 @@ resources:
   - ./redlib/ks.yaml
   - ./sabnzbd/ks.yaml
   - ./sonarr/ks.yaml
+  - ./stirling-pdf/ks.yaml
   - ./tautulli/ks.yaml
   # MariaDB
   # - ./wordpress/ks.yaml
