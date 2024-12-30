@@ -98,7 +98,14 @@ spec:
       app:
         className: internal
         annotations:
-          external-dns.alpha.kubernetes.io/target: "internal.${SECRET_DOMAIN}"
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/group: Downloads
+          gethomepage.dev/name: Radarr
+          gethomepage.dev/icon: radarr.png
+          gethomepage.dev/description: Movie Downloads
+          gethomepage.dev/widget.type: radarr
+          gethomepage.dev/widget.url: http://radarr.downloads
+          gethomepage.dev/widget.key: "{{ `{{HOMEPAGE_VAR_RADARR_TOKEN}}` }}"
         hosts:
           - host: "{{ .Release.Name }}.${SECRET_DOMAIN}"
             paths:
