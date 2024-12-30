@@ -29,7 +29,7 @@ spec:
       namespace: storage
   values:
     controllers:
-      app:
+      stirling-pdf:
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
