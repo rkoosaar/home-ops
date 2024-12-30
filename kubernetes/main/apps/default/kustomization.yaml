@@ -12,7 +12,7 @@ resources:
   - ./ersatztv/ks.yaml
   - ./firefly/ks.yaml
   - ./ghostfolio/ks.yaml
-  - ./homepage/ks.yaml
+  #- ./homepage/ks.yaml
   - ./immich/ks.yaml
   - ./it-tools/ks.yaml
   - ./jellyseerr/ks.yaml
