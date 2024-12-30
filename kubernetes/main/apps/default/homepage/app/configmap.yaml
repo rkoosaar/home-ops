@@ -46,7 +46,7 @@ data:
               href: 'https://kubesearch.dev/'
         - home-ops:
             - icon: github.png
-              href: 'https://github.com/joryirving/home-ops'
+              href: 'https://github.com/rkoosaar/home-ops'
   docker.yaml: ""
   kubernetes.yaml: |
     mode: cluster
@@ -116,16 +116,7 @@ data:
                   service_group: Downloads # group name where widget exists
                   service_name: Readarr # service name for that widget
     - Infrastructure:
-        - Portainer:
-            href: &url https://portainer.${SECRET_DOMAIN}
-            icon: portainer.png
-            description: Docker Container Management
-            widget:
-              type: portainer
-              url: http://voyager.internal:9090
-              env: 1
-              key: {{HOMEPAGE_VAR_PORTAINER_TOKEN}}
-        - Unraid:
+        - QNAP NAS:
             href: https://nas.${SECRET_DOMAIN}
             icon: unraid.png
             description: Unraid NAS
@@ -144,7 +135,6 @@ data:
     useEqualHeights: true
     theme: dark
     background:
-      image: https://raw.githubusercontent.com/joryirving/home-ops/main/docs/src/assets/101518784_p0.jpg
       opacity: 20
     color: slate
     headerStyle: clean
@@ -222,6 +212,6 @@ data:
           dateStyle: short
           hourCycle: h23
     - unifi_console:
-        url: https://192.168.1.1:443
+        url: https://10.1.0.1:443
         username: {{HOMEPAGE_VAR_UNIFI_USERNAME}}
         password: {{HOMEPAGE_VAR_UNIFI_PASSWORD}}
