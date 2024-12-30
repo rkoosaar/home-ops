@@ -52,16 +52,6 @@ data:
     mode: cluster
   services.yaml: |
     - Network:
-        - Cloudflared:
-            href: https://dash.cloudflare.com/
-            icon: cloudflare-zero-trust.png
-            description: Cloudflared Tunnel Status
-            widget:
-              type: cloudflared
-              accountid: {{HOMEPAGE_VAR_CLOUDFLARED_ACCOUNTID}}
-              tunnelid: {{HOMEPAGE_VAR_CLOUDFLARED_TUNNELID}}
-              key: {{HOMEPAGE_VAR_CLOUDFLARED_API_TOKEN}}
-              fields: ["status"]
     - Calendar:
         - Agenda:
             widget:
