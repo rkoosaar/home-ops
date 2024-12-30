@@ -104,7 +104,7 @@ spec:
           gethomepage.dev/icon: sonarr.png
           gethomepage.dev/description: TV Downloads
           gethomepage.dev/widget.type: sonarr
-          gethomepage.dev/widget.url: http://sonarr.downloads
+          gethomepage.dev/widget.url: "http://sonarr.default.svc.cluster.local"
           gethomepage.dev/widget.key: "{{ `{{HOMEPAGE_VAR_SONARR_TOKEN}}` }}"
         hosts:
           - host: "{{ .Release.Name }}.${SECRET_DOMAIN}"
