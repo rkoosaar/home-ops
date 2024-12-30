@@ -13,10 +13,10 @@ kind: ClusterRoleBinding
 metadata:
   name: gatus
 roleRef:
-  apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
   name: gatus
+  apiGroup: rbac.authorization.k8s.io
 subjects:
   - kind: ServiceAccount
     name: gatus
-    namespace: observability
+    namespace: observability # keep

@@ -8,4 +8,3 @@ resources:
   - ./helmrelease.yaml
   - ./scrapeconfig.yaml
   - ./gatus.yaml
-  # - ../../../../../shared/templates/gatus/guarded

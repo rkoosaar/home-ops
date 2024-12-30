@@ -14,6 +14,6 @@ spec:
   sourceRef:
     kind: GitRepository
     name: home-kubernetes
-  wait: false
+  wait: false # no flux ks dependents
   interval: 30m
   timeout: 5m

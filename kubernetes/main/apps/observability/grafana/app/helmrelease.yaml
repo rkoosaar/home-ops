@@ -231,10 +231,14 @@ spec:
       enabled: true
     ingress:
       enabled: true
-      # annotations:
-      #   external-dns.alpha.kubernetes.io/target: "internal.${SECRET_DOMAIN}"
+      annotations:
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/icon: grafana.png
+        gethomepage.dev/name: Grafana
+        gethomepage.dev/group: Observability
+        gethomepage.dev/description: Monitoring Dashboards
       ingressClassName: internal
-      hosts: ["grafana.${SECRET_DOMAIN}"]
+      hosts: ["{{ .Release.Name }}.${SECRET_DOMAIN}"]
     persistence:
       enabled: false
     testFramework:
