@@ -17,7 +17,7 @@ resources:
   - ./it-tools/ks.yaml
   - ./jellyseerr/ks.yaml
   - ./kavita/ks.yaml
-  - ./komga/ks.yaml
+  #- ./komga/ks.yaml
   - ./lidarr/ks.yaml
   - ./navidrome/ks.yaml
   - ./pinchflat/ks.yaml
