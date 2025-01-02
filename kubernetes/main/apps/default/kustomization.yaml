@@ -18,8 +18,8 @@ resources:
   - ./jellyseerr/ks.yaml
   - ./kavita/ks.yaml
   - ./komga/ks.yaml
-  - ./lidarr/ks.yaml
-  - ./navidrome/ks.yaml
+  #- ./lidarr/ks.yaml
+  #- ./navidrome/ks.yaml
   - ./pinchflat/ks.yaml
   - ./plex/ks.yaml
   - ./prowlarr/ks.yaml
