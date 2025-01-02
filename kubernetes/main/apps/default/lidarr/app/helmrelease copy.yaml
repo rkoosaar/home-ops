@@ -25,19 +25,21 @@ spec:
   dependsOn:
     - name: longhorn
       namespace: storage
+    - name: volsync
+      namespace: storage
   values:
     controllers:
       lidarr:
         annotations:
           reloader.stakater.com/auto: "true"
-        # initContainers:
-        #   init-db:
-        #     image:
-        #       repository: ghcr.io/onedr0p/postgres-init
-        #       tag: 16
-        #     envFrom: &envFrom
-        #       - secretRef:
-        #           name: lidarr-secret
+        initContainers:
+          init-db:
+            image:
+              repository: ghcr.io/onedr0p/postgres-init
+              tag: 16
+            envFrom: &envFrom
+              - secretRef:
+                  name: lidarr-secret
         containers:
           app:
             image:
@@ -52,9 +54,7 @@ spec:
               LIDARR__SERVER__PORT: &port 80
               LIDARR__UPDATE__BRANCH: develop
               TZ: Europe/London
-            envFrom:
-              - secretRef:
-                  name: lidarr-secret
+            envFrom: *envFrom
             probes:
               liveness: &probes
                 enabled: true
