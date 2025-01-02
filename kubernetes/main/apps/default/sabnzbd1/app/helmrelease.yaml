@@ -44,7 +44,7 @@ spec:
                 sabnzbd1.default.svc,
                 sabnzbd1.default.svc.cluster,
                 sabnzbd1.default.svc.cluster.local,
-                sabnzbd1.kvshs.xyz
+                sabnzbd1.kvshs.xyz,
                 sab.kvshs.xyz
               CROSS_SEED_HOST: cross-seed.default.svc.cluster.local
               CROSS_SEED_PORT: 80
