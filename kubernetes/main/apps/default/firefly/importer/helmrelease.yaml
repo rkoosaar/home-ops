@@ -35,7 +35,7 @@ spec:
           app:
             image:
               repository: ghcr.io/rkoosaar/firefly-data-importer
-              tag: 1.5.7@sha256:f6b0bbd1efc53726fe92281c4d6a117be9662f9cff7dbe0593f27ad7b1e9f778
+              tag: 1.5.7@sha256:d1b997e2f624e29c2264da1cd0d2d6e86ee687f13717950d3fba9308ee0241ef
             env:
               TRUSTED_PROXIES: "**"
               FIREFLY_III_URL: "http://firefly.default.svc.cluster.local:8080"
