@@ -39,18 +39,19 @@ spec:
               TZ: Europe/London
               SABNZBD__PORT: &port 80
               SABNZBD__HOST_WHITELIST_ENTRIES: >-
-                sabnzbd,
-                sabnzbd.default,
-                sabnzbd.default.svc,
-                sabnzbd.default.svc.cluster,
-                sabnzbd.default.svc.cluster.local,
-                sabnzbd.kvshs.xyz
+                sabnzbd1,
+                sabnzbd1.default,
+                sabnzbd1.default.svc,
+                sabnzbd1.default.svc.cluster,
+                sabnzbd1.default.svc.cluster.local,
+                sabnzbd1.kvshs.xyz
+                sab.kvshs.xyz
               CROSS_SEED_HOST: cross-seed.default.svc.cluster.local
               CROSS_SEED_PORT: 80
               CROSS_SEED_SLEEP_INTERVAL: 30
             envFrom:
               - secretRef:
-                  name: sabnzbd-secret
+                  name: sabnzbd1-secret
             probes:
               liveness: &probes
                 enabled: true
