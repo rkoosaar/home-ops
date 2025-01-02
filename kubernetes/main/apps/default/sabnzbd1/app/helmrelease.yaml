@@ -129,4 +129,4 @@ spec:
         server: nas.kvshs.xyz
         path: /data/usenet
         globalMounts:
-          - path: /data/usenet
+          - path: /config/Downloads
