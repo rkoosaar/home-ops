@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: &app sabnzbd
+  name: &app sabnzbd1
 spec:
   interval: 30m
   chart:
@@ -24,8 +24,6 @@ spec:
       retries: 3
   dependsOn:
     - name: longhorn
-      namespace: storage
-    - name: volsync
       namespace: storage
   values:
     controllers:
@@ -125,15 +123,9 @@ spec:
         defaultMode: 0775
         globalMounts:
           - readOnly: true
-      media:
+      data:
         type: nfs
         server: nas.kvshs.xyz
-        path: /media
+        path: /data/usenet
         globalMounts:
-          - path: /data/media
-      downloads:
-        type: nfs
-        server: nas.kvshs.xyz
-        path: /media/Downloads
-        globalMounts:
-          - path: /config/Downloads
+          - path: /data/usenet
