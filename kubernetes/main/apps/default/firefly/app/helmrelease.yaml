@@ -48,7 +48,7 @@ spec:
           app:
             image:
               repository: ghcr.io/rkoosaar/firefly
-              tag: 6.1.25@sha256:6564f840b9f7f357ee4d1a493e9c6cd22243b06606887070b82c0f88220ff093
+              tag: 6.1.25@sha256:8b8b7b412a65c73f17630ee70986e98027397955531c89f7ffa3fd0764ad0c27
             env:
               TZ: Europe/London
               #APP_URL: "https://{{ .Release.Name }}.${SECRET_DOMAIN}"
