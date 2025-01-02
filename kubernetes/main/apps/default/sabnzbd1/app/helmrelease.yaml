@@ -27,7 +27,7 @@ spec:
       namespace: storage
   values:
     controllers:
-      sabnzbd:
+      sabnzbd1:
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
