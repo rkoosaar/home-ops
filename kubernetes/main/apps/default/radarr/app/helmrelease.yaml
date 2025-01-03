@@ -108,11 +108,11 @@ spec:
     persistence:
       config:
         existingClaim: *app
-      media:
+      data:
         type: nfs
         server: nas.kvshs.xyz
-        path: /media
+        path: /data
         globalMounts:
-          - path: /media
+          - path: /data
       tmp:
         type: emptyDir
