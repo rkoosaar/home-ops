@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: &app sabnzbd1
+  name: &app readarr
 spec:
   interval: 30m
   chart:
@@ -25,40 +25,43 @@ spec:
   dependsOn:
     - name: longhorn
       namespace: storage
+    - name: volsync
+      namespace: storage
   values:
     controllers:
-      sabnzbd1:
+      readarr:
         annotations:
           reloader.stakater.com/auto: "true"
+        initContainers:
+          init-db:
+            image:
+              repository: ghcr.io/onedr0p/postgres-init
+              tag: 16
+            envFrom: &envFrom
+              - secretRef:
+                  name: readarr-secret
         containers:
           app:
             image:
-              repository: ghcr.io/onedr0p/sabnzbd
-              tag: 4.4.1@sha256:4188d3c29c53de1018edcfd5dc2d0a0c7955b9a239b91ff6c859626abd3494dc
+              repository: ghcr.io/rkoosaar/readarr-develop
+              tag: 0.4.6.2711@sha256:96ef1aab82a0286c7bb9a92f1f67fe9f42a926a693df17e9ed1ad69cdd8df9f1
             env:
+              READARR__APP__INSTANCENAME: Readarr
+              READARR__APP__THEME: dark
+              READARR__AUTH__METHOD: External
+              READARR__AUTH__REQUIRED: DisabledForLocalAddresses
+              READARR__LOG__LEVEL: info
+              READARR__SERVER__PORT: &port 80
+              READARR__UPDATE__BRANCH: develop
               TZ: Europe/London
-              SABNZBD__PORT: &port 80
-              SABNZBD__HOST_WHITELIST_ENTRIES: >-
-                sabnzbd1,
-                sabnzbd1.default,
-                sabnzbd1.default.svc,
-                sabnzbd1.default.svc.cluster,
-                sabnzbd1.default.svc.cluster.local,
-                sabnzbd1.kvshs.xyz,
-                sab.kvshs.xyz
-              CROSS_SEED_HOST: cross-seed.default.svc.cluster.local
-              CROSS_SEED_PORT: 80
-              CROSS_SEED_SLEEP_INTERVAL: 30
-            envFrom:
-              - secretRef:
-                  name: sabnzbd1-secret
+            envFrom: *envFrom
             probes:
               liveness: &probes
                 enabled: true
                 custom: true
                 spec:
                   httpGet:
-                    path: /api?mode=version
+                    path: /ping
                     port: *port
                   initialDelaySeconds: 0
                   periodSeconds: 10
@@ -71,17 +74,18 @@ spec:
               capabilities: { drop: ["ALL"] }
             resources:
               requests:
-                cpu: 100m
+                cpu: 20m
+                memory: 384Mi
               limits:
-                memory: 6144Mi
+                memory: 2Gi
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
-        runAsUser: 1001
-        runAsGroup: 1003
-        fsGroup: 1003
+        runAsUser: 568
+        runAsGroup: 568
+        fsGroup: 568
         fsGroupChangePolicy: OnRootMismatch
-        supplementalGroups: [100]
+        supplementalGroups: [10000]
         seccompProfile: { type: RuntimeDefault }
     service:
       app:
@@ -93,17 +97,16 @@ spec:
       app:
         className: internal
         annotations:
-          # gethomepage.dev/enabled: "true"
-          # gethomepage.dev/group: Downloads
-          # gethomepage.dev/name: SABnzbd
-          # gethomepage.dev/icon: sabnzbd.png
-          # gethomepage.dev/description: NZB Download Client
-          # gethomepage.dev/widget.type: sabnzbd
-          # gethomepage.dev/widget.url: "http://sabnzbd.default.svc.cluster.local"
-          # gethomepage.dev/widget.key: "{{ `{{HOMEPAGE_VAR_SABNZBD_TOKEN}}` }}"
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/group: Downloads
+          gethomepage.dev/name: Readarr
+          gethomepage.dev/icon: readarr.png
+          gethomepage.dev/description: eBook Downloads
+          gethomepage.dev/widget.type: readarr
+          gethomepage.dev/widget.url: http://readarr.default.svc.cluster.local
+          gethomepage.dev/widget.key: "{{ `{{HOMEPAGE_VAR_READARR_TOKEN}}` }}"
         hosts:
-          #- host: "{{ .Release.Name }}.${SECRET_DOMAIN}"
-          - host: "sab.${SECRET_DOMAIN}"
+          - host: "{{ .Release.Name }}.${SECRET_DOMAIN}"
             paths:
               - path: /
                 service:
@@ -112,21 +115,11 @@ spec:
     persistence:
       config:
         existingClaim: *app
-      logs:
-        type: emptyDir
-        globalMounts:
-          - path: /config/logs
       tmp:
         type: emptyDir
-      scripts:
-        type: configMap
-        name: sabnzbd-scripts
-        defaultMode: 0775
-        globalMounts:
-          - readOnly: true
-      data:
+      media:
         type: nfs
         server: nas.kvshs.xyz
-        path: /data/usenet
+        path: /media
         globalMounts:
-          - path: /data/usenet
+          - path: /media

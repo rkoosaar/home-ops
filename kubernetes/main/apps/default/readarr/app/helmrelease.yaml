@@ -25,21 +25,11 @@ spec:
   dependsOn:
     - name: longhorn
       namespace: storage
-    - name: volsync
-      namespace: storage
   values:
     controllers:
       readarr:
         annotations:
           reloader.stakater.com/auto: "true"
-        initContainers:
-          init-db:
-            image:
-              repository: ghcr.io/onedr0p/postgres-init
-              tag: 16
-            envFrom: &envFrom
-              - secretRef:
-                  name: readarr-secret
         containers:
           app:
             image:
@@ -54,7 +44,9 @@ spec:
               READARR__SERVER__PORT: &port 80
               READARR__UPDATE__BRANCH: develop
               TZ: Europe/London
-            envFrom: *envFrom
+            envFrom:
+              - secretRef:
+                  name: readarr-secret
             probes:
               liveness: &probes
                 enabled: true
@@ -81,11 +73,11 @@ spec:
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
-        runAsUser: 568
-        runAsGroup: 568
-        fsGroup: 568
+        runAsUser: 1001
+        runAsGroup: 1003
+        fsGroup: 1003
         fsGroupChangePolicy: OnRootMismatch
-        supplementalGroups: [10000]
+        supplementalGroups: [100]
         seccompProfile: { type: RuntimeDefault }
     service:
       app:
@@ -117,9 +109,9 @@ spec:
         existingClaim: *app
       tmp:
         type: emptyDir
-      media:
+      data:
         type: nfs
         server: nas.kvshs.xyz
-        path: /media
+        path: /data
         globalMounts:
-          - path: /media
+          - path: /data
