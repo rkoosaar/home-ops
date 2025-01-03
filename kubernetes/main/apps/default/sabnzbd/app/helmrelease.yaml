@@ -25,8 +25,6 @@ spec:
   dependsOn:
     - name: longhorn
       namespace: storage
-    - name: volsync
-      namespace: storage
   values:
     controllers:
       sabnzbd:
@@ -72,18 +70,17 @@ spec:
               capabilities: { drop: ["ALL"] }
             resources:
               requests:
-                cpu: 5m
-                memory: 1024Mi
+                cpu: 100m
               limits:
                 memory: 6144Mi
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
-        runAsUser: 568
-        runAsGroup: 568
-        fsGroup: 568
+        runAsUser: 1001
+        runAsGroup: 1003
+        fsGroup: 1003
         fsGroupChangePolicy: OnRootMismatch
-        supplementalGroups: [10000]
+        supplementalGroups: [100]
         seccompProfile: { type: RuntimeDefault }
     service:
       app:
@@ -125,15 +122,9 @@ spec:
         defaultMode: 0775
         globalMounts:
           - readOnly: true
-      media:
+      data:
         type: nfs
         server: nas.kvshs.xyz
-        path: /media
+        path: /data/usenet
         globalMounts:
-          - path: /data/media
-      downloads:
-        type: nfs
-        server: nas.kvshs.xyz
-        path: /media/Downloads
-        globalMounts:
-          - path: /config/Downloads
+          - path: /data/usenet
