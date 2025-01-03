@@ -26,7 +26,7 @@ resources:
   #- ./radarr/ks.yaml
   #- ./readarr/ks.yaml
   - ./redlib/ks.yaml
-  #- ./sabnzbd/ks.yaml
+  - ./sabnzbd/ks.yaml
   - ./sabnzbd1/ks.yaml
   #- ./sonarr/ks.yaml
   - ./stirling-pdf/ks.yaml
