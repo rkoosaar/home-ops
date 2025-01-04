@@ -58,6 +58,11 @@ radarr:
 
     quality_profiles:
       - name: hd-blueray-web
+        qualities:
+          - name: Bluray-1080p
+          - name: WEB 1080p
+            qualities: ["WEBDL-1080p", "WEBRip-1080p"]
+          - name: Bluray-720p
       - name: SQP-1 (1080p)
       - name: SQP-1 (2160p)
     include:
