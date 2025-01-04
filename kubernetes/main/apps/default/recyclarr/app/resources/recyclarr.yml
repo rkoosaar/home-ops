@@ -4,8 +4,24 @@ sonarr:
   sonarr:
     base_url: http://sonarr.default.svc.cluster.local
     api_key: !env_var SONARR_API_KEY
-    quality_definition:
-      type: series
+
+    include:
+      # Comment out any of the following includes to disable them
+      - template: sonarr-quality-definition-series
+      - template: sonarr-v4-quality-profile-web-1080p
+      - template: sonarr-v4-custom-formats-web-1080p
+      - template: sonarr-v4-custom-formats-web-1080p-alternative
+
+    quality_profiles:
+      - name: WEB-1080p
+        qualities:
+          - name: WEB 1080p
+            qualities:
+              - WEBDL-1080p
+              - WEBRip-1080p
+          - name: Bluray-1080p
+          - name: Bluray-720p
+
     custom_formats:
       - trash_ids:
           # Unwanted
@@ -14,5 +30,7 @@ sonarr:
           - e2315f990da2e2cbfc9fa5b7a6fcfe48 # LQ (Release Title)
           - 47435ece6b99a0b477caf360e79ba0bb # x265 (HD)
           - fbcb31d8dabd2a319072b84fc0b7249c # Extras
+          - 15a05bc7c1a36e2b57fd628f8977e2fc # AV1
         assign_scores_to:
           - name: WEB-1080p
+
