@@ -57,7 +57,7 @@ radarr:
       type: movie
 
     quality_profiles:
-      - name: hd-blueray-web
+      - name: HD Bluray + WEB
         qualities:
           - name: Bluray-1080p
           - name: WEB 1080p
