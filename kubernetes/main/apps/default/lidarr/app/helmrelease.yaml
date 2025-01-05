@@ -34,7 +34,7 @@ spec:
           app:
             image:
               repository: ghcr.io/rkoosaar/lidarr-develop
-              tag: 2.9.1.4517@sha256:cf5c8ee6670b1159ab7f342f37ab90517424745ededa6b65d6b17083821c7f27
+              tag: 2.9.2.4521@sha256:637c91d45519232d8011db3a8099d49c570a0cd8b9448304f077c9394d44c15d
             env:
               LIDARR__APP__INSTANCENAME: lidarr
               LIDARR__APP__THEME: dark
