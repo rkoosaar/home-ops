@@ -1,0 +1,108 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app w
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 3.6.0
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      strategy: rollback
+      retries: 3
+  dependsOn:
+    - name: longhorn
+      namespace: storage
+  values:
+    controllers:
+      w:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          app:
+            image:
+              repository: ghcr.io/jfroy/whisparr-nightly
+              tag: 2.0.0.548@sha256:c9c4e9fd987e0fb10420df2b2cc436df98e5da91f565b4bd6679992d343d334b
+            env:
+              WHISPARR__INSTANCE_NAME: w
+              WHISPARR__ANALYTICS_ENABLED: "False"
+              #WHISPARR__AUTHENTICATION_METHOD: External
+              #WHISPARR__AUTHENTICATION_REQUIRED: DisabledForLocalAddresses
+              WHISPARR__BRANCH: develop
+              WHISPARR__LOG_LEVEL: info
+              WHISPARR__PORT: &port 80
+              TZ: Europe/London
+            envFrom:
+              - secretRef:
+                  name: w-secret
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /ping
+                    port: *port
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
+            resources:
+              requests:
+                cpu: 20m
+                memory: 384Mi
+              limits:
+                memory: 2Gi
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1001
+        runAsGroup: 1003
+        fsGroup: 1003
+        fsGroupChangePolicy: OnRootMismatch
+        supplementalGroups: [100]
+        seccompProfile: { type: RuntimeDefault }
+    service:
+      app:
+        controller: *app
+        ports:
+          http:
+            port: *port
+    ingress:
+      app:
+        className: internal
+        hosts:
+          - host: "{{ .Release.Name }}.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: http
+    persistence:
+      config:
+        existingClaim: *app
+      data:
+        type: nfs
+        server: nas.kvshs.xyz
+        path: /data
+        globalMounts:
+          - path: /data
+      tmp:
+        type: emptyDir

@@ -31,5 +31,6 @@ resources:
   - ./sonarr/ks.yaml
   - ./stirling-pdf/ks.yaml
   - ./tautulli/ks.yaml
+  - ./w/ks.yaml
   # MariaDB
   # - ./wordpress/ks.yaml
