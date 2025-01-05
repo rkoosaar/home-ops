@@ -27,8 +27,6 @@ spec:
       namespace: kube-system
     - name: longhorn
       namespace: storage
-    - name: volsync
-      namespace: storage
   values:
     controllers:
       plex:
@@ -75,11 +73,11 @@ spec:
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
-        runAsUser: 568
-        runAsGroup: 568
-        fsGroup: 568
+        runAsUser: 1001
+        runAsGroup: 1003
+        fsGroup: 1003
         fsGroupChangePolicy: OnRootMismatch
-        supplementalGroups: [44, 10000]
+        supplementalGroups: [44, 100]
         seccompProfile: { type: RuntimeDefault }
       nodeSelector:
         intel.feature.node.kubernetes.io/gpu: "true"
@@ -94,10 +92,24 @@ spec:
             port: 32400
     ingress:
       app:
-        annotations:
-          external-dns.alpha.kubernetes.io/target: external.${SECRET_DOMAIN}
-          #nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
         className: external
+        annotations:
+          # external-dns.alpha.kubernetes.io/target: external.${SECRET_DOMAIN}
+          # gethomepage.dev/enabled: "true"
+          # gethomepage.dev/group: Video
+          # gethomepage.dev/name: Plex
+          # gethomepage.dev/icon: plex.png
+          # gethomepage.dev/description: Media Player
+          # gethomepage.dev/widget.type: plex
+          # gethomepage.dev/widget.url: http://plex.media:32400
+          # gethomepage.dev/widget.key: "{{ `{{HOMEPAGE_VAR_PLEX_TOKEN}}` }}"
+          nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+          nginx.ingress.kubernetes.io/server-snippet: |
+            location ~ ^/library/streams {
+              proxy_set_header        Range "";
+              proxy_pass              http://plex.default.svc.cluster.local:32400;
+              proxy_http_version      1.1;
+            }
         hosts:
           - host: "{{ .Release.Name }}.${SECRET_DOMAIN}"
             paths:
@@ -124,6 +136,13 @@ spec:
         type: emptyDir
       transcode:
         type: emptyDir
+      data:
+        type: nfs
+        server: nas.kvshs.xyz
+        path: /data
+        globalMounts:
+          - path: /data
+            readOnly: true
       media:
         type: nfs
         server: nas.kvshs.xyz
