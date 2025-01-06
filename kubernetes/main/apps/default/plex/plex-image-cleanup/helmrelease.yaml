@@ -25,13 +25,13 @@ spec:
   values:
     controllers:
       plex-image-cleanup:
-        type: cronjob
+        # type: cronjob
         annotations:
           reloader.stakater.com/auto: "true"
-        cronjob:
-          # schedule: "30 8 * * *"
-          schedule: "26 16 * * *"
-          successfulJobsHistory: 1
+        # cronjob:
+        #   # schedule: "30 8 * * *"
+        #   schedule: "26 16 * * *"
+        #   successfulJobsHistory: 1
         containers:
           app:
             image:
