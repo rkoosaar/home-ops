@@ -25,28 +25,28 @@ spec:
       VOLSYNC_CAPACITY: 30Gi
       VOLSYNC_CACHE_CAPACITY: 16Gi
       GATUS_PATH: /web/index.html
-# ---
-# apiVersion: kustomize.toolkit.fluxcd.io/v1
-# kind: Kustomization
-# metadata:
-#   name: &app plex-image-cleanup
-#   namespace: flux-system
-# spec:
-#   targetNamespace: default
-#   commonMetadata:
-#     labels:
-#       app.kubernetes.io/name: *app
-#   dependsOn:
-#     - name: plex
-#     - name: external-secrets-stores
-#   path: ./kubernetes/main/apps/default/plex/plex-image-cleanup
-#   prune: true
-#   sourceRef:
-#     kind: GitRepository
-#     name: home-kubernetes
-#   wait: false # no flux ks dependents
-#   interval: 30m
-#   timeout: 5m
-#   postBuild:
-#     substitute:
-#       APP: *app
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: &app plex-image-cleanup
+  namespace: flux-system
+spec:
+  targetNamespace: default
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *app
+  dependsOn:
+    - name: plex
+    - name: external-secrets-stores
+  path: ./kubernetes/main/apps/default/plex/plex-image-cleanup
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: home-kubernetes
+  wait: false # no flux ks dependents
+  interval: 30m
+  timeout: 5m
+  postBuild:
+    substitute:
+      APP: *app
