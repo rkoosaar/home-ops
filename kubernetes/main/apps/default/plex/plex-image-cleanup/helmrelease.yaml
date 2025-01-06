@@ -83,13 +83,19 @@ spec:
     persistence:
       config:
         type: emptyDir
-        globalMounts:
-          - path: /config
+        advancedMounts:
+          plex-image-cleanup:
+            app:
+              - path: /config
       plex-config:
         existingClaim: plex
-        globalMounts:
-          - path: /data/plex_config
+        advancedMounts:
+          plex-image-cleanup:
+            app:
+              - path: /data/plex_config
       plex-cache:
         existingClaim: plex-cache
-        globalMounts:
-          - path: /data/plex_config/Library/Application Support/Plex Media Server/Cache
+        advancedMounts:
+          plex-image-cleanup:
+            app:
+              - path: /data/plex_config/Library/Application Support/Plex Media Server/Cache
