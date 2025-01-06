@@ -144,9 +144,3 @@ spec:
         globalMounts:
           - path: /data
             readOnly: true
-      # media:
-      #   type: nfs
-      #   server: nas.kvshs.xyz
-      #   path: /media
-      #   globalMounts:
-      #     - path: /media
