@@ -34,7 +34,7 @@ spec:
           app:
             image:
               repository: ghcr.io/linuxserver/calibre
-              tag: 7.23.0@sha256:a6a3b6d5cce2adfbbaa42e456803971a1f6e4acbb9953ee73efe2724da41b0be
+              tag: 7.23.0@sha256:c9a0ec0579d8c08e15df032a48d2b84134f0b3eb41e43560d2af8d4a0ab3e7b1
             env:
               TZ: Europe/London
               TITLE: Calibre
