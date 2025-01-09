@@ -27,10 +27,8 @@ resources:
   - ./readarr/ks.yaml
   - ./recyclarr/ks.yaml
   - ./redlib/ks.yaml
-  - ./sabnzbd/ks.yaml
+  #- ./sabnzbd/ks.yaml
   - ./sonarr/ks.yaml
   - ./stirling-pdf/ks.yaml
   - ./tautulli/ks.yaml
   - ./w/ks.yaml
-  # MariaDB
-  # - ./wordpress/ks.yaml
