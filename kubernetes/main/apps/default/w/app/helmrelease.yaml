@@ -38,8 +38,10 @@ spec:
             env:
               WHISPARR__INSTANCE_NAME: w
               WHISPARR__ANALYTICS_ENABLED: "False"
-              WHISPARR__AUTHENTICATION_METHOD: Basic
-              WHISPARR__AUTHENTICATION_REQUIRED: Enabled
+              WHISPARR__AUTH__REQUIRED: DisabledForLocalAddresses
+              WHISPARR__AUTHENTICATION_METHOD: External
+              #WHISPARR__AUTHENTICATION_METHOD: Basic
+              #WHISPARR__AUTHENTICATION_REQUIRED: Enabled
               WHISPARR__BRANCH: develop
               WHISPARR__LOG_LEVEL: info
               WHISPARR__PORT: &port 80
