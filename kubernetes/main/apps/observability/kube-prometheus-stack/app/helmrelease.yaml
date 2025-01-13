@@ -136,7 +136,7 @@ spec:
           gethomepage.dev/app: prometheus
           gethomepage.dev/description: Monitoring Scrape Service
           gethomepage.dev/widget.type: prometheus
-          gethomepage.dev/widget.url: http://kube-prometheus-stack-prometheus.observability:10250
+          gethomepage.dev/widget.url: http://kube-prometheus-stack-prometheus.observability:9090
         pathType: Prefix
         hosts: ["prometheus.${SECRET_DOMAIN}"]
       prometheusSpec:
@@ -150,7 +150,7 @@ spec:
           requests:
             cpu: 100m
           limits:
-            memory: 20000Mi
+            memory: 2000Mi
         scrapeInterval: 1m # Must match interval in Grafana Helm chart
         ruleSelectorNilUsesHelmValues: false
         serviceMonitorSelectorNilUsesHelmValues: false
