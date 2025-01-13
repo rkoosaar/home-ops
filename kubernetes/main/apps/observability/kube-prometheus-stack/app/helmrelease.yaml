@@ -150,7 +150,7 @@ spec:
           requests:
             cpu: 100m
           limits:
-            memory: 1500Mi
+            memory: 20000Mi
         scrapeInterval: 1m # Must match interval in Grafana Helm chart
         ruleSelectorNilUsesHelmValues: false
         serviceMonitorSelectorNilUsesHelmValues: false
