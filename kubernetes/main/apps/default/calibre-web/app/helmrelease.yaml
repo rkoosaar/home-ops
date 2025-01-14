@@ -101,3 +101,9 @@ spec:
         path: /media
         globalMounts:
           - path: /media
+      data:
+        type: nfs
+        server: nas.kvshs.xyz
+        path: /data
+        globalMounts:
+          - path: /data

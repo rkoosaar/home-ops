@@ -108,9 +108,9 @@ spec:
         existingClaim: *app
         globalMounts:
           - path: /config
-      media:
+      data:
         type: nfs
         server: nas.kvshs.xyz
-        path: /media
+        path: /data
         globalMounts:
-          - path: /media
+          - path: /data
