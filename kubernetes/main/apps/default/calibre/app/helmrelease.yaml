@@ -52,11 +52,10 @@ spec:
                 spec:
                   failureThreshold: 30
                   periodSeconds: 5
-            # securityContext:
-            #   allowPrivilegeEscalation: false
-            #   readOnlyRootFilesystem: true
-            #   capabilities:
-            #     drop: ["ALL"]
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
             #     add: ["seccomp:unconfined"]
             resources:
               requests:
@@ -64,12 +63,15 @@ spec:
                 memory: 324M
               limits:
                 memory: 604M
-    # defaultPodOptions:
-    #   securityContext:
-    #     runAsNonRoot: false
-    #     runAsUser: 65534
-    #     runAsGroup: 65534
-    #     seccompProfile: { type: RuntimeDefault }
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1001
+        runAsGroup: 1003
+        fsGroup: 1003
+        fsGroupChangePolicy: OnRootMismatch
+        supplementalGroups: [100]
+        seccompProfile: { type: RuntimeDefault }
     service:
       app:
         controller: calibre
