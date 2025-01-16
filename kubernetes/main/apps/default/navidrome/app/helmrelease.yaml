@@ -34,10 +34,10 @@ spec:
           reloader.stakater.com/auto: "true"
         pod:
           securityContext:
-            runAsUser: 2000
-            runAsGroup: 2000
+            runAsUser: 1001
+            runAsGroup: 1003
             runAsNonRoot: true
-            fsGroup: 2000
+            fsGroup: 1003
             fsGroupChangePolicy: OnRootMismatch
         containers:
           app:
@@ -51,7 +51,7 @@ spec:
               ND_ENABLEGRAVATAR: true
               ND_ENABLESHARING: true
               ND_LOGLEVEL: info
-              ND_MUSICFOLDER: /media/music
+              ND_MUSICFOLDER: /data/media/music
               ND_PORT: &port 8080
               ND_PROMETHEUS_ENABLED: true
               ND_REVERSEPROXYUSERHEADER: Remote-User
@@ -103,10 +103,10 @@ spec:
     persistence:
       config:
         existingClaim: *app
-      media:
+      data:
         type: nfs
         server: nas.kvshs.xyz
-        path: /media
+        path: /data
         globalMounts:
-          - path: /media
+          - path: /data
             readOnly: true
