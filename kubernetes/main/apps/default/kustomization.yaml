@@ -20,7 +20,7 @@ resources:
   # use komga when needed.
   #- ./komga/ks.yaml
   - ./lidarr/ks.yaml
-  #- ./navidrome/ks.yaml
+  - ./navidrome/ks.yaml
   - ./pinchflat/ks.yaml
   - ./plex/ks.yaml
   - ./prowlarr/ks.yaml
