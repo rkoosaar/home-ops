@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: unpoller
+  name: &app unpoller
 spec:
   interval: 30m
   chart:
@@ -28,6 +28,8 @@ spec:
   values:
     controllers:
       unpoller:
+        annotations:
+          reloader.stakater.com/auto: "true"
         containers:
           app:
             image:
@@ -35,8 +37,6 @@ spec:
               tag: v2.14.1@sha256:9ba73b1793ef332ae9b4b719ef0fc09f231d6276bc7b721cbb47961ed7792961
             env:
               TZ: Europe/London
-              UP_UNIFI_DEFAULT_ROLE: home-ops
-              UP_PROMETHEUS_HTTP_LISTEN: 0.0.0.0:80
               UP_INFLUXDB_DISABLE: true
             envFrom:
               - secretRef:
@@ -60,16 +60,15 @@ spec:
         runAsNonRoot: true
         runAsUser: 1001
         runAsGroup: 1003
-        seccompProfile: { type: RuntimeDefault }
     service:
       app:
-        controller: unpoller
+        controller: *app
         ports:
           http:
-            port: 80
+            port: 9130
     serviceMonitor:
       app:
-        serviceName: unpoller
+        serviceName: *app
         endpoints:
           - port: http
             scheme: http
