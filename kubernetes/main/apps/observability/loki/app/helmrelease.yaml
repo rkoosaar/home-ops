@@ -61,7 +61,7 @@ spec:
       persistence:
         enabled: true
         storageClass: openebs-hostpath
-        size: 52Gi
+        size: 50Gi
     gateway:
       replicas: 0
     backend:
