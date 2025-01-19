@@ -32,12 +32,13 @@ spec:
   values:
     crds:
       enabled: false
+    cleanPrometheusOperatorObjectNames: true
     alertmanager:
       ingress:
         enabled: true
-        pathType: Prefix
         ingressClassName: internal
         hosts: ["alertmanager.${SECRET_DOMAIN}"]
+        pathType: Prefix
       alertmanagerSpec:
         alertmanagerConfiguration:
           name: alertmanager
@@ -51,16 +52,6 @@ spec:
               resources:
                 requests:
                   storage: 1Gi
-    grafana:
-      enabled: false
-      forceDeployDashboards: true
-      sidecar:
-        dashboards:
-          annotations:
-            grafana_folder: Kubernetes
-          multicluster:
-            etcd:
-              enabled: true
     kubeApiServer:
       serviceMonitor:
         selector:
@@ -77,6 +68,56 @@ spec:
       <<: *kubeControllerManager # etcd runs on control plane nodes
     kubeProxy:
       enabled: false
+    prometheus:
+      ingress:
+        enabled: true
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/icon: prometheus.png
+          gethomepage.dev/name: Prometheus
+          gethomepage.dev/group: Observability
+          gethomepage.dev/app: prometheus
+          gethomepage.dev/description: Monitoring Scrape Service
+          gethomepage.dev/widget.type: prometheus
+          gethomepage.dev/widget.url: http://kube-prometheus-stack-prometheus.observability:9090
+        ingressClassName: internal
+        hosts: ["prometheus.${SECRET_DOMAIN}"]
+        pathType: Prefix
+      prometheusSpec:
+        podMonitorSelectorNilUsesHelmValues: false
+        probeSelectorNilUsesHelmValues: false
+        ruleSelectorNilUsesHelmValues: false
+        scrapeConfigSelectorNilUsesHelmValues: false
+        serviceMonitorSelectorNilUsesHelmValues: false
+        enableAdminAPI: true
+        walCompression: true
+        enableFeatures:
+          - memory-snapshot-on-shutdown
+        retention: 14d
+        retentionSize: 51GB
+        resources:
+          requests:
+            cpu: 100m
+          limits:
+            memory: 2000Mi
+        storageSpec:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: openebs-hostpath
+              resources:
+                requests:
+                  storage: 51Gi
+    prometheus-node-exporter:
+      fullnameOverride: node-exporter
+      prometheus:
+        monitor:
+          enabled: true
+          relabelings:
+            - action: replace
+              regex: (.*)
+              replacement: $1
+              sourceLabels: ["__meta_kubernetes_pod_node_name"]
+              targetLabel: kubernetes_node
     kube-state-metrics:
       fullnameOverride: kube-state-metrics
       metricLabelsAllowlist:
@@ -92,17 +133,9 @@ spec:
               replacement: $1
               sourceLabels: ["__meta_kubernetes_pod_node_name"]
               targetLabel: kubernetes_node
-    prometheus-node-exporter:
-      fullnameOverride: node-exporter
-      prometheus:
-        monitor:
-          enabled: true
-          relabelings:
-            - action: replace
-              regex: (.*)
-              replacement: $1
-              sourceLabels: ["__meta_kubernetes_pod_node_name"]
-              targetLabel: kubernetes_node
+    grafana:
+      enabled: false
+      forceDeployDashboards: true
     additionalPrometheusRulesMap:
       dockerhub-rules:
         groups:
@@ -124,46 +157,3 @@ spec:
                 expr: (kube_pod_container_status_restarts_total - kube_pod_container_status_restarts_total offset 10m >= 1) and ignoring (reason) min_over_time(kube_pod_container_status_last_terminated_reason{reason="OOMKilled"}[10m]) == 1
                 labels:
                   severity: critical
-    prometheus:
-      ingress:
-        enabled: true
-        ingressClassName: internal
-        annotations:
-          gethomepage.dev/enabled: "true"
-          gethomepage.dev/icon: prometheus.png
-          gethomepage.dev/name: Prometheus
-          gethomepage.dev/group: Observability
-          gethomepage.dev/app: prometheus
-          gethomepage.dev/description: Monitoring Scrape Service
-          gethomepage.dev/widget.type: prometheus
-          gethomepage.dev/widget.url: http://kube-prometheus-stack-prometheus.observability:9090
-        pathType: Prefix
-        hosts: ["prometheus.${SECRET_DOMAIN}"]
-      prometheusSpec:
-        enableAdminAPI: true
-        walCompression: true
-        enableFeatures:
-          - memory-snapshot-on-shutdown
-        externalLabels:
-          cluster: ${CLUSTER}
-        resources:
-          requests:
-            cpu: 100m
-          limits:
-            memory: 2000Mi
-        #scrapeInterval: 1m # Must match interval in Grafana Helm chart
-        ruleSelectorNilUsesHelmValues: false
-        serviceMonitorSelectorNilUsesHelmValues: false
-        podMonitorSelectorNilUsesHelmValues: false
-        probeSelectorNilUsesHelmValues: false
-        scrapeConfigSelectorNilUsesHelmValues: false
-        retention: 14d
-        retentionSize: 51GB
-        storageSpec:
-          volumeClaimTemplate:
-            spec:
-              storageClassName: openebs-hostpath
-              resources:
-                requests:
-                  storage: 51Gi
-    cleanPrometheusOperatorObjectNames: true
