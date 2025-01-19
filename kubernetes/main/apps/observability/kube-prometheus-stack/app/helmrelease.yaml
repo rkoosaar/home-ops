@@ -151,7 +151,7 @@ spec:
             cpu: 100m
           limits:
             memory: 2000Mi
-        scrapeInterval: 1m # Must match interval in Grafana Helm chart
+        #scrapeInterval: 1m # Must match interval in Grafana Helm chart
         ruleSelectorNilUsesHelmValues: false
         serviceMonitorSelectorNilUsesHelmValues: false
         podMonitorSelectorNilUsesHelmValues: false
