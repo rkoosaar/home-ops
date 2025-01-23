@@ -33,7 +33,7 @@ spec:
           app:
             image:
               repository: phpmyadmin
-              tag: 5.2.1-apache
+              tag: 5.2.2-apache
             env:
               PMA_ARBITRARY: 1
               PMA_HOST: mariadb-galera-internal.database.svc.cluster.local
