@@ -53,6 +53,8 @@ spec:
               TZ: Europe/London
               #APP_URL: "https://{{ .Release.Name }}.${SECRET_DOMAIN}"
               #APP_ENV: "production"
+              #VIRTUAL_HOST: your_domain
+              VIRTUAL_PORT: 8080
               MAIL_MAILER: log
               TRUSTED_PROXIES: "**" # TODO: This should be changed..
               SEND_REGISTRATION_MAIL: false
