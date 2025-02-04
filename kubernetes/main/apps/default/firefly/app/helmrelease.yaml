@@ -51,6 +51,9 @@ spec:
               tag: 6.2.2@sha256:8890f3ec69ede284bc4e910e6501c961512cde19380c8c473d882e3e7c05828b
             env:
               TZ: Europe/London
+              APP_DEBUG: true
+              APP_LOG_LEVEL: debug
+              LOG_CHANNEL: stack
               #APP_URL: "https://{{ .Release.Name }}.${SECRET_DOMAIN}"
               #APP_ENV: "production"
               #VIRTUAL_HOST: firefly.default.svc.cluster.local
@@ -69,21 +72,21 @@ spec:
               # Requires version 6.0.21.
               # FIREFLY_III_LAYOUT: v2
             envFrom: *envFrom
-            probes:
-              liveness: &probes
-                enabled: true
-                custom: true
-                spec:
-                  httpGet:
-                    path: /healthcheck
-                    port: &port 8080
-                  initialDelaySeconds: 0
-                  periodSeconds: 10
-                  timeoutSeconds: 1
-                  failureThreshold: 3
-              readiness: *probes
-              startup:
-                enabled: false
+            # probes:
+            #   liveness: &probes
+            #     enabled: true
+            #     custom: true
+            #     spec:
+            #       httpGet:
+            #         path: /healthcheck
+            #         port: &port 8080
+            #       initialDelaySeconds: 0
+            #       periodSeconds: 10
+            #       timeoutSeconds: 1
+            #       failureThreshold: 3
+            #   readiness: *probes
+            #   startup:
+            #     enabled: false
             resources:
               requests:
                 cpu: 600m
