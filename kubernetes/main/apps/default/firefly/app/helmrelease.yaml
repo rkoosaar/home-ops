@@ -53,8 +53,8 @@ spec:
               TZ: Europe/London
               #APP_URL: "https://{{ .Release.Name }}.${SECRET_DOMAIN}"
               #APP_ENV: "production"
-              VIRTUAL_HOST: firefly.default.svc.cluster.local
-              VIRTUAL_PORT: 8080
+              #VIRTUAL_HOST: firefly.default.svc.cluster.local
+              #VIRTUAL_PORT: 8080
               MAIL_MAILER: log
               TRUSTED_PROXIES: "**" # TODO: This should be changed..
               SEND_REGISTRATION_MAIL: false
@@ -69,6 +69,21 @@ spec:
               # Requires version 6.0.21.
               # FIREFLY_III_LAYOUT: v2
             envFrom: *envFrom
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /healthcheck
+                    port: &port 8080
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
+              startup:
+                enabled: false
             resources:
               requests:
                 cpu: 600m
@@ -82,7 +97,7 @@ spec:
         controller: *app
         ports:
           http:
-            port: 8080
+            port: *port
 
     ingress:
       app:
