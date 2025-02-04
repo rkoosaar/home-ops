@@ -57,7 +57,7 @@ spec:
               #APP_URL: "https://{{ .Release.Name }}.${SECRET_DOMAIN}"
               #APP_ENV: "production"
               VIRTUAL_HOST: firefly.default.svc.cluster.local
-              VIRTUAL_PORT: 8080
+              VIRTUAL_PORT: 80
               MAIL_MAILER: log
               TRUSTED_PROXIES: "**" # TODO: This should be changed..
               SEND_REGISTRATION_MAIL: false
@@ -100,7 +100,7 @@ spec:
         controller: *app
         ports:
           http:
-            port: 8080
+            port: 80
 
     ingress:
       app:
