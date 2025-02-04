@@ -48,7 +48,8 @@ spec:
           app:
             image:
               repository: ghcr.io/rkoosaar/firefly
-              tag: 6.2.2@sha256:8890f3ec69ede284bc4e910e6501c961512cde19380c8c473d882e3e7c05828b
+              #tag: 6.2.2@sha256:8890f3ec69ede284bc4e910e6501c961512cde19380c8c473d882e3e7c05828b
+              tag: 6.2.0@sha256:44e4068ec1fb1bbdf6283f33ed50ccca6013f2a49b921ee73e229694e1cbec64
             env:
               TZ: Europe/London
               APP_DEBUG: true
@@ -128,3 +129,5 @@ spec:
           firefly:
             app:
               - path: /var/www/html/storage/logs
+
+docker pull ghcr.io/rkoosaar/firefly:6.2.0@sha256:44e4068ec1fb1bbdf6283f33ed50ccca6013f2a49b921ee73e229694e1cbec64
