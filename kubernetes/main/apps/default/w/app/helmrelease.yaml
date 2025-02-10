@@ -105,6 +105,6 @@ spec:
         server: nas.kvshs.xyz
         path: /w
         globalMounts:
-          - path: /data
+          - path: /w
       tmp:
         type: emptyDir
