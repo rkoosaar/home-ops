@@ -128,3 +128,9 @@ spec:
         path: /data/usenet
         globalMounts:
           - path: /data/usenet
+      w:
+        type: nfs
+        server: nas.kvshs.xyz
+        path: /w
+        globalMounts:
+          - path: /w
