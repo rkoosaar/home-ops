@@ -103,7 +103,7 @@ spec:
       data:
         type: nfs
         server: nas.kvshs.xyz
-        path: /data
+        path: /w
         globalMounts:
           - path: /data
       tmp:
