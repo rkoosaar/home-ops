@@ -8,7 +8,7 @@ resources:
   # Flux-Kustomizations
   - ./audiobookshelf/ks.yaml
   - ./calibre/ks.yaml
-  - ./calibre-web/ks.yaml
+  #- ./calibre-web/ks.yaml
   #- ./ersatztv/ks.yaml
   - ./firefly/ks.yaml
   - ./ghostfolio/ks.yaml
@@ -32,4 +32,4 @@ resources:
   - ./sonarr/ks.yaml
   - ./stirling-pdf/ks.yaml
   - ./tautulli/ks.yaml
-  - ./w/ks.yaml
+  #- ./w/ks.yaml
