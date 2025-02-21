@@ -73,9 +73,9 @@ spec:
               # Requires version 6.0.21.
               # FIREFLY_III_LAYOUT: v2
             envFrom: *envFrom
-            probes:
-              liveness:
-                enabled: true
+            # probes:
+            #   liveness:
+            #     enabled: true
                 # custom: true
                 # spec:
                 #   httpGet:
@@ -85,8 +85,8 @@ spec:
                 #   periodSeconds: 30
                 #   timeoutSeconds: 30
                 #   failureThreshold: 3
-              readiness:
-                enabled: true
+              # readiness:
+              #   enabled: true
               # startup:
               #   enabled: true
             resources:
