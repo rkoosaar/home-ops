@@ -86,8 +86,6 @@ spec:
                 #   failureThreshold: 3
               readiness:
                 enabled: true
-              startup:
-                enabled: true
             resources:
               requests:
                 cpu: 600m
