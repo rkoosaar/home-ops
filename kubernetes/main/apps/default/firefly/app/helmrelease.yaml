@@ -89,9 +89,9 @@ spec:
               startup:
                 enabled: true
             resources:
-              # requests:
-              #   cpu: 600m
-              #   memory: 256Mi
+              requests:
+                cpu: 600m
+                memory: 256Mi
               limits:
                 cpu: 800m
                 memory: 1024Mi
