@@ -48,10 +48,7 @@ spec:
           app:
             image:
               repository: docker.io/fireflyiii/core
-              #repository: ghcr.io/rkoosaar/firefly
               tag: version-6.2.7@sha256:dc78dac2d3db78665e17c89f5075602ec8f7c84d10610a7888e633b83334a340
-              #tag: 6.2.7@sha256:23f68871e0f6745a3172fe0efeb8c7ad75e85c344d9e0818492a06b2dace290f
-              #tag: 6.2.0@sha256:44e4068ec1fb1bbdf6283f33ed50ccca6013f2a49b921ee73e229694e1cbec64
             env:
               TZ: Europe/London
               APP_DEBUG: true
@@ -75,10 +72,10 @@ spec:
               # Requires version 6.0.21.
               # FIREFLY_III_LAYOUT: v2
             envFrom: *envFrom
-            # probes:
-            #   liveness:
-            #     enabled: true
-                # custom: true
+            probes:
+              liveness:
+                enabled: true
+                custom: true
                 # spec:
                 #   httpGet:
                 #     path: /healthcheck
@@ -87,10 +84,10 @@ spec:
                 #   periodSeconds: 30
                 #   timeoutSeconds: 30
                 #   failureThreshold: 3
-              # readiness:
-              #   enabled: true
-              # startup:
-              #   enabled: true
+              readiness:
+                enabled: true
+              startup:
+                enabled: true
             resources:
               # requests:
               #   cpu: 600m
