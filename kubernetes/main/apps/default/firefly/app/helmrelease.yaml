@@ -63,27 +63,10 @@ spec:
               SEND_REGISTRATION_MAIL: false
               SEND_ERROR_MESSAGE: false
               SEND_LOGIN_NEW_IP_WARNING: false
-              # COOKIE_DOMAIN: "{{ .Release.Name }}.${SECRET_DOMAIN}"
-              # COOKIE_SECURE: "true"
-              # COOKIE_SAMESITE: "lax"
-              # AUTHENTICATION_GUARD: "remote_user_guard"
-              # AUTHENTICATION_GUARD_HEADER: "X-authentik-uid"
-              # AUTHENTICATION_GUARD_EMAIL: "X-authentik-email"
-              # Requires version 6.0.21.
-              # FIREFLY_III_LAYOUT: v2
             envFrom: *envFrom
             probes:
               liveness:
                 enabled: true
-                custom: true
-                # spec:
-                #   httpGet:
-                #     path: /healthcheck
-                #     port: &port 8080
-                #   initialDelaySeconds: 2
-                #   periodSeconds: 30
-                #   timeoutSeconds: 30
-                #   failureThreshold: 3
               readiness:
                 enabled: true
             resources:
@@ -105,8 +88,6 @@ spec:
     ingress:
       app:
         className: internal
-        # annotations:
-        #   nginx.org/proxy-buffer-size: "16k"
         hosts:
           - host: "{{ .Release.Name }}.${SECRET_DOMAIN}"
             paths:
