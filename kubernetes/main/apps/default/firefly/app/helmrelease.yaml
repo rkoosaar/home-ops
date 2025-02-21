@@ -53,14 +53,14 @@ spec:
             env:
               TZ: Europe/London
               APP_DEBUG: true
+              APP_ENV: "production"
               APP_LOG_LEVEL: debug
               LOG_CHANNEL: stack
-              #APP_URL: "https://{{ .Release.Name }}.${SECRET_DOMAIN}"
-              #APP_ENV: "production"
+              APP_URL: "https://{{ .Release.Name }}.${SECRET_DOMAIN}"
               VIRTUAL_HOST: firefly.default.svc.cluster.local
               VIRTUAL_PORT: 8080
               MAIL_MAILER: log
-              TRUSTED_PROXIES: "**" # TODO: This should be changed..
+              TRUSTED_PROXIES: "*" # TODO: This should be changed..
               SEND_REGISTRATION_MAIL: false
               SEND_ERROR_MESSAGE: false
               SEND_LOGIN_NEW_IP_WARNING: false
@@ -95,10 +95,6 @@ spec:
               limits:
                 cpu: 800m
                 memory: 512Mi
-
-    # healthcheck:
-    #   disable: true
-
     service:
       app:
         controller: *app
@@ -109,8 +105,8 @@ spec:
     ingress:
       app:
         className: internal
-        annotations:
-          nginx.org/proxy-buffer-size: "16k"
+        # annotations:
+        #   nginx.org/proxy-buffer-size: "16k"
         hosts:
           - host: "{{ .Release.Name }}.${SECRET_DOMAIN}"
             paths:
