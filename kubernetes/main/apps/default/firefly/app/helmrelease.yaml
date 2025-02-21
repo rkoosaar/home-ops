@@ -96,6 +96,9 @@ spec:
                 cpu: 800m
                 memory: 512Mi
 
+    healthcheck:
+      disable: true
+
     service:
       app:
         controller: *app
