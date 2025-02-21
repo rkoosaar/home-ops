@@ -30,6 +30,6 @@ resources:
   - ./redlib/ks.yaml
   - ./sabnzbd/ks.yaml
   - ./sonarr/ks.yaml
-  #- ./stirling-pdf/ks.yaml
+  - ./stirling-pdf/ks.yaml
   - ./tautulli/ks.yaml
   #- ./w/ks.yaml

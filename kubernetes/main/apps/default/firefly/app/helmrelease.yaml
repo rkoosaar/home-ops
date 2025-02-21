@@ -96,8 +96,8 @@ spec:
             #     cpu: 800m
             #     memory: 512Mi
 
-    healthcheck:
-      disable: true
+    # healthcheck:
+    #   disable: true
 
     service:
       app:
