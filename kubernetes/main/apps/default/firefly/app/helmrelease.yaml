@@ -73,21 +73,21 @@ spec:
               # Requires version 6.0.21.
               # FIREFLY_III_LAYOUT: v2
             envFrom: *envFrom
-            # probes:
-            #   liveness: &probes
-            #     enabled: true
-            #     custom: true
-            #     spec:
-            #       httpGet:
-            #         path: /healthcheck
-            #         port: &port 8080
-            #       initialDelaySeconds: 0
-            #       periodSeconds: 10
-            #       timeoutSeconds: 1
-            #       failureThreshold: 3
-            #   readiness: *probes
-            #   startup:
-            #     enabled: false
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /healthcheck
+                    port: &port 8080
+                  initialDelaySeconds: 2
+                  periodSeconds: 30
+                  timeoutSeconds: 30
+                  failureThreshold: 3
+              readiness: *probes
+              startup:
+                enabled: false
             resources:
               # requests:
               #   cpu: 600m
