@@ -88,13 +88,13 @@ spec:
             #   readiness: *probes
             #   startup:
             #     enabled: false
-            # resources:
-            #   requests:
-            #     cpu: 600m
-            #     memory: 256Mi
-            #   limits:
-            #     cpu: 800m
-            #     memory: 512Mi
+            resources:
+              # requests:
+              #   cpu: 600m
+              #   memory: 256Mi
+              limits:
+                cpu: 800m
+                memory: 512Mi
 
     # healthcheck:
     #   disable: true
@@ -106,18 +106,18 @@ spec:
           http:
             port: 8080
 
-    # ingress:
-    #   app:
-    #     className: internal
-    #     annotations:
-    #       nginx.org/proxy-buffer-size: "16k"
-    #     hosts:
-    #       - host: "{{ .Release.Name }}.${SECRET_DOMAIN}"
-    #         paths:
-    #           - path: /
-    #             service:
-    #               identifier: app
-    #               port: http
+    ingress:
+      app:
+        className: internal
+        annotations:
+          nginx.org/proxy-buffer-size: "16k"
+        hosts:
+          - host: "{{ .Release.Name }}.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: http
     persistence:
       upload:
         existingClaim: *app
