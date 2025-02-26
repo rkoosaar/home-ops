@@ -27,7 +27,7 @@ spec:
       namespace: storage
   values:
     controllers:
-      w:
+      w-copy:
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
