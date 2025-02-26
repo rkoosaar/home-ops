@@ -36,12 +36,12 @@ spec:
               repository: ghcr.io/jfroy/whisparr-nightly
               tag: 2.0.0.787@sha256:15b02a8ebf60b26bf55f8a6b5583389fb4a1b17eb15e5025cb75972a210be1dc
             env:
-              WHISPARR__INSTANCE_NAME: w
+              WHISPARR__INSTANCE_NAME: w-copy
               WHISPARR__ANALYTICS_ENABLED: "False"
               #WHISPARR__AUTH__REQUIRED: DisabledForLocalAddresses
               #WHISPARR__AUTHENTICATION_METHOD: External
-              WHISPARR__AUTHENTICATION_METHOD: Basic
-              WHISPARR__AUTHENTICATION_REQUIRED: Enabled
+              # WHISPARR__AUTHENTICATION_METHOD: Basic
+              # WHISPARR__AUTHENTICATION_REQUIRED: Enabled
               WHISPARR__BRANCH: develop
               WHISPARR__LOG_LEVEL: info
               WHISPARR__PORT: &port 80
