@@ -33,3 +33,4 @@ resources:
   - ./stirling-pdf/ks.yaml
   - ./tautulli/ks.yaml
   - ./w/ks.yaml
+  - ./w-copy/ks.yaml
