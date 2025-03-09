@@ -34,7 +34,7 @@ spec:
           app:
             image:
               repository: ghcr.io/rkoosaar/radarr-develop
-              tag: 5.19.3.9730@sha256:2c714112e2a163f8630e5829b2da5b75a96db2ad3f69e91c770574473c4ba359
+              tag: 5.20.0.9752@sha256:8432142cc759b8850a36dd14d4397500e09786069cb7fbb1736cbf5f0f3f3bc0
             env:
               RADARR__APP__INSTANCENAME: Radarr
               RADARR__APP__THEME: dark
