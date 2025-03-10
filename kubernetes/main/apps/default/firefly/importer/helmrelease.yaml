@@ -35,7 +35,7 @@ spec:
           app:
             image:
               repository: docker.io/fireflyiii/data-importer
-              tag: version-1.6.0@sha256:34a44621a6a2c194ccc84b30e26597e2148e40bb1525664a21686faa00ed64d7
+              tag: version-1.6.0@sha256:6dae0dd6f415d4cbc1a858533fced215aee50fcf69c39645f2b80ef1616db612
             env:
               TRUSTED_PROXIES: "**"
               FIREFLY_III_URL: "http://firefly.default.svc.cluster.local:80"
