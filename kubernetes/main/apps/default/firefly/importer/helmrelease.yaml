@@ -38,7 +38,7 @@ spec:
               tag: version-1.6.1@sha256:40e10f996a7bf72285dd6475c49424a02255fb02437904fe2ee6c44bc07e1bfc
             env:
               TRUSTED_PROXIES: "**"
-              FIREFLY_III_URL: "http://firefly.default.svc.cluster.local:80"
+              FIREFLY_III_URL: "http://firefly.default.svc.cluster.local:8080"
               VANITY_URL: "firefly.${SECRET_DOMAIN}"
               CAN_AUTO_IMPORT: 'true'
               CAN_POST_FILES: 'true'
@@ -59,7 +59,7 @@ spec:
         controller: *app
         ports:
           http:
-            port: 80
+            port: 8080
 
     ingress:
       app:
