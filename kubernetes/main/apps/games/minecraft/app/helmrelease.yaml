@@ -1,0 +1,118 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app minecraft
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 3.7.3
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      strategy: rollback
+      retries: 3
+  values:
+    controllers:
+      minecraft:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          app:
+            image:
+              repository: ghcr.io/itzg/minecraft-server
+              tag: 2025.4.0@sha256:ebd8e1308013c320168f436076dc5e854172be0131dd89c8406c5a4b6bc3da0a
+            env:
+              TZ: Europe/London
+              AUTOPAUSE_TIMEOUT_EST: 600
+              AUTOPAUSE_TIMEOUT_INIT: 300
+              DIFFICULTY: normal
+              ENABLE_AUTOPAUSE: TRUE
+              ENABLE_WHITELIST: true
+              EULA: true
+              FORCE_GAMEMODE: true
+              ICON: https://www.freeiconspng.com/uploads/minecraft-server-icon-23.png
+              JVM_XX_OPTS: "-XX:MaxRAMPercentage=75"
+              MAX_BUILD_HEIGHT: 320
+              MAX_TICK_TIME: -1
+              MAX_WORLD_SIZE: 29999984
+              MEMORY: 8192M
+              MODE: survival
+              MOTD: "RK - Minecraft Server"
+              OPS: "Eric"
+              OVERRIDE_ICON: TRUE
+              PAPER_CHANNEL: experimental
+              SERVER_NAME: kvshs-mc
+              SKIP_SUDO: true
+              SPAWN_PROTECTION: 0
+              SPIGET_RESOURCES: 36618
+              TYPE: PAPER
+              VERSION: "1.21"
+              VIEW_DISTANCE: 12
+              WHITELIST: "Eric"
+            envFrom:
+              - secretRef:
+                  name: minecraft-secret
+            resources:
+              requests:
+                cpu: 100m
+                memory: 100Mi
+              limits:
+                memory: 8192Mi
+            securityContext:
+              allowPrivilegeEscalation: true
+              readOnlyRootFilesystem: true
+              capabilities:
+                add: ["NET_RAW"]
+                drop: ["ALL"]
+            probes:
+              liveness: &probe
+                enabled: true
+                custom: true
+                spec:
+                  periodSeconds: 60
+                  exec: &probeexec {command: ["mc-health"]}
+              readiness: *probe
+              startup:
+                <<: *probe
+                spec:
+                  initialDelaySeconds: 30
+                  periodSeconds: 1
+                  failureThreshold: 300
+                  exec: *probeexec
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+    service:
+      app:
+        controller: *app
+        annotations:
+          external-dns.alpha.kubernetes.io/hostname: "minecraft.${SECRET_DOMAIN}"
+          external-dns.alpha.kubernetes.io/target: "mc-router.${SECRET_DOMAIN}"
+          mc-router.itzg.me/externalServerName: minecraft.${SECRET_DOMAIN}
+        ports:
+          minecraft:
+            port: 25565
+    persistence:
+      data:
+        existingClaim: *app
+        globalMounts:
+          - path: /data
+      tmp:
+        type: emptyDir
+        medium: Memory
+        globalMounts:
+          - path: /tmp
