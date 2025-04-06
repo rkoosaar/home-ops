@@ -71,8 +71,8 @@ spec:
               # https://vanillatweaks.net/share#oNYxlz
               VANILLA_TWEAKS_SHARE_CODES: oNYxlz # Coord HUD, Anti-Endermen Griefing
               #Random
-              ICON: https://www.freeiconspng.com/uploads/minecraft-server-icon-23.png
-              OVERRIDE_ICON: TRUE
+              # ICON: https://www.freeiconspng.com/uploads/minecraft-server-icon-23.png
+              # OVERRIDE_ICON: TRUE
               OPS: "Eric"
               WHITELIST: "Eric"
             envFrom:
