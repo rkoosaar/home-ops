@@ -19,7 +19,7 @@ spec:
     kind: GitRepository
     name: home-kubernetes
   wait: false
-  interval: 30m
+  interval: 30min
   timeout: 5m
   postBuild:
     substitute:
