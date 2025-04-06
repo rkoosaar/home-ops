@@ -152,7 +152,7 @@ spec:
             paths:
               - path: /
                 service:
-                  identifier: *app
+                  identifier: app
                   port: map
         annotations:
           gethomepage.dev/name: minecraft map (normal)
