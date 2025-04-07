@@ -69,8 +69,8 @@ spec:
                 fabricexporter,
                 spark,
                 geyser:beta,
-                floodgate:beta
-              #  bluemap,
+                floodgate:beta,
+                bluemap
               # https://vanillatweaks.net/share#oNYxlz
               VANILLA_TWEAKS_SHARE_CODES: oNYxlz # Coord HUD, Anti-Endermen Griefing
               #Random
