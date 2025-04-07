@@ -165,17 +165,17 @@ spec:
         existingClaim: *app
         globalMounts:
           - path: /data
-      geyser-config:
-        type: emptyDir
-        globalMounts:
-          - path: /data/config/Geyser-Fabric
-      geyser:
-        type: configMap
-        name: geyser-configmap
-        globalMounts:
-          - path: /data/config/Geyser-Fabric/config.yml
-            subPath: config.yml
-            readOnly: true
+      # geyser-config:
+      #   type: emptyDir
+      #   globalMounts:
+      #     - path: /data/config/Geyser-Fabric
+      # geyser:
+      #   type: configMap
+      #   name: geyser-configmap
+      #   globalMounts:
+      #     - path: /data/config/Geyser-Fabric/config.yml
+      #       subPath: config.yml
+      #       readOnly: true
       # bluemap:
       #   type: persistentVolumeClaim
       #   size: 10Gi
