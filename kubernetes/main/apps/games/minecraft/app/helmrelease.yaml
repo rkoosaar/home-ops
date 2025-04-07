@@ -32,7 +32,6 @@ spec:
             image:
               repository: ghcr.io/itzg/minecraft-server
               tag: java21@sha256:8e53d92c6f346f624d12d6b6f5d1892ae603c330562bf77c98790245490e024d
-              #tag: 2025.4.0@sha256:ebd8e1308013c320168f436076dc5e854172be0131dd89c8406c5a4b6bc3da0a
             env:
               # Server Configuration
               ## General
@@ -46,7 +45,7 @@ spec:
               MOTD: be nice
               DIFFICULTY: normal
               SPAWN_PROTECTION: 0
-              SEED: "-2135836821937050197"
+              SEED: "-2135836821937050198"
               FORCE_REDOWLOAD: "true"
               ENABLE_WHITELIST: "true"
               # Logging
@@ -166,6 +165,13 @@ spec:
         existingClaim: *app
         globalMounts:
           - path: /data
+      geyser:
+        type: configMap
+        name: geyser-configmap
+        globalMounts:
+          - path: /data/config/Geyser-Fabric/config.yml
+            subPath: config.yml
+            readOnly: true
       # bluemap:
       #   type: persistentVolumeClaim
       #   size: 10Gi
@@ -187,10 +193,3 @@ spec:
       #     - path: /data/config/bluemap/maps/end.conf
       #       subPath: end.conf
       #       readOnly: true
-      geyser:
-        type: configMap
-        name: geyser-config
-        globalMounts:
-          - path: /data/config/Geyser-Fabric/config.yml
-            subPath: config.yml
-            readOnly: true
