@@ -189,14 +189,14 @@ spec:
         globalMounts:
           - path: /data/config/bluemap/core.conf
             subPath: core.conf
-            readOnly: true
+            # readOnly: true
           - path: /data/config/bluemap/storages/file.conf
             subPath: file.conf
-            readOnly: true
+            # readOnly: true
           # Maps configuration
           - path: /data/config/bluemap/maps/nether.conf
             subPath: nether.conf
-            readOnly: true
+            # readOnly: true
           - path: /data/config/bluemap/maps/end.conf
             subPath: end.conf
-            readOnly: true
+            # readOnly: true
