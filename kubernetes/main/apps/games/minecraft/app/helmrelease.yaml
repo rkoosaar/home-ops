@@ -171,10 +171,6 @@ spec:
               - path: /data
         # globalMounts:
         #   - path: /data
-      # geyser-config:
-      #   type: emptyDir
-      #   globalMounts:
-      #     - path: /data/config/Geyser-Fabric
       geyser:
         type: configMap
         name: geyser-configmap
@@ -182,24 +178,24 @@ spec:
           - path: /data/config/Geyser-Fabric/config.yml
             subPath: config.yml
       #       readOnly: true
-      # bluemap:
-      #   type: persistentVolumeClaim
-      #   size: 10Gi
-      #   accessMode: ReadWriteOnce
-      # bluemap-config:
-      #   type: configMap
-      #   name: minecraft-bluemap
-      #   globalMounts:
-      #     - path: /data/config/bluemap/core.conf
-      #       subPath: core.conf
-      #       readOnly: true
-      #     - path: /data/config/bluemap/storages/file.conf
-      #       subPath: file.conf
-      #       readOnly: true
-      #     # Maps configuration
-      #     - path: /data/config/bluemap/maps/nether.conf
-      #       subPath: nether.conf
-      #       readOnly: true
-      #     - path: /data/config/bluemap/maps/end.conf
-      #       subPath: end.conf
-      #       readOnly: true
+      bluemap:
+        type: persistentVolumeClaim
+        size: 10Gi
+        accessMode: ReadWriteOnce
+      bluemap-config:
+        type: configMap
+        name: minecraft-bluemap
+        globalMounts:
+          - path: /data/config/bluemap/core.conf
+            subPath: core.conf
+            readOnly: true
+          - path: /data/config/bluemap/storages/file.conf
+            subPath: file.conf
+            readOnly: true
+          # Maps configuration
+          - path: /data/config/bluemap/maps/nether.conf
+            subPath: nether.conf
+            readOnly: true
+          - path: /data/config/bluemap/maps/end.conf
+            subPath: end.conf
+            readOnly: true
