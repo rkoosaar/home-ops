@@ -42,7 +42,6 @@ spec:
     - name: external-secrets-stores
     - name: longhorn
     - name: volsync
-#    - name: mc-router
   path: ./kubernetes/main/apps/games/minecraft/app
   prune: true
   sourceRef:

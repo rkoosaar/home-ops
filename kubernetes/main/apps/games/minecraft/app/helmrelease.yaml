@@ -32,6 +32,10 @@ spec:
             image:
               repository: ghcr.io/itzg/minecraft-server
               tag: java21@sha256:8e53d92c6f346f624d12d6b6f5d1892ae603c330562bf77c98790245490e024d
+            command: ["mkdir -p /data/config"]
+            # args:
+            #   - --health-probe-bind-address=:8081
+            #   - --metrics-bind-address=:8080
             env:
               # Server Configuration
               ## General
@@ -64,9 +68,9 @@ spec:
                 fabric-api,
                 fabricexporter,
                 spark,
-                bluemap,
                 geyser:beta,
                 floodgate:beta
+              #  bluemap,
               # https://vanillatweaks.net/share#oNYxlz
               VANILLA_TWEAKS_SHARE_CODES: oNYxlz # Coord HUD, Anti-Endermen Griefing
               #Random
@@ -87,7 +91,6 @@ spec:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: false
               capabilities:
-                #add: ["NET_RAW"]
                 drop: ["ALL"]
             probes:
               liveness: &probe
