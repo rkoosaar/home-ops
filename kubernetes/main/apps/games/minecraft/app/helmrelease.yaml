@@ -147,7 +147,7 @@ spec:
             interval: 1m
 
     ingress:
-      map:
+      app:
         className: external
         hosts:
           - host: mcmap.${SECRET_DOMAIN}
