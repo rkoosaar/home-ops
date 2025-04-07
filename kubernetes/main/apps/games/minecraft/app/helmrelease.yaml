@@ -175,12 +175,12 @@ spec:
       #   type: emptyDir
       #   globalMounts:
       #     - path: /data/config/Geyser-Fabric
-      # geyser:
-      #   type: configMap
-      #   name: geyser-configmap
-      #   globalMounts:
-      #     - path: /data/config/Geyser-Fabric/config.yml
-      #       subPath: config.yml
+      geyser:
+        type: configMap
+        name: geyser-configmap
+        globalMounts:
+          - path: /data/config/Geyser-Fabric/config.yml
+            subPath: config.yml
       #       readOnly: true
       # bluemap:
       #   type: persistentVolumeClaim
