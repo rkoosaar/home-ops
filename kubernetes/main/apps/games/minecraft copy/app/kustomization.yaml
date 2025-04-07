@@ -7,12 +7,12 @@ resources:
   - ../../../../../shared/templates/gatus/external
   - ../../../../../shared/templates/volsync
 configMapGenerator:
-  - name: minecraft-bluemap
-    files:
-      - core.conf=./config/bluemap/core.conf
-      - file.conf=./config/bluemap/storages/file.conf
-      - nether.conf=./config/bluemap/maps/nether.conf
-      - end.conf=./config/bluemap/maps/end.conf
+  # - name: minecraft-bluemap
+  #   files:
+  #     - core.conf=./config/bluemap/core.conf
+  #     - file.conf=./config/bluemap/storages/file.conf
+  #     - nether.conf=./config/bluemap/maps/nether.conf
+  #     - end.conf=./config/bluemap/maps/end.conf
   - name: geyser-config
     files:
       - config.yml=./config/geyser/config.yml
