@@ -75,9 +75,9 @@ spec:
               OPS: >
                 EricDeG0thia,
                 Eric_de_Gothia
-              WHITELIST: >
-                EricDeG0thia,
-                Eric_de_Gothia
+              # WHITELIST: >
+              #   EricDeG0thia,
+              #   Eric_de_Gothia
             envFrom:
               - secretRef:
                   name: minecraft-secret
