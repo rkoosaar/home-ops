@@ -10,12 +10,12 @@ configMapGenerator:
   - name: geyser-configmap
     files:
       - config.yml=./resources/geyser/config.yml
-  # - name: minecraft-bluemap
-  #   files:
-  #     - core.conf=./config/bluemap/core.conf
-  #     - file.conf=./config/bluemap/storages/file.conf
-  #     - nether.conf=./config/bluemap/maps/nether.conf
-  #     - end.conf=./config/bluemap/maps/end.conf
+  - name: minecraft-bluemap
+    files:
+      - core.conf=./resources/bluemap/core.conf
+      - file.conf=./resources/bluemap/storages/file.conf
+      - nether.conf=./resources/bluemap/maps/nether.conf
+      - end.conf=./resources/bluemap/maps/end.conf
 generatorOptions:
   disableNameSuffixHash: true
   annotations:
