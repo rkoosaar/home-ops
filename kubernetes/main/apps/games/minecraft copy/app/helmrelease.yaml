@@ -194,3 +194,5 @@ spec:
           - path: /data/config/Geyser-Fabric/config.yml
             subPath: config.yml
             readOnly: true
+      tmp:
+        type: emptyDir
