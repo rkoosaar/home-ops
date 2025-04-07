@@ -170,8 +170,7 @@ spec:
           minecraft:
             app:
               - path: /data
-        # globalMounts:
-        #   - path: /data
+              - path: /data/config/bluemap
       geyser:
         type: configMap
         name: geyser-configmap
@@ -187,16 +186,18 @@ spec:
         type: configMap
         name: minecraft-bluemap
         globalMounts:
+          - path: /data/config/bluemap/packs
+            subPath: packs
           - path: /data/config/bluemap/core.conf
             subPath: core.conf
-            # readOnly: true
+            readOnly: true
           - path: /data/config/bluemap/storages/file.conf
             subPath: file.conf
-            # readOnly: true
+            readOnly: true
           # Maps configuration
           - path: /data/config/bluemap/maps/nether.conf
             subPath: nether.conf
-            # readOnly: true
+            readOnly: true
           - path: /data/config/bluemap/maps/end.conf
             subPath: end.conf
-            # readOnly: true
+            readOnly: true
