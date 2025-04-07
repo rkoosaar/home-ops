@@ -199,6 +199,6 @@ spec:
           - path: /data/config/bluemap/maps/end.conf
             subPath: end.conf
             readOnly: true
-          # - path: /data/config/bluemap/maps/overworld.conf
-          #   subPath: overworld.conf
-          #   readOnly: true
+          - path: /data/config/bluemap/maps/overworld.conf
+            subPath: overworld.conf
+            readOnly: true
