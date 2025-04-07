@@ -83,7 +83,7 @@ spec:
                   name: minecraft-secret
             resources:
               requests:
-                cpu: 250m
+                cpu: 400m
                 memory: 100Mi
               limits:
                 memory: 10Gi
@@ -122,6 +122,7 @@ spec:
         type: LoadBalancer
         annotations:
           "lbipam.cilium.io/ips": "10.45.0.7"
+          external-dns.alpha.kubernetes.io/hostname: mc.${SECRET_DOMAIN}
         ports:
           java:
             port: 25565
