@@ -15,8 +15,8 @@ configMapGenerator:
       - core.conf=./resources/bluemap/core.conf
       - file.conf=./resources/bluemap/storages/file.conf
       - overworld.conf=./resources/bluemap/maps/overworld.conf
-      # - nether.conf=./resources/bluemap/maps/nether.conf
-      # - end.conf=./resources/bluemap/maps/end.conf
+      - nether.conf=./resources/bluemap/maps/nether.conf
+      - end.conf=./resources/bluemap/maps/end.conf
 generatorOptions:
   disableNameSuffixHash: true
   annotations:
