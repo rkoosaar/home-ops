@@ -163,8 +163,12 @@ spec:
     persistence:
       data:
         existingClaim: *app
-        # globalMounts:
-        #   - path: /data
+        globalMounts:
+          - path: /data
+      geyser-config:
+        type: emptyDir
+        globalMounts:
+          - path: /data/config/Geyser-Fabric
       geyser:
         type: configMap
         name: geyser-configmap
