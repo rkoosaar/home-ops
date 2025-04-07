@@ -165,8 +165,12 @@ spec:
     persistence:
       data:
         existingClaim: *app
-        globalMounts:
-          - path: /data
+        advancedMounts:
+          minecraft:
+            app:
+              - path: /data
+        # globalMounts:
+        #   - path: /data
       # geyser-config:
       #   type: emptyDir
       #   globalMounts:
