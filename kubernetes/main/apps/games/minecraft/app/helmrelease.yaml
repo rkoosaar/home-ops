@@ -38,7 +38,7 @@ spec:
               ## General
               TZ: Europe/London
               EULA: "true"
-              SERVER_NAME: kvshs-mc
+              SERVER_NAME: kvshsMC
               TYPE: FABRIC
               FORCE_REDOWNLOAD:
               # renovate: depName=minecraft datasource=custom.minecraft versioning=semver-coerced
