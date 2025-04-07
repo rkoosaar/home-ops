@@ -73,8 +73,8 @@ spec:
               #Random
               # ICON: https://www.freeiconspng.com/uploads/minecraft-server-icon-23.png
               # OVERRIDE_ICON: TRUE
-              OPS: "EricTheWanderer"
-              WHITELIST: "EricTheWanderer"
+              OPS: "EricDeG0thia"
+              WHITELIST: "EricDeG0thia"
             envFrom:
               - secretRef:
                   name: minecraft-secret
