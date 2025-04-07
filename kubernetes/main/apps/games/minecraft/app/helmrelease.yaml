@@ -85,8 +85,8 @@ spec:
               limits:
                 memory: 10Gi
             securityContext:
-              allowPrivilegeEscalation: true
-              readOnlyRootFilesystem: true
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: false
               capabilities:
                 #add: ["NET_RAW"]
                 drop: ["ALL"]
