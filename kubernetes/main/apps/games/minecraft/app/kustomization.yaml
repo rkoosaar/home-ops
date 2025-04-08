@@ -4,7 +4,7 @@ kind: Kustomization
 resources:
   - ./externalsecret.yaml
   - ./helmrelease.yaml
-  - ./dnsendpoint.yaml
+  - ./externalsecret-playit.yaml
   - ../../../../../shared/templates/gatus/external
   - ../../../../../shared/templates/volsync
 configMapGenerator:
