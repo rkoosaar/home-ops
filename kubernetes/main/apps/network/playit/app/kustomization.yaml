@@ -6,4 +6,5 @@ resources:
   - ./helmrelease.yaml
   #- ./networkpolicy.yaml
   - ./externalsecret.yaml
+  - ./externalsecret-playit.yaml
   #- ./dns-endpoint.yaml

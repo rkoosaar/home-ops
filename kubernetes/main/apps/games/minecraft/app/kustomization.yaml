@@ -18,6 +18,9 @@ configMapGenerator:
       - overworld.conf=./resources/bluemap/maps/overworld.conf
       - nether.conf=./resources/bluemap/maps/nether.conf
       - end.conf=./resources/bluemap/maps/end.conf
+  - name: playit-configmap
+    files:
+      - playit.toml=./resources/playit/playit.toml
 generatorOptions:
   disableNameSuffixHash: true
   annotations:

@@ -108,6 +108,17 @@ spec:
                   periodSeconds: 1
                   failureThreshold: 300
                   exec: *probeexec
+          playit:
+            image:
+              repository: ghcr.io/playit-cloud/playit-agent
+              tag: 0.15.26@sha256:3d08eb4a627a6d167f3cce497d8e2ec8f9e7d2df4e96f0599ca41e4b957c852c
+            args: ["--config", "/etc/playit/playit.toml"]
+            env:
+              SECRET_KEY:
+                valueFrom:
+                  secretKeyRef:
+                    name: playit
+                    key: secret_key
     defaultPodOptions:
       automountServiceAccountToken: false
       securityContext:
@@ -122,7 +133,7 @@ spec:
         controller: *app
         type: LoadBalancer
         annotations:
-          #external-dns.alpha.kubernetes.io/hostname: mc.${SECRET_DOMAIN}
+          external-dns.alpha.kubernetes.io/hostname: mc.${SECRET_DOMAIN}
           "lbipam.cilium.io/ips": "10.45.0.7"
         ports:
           java:
@@ -200,4 +211,11 @@ spec:
             readOnly: true
           - path: /data/config/bluemap/maps/overworld.conf
             subPath: overworld.conf
+            readOnly: true
+      playit-config:
+        type: configMap
+        name: playit-configmap
+        globalMounts:
+          - path: /etc/playit/playit.toml
+            subPath: playit.toml
             readOnly: true
