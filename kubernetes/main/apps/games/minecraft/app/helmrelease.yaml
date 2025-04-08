@@ -117,7 +117,7 @@ spec:
               SECRET_KEY:
                 valueFrom:
                   secretKeyRef:
-                    name: playit
+                    name: playit-secret
                     key: secret_key
     defaultPodOptions:
       automountServiceAccountToken: false
