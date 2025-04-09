@@ -73,7 +73,9 @@ spec:
                 spark,
                 geyser:beta,
                 floodgate:beta,
-                bluemap
+                bluemap,
+                XaerosWorldMap,
+                Xaeros_Minimap
               # https://vanillatweaks.net/share#oNYxlz
               VANILLA_TWEAKS_SHARE_CODES: oNYxlz # Coord HUD, Anti-Endermen Griefing
               OPS: EricDeG0thia
@@ -83,7 +85,7 @@ spec:
                   name: minecraft-secret
             resources:
               requests:
-                cpu: 400m
+                cpu: 500m
                 memory: 200Mi
               limits:
                 memory: 10Gi
