@@ -74,8 +74,8 @@ spec:
                 geyser:beta,
                 floodgate:beta,
                 bluemap,
-                xaeros-world-map,
-                xaeros-minimap
+                xaeros-minimap,
+              # xaeros-world-map
               # https://vanillatweaks.net/share#oNYxlz
               VANILLA_TWEAKS_SHARE_CODES: oNYxlz # Coord HUD, Anti-Endermen Griefing
               OPS: EricDeG0thia
