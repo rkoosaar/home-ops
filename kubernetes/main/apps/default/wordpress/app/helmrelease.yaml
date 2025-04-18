@@ -36,7 +36,7 @@ spec:
           app:
             image:
               repository: wordpress
-              tag: 6.7.2
+              tag: 6.8.0
             envFrom:
               - secretRef:
                   name: wordpress-secret
