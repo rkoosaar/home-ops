@@ -54,6 +54,7 @@ spec:
               SPAWN_PROTECTION: 0
               SEED: "-2135836821937050198"
               FORCE_REDOWLOAD: "true"
+              # No whitelist
               ENABLE_WHITELIST: "false"
               # Logging
               ENABLE_ROLLING_LOGS: "true"
