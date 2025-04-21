@@ -26,6 +26,12 @@ wiki
 /config.yaml
 support-31-33.zip
 scripts/profilarr-0.3.2.4
+old_scripts/profilarr-0.3.2.4
+.venv_old
+.cloudflare-tunnel.json
+old_kubernetes
+old_bootstrap
+
 
 ### New
 

@@ -11,6 +11,18 @@
         "EditorConfig.editorconfig",
         "PKief.material-icon-theme",
         "HashiCorp.terraform",
-        "Gruntfuggly.todo-tree"
+        "Gruntfuggly.todo-tree",
+        "blueglassblock.better-json5",
+        "irongeek.vscode-env"
     ]
 }
+
+
+// {
+//   "recommendations": [
+//     "blueglassblock.better-json5",
+//     "irongeek.vscode-env",
+//     "redhat.vscode-yaml",
+//     "signageos.signageos-vscode-sops"
+//   ]
+// }
