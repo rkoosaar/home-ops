@@ -50,7 +50,7 @@ spec:
           - name: UNIFI_HOST
             valueFrom:
               secretKeyRef:
-                name: &secret external-dns-unifi-secret
+                name: &secret unifi-dns-secret
                 key: UNIFI_DNS_HOST
           - name: UNIFI_API_KEY
             valueFrom:
