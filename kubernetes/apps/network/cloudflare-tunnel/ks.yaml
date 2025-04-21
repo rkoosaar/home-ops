@@ -13,8 +13,8 @@ spec:
   path: ./kubernetes/apps/network/cloudflare-tunnel/app
   postBuild:
     substituteFrom:
-      - kind: Secret
-        name: cloudflare-tunnel-secret
+      - name: cluster-secrets
+        kind: Secret
   prune: true
   retryInterval: 2m
   sourceRef:
