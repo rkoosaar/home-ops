@@ -26,6 +26,10 @@ import (
 	cilium_bgp_router_asn?: string & !=""
 	cilium_bgp_node_asn?: string & !=""
 	cilium_loadbalancer_mode?: *"dsr" | "snat"
+	unifi_dns_host_ip: string
+	unifi_dns_api_key: string
+	onepassword_credentials_json: string
+	onepassword_token: string
 }
 
 #Config

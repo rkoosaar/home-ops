@@ -1,0 +1,58 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: cloudflare-ddns
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 3.7.3
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      strategy: rollback
+      retries: 3
+  values:
+    controllers:
+      cloudflare-ddns:
+        containers:
+          app:
+            image:
+              repository: docker.io/favonia/cloudflare-ddns
+              tag: 1.15.1
+            env:
+              - name: TZ
+                value: Europe/London
+              - name: IP6_PROVIDER
+                value: none
+              - name: CF_API_TOKEN
+                valueFrom:
+                  secretKeyRef:
+                    name: &secret cloudflare-ddns-secret
+                    key: CF_API_TOKEN
+              - name: DOMAINS
+                valueFrom:
+                  secretKeyRef:
+                    name: *secret
+                    key: CF_DDNS_DOMAIN
+            # resources:
+            #   requests:
+            #     cpu: 5m
+            #   limits:
+            #     memory: 16Mi
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        seccompProfile: { type: RuntimeDefault }
