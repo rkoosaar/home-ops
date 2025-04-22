@@ -7,9 +7,9 @@ components:
   - ../../components/common
   - ../../components/repos/app-template
 resources:
-  #- ./echo/ks.yaml
+  - ./echo/ks.yaml
   #- ./cloudflare-ddns/ks.yaml
   - ./cloudflare-dns/ks.yaml
   - ./cloudflare-tunnel/ks.yaml
   - ./unifi-dns/ks.yaml
-  #- ./ingress-nginx/ks.yaml
+  - ./ingress-nginx/ks.yaml
