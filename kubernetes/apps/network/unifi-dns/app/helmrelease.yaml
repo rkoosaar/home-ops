@@ -57,6 +57,11 @@ spec:
               secretKeyRef:
                 name: *secret
                 key: UNIFI_DNS_API_KEY
+          - name: DOMAIN_FILTER
+            valueFrom:
+              secretKeyRef:
+                name: *secret
+                key: UNIFI_DNS_DOMAIN_FILTER
           - name: LOG_LEVEL
             value: "debug"
         livenessProbe:
@@ -78,7 +83,7 @@ spec:
     sources: ["ingress", "service"]
     txtOwnerId: default
     txtPrefix: k8s.
-    domainFilters: ["${SECRET_DOMAIN}"]
+    #domainFilters: ["${SECRET_DOMAIN}"]
     serviceMonitor:
       enabled: true
     podAnnotations:
