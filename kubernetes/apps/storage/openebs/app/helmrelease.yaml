@@ -40,7 +40,7 @@ spec:
         basePath: &hostPath /var/openebs/local
       hostpathClass:
         enabled: true
-        name: local-hostpath
+        name: openebs-hostpath
         isDefaultClass: false
         basePath: *hostPath
       helperPod:
