@@ -62,7 +62,6 @@ spec:
     substitute:
       APP: *app
       GATUS_SUBDOMAIN: rook
-      SECRET_DOMAIN: ${SECRET_DOMAIN}
   prune: true
   retryInterval: 2m
   sourceRef:
