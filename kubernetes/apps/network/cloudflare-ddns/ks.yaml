@@ -1,22 +1,24 @@
 ---
-# yaml-language-server: $schema=https://kube-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/kustomization-kustomize-v1.json
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: &app cloudflare-ddns
-  namespace: flux-system
+  namespace: &namespace network
 spec:
-  targetNamespace: network
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
+  interval: 1h
   dependsOn:
-    - name: external-secrets-stores
-  path: ./kubernetes/main/apps/network/cloudflare-ddns/app
+    - name: onepassword
+  path: ./kubernetes/apps/network/cloudflare-ddns/app
   prune: true
+  retryInterval: 2m
   sourceRef:
     kind: GitRepository
-    name: home-kubernetes
-  wait: false # no flux ks dependents
-  interval: 30m
+    name: flux-system
+    namespace: flux-system
+  targetNamespace: *namespace
   timeout: 5m
+  wait: false
