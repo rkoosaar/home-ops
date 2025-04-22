@@ -14,3 +14,4 @@ resources:
   - ./cloudflare-dns/ks.yaml
   - ./cloudflare-tunnel/ks.yaml
   - ./unifi-dns/ks.yaml
+  - ./ingress-nginx/ks.yaml
