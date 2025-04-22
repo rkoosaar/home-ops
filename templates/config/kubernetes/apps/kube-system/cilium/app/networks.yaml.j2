@@ -74,3 +74,21 @@ spec:
           peerConfigRef:
             name: bgp-peer-config-v4
 #% endif %#
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kube-api
+  annotations:
+    lbipam.cilium.io/ips: #{ cluster_api_addr }#
+spec:
+  type: LoadBalancer
+  externalTrafficPolicy: Cluster
+  selector:
+    k8s-app: kube-apiserver
+    tier: control-plane
+  ports:
+    - name: https
+      port: 6443
+      protocol: TCP
+      targetPort: 6443
