@@ -62,6 +62,7 @@ spec:
     substitute:
       APP: *app
       GATUS_SUBDOMAIN: rook
+      SECRET_DOMAIN: kvshs.xyz
   prune: true
   retryInterval: 2m
   sourceRef:
