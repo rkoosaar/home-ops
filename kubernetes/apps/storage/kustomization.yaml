@@ -8,6 +8,6 @@ components:
   - ../../components/repos/app-template
 resources:
   # - ./csi-driver-nfs/ks.yaml
-  # - ./openebs/ks.yaml
+  - ./openebs/ks.yaml
   - ./snapshot-controller/ks.yaml
   - ./volsync/ks.yaml
