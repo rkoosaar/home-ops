@@ -44,11 +44,6 @@ spec:
           path: /
     toolbox:
       enabled: true
-    configOverride: |
-      [global]
-      bdev_enable_discard = true
-      bdev_async_discard = true
-      osd_class_update_on_start = false
     cephClusterSpec:
       crashCollector:
         disable: false
@@ -81,6 +76,7 @@ spec:
         - name: "/dev/disk/by-id/nvme-Samsung_SSD_990_EVO_1TB_S7GCNS0X158506R"
         #- name: "sda"
         #devicePathFilter: '/dev/disk/by-id/nvme-Samsung_SSD_990_EVO*|/dev/disk/by-id/usb-SSK_SSK_Storage*'
+        #devicePathFilter: /dev/disk/by-id/nvme-Micron_7450_MTFDKBA800TFS_.*
         config:
           osdsPerDevice: "1"
       placement:
