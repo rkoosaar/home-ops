@@ -27,14 +27,14 @@ spec:
               repository: docker.io/favonia/cloudflare-ddns
               tag: 1.15.1@sha256:a4e2089b3531eec8c9328c7a9a586f80e8d67dcd94856e0b596b7896e1de3f62
             env:
-              TZ: value: Europe/London
+              TZ: Europe/London
               IP6_PROVIDER: none
-              - name: CF_API_TOKEN
+              CF_API_TOKEN:
                 valueFrom:
                   secretKeyRef:
                     name: &secret cloudflare-ddns-secret
                     key: CF_API_TOKEN
-              - name: DOMAINS
+              DOMAINS:
                 valueFrom:
                   secretKeyRef:
                     name: *secret
