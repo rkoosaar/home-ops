@@ -85,7 +85,7 @@ spec:
         # - name: "/dev/disk/by-id/usb-SSK_SSK_Storage_012345678913-0:0"
         # - name: "/dev/disk/by-id/usb-SSK_SSK_Storage_012345678913-0:0"
         # - name: "/dev/disk/by-id/usb-SSK_SSK_Storage_012345678913-0:0"
-        devicePathFilter: /dev/disk/by-id/usb-SSK_SSK_Storage_012345678913-0:0
+        devicePathFilter: /dev/disk/by-id/usb-SSK_SSK_Storage_.*
         #devicePathFilter: /dev/disk/by-id/nvme-Micron_7450_MTFDKBA800TFS_.*
         config:
           osdsPerDevice: "1"
