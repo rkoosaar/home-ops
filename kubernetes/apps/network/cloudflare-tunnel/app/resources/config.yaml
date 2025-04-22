@@ -8,4 +8,3 @@ ingress:
   - hostname: "*.${SECRET_DOMAIN}"
     service: *svc
   - service: http_status:404
-external-ingress-nginx-controlle
