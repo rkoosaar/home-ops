@@ -9,5 +9,5 @@ components:
 resources:
   # - ./csi-driver-nfs/ks.yaml
   # - ./openebs/ks.yaml
-  #- ./snapshot-controller/ks.yaml
-  #- ./volsync/ks.yaml
+  - ./snapshot-controller/ks.yaml
+  - ./volsync/ks.yaml
