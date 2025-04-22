@@ -12,6 +12,7 @@ spec:
   interval: 1h
   dependsOn:
     - name: onepassword
+      namespace: external-secrets
   path: ./kubernetes/apps/network/cloudflare-ddns/app
   prune: true
   retryInterval: 2m
