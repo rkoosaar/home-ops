@@ -88,12 +88,12 @@ spec:
           - path: /etc/yt-dlp
       media:
         type: nfs
-        server: expanse.internal
-        path: /mnt/eros/Media
+        server: nas.kvshs.xyz
+        path: /media
         advancedMounts:
           pinchflat:
             app:
               - path: /downloads
-                subPath: Library/YouTube
+                subPath: Downloads/youtube
       tmp:
         type: emptyDir
