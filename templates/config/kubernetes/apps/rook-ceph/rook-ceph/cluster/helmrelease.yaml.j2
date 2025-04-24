@@ -41,7 +41,7 @@ spec:
         annotations:
           external-dns.alpha.kubernetes.io/target: internal.${SECRET_DOMAIN}
         host:
-          name: rook.kvshs.xyz
+          name: rook.${SECRET_DOMAIN}
           path: /
     toolbox:
       enabled: true
