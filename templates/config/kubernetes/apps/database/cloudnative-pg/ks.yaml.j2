@@ -40,8 +40,6 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  dependsOn:
-    - name: cloudnative-pg
   interval: 1h
   path: ./kubernetes/main/apps/database/cloudnative-pg/cluster
   postBuild:
