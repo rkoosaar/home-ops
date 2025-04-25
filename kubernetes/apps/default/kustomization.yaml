@@ -8,4 +8,4 @@ components:
   - ../../components/repos/app-template
 resources:
   #- ./pinchflat/ks.yaml
-  - ./minecraft/ks.yaml
+  #- ./minecraft/ks.yaml
