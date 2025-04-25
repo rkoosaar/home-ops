@@ -1,0 +1,27 @@
+---
+apiVersion: k8s.mariadb.com/v1alpha1
+kind: Backup
+metadata:
+  name: mariadb-galera-daily
+spec:
+  mariaDbRef:
+    name: mariadb-galera
+  # to backup specific db
+  # databases:
+  #   - wordpress
+  maxRetention: 720h # 30 days
+  compression: gzip
+  schedule:
+    cron: "29 1 * * *"
+  storage:
+    s3:
+      bucket: backups-mariadb
+      prefix: mariadb-galera
+      endpoint: s3.kvshs.xyz
+      region:  eu-west-2
+      accessKeyIdSecretKeyRef:
+        name: mariadb-secret
+        key: access-key-id
+      secretAccessKeySecretKeyRef:
+        name: mariadb-secret
+        key: secret-access-key
