@@ -18,9 +18,9 @@ spec:
   interval: 1h
   path: ./kubernetes/apps/default/minecraft/app
   postBuild:
-    substituteFrom:
-      - name: cluster-secrets
-        kind: Secret
+    # substituteFrom:
+    #   - name: cluster-secrets
+    #     kind: Secret
     substitute:
       APP: *app
       VOLSYNC_CAPACITY: 15Gi

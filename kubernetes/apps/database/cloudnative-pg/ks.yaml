@@ -12,12 +12,14 @@ spec:
   dependsOn:
     - name: onepassword
       namespace: external-secrets
+    - name: openebs
+      namespace: storage
   interval: 1h
   path: ./kubernetes/apps/database/cloudnative-pg/app
   postBuild:
-    substituteFrom:
-      - name: cluster-secrets
-        kind: Secret
+    # substituteFrom:
+    #   - name: cluster-secrets
+    #     kind: Secret
     substitute:
       APP: *app
   prune: true
@@ -43,9 +45,9 @@ spec:
   interval: 1h
   path: ./kubernetes/main/apps/database/cloudnative-pg/cluster
   postBuild:
-    substituteFrom:
-      - name: cluster-secrets
-        kind: Secret
+    # substituteFrom:
+    #   - name: cluster-secrets
+    #     kind: Secret
     substitute:
       APP: *app
   prune: true
