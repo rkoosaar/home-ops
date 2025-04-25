@@ -7,5 +7,5 @@ components:
   - ../../components/common
   - ../../components/repos/app-template
 resources:
-  #- ./pinchflat/ks.yaml
+  - ./pinchflat/ks.yaml
   #- ./minecraft/ks.yaml
