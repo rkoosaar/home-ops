@@ -1,9 +1,9 @@
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/kustomization-kustomize-v1.json
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app pinchflat
+  name: &app minecraft
   namespace: &namespace default
 spec:
   commonMetadata:
@@ -16,14 +16,16 @@ spec:
     - name: rook-ceph-cluster
       namespace: rook-ceph
   interval: 1h
-  path: ./kubernetes/apps/default/pinchflat/app
+  path: ./kubernetes/apps/default/minecraft/app
   postBuild:
     substituteFrom:
       - name: cluster-secrets
         kind: Secret
     substitute:
       APP: *app
-      VOLSYNC_CAPACITY: 5Gi
+      VOLSYNC_CAPACITY: 15Gi
+      VOLSYNC_CACHE_CAPACITY: 4Gi
+      #VOLSYNC_SCHEDULE: "0 */3 * * *" # Every 3hrs
   prune: true
   retryInterval: 2m
   sourceRef:
