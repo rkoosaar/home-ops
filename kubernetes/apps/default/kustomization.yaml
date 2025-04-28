@@ -10,7 +10,7 @@ resources:
   - ./jellyseerr/ks.yaml
   - ./pinchflat/ks.yaml
   - ./minecraft/ks.yaml
-  - ./plex.yaml
+  - ./plex/ks.yaml
   - ./prowlarr/ks.yaml
   - ./radarr/ks.yaml
   - ./recyclarr/ks.yaml
