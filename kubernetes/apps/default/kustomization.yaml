@@ -9,6 +9,7 @@ components:
 resources:
   - ./pinchflat/ks.yaml
   - ./minecraft/ks.yaml
+  - ./prowlarr/ks.yaml
   - ./radarr/ks.yaml
   - ./recyclarr/ks.yaml
   - ./sabnzbd/ks.yaml
