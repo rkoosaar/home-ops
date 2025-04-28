@@ -58,9 +58,9 @@ spec:
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
-        runAsUser: 1000
-        runAsGroup: 1000
-        fsGroup: 1000
+        runAsUser: 1001
+        runAsGroup: 1003
+        fsGroup: 1003
         fsGroupChangePolicy: OnRootMismatch
     service:
       app:
@@ -72,16 +72,16 @@ spec:
       app:
         className: external
         annotations:
-          gethomepage.dev/enabled: "true"
-          gethomepage.dev/group: Video
-          gethomepage.dev/name: jellyseerr
-          gethomepage.dev/icon: jellyseerr.png
-          gethomepage.dev/description: Media Request Management
-          gethomepage.dev/widget.type: jellyseerr
-          gethomepage.dev/widget.url: http://jellyseerr.media:5055
-          gethomepage.dev/widget.key: "{{ `{{HOMEPAGE_VAR_JELLYSEERR_TOKEN}}` }}"
+          # gethomepage.dev/enabled: "true"
+          # gethomepage.dev/group: Video
+          # gethomepage.dev/name: jellyseerr
+          # gethomepage.dev/icon: jellyseerr.png
+          # gethomepage.dev/description: Media Request Management
+          # gethomepage.dev/widget.type: jellyseerr
+          # gethomepage.dev/widget.url: http://jellyseerr.media:5055
+          # gethomepage.dev/widget.key: "{{ `{{HOMEPAGE_VAR_JELLYSEERR_TOKEN}}` }}"
         hosts:
-          - host: requests.${SECRET_DOMAIN}
+          - host: ${GATUS_SUBDOMAIN}.${SECRET_DOMAIN}
             paths:
               - path: /
                 service:
