@@ -3,27 +3,23 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app pinchflat
-  namespace: &namespace default
+  name: &app kube-prometheus-stack
+  namespace: &namespace observability
 spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
   components:
     - ../../../../components/gatus/guarded
-    - ../../../../components/volsync
   dependsOn:
     - name: rook-ceph-cluster
       namespace: rook-ceph
   interval: 1h
-  path: ./kubernetes/apps/default/pinchflat/app
+  path: ./kubernetes/apps/observability/kube-prometheus-stack/app
   postBuild:
-    # substituteFrom:
-    #   - name: cluster-secrets
-    #     kind: Secret
     substitute:
       APP: *app
-      VOLSYNC_CAPACITY: 5Gi
+      GATUS_SUBDOMAIN: prometheus
   prune: true
   retryInterval: 2m
   sourceRef:

@@ -8,6 +8,7 @@ resources:
   - ./rbac.yaml
   - ./helmrelease.yaml
   - ./prometheusrule.yaml
+  - ./grafana-dashboard.yaml
 configMapGenerator:
   - name: gatus-configmap
     files:
