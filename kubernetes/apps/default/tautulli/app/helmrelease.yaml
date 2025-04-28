@@ -64,6 +64,8 @@ spec:
         ports:
           http:
             port: *port
+          web:
+            port: 8181
     ingress:
       app:
         className: external
