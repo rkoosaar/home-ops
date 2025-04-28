@@ -16,7 +16,7 @@ data:
           hide-url: true
           hide-hostname: true
         dns:
-          query-name: "${mc:-${APP}}.${SECRET_DOMAIN}"
+          query-name: "${mc.${SECRET_DOMAIN}"
           query-type: A
         conditions:
           - "len([BODY]) == 0"
