@@ -8,7 +8,7 @@ resources:
 configMapGenerator:
   - name: plex-loki-rules
     files:
-      - plex.yaml=./lokirule.yaml
+      - plex.yaml=./resources/lokirule.yaml
     options:
       labels:
         loki_rule: "true"
