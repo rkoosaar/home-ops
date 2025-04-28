@@ -9,7 +9,7 @@ components:
 resources:
   - ./echo/ks.yaml
   - ./cloudflare-ddns/ks.yaml
-  #- ./cloudflare-dns/ks.yaml
-  #- ./cloudflare-tunnel/ks.yaml
+  - ./cloudflare-dns/ks.yaml
+  - ./cloudflare-tunnel/ks.yaml
   - ./unifi-dns/ks.yaml
-  #- ./ingress-nginx/ks.yaml
+  - ./ingress-nginx/ks.yaml
