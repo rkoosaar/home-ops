@@ -5,6 +5,7 @@ resources:
   - ./externalsecret-playit.yaml
   - ./externalsecret.yaml
   - ./helmrelease.yaml
+  - ./gatus.yaml
 configMapGenerator:
   - name: geyser-configmap
     files:
