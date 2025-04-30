@@ -8,6 +8,7 @@ components:
   - ../../components/repos/app-template
 resources:
   - ./audiobookshelf/ks.yaml
+  - ./firefly/ks.yaml
   - ./homepage/ks.yaml
   - ./it-tools/ks.yaml
   - ./jellyseerr/ks.yaml
@@ -27,7 +28,6 @@ resources:
   #- ./calibre/ks.yaml
   #- ./calibre-web/ks.yaml
   #- ./ersatztv/ks.yaml # TODO re add
-  #- ./firefly/ks.yaml
   #- ./ghostfolio/ks.yaml
   #- ./immich/ks.yaml
   #- ./kavita/ks.yaml
