@@ -7,7 +7,7 @@ components:
   - ../../components/common
   - ../../components/repos/app-template
 resources:
-  #- ./audiobookshelf/ks.yaml
+  - ./audiobookshelf/ks.yaml
   - ./firefly/ks.yaml
   - ./homepage/ks.yaml
   - ./it-tools/ks.yaml
@@ -21,7 +21,7 @@ resources:
   - ./redlib/ks.yaml
   - ./sabnzbd/ks.yaml
   - ./sonarr/ks.yaml
-  #- ./stirling-pdf/ks.yaml
+  - ./stirling-pdf/ks.yaml
   - ./tautulli/ks.yaml
 
 
