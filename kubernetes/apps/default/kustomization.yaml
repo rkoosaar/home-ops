@@ -7,6 +7,7 @@ components:
   - ../../components/common
   - ../../components/repos/app-template
 resources:
+  - ./audiobookshelf/ks.yaml
   - ./homepage/ks.yaml
   - ./it-tools/ks.yaml
   - ./jellyseerr/ks.yaml
@@ -22,7 +23,6 @@ resources:
   - ./tautulli/ks.yaml
 
 
-  #- ./audiobookshelf/ks.yaml
   #- ./calibre/ks.yaml
   #- ./calibre-web/ks.yaml
   #- ./ersatztv/ks.yaml # TODO re add
