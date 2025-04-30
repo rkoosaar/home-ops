@@ -20,6 +20,7 @@ resources:
   - ./redlib/ks.yaml
   - ./sabnzbd/ks.yaml
   - ./sonarr/ks.yaml
+  - ./stirling-pdf/ks.yaml
   - ./tautulli/ks.yaml
 
 
@@ -29,7 +30,6 @@ resources:
   #- ./firefly/ks.yaml
   #- ./ghostfolio/ks.yaml
   #- ./immich/ks.yaml
-  #- ./it-tools/ks.yaml
   #- ./kavita/ks.yaml
   # use komga when needed.
   #- ./komga/ks.yaml
@@ -37,7 +37,5 @@ resources:
   #- ./navidrome/ks.yaml
   #- ./pinchflat/ks.yaml
   #- ./readarr/ks.yaml
-
-  #- ./stirling-pdf/ks.yaml
   #- ./w/ks.yaml
   #- ./w-copy/ks.yaml
