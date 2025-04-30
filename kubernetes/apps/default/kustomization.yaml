@@ -8,6 +8,7 @@ components:
   - ../../components/repos/app-template
 resources:
   - ./homepage/ks.yaml
+  - ./it-tools/ks.yaml
   - ./jellyseerr/ks.yaml
   - ./pinchflat/ks.yaml
   - ./minecraft/ks.yaml
@@ -15,6 +16,7 @@ resources:
   - ./prowlarr/ks.yaml
   - ./radarr/ks.yaml
   - ./recyclarr/ks.yaml
+  - ./redlib/ks.yaml
   - ./sabnzbd/ks.yaml
   - ./sonarr/ks.yaml
   - ./tautulli/ks.yaml
@@ -35,7 +37,7 @@ resources:
   #- ./navidrome/ks.yaml
   #- ./pinchflat/ks.yaml
   #- ./readarr/ks.yaml
-  #- ./redlib/ks.yaml
+
   #- ./stirling-pdf/ks.yaml
   #- ./w/ks.yaml
   #- ./w-copy/ks.yaml
