@@ -36,6 +36,5 @@ resources:
   #- ./komga/ks.yaml
   #- ./lidarr/ks.yaml
   #- ./navidrome/ks.yaml
-  #- ./readarr/ks.yaml
   #- ./w/ks.yaml
   #- ./w-copy/ks.yaml
