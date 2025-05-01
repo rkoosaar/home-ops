@@ -10,6 +10,7 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   components:
+    - ../../../../components/volsync
     - ../../../../components/gatus/external
   interval: 1h
   path: ./kubernetes/apps/default/firefly/app
@@ -41,6 +42,9 @@ spec:
     - name: firefly
   interval: 1h
   path: ./kubernetes/apps/default/firefly/importer
+  postBuild:
+    substitute:
+      APP: *app
   prune: true
   retryInterval: 2m
   sourceRef:
