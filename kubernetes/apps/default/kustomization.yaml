@@ -12,6 +12,7 @@ resources:
   - ./homepage/ks.yaml
   - ./it-tools/ks.yaml
   - ./jellyseerr/ks.yaml
+  - ./kavita/ks.yaml
   - ./pinchflat/ks.yaml
   - ./minecraft/ks.yaml
   - ./plex/ks.yaml
@@ -30,7 +31,7 @@ resources:
   #- ./ersatztv/ks.yaml # TODO re add
   #- ./ghostfolio/ks.yaml
   #- ./immich/ks.yaml
-  #- ./kavita/ks.yaml
+
   # use komga when needed.
   #- ./komga/ks.yaml
   #- ./lidarr/ks.yaml
