@@ -12,7 +12,7 @@ spec:
   # components:
   #   - ../../../../components/gatus/external
   interval: 1h
-  path: ./kubernetes/apps/default/dragonfly/app
+  path: ./kubernetes/apps/database/dragonfly/app
   postBuild:
     substitute:
       APP: *app
@@ -41,7 +41,7 @@ spec:
   # components:
   #   - ../../../../components/gatus/external
   interval: 1h
-  path: ./kubernetes/apps/default/dragonfly/cluster
+  path: ./kubernetes/apps/database/dragonfly/cluster
   prune: true
   retryInterval: 2m
   sourceRef:
