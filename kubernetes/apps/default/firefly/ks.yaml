@@ -39,6 +39,7 @@ spec:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: firefly
+  interval: 1h
   path: ./kubernetes/apps/default/firefly/importer
   prune: true
   retryInterval: 2m

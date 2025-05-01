@@ -8,7 +8,7 @@ components:
   - ../../components/repos/app-template
 resources:
   #- ./audiobookshelf/ks.yaml
-  - ./firefly/ks.yaml
+  #- ./firefly/ks.yaml
   - ./homepage/ks.yaml
   - ./it-tools/ks.yaml
   - ./jellyseerr/ks.yaml
