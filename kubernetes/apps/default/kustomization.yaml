@@ -12,6 +12,7 @@ resources:
   - ./calibre-web/ks.yaml
   - ./firefly/ks.yaml
   - ./homepage/ks.yaml
+  - ./ghostfolio/ks.yaml
   - ./it-tools/ks.yaml
   - ./jellyseerr/ks.yaml
   - ./kavita/ks.yaml
@@ -32,7 +33,7 @@ resources:
 
 
   #- ./ersatztv/ks.yaml # TODO re add
-  #- ./ghostfolio/ks.yaml
+
   #- ./immich/ks.yaml
   # use komga when needed.
   #- ./komga/ks.yaml
