@@ -15,8 +15,10 @@ resources:
   - ./it-tools/ks.yaml
   - ./jellyseerr/ks.yaml
   - ./kavita/ks.yaml
+  - ./lidarr/ks.yaml
   - ./pinchflat/ks.yaml
   - ./minecraft/ks.yaml
+  - ./navidrome/ks.yaml
   - ./plex/ks.yaml
   - ./prowlarr/ks.yaml
   - ./radarr/ks.yaml
@@ -34,7 +36,5 @@ resources:
   #- ./immich/ks.yaml
   # use komga when needed.
   #- ./komga/ks.yaml
-  #- ./lidarr/ks.yaml
-  #- ./navidrome/ks.yaml
   #- ./w/ks.yaml
   #- ./w-copy/ks.yaml
