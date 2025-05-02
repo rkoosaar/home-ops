@@ -9,8 +9,8 @@ components:
 resources:
   - ./audiobookshelf/ks.yaml
   - ./calibre/ks.yaml
-  #- ./calibre-web/ks.yaml
-  #- ./firefly/ks.yaml
+  - ./calibre-web/ks.yaml
+  - ./firefly/ks.yaml
   - ./homepage/ks.yaml
   - ./ghostfolio/ks.yaml
   - ./it-tools/ks.yaml
@@ -28,8 +28,8 @@ resources:
   - ./redlib/ks.yaml
   - ./sabnzbd/ks.yaml
   - ./sonarr/ks.yaml
-  #- ./stirling-pdf/ks.yaml
-  #- ./tautulli/ks.yaml
+  - ./stirling-pdf/ks.yaml
+  - ./tautulli/ks.yaml
 
 
   #- ./ersatztv/ks.yaml # TODO re add
