@@ -29,7 +29,7 @@ resources:
   - ./sabnzbd/ks.yaml
   - ./sonarr/ks.yaml
   #- ./stirling-pdf/ks.yaml
-  - ./tautulli/ks.yaml
+  #- ./tautulli/ks.yaml
 
 
   #- ./ersatztv/ks.yaml # TODO re add
