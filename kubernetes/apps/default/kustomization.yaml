@@ -32,11 +32,8 @@ resources:
   - ./stirling-pdf/ks.yaml
   - ./tautulli/ks.yaml
 
-
-  #- ./ersatztv/ks.yaml # TODO re add
-
+  #- ./romm/ks.yaml
   #- ./immich/ks.yaml
-  # use komga when needed.
-  #- ./komga/ks.yaml
+  #- ./komga/ks.yaml # use komga when needed.
   #- ./w/ks.yaml
   #- ./w-copy/ks.yaml
