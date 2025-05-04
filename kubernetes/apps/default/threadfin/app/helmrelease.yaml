@@ -71,7 +71,6 @@ spec:
 
     ingress:
       app:
-      app:
         className: internal
         hosts:
           - host: "{{ .Release.Name }}.${SECRET_DOMAIN}"
