@@ -58,11 +58,10 @@ spec:
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
-        runAsUser: 1000
-        runAsGroup: 150
-        fsGroup: 140
+        runAsUser: 1001
+        runAsGroup: 1003
+        fsGroup: 1003
         fsGroupChangePolicy: OnRootMismatch
-        seccompProfile: { type: RuntimeDefault }
     service:
       app:
         controller: threadfin
@@ -72,11 +71,10 @@ spec:
 
     ingress:
       app:
-        annotations:
-          external-dns.alpha.kubernetes.io/target: internal.${SECRET_DOMAIN_MEDIA}
+      app:
         className: internal
         hosts:
-          - host: "threadfin.${SECRET_DOMAIN}"
+          - host: "{{ .Release.Name }}.${SECRET_DOMAIN}"
             paths:
               - path: /
                 service:
