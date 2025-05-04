@@ -1,0 +1,100 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app ersatztv
+spec:
+  interval: 1h
+  chartRef:
+    kind: OCIRepository
+    name: app-template
+  install:
+    remediation:
+      retries: -1
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  values:
+    controllers:
+      ersatztv:
+        labels:
+          nfsMount: "true"
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          app:
+            image:
+              repository: jasongdove/ersatztv
+              tag: v25.1.0-vaapi@sha256:f845dc4d4d458cdeac89f97b2331fe02bb5877e4772ab9cef0e71b776382a657
+            env:
+              TZ: Europe/London
+              XDG_DATA_HOME: /config # https://github.com/ErsatzTV/ErsatzTV/issues/327
+            probes:
+              liveness:
+                enabled: true
+              readiness:
+                enabled: true
+              startup:
+                enabled: true
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
+            resources:
+              requests:
+                cpu: 10m
+              limits:
+                gpu.intel.com/i915: 1
+                memory: 4G
+    defaultPodOptions:
+      automountServiceAccountToken: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1001
+        runAsGroup: 1003
+        fsGroup: 1003
+        fsGroupChangePolicy: OnRootMismatch
+        supplementalGroups: [44]
+      nodeSelector:
+        intel.feature.node.kubernetes.io/gpu: "true"
+    service:
+      app:
+        controller: *app
+        type: LoadBalancer
+        ports:
+          http:
+            port: 8409
+    ingress:
+      app:
+        className: internal
+        annotations:
+          external-dns.alpha.kubernetes.io/target: internal.${SECRET_DOMAIN}
+        hosts:
+          - host: "tv.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: http
+    persistence:
+      config:
+        existingClaim: *app
+      cache:
+        type: emptyDir
+      tmp:
+        type: emptyDir
+      transcode:
+        type: emptyDir
+      media:
+        type: nfs
+        server: nas.kvshs.xyz
+        path: /data
+        # globalMounts:
+        #   - path: /data
+        #     subPath: media
+        #     readOnly: true
+        globalMounts:
+          - path: /data
+            readOnly: true
