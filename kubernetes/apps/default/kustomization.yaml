@@ -31,6 +31,7 @@ resources:
   - ./sonarr/ks.yaml
   - ./stirling-pdf/ks.yaml
   - ./tautulli/ks.yaml
+  - ./xTeVe/ks.yaml
 
   #- ./romm/ks.yaml
   #- ./immich/ks.yaml
