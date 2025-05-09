@@ -33,8 +33,8 @@ spec:
         containers:
           app:
             image:
-              repository: ghcr.io/jfroy/whisparr-nightly
-              tag: 2.0.0.987@sha256:fb192831a387029676fa25de3a304542a6c19ae0bd50b0d1ba51bb959d5e540a
+              repository: ghcr.io/home-operations/whisparr
+              tag: 2.0.0.987@sha256:306d09899222de4ef25537c8f9390a7a87fdbe22785eed1ac93ca6da8cbefa38
             env:
               WHISPARR__INSTANCE_NAME: w
               WHISPARR__ANALYTICS_ENABLED: "False"
