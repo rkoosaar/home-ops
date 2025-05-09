@@ -30,8 +30,8 @@ spec:
         containers:
           app:
             image:
-              repository: ghcr.io/joryirving/it-tools
-              tag: 2024.10.22@sha256:9b574ca831aaf9d88942b60f2d9567ff53c3c64ba5d5b539749d67d29f4ee70d
+              repository: ghcr.io/home-operations/it-tools
+              tag: 2024.10.22@sha256:7f26ae8d7a4a58b8d70b685cba5cbaa54d7df876d9f8bae702207f45b06d9b7c
             env:
               TZ: Europe/London
             resources:
