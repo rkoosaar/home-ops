@@ -24,8 +24,8 @@ spec:
         containers:
           app:
             image:
-              repository: ghcr.io/rkoosaar/readarr-develop
-              tag: 0.4.12.2753@sha256:18fbb6b4a05b95c6b1dceaf396be321ddb3f4702926f5902e0948f9e73be2336
+              repository: ghcr.io/home-operations/readarr
+              tag: 0.4.14.2782@sha256:a3078952ed42f18f0af62610406133fba94ee01804793cf97dea2a7fc72f6b7a
             env:
               READARR__APP__INSTANCENAME: Readarr
               READARR__APP__THEME: dark
