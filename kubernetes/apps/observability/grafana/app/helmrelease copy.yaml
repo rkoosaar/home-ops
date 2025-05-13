@@ -40,7 +40,7 @@ spec:
       GF_EXPLORE_ENABLED: true
       GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS: natel-discrete-panel,pr0ps-trackmap-panel,panodata-map-panel
       GF_SECURITY_ANGULAR_SUPPORT_ENABLED: true
-      GF_SERVER_ROOT_URL: "https://grafana.${SECRET_DOMAIN}"
+      GF_SERVER_ROOT_URL: https://grafana.devbu.io
     grafana.ini:
       analytics:
         check_for_updates: false
@@ -95,11 +95,11 @@ spec:
               path: /var/lib/grafana/dashboards/default
     dashboards:
       default:
-        # apc-ups:
-        #   # renovate: depName="APC UPS (SNMP)"
-        #   gnetId: 12340
-        #   revision: 1
-        #   datasource: Prometheus
+        apc-ups:
+          # renovate: depName="APC UPS (SNMP)"
+          gnetId: 12340
+          revision: 1
+          datasource: Prometheus
         ceph-cluster:
           # renovate: depName="Ceph Cluster"
           gnetId: 2842
@@ -126,25 +126,22 @@ spec:
           revision: 6
           datasource:
             - { name: DS_PROMETHEUS, value: Prometheus }
-        # emqx:
-        #   # renovate: depName="EMQX"
-        #   gnetId: 17446
-        #   revision: 2
-        #   datasource:
-        #     - { name: DS_PROMETHEUS, value: Prometheus }
-        # envoy:
-        #    # renovate: depName="Envoy Proxy Monitoring gRPC"
-        #    gnetId: 23239
-        #    revision: 1
-        #    datasource:
-        #      - { name: DS_AFRANET_PROMETHEUS, value: Prometheus }
+        emqx:
+          # renovate: depName="EMQX"
+          gnetId: 17446
+          revision: 2
+          datasource:
+            - { name: DS_PROMETHEUS, value: Prometheus }
+        envoy:
+           # renovate: depName="Envoy Proxy Monitoring gRPC"
+           gnetId: 23239
+           revision: 1
+           datasource:
+             - { name: DS_AFRANET_PROMETHEUS, value: Prometheus }
         external-dns:
           # renovate: depName="External-dns"
           gnetId: 15038
           revision: 3
-          datasource: Prometheus
-        external-secrets:
-          url: https://raw.githubusercontent.com/external-secrets/external-secrets/main/docs/snippets/dashboard.json
           datasource: Prometheus
         kubernetes-api-server:
           # renovate: depName="Kubernetes / System / API Server"
@@ -181,12 +178,6 @@ spec:
           gnetId: 11454
           revision: 14
           datasource: Prometheus
-        nginx:
-          url: https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/grafana/dashboards/nginx.json
-          datasource: Prometheus
-        nginx-request-handling-performance:
-          url: https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/grafana/dashboards/request-handling-performance.json
-          datasource: Prometheus
         node-exporter-full:
           # renovate: depName="Node Exporter Full"
           gnetId: 1860
@@ -202,6 +193,12 @@ spec:
           # renovate: depName="SMARTctl Exporter Dashboard"
           gnetId: 22604
           revision: 2
+          datasource:
+            - { name: DS_PROMETHEUS, value: Prometheus }
+        unifi-pdu:
+          # renovate: depName="UniFi-Poller: PDU Insights - Prometheus"
+          gnetId: 23027
+          revision: 1
           datasource:
             - { name: DS_PROMETHEUS, value: Prometheus }
         unifi-insights:
@@ -231,6 +228,11 @@ spec:
           datasource:
             - { name: DS_PROMETHEUS, value: Prometheus }
             - { name: VAR_REPLICATIONDESTNAME, value: .*-dst }
+        zfs:
+          # renovate: depName="ZFS"
+          gnetId: 7845
+          revision: 4
+          datasource: Prometheus
     sidecar:
       image:
         registry: ghcr.io
@@ -257,16 +259,14 @@ spec:
       - vonage-status-panel
     serviceMonitor:
       enabled: true
-    ingress:
-      enabled: true
-      annotations:
-        gethomepage.dev/enabled: "true"
-        gethomepage.dev/icon: grafana.png
-        gethomepage.dev/name: Grafana
-        gethomepage.dev/group: Observability
-        gethomepage.dev/description: Monitoring Dashboards
-      ingressClassName: internal
-      hosts: ["{{ .Release.Name }}.${SECRET_DOMAIN}"]
+    route:
+      main:
+        enabled: true
+        hostnames: ["{{ .Release.Name }}.devbu.io"]
+        parentRefs:
+          - name: internal
+            namespace: kube-system
+            sectionName: https
     persistence:
       enabled: false
     testFramework:
