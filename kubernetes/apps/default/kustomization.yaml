@@ -29,6 +29,7 @@ resources:
   - ./recyclarr/ks.yaml
   - ./redlib/ks.yaml
   - ./sabnzbd/ks.yaml
+  - ./searxng/ks.yaml
   - ./sonarr/ks.yaml
   - ./stirling-pdf/ks.yaml
   - ./tautulli/ks.yaml
