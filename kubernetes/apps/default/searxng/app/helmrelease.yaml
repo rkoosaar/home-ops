@@ -33,7 +33,7 @@ spec:
               - --master
               - /usr/local/searxng/.template/uwsgi.ini
             env:
-              BASE_URL: https://search.pub.${CLUSTER_DOMAIN}
+              BASE_URL: https://search.pub.${SECRET_DOMAIN}
               UWSGI_WORKERS: "1"
             envFrom:
               - secretRef:
@@ -108,9 +108,9 @@ spec:
       app:
         className: external
         annotations:
-          external-dns.alpha.kubernetes.io/target: pub.${CLUSTER_DOMAIN}
+          external-dns.alpha.kubernetes.io/target: pub.${SECRET_DOMAIN}
         hosts:
-          - host: search.${CLUSTER_DOMAIN}
+          - host: search.${SECRET_DOMAIN}
             paths:
               - path: /
                 service:
