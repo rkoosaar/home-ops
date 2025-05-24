@@ -13,7 +13,7 @@ search:
   autocomplete: duckduckgo
 
 general:
-  instance_name: RostSearch
+  instance_name: KVShs Search
 
 ui:
   static_use_hash: true
