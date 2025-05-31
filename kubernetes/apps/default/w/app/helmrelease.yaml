@@ -34,7 +34,7 @@ spec:
           app:
             image:
               repository: ghcr.io/home-operations/whisparr
-              tag: 2.0.0.987@sha256:c75474e0367a0d592ea8c2920769b4c5a56d57d89123af89dd338aa55f6178be
+              tag: 2.0.0.987@sha256:c1be4ac64547304da7c734a28387819e67885273ebd4fccd8274675952f06eff
             env:
               WHISPARR__INSTANCE_NAME: w
               WHISPARR__ANALYTICS_ENABLED: "False"
