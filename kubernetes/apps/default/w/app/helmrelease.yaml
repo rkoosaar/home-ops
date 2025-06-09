@@ -5,26 +5,17 @@ kind: HelmRelease
 metadata:
   name: &app w
 spec:
-  interval: 30m
-  chart:
-    spec:
-      chart: app-template
-      version: 3.7.3
-      sourceRef:
-        kind: HelmRepository
-        name: bjw-s
-        namespace: flux-system
+  interval: 1h
+  chartRef:
+    kind: OCIRepository
+    name: app-template
   install:
     remediation:
-      retries: 3
+      retries: -1
   upgrade:
     cleanupOnFail: true
     remediation:
-      strategy: rollback
       retries: 3
-  dependsOn:
-    - name: longhorn
-      namespace: storage
   values:
     controllers:
       w:
@@ -34,7 +25,7 @@ spec:
           app:
             image:
               repository: ghcr.io/home-operations/whisparr
-              tag: 2.0.0.987@sha256:c1be4ac64547304da7c734a28387819e67885273ebd4fccd8274675952f06eff
+              tag: 2.0.0.1092@sha256-25e77bb7a6a43a3907f76af63e51e9d5f3c14e9b463cee519a1780a8a550aff0
             env:
               WHISPARR__INSTANCE_NAME: w
               WHISPARR__ANALYTICS_ENABLED: "False"
@@ -79,11 +70,9 @@ spec:
         runAsGroup: 1003
         fsGroup: 1003
         fsGroupChangePolicy: OnRootMismatch
-        supplementalGroups: [100]
-        seccompProfile: { type: RuntimeDefault }
     service:
       app:
-        controller: *app
+        controller: w
         ports:
           http:
             port: *port
@@ -99,7 +88,7 @@ spec:
                   port: http
     persistence:
       config:
-        existingClaim: *app
+        existingClaim: w
       data:
         type: nfs
         server: nas.kvshs.xyz

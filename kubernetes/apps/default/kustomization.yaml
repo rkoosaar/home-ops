@@ -35,9 +35,9 @@ resources:
   - ./tautulli/ks.yaml
   - ./threadfin/ks.yaml
   - ./xteve/ks.yaml
+  - ./w/ks.yaml
 
   #- ./romm/ks.yaml
   #- ./immich/ks.yaml
   #- ./komga/ks.yaml # use komga when needed.
-  #- ./w/ks.yaml
   #- ./w-copy/ks.yaml
