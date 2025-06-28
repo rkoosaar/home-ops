@@ -76,9 +76,9 @@ spec:
         type: emptyDir
         globalMounts:
           - path: /kavita/config/logs
-      media:
+      data:
         type: nfs
         server: nas.kvshs.xyz
-        path: /media
+        path: /data
         globalMounts:
-          - path: /media
+          - path: /data
