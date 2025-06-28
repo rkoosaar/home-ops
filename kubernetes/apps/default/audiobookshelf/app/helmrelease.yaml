@@ -28,8 +28,8 @@ spec:
               tag: 2.25.1@sha256:5154518d8215f8e795fde1c1561080b450af8a6bc0c0bd60c2a920084bf930d6
             env:
               TZ: Europe/London
-              AUDIOBOOKSHELF_UID: 568
-              AUDIOBOOKSHELF_GID: 568
+              AUDIOBOOKSHELF_UID: 1001
+              AUDIOBOOKSHELF_GID: 1003
               CONFIG_PATH: /config
               METADATA_PATH: /config/metadata
             probes:
@@ -56,9 +56,9 @@ spec:
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
-        runAsUser: 568
-        runAsGroup: 568
-        fsGroup: 568
+        runAsUser: 1001
+        runAsGroup: 1003
+        fsGroup: 1003
         fsGroupChangePolicy: OnRootMismatch
         supplementalGroups: [10000]
     service:
@@ -89,9 +89,9 @@ spec:
         type: emptyDir
         globalMounts:
           - path: /.npm
-      media:
+      data:
         type: nfs
         server: nas.kvshs.xyz
-        path: /media
+        path: /data
         globalMounts:
-          - path: /media
+          - path: /data
