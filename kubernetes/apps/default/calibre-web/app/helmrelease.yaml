@@ -44,11 +44,6 @@ spec:
                 memory: 470M
               limits:
                 memory: 470M
-          kepubify:
-            image:
-              repository: ghcr.io/bjw-s-labs/kepubify
-              tag: 4.0.4@sha256:778a70eb1bbe0766934de0d16c6a61bd295099b9c1ab1721d9d25052a617d29e
-            #args: ["--config", "/etc/playit/playit.toml"]
     defaultPodOptions:
       securityContext:
         runAsUser: 1001
