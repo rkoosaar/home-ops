@@ -66,7 +66,6 @@ spec:
               VANILLA_TWEAKS_SHARE_CODES: oNYxlz # Coord HUD, Anti-Endermen Griefing
               # Whitelist
               ENABLE_WHITELIST: "false"
-              ENFORCE_WHITELIST: "false"
               OVERRIDE_WHITELIST: "false"
               # ONLINE_MODE: "false"
               OPS: "RicK99274"
