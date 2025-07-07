@@ -76,7 +76,7 @@ spec:
               # https://vanillatweaks.net/share#oNYxlz
               VANILLA_TWEAKS_SHARE_CODES: oNYxlz # Coord HUD, Anti-Endermen Griefing
               # Whitelist / Ops
-              #WHITELIST: RicK99274,.RicK99274,melb0rp,.Darth_Crime,.Michito279,KassuGTX
+              WHITELIST: RicK99274,.RicK99274,melb0rp,.Darth_Crime,.Michito279,KassuGTX
               OVERRIDE_WHITELIST: "true"
               # WHITELIST:
               #   valueFrom:
