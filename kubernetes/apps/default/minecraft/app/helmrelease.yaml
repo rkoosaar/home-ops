@@ -80,6 +80,7 @@ spec:
                     name: minecraft-secret
                     key: WHITELIST
               EXISTING_WHITELIST_FILE: SYNC_FILE_MERGE_LIST
+              OVERRIDE_WHITELIST: true
               OPS:
                 valueFrom:
                   secretKeyRef:
