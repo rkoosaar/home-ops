@@ -88,7 +88,7 @@ spec:
               #       name: minecraft-secret
               #       key: OPS
               # EXISTING_OPS_FILE: SYNCHRONIZE
-              OPS: RicK99274,.RicK99274
+              OPS: RicK99274
             envFrom:
               - secretRef:
                   name: minecraft-secret
