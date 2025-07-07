@@ -228,9 +228,9 @@ spec:
           - path: /etc/playit/playit.toml
             subPath: playit.toml
             readOnly: true
-      mcwhitelist-config:
+      mc-whitelist:
         type: configMap
-        name: mcwhitelist-configmap
+        name: minecraft-whitelist
         globalMounts:
           - path: /data/whitelist.json
             subPath: whitelist.json

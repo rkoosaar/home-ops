@@ -7,7 +7,7 @@ resources:
   - ./helmrelease.yaml
   #- ./gatus.yaml
 configMapGenerator:
-  - name: mcwhitelist-configmap
+  - name: minecraft-whitelist
     files:
       - whitelist.json=./resources/whitelist/whitelist.json
   - name: geyser-configmap
