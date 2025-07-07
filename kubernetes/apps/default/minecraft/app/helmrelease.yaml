@@ -49,7 +49,7 @@ spec:
               SEED: "-2135836821937050198"
               FORCE_REDOWLOAD: "true"
               # No whitelist
-              ENABLE_WHITELIST: "false"
+              ENABLE_WHITELIST: "true"
               # Logging
               ENABLE_ROLLING_LOGS: "true"
               LOG_TIMESTAMP: "true"
