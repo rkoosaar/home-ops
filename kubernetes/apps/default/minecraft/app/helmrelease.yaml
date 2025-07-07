@@ -42,11 +42,12 @@ spec:
               TYPE: FABRIC
               FORCE_REDOWNLOAD:
               # renovate: depName=minecraft datasource=custom.minecraft versioning=semver-coerced
-              VERSION: 1.21.5
+              VERSION: 1.21.7
               MOTD: "RK - Minecraft Server"
               DIFFICULTY: normal
               SPAWN_PROTECTION: 0
-              SEED: "-2135836821937050198"
+              SEED: "844424960210770"
+              #SEED: "-2135836821937050198"
               FORCE_REDOWLOAD: "true"
               # No whitelist
               ENABLE_WHITELIST: "true"
