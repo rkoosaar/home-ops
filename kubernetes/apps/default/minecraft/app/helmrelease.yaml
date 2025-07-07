@@ -38,12 +38,12 @@ spec:
               ## General
               TZ: Europe/London
               EULA: "true"
-              SERVER_NAME: MPOF
+              SERVER_NAME: KVSHS_survival
               TYPE: FABRIC
               FORCE_REDOWNLOAD:
               # renovate: depName=minecraft datasource=custom.minecraft versioning=semver-coerced
               VERSION: 1.21.5
-              MOTD: be nice
+              MOTD: "RK - Minecraft Server"
               DIFFICULTY: normal
               SPAWN_PROTECTION: 0
               SEED: "-2135836821937050198"
@@ -74,12 +74,12 @@ spec:
               # https://vanillatweaks.net/share#oNYxlz
               VANILLA_TWEAKS_SHARE_CODES: oNYxlz # Coord HUD, Anti-Endermen Griefing
               # Whitelist / Ops
-              # WHITELIST:
-              #   valueFrom:
-              #     secretKeyRef:
-              #       name: minecraft-secret
-              #       key: WHITELIST
-              # EXISTING_WHITELIST_FILE: SYNC_FILE_MERGE_LIST
+              WHITELIST:
+                valueFrom:
+                  secretKeyRef:
+                    name: minecraft-secret
+                    key: WHITELIST
+              EXISTING_WHITELIST_FILE: SYNC_FILE_MERGE_LIST
               OPS:
                 valueFrom:
                   secretKeyRef:
