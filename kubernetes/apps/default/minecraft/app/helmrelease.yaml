@@ -205,17 +205,17 @@ spec:
           - path: /etc/playit/playit.toml
             subPath: playit.toml
             readOnly: true
-      mc-whitelist:
-        type: configMap
-        name: minecraft-whitelist
-        globalMounts:
-          - path: /data/whitelist.json
-            subPath: whitelist.json
-            readOnly: true
-      mc-ops:
-        type: configMap
-        name: minecraft-ops
-        globalMounts:
-          - path: /data/ops.json
-            subPath: ops.json
-            readOnly: true
+      # mc-whitelist:
+      #   type: configMap
+      #   name: minecraft-whitelist
+      #   globalMounts:
+      #     - path: /data/whitelist.json
+      #       subPath: whitelist.json
+      #       readOnly: true
+      # mc-ops:
+      #   type: configMap
+      #   name: minecraft-ops
+      #   globalMounts:
+      #     - path: /data/ops.json
+      #       subPath: ops.json
+      #       readOnly: true
