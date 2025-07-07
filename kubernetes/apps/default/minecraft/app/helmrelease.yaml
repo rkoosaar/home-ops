@@ -67,7 +67,6 @@ spec:
               ENABLE_WHITELIST: "false"
               OVERRIDE_WHITELIST: "false"
               # ONLINE_MODE: "false"
-              OPS: "RicK99274"
             envFrom:
               - secretRef:
                   name: minecraft-secret
