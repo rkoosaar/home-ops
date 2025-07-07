@@ -168,6 +168,10 @@ spec:
             app:
               - path: /data
               - path: /data/config/bluemap
+      fabricexporter-config:
+        type: emptyDir
+        globalMounts:
+          - path: /data/config
       geyser:
         type: configMap
         name: geyser-configmap
