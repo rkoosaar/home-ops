@@ -70,6 +70,7 @@ spec:
                 geyser:beta,
                 floodgate:beta,
                 bluemap,
+                lmd,
               # xaeros-minimap,
               # xaeros-world-map
               # https://vanillatweaks.net/share#oNYxlz
