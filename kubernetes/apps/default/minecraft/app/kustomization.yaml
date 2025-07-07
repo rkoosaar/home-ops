@@ -9,7 +9,10 @@ resources:
 configMapGenerator:
   - name: minecraft-whitelist
     files:
-      - whitelist.json=./resources/whitelist/whitelist.json
+      - whitelist.json=./resources/mc/whitelist.json
+  - name: minecraft-ops
+    files:
+      - ops.json=./resources/mc/ops.json
   - name: geyser-configmap
     files:
       - config.yml=./resources/geyser/config.yml
