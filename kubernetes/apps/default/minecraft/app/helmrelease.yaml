@@ -22,13 +22,6 @@ spec:
       minecraft:
         annotations:
           reloader.stakater.com/auto: "true"
-        # pod:
-        #   labels:
-        #     ingress.home.arpa/nginx-external: allow
-        #     ingress.home.arpa/playit: allow
-        #     ingress.home.arpa/homepage: allow
-        #     monitoring.home.arpa/prometheus: allow
-        #     egress.home.arpa/kubedns: allow
         containers:
           app:
             image:
@@ -73,23 +66,7 @@ spec:
               # https://vanillatweaks.net/share#oNYxlz
               VANILLA_TWEAKS_SHARE_CODES: oNYxlz # Coord HUD, Anti-Endermen Griefing
               # Whitelist
-              #ENABLE_WHITELIST: "true"
               ONLINE_MODE: "false"
-              #WHITELIST: RicK99274,melb0rp,KassuGTX,.RicK99274,.Darth_Crime,.Michito279
-              #OVERRIDE_WHITELIST: "true"
-              # WHITELIST:
-              #   valueFrom:
-              #     secretKeyRef:
-              #       name: minecraft-secret
-              #       key: WHITELIST
-              # EXISTING_WHITELIST_FILE: SYNC_FILE_MERGE_LIST
-              # OPS:
-              #   valueFrom:
-              #     secretKeyRef:
-              #       name: minecraft-secret
-              #       key: OPS
-              # EXISTING_OPS_FILE: SYNCHRONIZE
-              #OPS: RicK99274
             envFrom:
               - secretRef:
                   name: minecraft-secret
