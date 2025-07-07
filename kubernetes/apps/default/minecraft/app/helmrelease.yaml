@@ -71,10 +71,10 @@ spec:
                 lmd,
               # https://vanillatweaks.net/share#oNYxlz
               VANILLA_TWEAKS_SHARE_CODES: oNYxlz # Coord HUD, Anti-Endermen Griefing
-              # Whitelist / Ops
+              # Whitelist
               ENABLE_WHITELIST: "true"
-              WHITELIST: RicK99274,melb0rp,KassuGTX
-              #,.RicK99274,.Darth_Crime,.Michito279
+              ONLINE_MODE: "false"
+              #WHITELIST: RicK99274,melb0rp,KassuGTX,.RicK99274,.Darth_Crime,.Michito279
               OVERRIDE_WHITELIST: "true"
               # WHITELIST:
               #   valueFrom:
@@ -227,4 +227,11 @@ spec:
         globalMounts:
           - path: /etc/playit/playit.toml
             subPath: playit.toml
+            readOnly: true
+      mcwhitelist-config:
+        type: configMap
+        name: mcwhitelist-configmap
+        globalMounts:
+          - path: /data/whitelist.json
+            subPath: whitelist.json
             readOnly: true
