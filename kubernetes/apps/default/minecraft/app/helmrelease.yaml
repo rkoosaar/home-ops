@@ -31,12 +31,12 @@ spec:
               ## General
               TZ: Europe/London
               EULA: "true"
-              SERVER_NAME: KVSHS_survival
+              SERVER_NAME: KVSHS_rk_forever_survival
               TYPE: FABRIC
               FORCE_REDOWNLOAD:
               # renovate: depName=minecraft datasource=custom.minecraft versioning=semver-coerced
-              VERSION: 1.21.7
-              MOTD: "RK - Minecraft Server"
+              VERSION: 1.21.8
+              MOTD: "RK - Forever Survival Minecraft Server"
               DIFFICULTY: normal
               SPAWN_PROTECTION: 0
               SEED: "844424960210770"
