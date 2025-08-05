@@ -56,11 +56,11 @@ spec:
               MODRINTH_DEFAULT_VERSION_TYPE: release
               MODRINTH_PROJECTS: >
                 fabric-api,
-                fabricexporter,
                 spark,
                 geyser:beta,
                 floodgate:beta,
                 bluemap,
+              # fabricexporter, #TODO check version add back
               # https://vanillatweaks.net/share#oNYxlz
               VANILLA_TWEAKS_SHARE_CODES: oNYxlz # Coord HUD, Anti-Endermen Griefing
               OPS: "RicK99274"
