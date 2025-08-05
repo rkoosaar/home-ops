@@ -31,7 +31,7 @@ resources:
   - ./sabnzbd/ks.yaml
   - ./searxng/ks.yaml
   - ./sonarr/ks.yaml
-  - ./stirling-pdf/ks.yaml
+  #- ./stirling-pdf/ks.yaml
   - ./tautulli/ks.yaml
   - ./threadfin/ks.yaml
   #- ./xteve/ks.yaml
