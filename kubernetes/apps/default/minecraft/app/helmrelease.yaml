@@ -73,8 +73,8 @@ spec:
                   name: minecraft-secret
             resources:
               requests:
-                cpu: 500m
-                memory: 200Mi
+                cpu: 600m
+                memory: 400Mi
               limits:
                 memory: 10Gi
             securityContext:
