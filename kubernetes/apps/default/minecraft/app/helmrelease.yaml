@@ -40,7 +40,6 @@ spec:
               DIFFICULTY: normal
               SPAWN_PROTECTION: 0
               SEED: "844424960210770"
-              #SEED: "-2135836821937050198"
               FORCE_REDOWLOAD: "true"
               # Logging
               ENABLE_ROLLING_LOGS: "true"
@@ -62,7 +61,7 @@ spec:
                 bluemap,
               # fabricexporter, #TODO check version add back
               # https://vanillatweaks.net/share#oNYxlz
-              VANILLA_TWEAKS_SHARE_CODES: oNYxlz # Coord HUD, Anti-Endermen Griefing
+              #VANILLA_TWEAKS_SHARE_CODES: oNYxlz # Coord HUD, Anti-Endermen Griefing
               OPS: "RicK99274"
               # Whitelist
               #ENABLE_WHITELIST: "true"
