@@ -67,7 +67,7 @@ spec:
               # Whitelist
               ENABLE_WHITELIST: "false"
               OVERRIDE_WHITELIST: "false"
-              ONLINE_MODE: "false"
+              #ONLINE_MODE: "false"
             envFrom:
               - secretRef:
                   name: minecraft-secret
