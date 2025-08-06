@@ -20,7 +20,7 @@ resources:
   - ./kavita/ks.yaml
   - ./lidarr/ks.yaml
   - ./pinchflat/ks.yaml
-  #- ./minecraft/ks.yaml
+  - ./minecraft/ks.yaml
   - ./navidrome/ks.yaml
   - ./plex/ks.yaml
   - ./prowlarr/ks.yaml
