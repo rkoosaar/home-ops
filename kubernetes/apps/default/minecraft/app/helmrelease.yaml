@@ -60,6 +60,7 @@ spec:
                 floodgate:beta,
                 bluemap,
                 lithium,
+                ferrite-core,
               # fabricexporter, #TODO check version add back
               # https://vanillatweaks.net/share#oNYxlz
               #VANILLA_TWEAKS_SHARE_CODES: oNYxlz # Coord HUD, Anti-Endermen Griefing
