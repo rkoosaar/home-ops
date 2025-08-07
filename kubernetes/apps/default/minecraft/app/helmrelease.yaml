@@ -175,7 +175,7 @@ spec:
         type: emptyDir
         globalMounts:
           - path: /data/config
-      geyser-emptyDir:
+      geyser-emptydir:
         type: emptyDir
         globalMounts:
           - path: /data/config/Geyser-Fabric
