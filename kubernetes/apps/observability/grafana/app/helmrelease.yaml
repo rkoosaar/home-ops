@@ -193,6 +193,12 @@ spec:
           revision: 41
           datasource:
             - { name: DS_PROMETHEUS, value: Prometheus }
+        node-exporter-temperature:
+          # renovate: depName="Node Exporter Temperature"
+          gnetId: 15202
+          revision: 1
+          datasource:
+            - { name: DS_PROMETHEUS, value: Prometheus }
         prometheus:
           # renovate: depName="Prometheus"
           gnetId: 19105
