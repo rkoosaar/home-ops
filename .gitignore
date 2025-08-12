@@ -59,3 +59,6 @@ talosconfig
 .venv/
 .DS_Store
 Thumbs.db
+
+
+templates/scripts/__pycache__/
