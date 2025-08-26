@@ -41,6 +41,7 @@ spec:
       # Note: serverName version needs to be inclemented
       # when recovering from an existing cnpg cluster
       serverName: &currentCluster postgres16-v17
+      s3ForcePathStyle: true
       s3Credentials:
         accessKeyId:
           name: cloudnative-pg-secret
