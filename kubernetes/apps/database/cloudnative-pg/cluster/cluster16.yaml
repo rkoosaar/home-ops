@@ -38,10 +38,10 @@ spec:
         maxParallel: 8
       destinationPath: s3://cloudnative-pg
       endpointURL: https://s3g.kvshs.xyz
+      aws-region: garage
       # Note: serverName version needs to be inclemented
       # when recovering from an existing cnpg cluster
       serverName: &currentCluster postgres16-v17
-      s3ForcePathStyle: true
       s3Credentials:
         accessKeyId:
           name: cloudnative-pg-secret
