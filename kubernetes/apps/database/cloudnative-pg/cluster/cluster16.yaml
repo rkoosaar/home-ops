@@ -48,10 +48,6 @@ spec:
         secretAccessKey:
           name: cloudnative-pg-secret
           key: aws-secret-access-key
-      config:
-        s3ForcePathStyle: true
-        region: garage
-        signatureVersion: v4
   # Note: If deploying a new cluster and not restoring from backup, comment out below bootstrap and externalclusters.
   # Note: previousCluster needs to be set to the name of the previous
   # cluster when recovering from an existing cnpg cluster
