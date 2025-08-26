@@ -38,7 +38,6 @@ spec:
         maxParallel: 8
       destinationPath: s3://cloudnative-pg
       endpointURL: https://s3g.kvshs.xyz
-      aws-region: garage
       # Note: serverName version needs to be inclemented
       # when recovering from an existing cnpg cluster
       serverName: &currentCluster postgres16-v17
@@ -49,6 +48,9 @@ spec:
         secretAccessKey:
           name: cloudnative-pg-secret
           key: aws-secret-access-key
+        region:
+          name: cloudnative-pg-secret
+          key: region
   # Note: If deploying a new cluster and not restoring from backup, comment out below bootstrap and externalclusters.
   # Note: previousCluster needs to be set to the name of the previous
   # cluster when recovering from an existing cnpg cluster
