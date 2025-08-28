@@ -33,7 +33,7 @@ resources:
   - ./sonarr/ks.yaml
   #- ./stirling-pdf/ks.yaml
   - ./tautulli/ks.yaml
-  - ./threadfin/ks.yaml
+  #- ./threadfin/ks.yaml
   #- ./xteve/ks.yaml
   #- ./w/ks.yaml
   #- ./romm/ks.yaml
