@@ -23,10 +23,10 @@ spec:
           reloader.stakater.com/auto: "true"
         pod:
           securityContext:
-            runAsUser: 1001
-            runAsGroup: 1003
+            runAsUser: 1000
+            runAsGroup: 100
             runAsNonRoot: true
-            fsGroup: 1003
+            fsGroup: 100
             fsGroupChangePolicy: OnRootMismatch
         containers:
           app:
@@ -94,8 +94,8 @@ spec:
         existingClaim: *app
       data:
         type: nfs
-        server: nas.kvshs.xyz
-        path: /data
+        server: unraid.kvshs.xyz
+        path: /mnt/user/data
         globalMounts:
           - path: /data
             readOnly: true
