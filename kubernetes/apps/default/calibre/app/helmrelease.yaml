@@ -27,10 +27,8 @@ spec:
             env:
               TZ: Europe/London
               TITLE: Calibre
-              PUID: 1001
-              PGID: 1003
-              # PUID: "1026"
-              # PGID: "1000"
+              PUID: 1000
+              PGID: 100
             probes:
               liveness:
                 enabled: true
@@ -101,7 +99,7 @@ spec:
           - path: /config
       data:
         type: nfs
-        server: nas.kvshs.xyz
-        path: /data
+        server: unraid.kvshs.xyz
+        path: /mnt/user/data
         globalMounts:
           - path: /data
