@@ -93,7 +93,7 @@ spec:
         advancedMounts:
           pinchflat:
             app:
-              - path: /data
-                subPath: data/youtube
+              - path: /downloads
+                subPath: downloads/youtube
       tmp:
         type: emptyDir
