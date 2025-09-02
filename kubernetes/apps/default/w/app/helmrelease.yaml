@@ -66,9 +66,9 @@ spec:
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
-        runAsUser: 1001
-        runAsGroup: 1003
-        fsGroup: 1003
+        runAsUser: 1000
+        runAsGroup: 100
+        fsGroup: 100
         fsGroupChangePolicy: OnRootMismatch
     service:
       app:
@@ -91,8 +91,8 @@ spec:
         existingClaim: w
       data:
         type: nfs
-        server: nas.kvshs.xyz
-        path: /data
+        server: unraid.kvshs.xyz
+        path: /mnt/user/data
         globalMounts:
           - path: /data
       w:

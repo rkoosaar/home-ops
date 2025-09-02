@@ -65,9 +65,9 @@ spec:
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
-        runAsUser: 1001
-        runAsGroup: 1003
-        fsGroup: 1003
+        runAsUser: 1000
+        runAsGroup: 100
+        fsGroup: 100
         fsGroupChangePolicy: OnRootMismatch
     service:
       app:
@@ -103,8 +103,8 @@ spec:
           - path: /config/logs
       data:
         type: nfs
-        server: nas.kvshs.xyz
-        path: /data/usenet
+        server: unraid.kvshs.xyz
+        path: /mnt/user/data/usenet
         globalMounts:
           - path: /data/usenet
       w:
