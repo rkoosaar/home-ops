@@ -91,7 +91,11 @@ spec:
           - path: /.npm
       data:
         type: nfs
-        server: nas.kvshs.xyz
-        path: /data
+        server: unraid.kvshs.xyz
+        path: /mnt/user/data
+        mountOptions:
+          - nfsvers=4
+          - sec=sys
+          - proto=tcp
         globalMounts:
           - path: /data
