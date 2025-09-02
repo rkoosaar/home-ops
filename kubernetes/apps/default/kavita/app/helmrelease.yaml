@@ -78,7 +78,8 @@ spec:
           - path: /kavita/config/logs
       data:
         type: nfs
-        server: nas.kvshs.xyz
-        path: /data
+        server: unraid.kvshs.xyz
+        path: /mnt/user/data
         globalMounts:
           - path: /data
+            readOnly: true
