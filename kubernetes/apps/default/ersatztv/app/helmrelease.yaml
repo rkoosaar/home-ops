@@ -52,9 +52,9 @@ spec:
       automountServiceAccountToken: false
       securityContext:
         runAsNonRoot: true
-        runAsUser: 1001
-        runAsGroup: 1003
-        fsGroup: 1003
+        runAsUser: 1000
+        runAsGroup: 100
+        fsGroup: 100
         fsGroupChangePolicy: OnRootMismatch
         supplementalGroups: [44]
       nodeSelector:
@@ -87,14 +87,10 @@ spec:
         type: emptyDir
       transcode:
         type: emptyDir
-      media:
+      data:
         type: nfs
-        server: nas.kvshs.xyz
-        path: /data
-        # globalMounts:
-        #   - path: /data
-        #     subPath: media
-        #     readOnly: true
+        server: unraid.kvshs.xyz
+        path: /mnt/user/data
         globalMounts:
           - path: /data
             readOnly: true
