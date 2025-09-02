@@ -93,9 +93,5 @@ spec:
         type: nfs
         server: unraid.kvshs.xyz
         path: /mnt/user/data
-        mountOptions:
-          - nfsvers=4
-          - sec=sys
-          - proto=tcp
         globalMounts:
           - path: /data
