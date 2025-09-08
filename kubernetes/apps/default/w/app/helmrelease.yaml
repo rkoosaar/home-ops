@@ -97,8 +97,8 @@ spec:
           - path: /data
       w:
         type: nfs
-        server: nas.kvshs.xyz
-        path: /w
+        server: unraid.kvshs.xyz
+        path: /mnt/user/w
         globalMounts:
           - path: /w
       tmp:
