@@ -103,3 +103,5 @@ spec:
         path: /mnt/user/data
         globalMounts:
           - path: /data
+      tmp:
+        type: emptyDir
