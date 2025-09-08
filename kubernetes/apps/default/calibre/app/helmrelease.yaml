@@ -28,7 +28,7 @@ spec:
               TZ: Europe/London
               TITLE: Calibre
               PUID: 1000
-              PGID: 100
+              PGID: 1000
             probes:
               liveness:
                 enabled: true
