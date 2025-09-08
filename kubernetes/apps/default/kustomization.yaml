@@ -36,7 +36,7 @@ resources:
   - ./threadfin/ks.yaml
   #- ./xteve/ks.yaml
   - ./w/ks.yaml
-  #- ./w3/ks.yaml
+  - ./w3/ks.yaml
   #- ./romm/ks.yaml
   #- ./immich/ks.yaml
   #- ./komga/ks.yaml # use komga when needed.
