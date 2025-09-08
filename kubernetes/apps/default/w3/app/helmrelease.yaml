@@ -27,6 +27,8 @@ spec:
               repository: ghcr.io/hotio/whisparr
               tag: v3-141a3d8@sha256:30603feb9c468210f67d1330807339c236e51d2d6648b36c98df2ad8c32c2eb5
             env:
+              PUID: "1000"
+              PGID: "100"
               WHISPARR__INSTANCE_NAME: w3
               WHISPARR__ANALYTICS_ENABLED: "False"
               #WHISPARR__AUTH__REQUIRED: DisabledForLocalAddresses
@@ -65,11 +67,13 @@ spec:
                 memory: 3Gi
     defaultPodOptions:
       securityContext:
-        runAsNonRoot: false
-        runAsUser: 1000
-        runAsGroup: 100
+        # runAsNonRoot: false
+        # runAsUser: 1000
+        # runAsGroup: 100
         fsGroup: 100
         fsGroupChangePolicy: OnRootMismatch
+        seccompProfile:
+          type: RuntimeDefault
     service:
       app:
         controller: w3
