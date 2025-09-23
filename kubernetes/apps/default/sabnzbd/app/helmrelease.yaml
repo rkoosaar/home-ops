@@ -107,11 +107,11 @@ spec:
         path: /mnt/user/data/usenet
         globalMounts:
           - path: /data/usenet
-      w:
-        type: nfs
-        server: unraid.kvshs.xyz
-        path: /mnt/user/w
-        globalMounts:
-          - path: /w
+      # w:
+      #   type: nfs
+      #   server: unraid.kvshs.xyz
+      #   path: /mnt/user/w
+      #   globalMounts:
+      #     - path: /w
       tmp:
         type: emptyDir
