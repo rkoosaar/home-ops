@@ -103,7 +103,7 @@ spec:
           playit:
             image:
               repository: ghcr.io/playit-cloud/playit-agent
-              tag: 0.16.2@sha256:c41f027084ad9e194cf702b581b0359bf09c7b577b31be7f0adca41cd691ab29
+              tag: 0.16.3@sha256:5508e866b335780f3966fbb3a827282baec8178ca787782ef2e95ed0086bf87b
             #args: ["--config", "/etc/playit/playit.toml"]
             env:
               SECRET_KEY:
