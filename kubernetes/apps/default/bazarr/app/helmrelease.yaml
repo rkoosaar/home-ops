@@ -88,9 +88,9 @@ spec:
           - path: /config/log
       media:
         type: nfs
-        server: nas.kvshs.xyz
-        path: /media
+        server: unraid.kvshs.xyz
+        path: /mnt/user/data
         globalMounts:
-          - path: /media
+          - path: /data
       tmp:
         type: emptyDir
