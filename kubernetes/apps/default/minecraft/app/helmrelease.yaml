@@ -71,7 +71,7 @@ spec:
               #OVERRIDE_WHITELIST: "false"
               #ENFORCE_WHITELIST: "true"
               #ONLINE_MODE: "false"
-              WHITELIST: "RicK99274,melb0rp,KassuGTX,.RicK99274,.Darth_Crime,.Michito279"
+              WHITELIST: "RicK99274,.RicK99274"
             envFrom:
               - secretRef:
                   name: minecraft-secret
