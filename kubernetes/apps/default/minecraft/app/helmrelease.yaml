@@ -67,10 +67,11 @@ spec:
               #VANILLA_TWEAKS_SHARE_CODES: oNYxlz # Coord HUD, Anti-Endermen Griefing
               OPS: "RicK99274"
               # Whitelist
-              #ENABLE_WHITELIST: "true"
+              ENABLE_WHITELIST: "true"
               #OVERRIDE_WHITELIST: "false"
               #ENFORCE_WHITELIST: "true"
               #ONLINE_MODE: "false"
+              WHITELIST: "RicK99274,melb0rp,KassuGTX,.RicK99274,.Darth_Crime,.Michito279"
             envFrom:
               - secretRef:
                   name: minecraft-secret
@@ -91,7 +92,7 @@ spec:
                 custom: true
                 spec:
                   periodSeconds: 60
-                  exec: &probeexec {command: ["mc-health"]}
+                  exec: &probeexec { command: ["mc-health"] }
               readiness: *probe
               startup:
                 <<: *probe
@@ -159,10 +160,10 @@ spec:
                   identifier: app
                   port: map
         annotations:
-        #   gethomepage.dev/name: minecraft map (normal)
-        #   gethomepage.dev/enabled: "true"
-        #   gethomepage.dev/group: games
-        #   gethomepage.dev/icon: mdi-minecraft
+          #   gethomepage.dev/name: minecraft map (normal)
+          #   gethomepage.dev/enabled: "true"
+          #   gethomepage.dev/group: games
+          #   gethomepage.dev/icon: mdi-minecraft
           external-dns.alpha.kubernetes.io/target: external.${SECRET_DOMAIN}
     persistence:
       data:
