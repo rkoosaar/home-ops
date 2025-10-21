@@ -5,8 +5,9 @@ kind: Kustomization
 namespace: external-secrets
 
 components:
-  #- ../../components/alerts
   - ../../components/sops
+  #- ../../components/alerts
+
 resources:
   - ./namespace.yaml
   - ./external-secrets/ks.yaml
