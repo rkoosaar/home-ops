@@ -1,6 +1,4 @@
 ---
-
-# yaml-language-server: $schema=https://taskfile.dev/schema.json
 version: '3'
 
 set: [pipefail]
@@ -23,7 +21,6 @@ includes:
   bootstrap: .taskfiles/bootstrap
   talos: .taskfiles/talos
   template: .taskfiles/template
-  volsync: .taskfiles/volsync
 
 tasks:
 

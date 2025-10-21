@@ -1,15 +1,8 @@
 ---
-# yaml-language-server: $schema=https://json.schemastore.org/kustomization
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  #- ./externalsecret.yaml
   - ./dnsendpoint.yaml
   - ./secret.sops.yaml
   - ./helmrelease.yaml
-configMapGenerator:
-  - name: cloudflare-tunnel-configmap
-    files:
-      - config.yaml=./resources/config.yaml
-generatorOptions:
-  disableNameSuffixHash: true
+  - ./ocirepository.yaml

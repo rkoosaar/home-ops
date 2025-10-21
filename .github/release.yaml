@@ -1,4 +1,5 @@
 changelog:
   exclude:
     authors:
-      - rk-1b
+      - github-actions
+      - renovate

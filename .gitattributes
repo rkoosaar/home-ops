@@ -1,9 +1,3 @@
-# remove after refactoring
-* text=auto eol=lf
-*.yaml.j2 linguist-language=YAML
-*.sops.* diff=sopsdiffer
-
-# New
 * text=auto eol=lf
 *.env linguist-detectable linguist-language=SHELL
 *.json linguist-detectable linguist-language=JSON
