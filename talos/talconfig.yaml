@@ -1,0 +1,96 @@
+---
+clusterName: kubernetes
+
+talosVersion: "${talosVersion}"
+kubernetesVersion: "${kubernetesVersion}"
+
+endpoint: https://10.1.1.30:6443
+additionalApiServerCertSans: &sans
+  - "127.0.0.1"
+  - "10.1.1.30"
+  - "k8s-api.kvshs.xyz"
+additionalMachineCertSans: *sans
+
+clusterPodNets: ["10.42.0.0/16"]
+clusterSvcNets: ["10.43.0.0/16"]
+
+# Disable built-in CNI to use Cilium
+cniConfig:
+  name: none
+
+nodes:
+  - hostname: "mango"
+    ipAddress: "10.1.1.31"
+    installDiskSelector:
+      serial: "S7GCNS0X142364J"
+    machineSpec:
+      secureboot: false
+    talosImageURL: factory.talos.dev/installer/00058d1df723e50386d6912d3803ffff46978b8f69fdb51c10da7e7d56890510
+    controlPlane: true
+    networkInterfaces:
+      - deviceSelector:
+          hardwareAddr: "00:e0:4c:68:07:c2"
+        dhcp: false
+        addresses:
+          - "10.1.1.31/24"
+        routes:
+          - network: "0.0.0.0/0"
+            gateway: "10.1.1.1"
+        mtu: 1500
+        vip:
+          ip: "10.1.1.30"
+  - hostname: "melon"
+    ipAddress: "10.1.1.32"
+    installDiskSelector:
+      serial: "S7GCNS0X214218J"
+    machineSpec:
+      secureboot: false
+    talosImageURL: factory.talos.dev/installer/00058d1df723e50386d6912d3803ffff46978b8f69fdb51c10da7e7d56890510
+    controlPlane: true
+    networkInterfaces:
+      - deviceSelector:
+          hardwareAddr: "00:e0:4c:68:04:0d"
+        dhcp: false
+        addresses:
+          - "10.1.1.32/24"
+        routes:
+          - network: "0.0.0.0/0"
+            gateway: "10.1.1.1"
+        mtu: 1500
+        vip:
+          ip: "10.1.1.30"
+  - hostname: "nectarine"
+    ipAddress: "10.1.1.33"
+    installDiskSelector:
+      serial: "S7GCNS0X158506R"
+    machineSpec:
+      secureboot: false
+    talosImageURL: factory.talos.dev/installer/00058d1df723e50386d6912d3803ffff46978b8f69fdb51c10da7e7d56890510
+    controlPlane: true
+    networkInterfaces:
+      - deviceSelector:
+          hardwareAddr: "00:e0:4c:68:06:1f"
+        dhcp: false
+        addresses:
+          - "10.1.1.33/24"
+        routes:
+          - network: "0.0.0.0/0"
+            gateway: "10.1.1.1"
+        mtu: 1500
+        vip:
+          ip: "10.1.1.30"
+
+# Global patches
+patches:
+  - "@./patches/global/machine-files.yaml"
+  - "@./patches/global/machine-kubelet.yaml"
+  - "@./patches/global/machine-network.yaml"
+  - "@./patches/global/machine-sysctls.yaml"
+  - "@./patches/global/machine-time.yaml"
+
+# Controller patches
+controlPlane:
+  patches:
+    - "@./patches/controller/admission-controller-patch.yaml"
+    - "@./patches/controller/cluster.yaml"
+
