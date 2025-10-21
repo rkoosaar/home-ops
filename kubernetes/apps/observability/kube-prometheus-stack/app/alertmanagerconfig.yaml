@@ -32,7 +32,6 @@ spec:
       - job
     groupInterval: 5m
     groupWait: 1m
-
   inhibitRules:
     - equal:
         - alertname
