@@ -82,11 +82,14 @@ nodes:
 
 # Global patches
 patches:
+  - "@./patches/global/machine-features.yaml"
   - "@./patches/global/machine-files.yaml"
   - "@./patches/global/machine-kubelet.yaml"
   - "@./patches/global/machine-network.yaml"
+  - "@./patches/global/machine-openebs-local.yaml"
   - "@./patches/global/machine-sysctls.yaml"
   - "@./patches/global/machine-time.yaml"
+  - "@./patches/global/machine-udev.yaml"
 
 # Controller patches
 controlPlane:
