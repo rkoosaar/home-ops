@@ -39,9 +39,6 @@ spec:
               GATUS_CONFIG_PATH: /config
               GATUS_WEB_PORT: &port 80
               TZ: Europe/London
-            # envFrom:
-            #   - secretRef:
-            #       name: "{{ .Release.Name }}-secret"
             probes:
               liveness: &probes
                 enabled: true
@@ -58,7 +55,7 @@ spec:
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
-              capabilities: {add: ["NET_RAW"], drop: ["ALL"]}
+              capabilities: {drop: ["ALL"]}
             resources:
               requests:
                 cpu: 100m
