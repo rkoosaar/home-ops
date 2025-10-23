@@ -51,4 +51,4 @@ ui:
     - name: Homelab
       link: https://github.com/rkoosaar/home-ops
 web:
-  port: ${WEB_PORT}
+  port: ${GATUS_WEB_PORT}
