@@ -9,6 +9,7 @@ components:
   - ../../components/alerts
 
 resources:
+  - ./namespace.yaml
   #- ./cloudnative-pg/ks.yaml
   - ./dragonfly/ks.yaml
   #- ./pgadmin/ks.yaml
