@@ -21,7 +21,7 @@ spec:
                 spec:
                   httpGet:
                     path: /healthz
-                    port: &port 8081
+                    port: &port 9090
                   initialDelaySeconds: 0
                   periodSeconds: 10
                   timeoutSeconds: 1
