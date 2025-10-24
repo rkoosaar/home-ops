@@ -1,0 +1,19 @@
+---
+# yaml-language-server: $schema=https://my-kubernetes-schemas.pages.dev/postgresql.cnpg.io/scheduledbackup_v1.json
+apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: postgres
+spec:
+  schedule: "@daily"
+  #schedule: "@every 12h"
+  immediate: true
+  backupOwnerReference: self
+  cluster:
+    name: postgres17
+  method: plugin
+  pluginConfiguration:
+    name: barman-cloud.cloudnative-pg.io
+    parameters:
+      barmanObjectName: postgres-objectstore
+      serverName: postgres17-v1
