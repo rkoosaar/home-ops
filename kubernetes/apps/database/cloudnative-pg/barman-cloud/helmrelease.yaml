@@ -14,18 +14,6 @@ spec:
       barman-cloud:
         containers:
           app:
-            image:
-              repository: ghcr.io/cloudnative-pg/plugin-barman-cloud
-              tag: v0.7.0@sha256:641877c4dc6b879542bf7c6997ac4ae5db57e7543fc6ccced78b5b20e144880d
-            args:
-              - operator
-              - --leader-elect
-              - --server-cert=/server/tls.crt
-              - --server-key=/server/tls.key
-              - --client-cert=/client/tls.crt
-              - --server-address=:9090
-            env:
-              SIDECAR_IMAGE: ghcr.io/cloudnative-pg/plugin-barman-cloud-sidecar:${SIDECAR_IMAGE_VERSION}
             probes:
               liveness:
                 enabled: true
