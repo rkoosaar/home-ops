@@ -7,7 +7,7 @@ metadata:
 spec:
   chartRef:
     kind: OCIRepository
-    name: barman-cloud
+    name: plugin-barman-cloud
   interval: 1h
   values:
     controllers:
