@@ -5,11 +5,12 @@ kind: ScheduledBackup
 metadata:
   name: postgres
 spec:
-  schedule: "@daily"
-  #schedule: "@every 12h"
+  #schedule: "@daily"
+  schedule: "@every 2h"
   immediate: true
   backupOwnerReference: self
   cluster:
+    #name: postgres17
     name: postgres16
   method: plugin
   pluginConfiguration:
