@@ -6,7 +6,7 @@ metadata:
   name: pgadmin
 spec:
   components:
-    - ../../../components/volsync
+    - ../../../../components/volsync
   interval: 1h
   path: ./kubernetes/apps/database/pgadmin/app
   postBuild:
