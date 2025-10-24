@@ -1,0 +1,77 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: cloudnative-pg
+spec:
+  dependsOn:
+    - name: onepassword
+      namespace: external-secrets
+  interval: 1h
+  path: ./kubernetes/apps/database/cloudnative-pg/app
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+    namespace: flux-system
+  targetNamespace: database
+  wait: false
+# ---
+# # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
+# apiVersion: kustomize.toolkit.fluxcd.io/v1
+# kind: Kustomization
+# metadata:
+#   name: &app cloudnative-pg-barman-cloud
+#   namespace: &namespace database
+# spec:
+#   targetNamespace: *namespace
+#   commonMetadata:
+#     labels:
+#       app.kubernetes.io/name: *app
+#   dependsOn:
+#     - name: cloudnative-pg
+#       namespace: database
+#   path: ./kubernetes/apps/database/cloudnative-pg/barman-cloud
+#   prune: true
+#   retryInterval: 2m
+#   sourceRef:
+#     kind: GitRepository
+#     name: flux-system
+#     namespace: flux-system
+#   wait: true
+#   interval: 30m
+#   timeout: 15m
+# ---
+# # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
+# apiVersion: kustomize.toolkit.fluxcd.io/v1
+# kind: Kustomization
+# metadata:
+#   name: &app cloudnative-pg-cluster
+#   namespace: &namespace database
+# spec:
+#   targetNamespace: *namespace
+#   commonMetadata:
+#     labels:
+#       app.kubernetes.io/name: *app
+#   dependsOn:
+#     - name: cloudnative-pg
+#       namespace: database
+#     - name: cloudnative-pg-barman-cloud
+#       namespace: database
+#   healthCheckExprs:
+#     - apiVersion: postgresql.cnpg.io/v1
+#       kind: Cluster
+#       current: status.conditions.exists(c, c.type == 'Ready' && c.status == 'True')
+#       inProgress: status.conditions.exists(c, c.type == 'Ready' && c.status == 'False') && !status.phase.contains('manual intervention')
+#       failed: status.phase.contains('manual intervention')
+#   path: ./kubernetes/apps/database/cloudnative-pg/cluster
+#   prune: true
+#   retryInterval: 2m
+#   sourceRef:
+#     kind: GitRepository
+#     name: flux-system
+#     namespace: flux-system
+#   wait: true
+#   interval: 30m
+#   timeout: 15m
