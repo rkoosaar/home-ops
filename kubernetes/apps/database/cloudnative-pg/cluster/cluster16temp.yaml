@@ -5,7 +5,8 @@ kind: Cluster
 metadata:
   name: postgres16
 spec:
-  imageName: ghcr.io/tensorchord/cloudnative-vectorchord:16-0.5.3@sha256:df257a09317592f7456075350d8eff8be0437899751ab9bd112fb83db27c064c
+  imageName: ghcr.io/tensorchord/cloudnative-vectorchord:17.6-0.5.3@sha256:bc5fbeba82a75de3f25d06b1dda8a7de42711ab2a0adcfca140d8344bf4d1b62
+  #imageName: ghcr.io/tensorchord/cloudnative-vectorchord:16-0.5.3@sha256:df257a09317592f7456075350d8eff8be0437899751ab9bd112fb83db27c064c
   instances: 3 # set to the number of nodes in the cluster
   primaryUpdateStrategy: unsupervised
   storage:
