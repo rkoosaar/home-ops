@@ -8,6 +8,10 @@ spec:
   dependsOn:
     - name: rook-ceph-cluster
       namespace: rook-ceph
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: cluster-secrets
   interval: 1h
   path: ./kubernetes/apps/observability/gatus/app
   prune: true
