@@ -5,6 +5,7 @@ kind: Kustomization
 namespace: actions-runner-system
 
 components:
+  - ../../components/sops
   - ../../components/alerts
 
 resources:
