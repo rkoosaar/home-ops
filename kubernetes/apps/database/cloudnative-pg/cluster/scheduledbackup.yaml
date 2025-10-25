@@ -5,8 +5,8 @@ kind: ScheduledBackup
 metadata:
   name: postgres
 spec:
-  schedule: "@daily"
-  #schedule: "@every 2h"
+  #schedule: "@daily"
+  schedule: "@every 2h"
   immediate: true
   backupOwnerReference: self
   cluster:
@@ -16,4 +16,4 @@ spec:
     name: barman-cloud.cloudnative-pg.io
     parameters:
       barmanObjectName: postgres-objectstore
-      serverName: postgres17-v1
+      serverName: postgres17-v2
