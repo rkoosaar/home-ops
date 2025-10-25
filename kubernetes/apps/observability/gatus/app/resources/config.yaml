@@ -7,7 +7,7 @@ connectivity:
 endpoints:
   - name: main-cert-expiration
     group: domain
-    url: "https://status.${SECRET_DOMAIN}"
+    url: https://status.${SECRET_DOMAIN}
     interval: 1h
     conditions:
       - "[CERTIFICATE_EXPIRATION] > 240h"
