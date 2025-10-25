@@ -10,7 +10,7 @@ components:
 resources:
   - ./namespace.yaml
   - ./audiobookshelf/ks.yaml
-  # - ./bazarr/ks.yaml
+  - ./bazarr/ks.yaml
   # - ./calibre/ks.yaml
   # - ./calibre-web/ks.yaml
   # - ./ersatztv/ks.yaml
