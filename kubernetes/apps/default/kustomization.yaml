@@ -18,7 +18,7 @@ resources:
   # - ./homepage/ks.yaml
   # - ./ghostfolio/ks.yaml
   # - ./it-tools/ks.yaml
-  # - ./jellyseerr/ks.yaml
+  - ./jellyseerr/ks.yaml
   # - ./kavita/ks.yaml
   # - ./lidarr/ks.yaml
   # - ./pinchflat/ks.yaml
