@@ -10,11 +10,10 @@ spec:
   immediate: true
   backupOwnerReference: self
   cluster:
-    #name: postgres17
-    name: postgres16
+    name: postgres17
   method: plugin
   pluginConfiguration:
     name: barman-cloud.cloudnative-pg.io
     parameters:
       barmanObjectName: postgres-objectstore
-      serverName: postgres16-v18
+      serverName: postgres17-v1
