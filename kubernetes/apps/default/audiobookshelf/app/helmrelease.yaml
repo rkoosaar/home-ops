@@ -68,8 +68,7 @@ spec:
         annotations:
           gatus.home-operations.com/enabled: "true"
         hostnames:
-          - "{{ .Release.Name }}.${SECRET_DOMAIN}"
-          - audiobooks.${SECRET_DOMAIN}
+          - "audiobooks.${SECRET_DOMAIN}"
         parentRefs:
           - name: envoy-external
             namespace: network
