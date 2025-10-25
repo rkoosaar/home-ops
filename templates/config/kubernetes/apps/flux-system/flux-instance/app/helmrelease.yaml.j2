@@ -1,4 +1,5 @@
 ---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2.json
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
@@ -33,10 +34,11 @@ spec:
       commonMetadata:
         labels:
           app.kubernetes.io/name: flux
+        interval: 1h
       kustomize:
         patches:
           - # Increase the number of workers
-            patch: |
+            patch: |-
               - op: add
                 path: /spec/template/spec/containers/0/args/-
                 value: --concurrent=10
@@ -47,7 +49,7 @@ spec:
               kind: Deployment
               name: (kustomize-controller|helm-controller|source-controller)
           - # Increase the memory limits
-            patch: |
+            patch: |-
               apiVersion: apps/v1
               kind: Deployment
               metadata:
@@ -59,12 +61,12 @@ spec:
                       - name: manager
                         resources:
                           limits:
-                            memory: 1Gi
+                            memory: 2Gi
             target:
               kind: Deployment
               name: (kustomize-controller|helm-controller|source-controller)
           - # Enable in-memory kustomize builds
-            patch: |
+            patch: |-
               - op: add
                 path: /spec/template/spec/containers/0/args/-
                 value: --concurrent=20
@@ -78,7 +80,7 @@ spec:
               kind: Deployment
               name: kustomize-controller
           - # Enable Helm repositories caching
-            patch: |
+            patch: |-
               - op: add
                 path: /spec/template/spec/containers/0/args/-
                 value: --helm-cache-max-size=10
@@ -92,7 +94,7 @@ spec:
               kind: Deployment
               name: source-controller
           - # Flux near OOM detection for Helm
-            patch: |
+            patch: |-
               - op: add
                 path: /spec/template/spec/containers/0/args/-
                 value: --feature-gates=OOMWatch=true
@@ -106,7 +108,7 @@ spec:
               kind: Deployment
               name: helm-controller
           - # Disable chart digest tracking
-            patch: |
+            patch: |-
               - op: add
                 path: /spec/template/spec/containers/0/args/-
                 value: --feature-gates=DisableChartDigestTracking=true
@@ -114,7 +116,7 @@ spec:
               kind: Deployment
               name: helm-controller
           - # Controller-level SOPS decryption
-            patch: |
+            patch: |-
               - op: add
                 path: /spec/template/spec/containers/0/args/-
                 value: --sops-age-secret=sops-age
