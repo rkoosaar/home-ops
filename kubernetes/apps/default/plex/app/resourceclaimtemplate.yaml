@@ -9,7 +9,4 @@ spec:
       requests:
         - name: gpu
           firstAvailable:
-            - deviceClassName: gpu.intel.com/i915
-
-          # exactly:
-          #   deviceClassName: gpu.intel.com
+            - deviceClassName: gpu.intel.com
