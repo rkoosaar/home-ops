@@ -16,7 +16,7 @@ spec:
   path: ./kubernetes/apps/default/ghostfolio/app
   postBuild:
     substitute:
-      APP: *app
+      APP: ghostfolio
       VOLSYNC_CAPACITY: 2Gi
   prune: true
   sourceRef:
