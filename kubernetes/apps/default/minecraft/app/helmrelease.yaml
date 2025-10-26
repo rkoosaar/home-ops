@@ -152,7 +152,7 @@ spec:
             sectionName: https
     persistence:
       data:
-        existingClaim: *app
+        existingClaim: "{{ .Release.Name }}"
         advancedMounts:
           minecraft:
             app:
