@@ -1,0 +1,32 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ./externalsecret-playit.yaml
+  - ./externalsecret.yaml
+  - ./helmrelease.yaml
+  - ./ocirepository.yaml
+configMapGenerator:
+  # - name: minecraft-whitelist
+  #   files:
+  #     - whitelist.json=./resources/mc/whitelist.json
+  # - name: minecraft-ops
+  #   files:
+  #     - ops.json=./resources/mc/ops.json
+  - name: geyser-configmap
+    files:
+      - config.yml=./resources/geyser/config.yml
+  - name: minecraft-bluemap
+    files:
+      - core.conf=./resources/bluemap/core.conf
+      - file.conf=./resources/bluemap/storages/file.conf
+      - overworld.conf=./resources/bluemap/maps/overworld.conf
+      - nether.conf=./resources/bluemap/maps/nether.conf
+      - end.conf=./resources/bluemap/maps/end.conf
+  - name: playit-configmap
+    files:
+      - playit.toml=./resources/playit/playit.toml
+generatorOptions:
+  disableNameSuffixHash: true
+  annotations:
+    kustomize.toolkit.fluxcd.io/substitute: disabled

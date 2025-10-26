@@ -15,19 +15,15 @@ resources:
   - ./calibre-web/ks.yaml
   - ./ersatztv/ks.yaml
   - ./firefly/ks.yaml
-  #- ./ghostfolio/ks.yaml
-  #- ./homepage/ks.yaml
   - ./it-tools/ks.yaml
   - ./jellyseerr/ks.yaml
   - ./kavita/ks.yaml
-  # - ./lidarr/ks.yaml
+  - ./minecraft/ks.yaml
   # - ./pinchflat/ks.yaml
-  # - ./minecraft/ks.yaml
   # - ./navidrome/ks.yaml
   - ./plex/ks.yaml
   - ./prowlarr/ks.yaml
   - ./radarr/ks.yaml
-  # - ./readarr/ks.yaml
   - ./recyclarr/ks.yaml
   # - ./redlib/ks.yaml
   - ./sabnzbd/ks.yaml
@@ -40,3 +36,7 @@ resources:
   #- ./romm/ks.yaml
   #- ./immich/ks.yaml
   #- ./komga/ks.yaml # use komga when needed.
+  # - ./lidarr/ks.yaml
+  #- ./ghostfolio/ks.yaml
+  #- ./homepage/ks.yaml
+  # - ./readarr/ks.yaml
