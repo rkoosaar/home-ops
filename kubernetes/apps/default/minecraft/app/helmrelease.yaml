@@ -143,8 +143,7 @@ spec:
             interval: 1m
     route:
       app:
-        className: external
-        hosts:
+        hostnames:
           - "mcmap.${SECRET_DOMAIN}"
         parentRefs:
           - name: envoy-external
