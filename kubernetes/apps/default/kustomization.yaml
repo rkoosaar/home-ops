@@ -15,7 +15,7 @@ resources:
   - ./calibre-web/ks.yaml
   - ./ersatztv/ks.yaml
   - ./firefly/ks.yaml
-  - ./ghostfolio/ks.yaml
+  #- ./ghostfolio/ks.yaml
   # - ./homepage/ks.yaml
   # - ./it-tools/ks.yaml
   - ./jellyseerr/ks.yaml
