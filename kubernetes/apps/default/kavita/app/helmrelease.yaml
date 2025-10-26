@@ -7,7 +7,7 @@ metadata:
 spec:
   chartRef:
     kind: OCIRepository
-    name: it-tools
+    name: kavita
   interval: 1h
   values:
     controllers:
