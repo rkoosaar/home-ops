@@ -167,7 +167,6 @@ spec:
           minecraft:
             app:
               - path: /data
-              - path: /data/config/bluemap
       fabricexporter-config:
         type: emptyDir
         globalMounts:
@@ -184,9 +183,14 @@ spec:
             subPath: config.yml
       #       readOnly: true
       bluemap:
+        name: minecraft-bluemap
         type: persistentVolumeClaim
         size: 10Gi
         accessMode: ReadWriteOnce
+        advancedMounts:
+            minecraft:
+              app:
+                - path: /data/config/bluemap
       bluemap-config:
         type: configMap
         name: minecraft-bluemap
