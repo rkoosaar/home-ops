@@ -5,6 +5,9 @@ kind: Kustomization
 metadata:
   name: &app minecraft
 spec:
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *app
   components:
     - ../../../../components/volsync
   dependsOn:
@@ -14,15 +17,17 @@ spec:
   path: ./kubernetes/apps/default/minecraft/app
   postBuild:
     substitute:
-      APP:  *app
+      APP: *app
       GATUS_SUBDOMAIN: mcmap
       VOLSYNC_CAPACITY: 15Gi
       VOLSYNC_CACHE_CAPACITY: 4Gi
       #VOLSYNC_SCHEDULE: "0 */3 * * *" # Every 3hrs
   prune: true
+  retryInterval: 2m
   sourceRef:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
   targetNamespace: default
+  timeout: 5m
   wait: false

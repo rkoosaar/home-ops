@@ -1,14 +1,21 @@
----
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: &app minecraft
 spec:
+  interval: 1h
   chartRef:
     kind: OCIRepository
     name: minecraft
-  interval: 1h
+  install:
+    remediation:
+      retries: -1
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
   values:
     controllers:
       minecraft:
@@ -115,9 +122,10 @@ spec:
         fsGroupChangePolicy: OnRootMismatch
     service:
       app:
+        controller: *app
         type: LoadBalancer
         annotations:
-          external-dns.alpha.kubernetes.io/hostname: mc.${SECRET_DOMAIN}
+          #external-dns.alpha.kubernetes.io/hostname: mc.${SECRET_DOMAIN}
           "lbipam.cilium.io/ips": "10.1.1.47"
         ports:
           java:
@@ -127,7 +135,7 @@ spec:
             port: 19132
             protocol: UDP
           map:
-            port: 8100
+            port: &map 8100
           rcon:
             port: 25575
           metrics:
@@ -135,7 +143,7 @@ spec:
     serviceMonitor:
       metrics:
         enabled: true
-        serviceName: minecraft
+        serviceName: *app
         endpoints:
           - port: metrics
             scheme: http
@@ -143,12 +151,15 @@ spec:
             interval: 1m
     route:
       app:
-        hostnames:
-          - "mcmap.${SECRET_DOMAIN}"
+        hostnames: ["mcmap.${SECRET_DOMAIN}"]
         parentRefs:
-          - name: envoy-external
+          - name: external
             namespace: network
             sectionName: https
+        rules:
+          - backendRefs:
+              - identifier: *app
+                port: *map
     persistence:
       data:
         existingClaim: *app
@@ -171,6 +182,7 @@ spec:
         globalMounts:
           - path: /data/config/Geyser-Fabric/config.yml
             subPath: config.yml
+      #       readOnly: true
       bluemap:
         type: persistentVolumeClaim
         size: 10Gi
