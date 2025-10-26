@@ -36,12 +36,17 @@ spec:
               readOnlyRootFilesystem: true
               capabilities: {drop: ["ALL"]}
             resources:
+              claims:
+                - name: gpu
               requests:
                 cpu: 10m
               limits:
-                gpu.intel.com: 1
+                # gpu.intel.com: 1
                 memory: 4G
     defaultPodOptions:
+      resourceClaims:
+        - name: gpu
+          resourceClaimTemplateName: ersatztv
       automountServiceAccountToken: false
       securityContext:
         runAsNonRoot: true
@@ -50,8 +55,8 @@ spec:
         fsGroup: 100
         fsGroupChangePolicy: OnRootMismatch
         supplementalGroups: [44]
-      nodeSelector:
-        intel.feature.node.kubernetes.io/gpu: "true"
+      # nodeSelector:
+      #   intel.feature.node.kubernetes.io/gpu: "true"
     service:
       app:
         type: LoadBalancer
