@@ -3,15 +3,10 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app firefly
-  namespace: &namespace default
+  name: firefly
 spec:
-  commonMetadata:
-    labels:
-      app.kubernetes.io/name: *app
   components:
     - ../../../../components/volsync
-    - ../../../../components/gatus/guarded
   dependsOn:
     - name: rook-ceph-cluster
       namespace: rook-ceph
@@ -19,7 +14,7 @@ spec:
   path: ./kubernetes/apps/default/firefly/app
   postBuild:
     substitute:
-      APP: *app
+      APP: firefly
       VOLSYNC_CAPACITY: 2Gi
   prune: true
   retryInterval: 2m
@@ -27,33 +22,26 @@ spec:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
-  targetNamespace: *namespace
-  timeout: 5m
+  targetNamespace: default
   wait: false
 ---
 # yaml-language-server: $schema=https://my-kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app firefly-importer
-  namespace: &namespace default
+  name: firefly-importer
 spec:
-  commonMetadata:
-    labels:
-      app.kubernetes.io/name: *app
   dependsOn:
     - name: firefly
   interval: 1h
   path: ./kubernetes/apps/default/firefly/importer
   postBuild:
     substitute:
-      APP: *app
+      APP: firefly-importer
   prune: true
-  retryInterval: 2m
   sourceRef:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
-  targetNamespace: *namespace
-  timeout: 5m
+  targetNamespace: default
   wait: true
