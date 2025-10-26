@@ -1,0 +1,88 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: ersatztv
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: ersatztv
+  interval: 1h
+  values:
+    controllers:
+      ersatztv:
+        labels:
+          nfsMount: "true"
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          app:
+            image:
+              repository: ghcr.io/ersatztv/ersatztv
+              tag: v25.8.0@sha256:601c55c1d67b4bcf793ab2c2d83a02752ba34ef1a9e1811a1e6ac65728e4da85
+            env:
+              TZ: Europe/London
+              XDG_DATA_HOME: /config # https://github.com/ErsatzTV/ErsatzTV/issues/327
+            probes:
+              liveness:
+                enabled: true
+              readiness:
+                enabled: true
+              startup:
+                enabled: true
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: {drop: ["ALL"]}
+            resources:
+              claims:
+                - name: gpu
+              requests:
+                cpu: 10m
+              limits:
+                # gpu.intel.com: 1
+                memory: 4G
+    defaultPodOptions:
+      resourceClaims:
+        - name: gpu
+          resourceClaimTemplateName: ersatztv
+      automountServiceAccountToken: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 100
+        fsGroup: 100
+        fsGroupChangePolicy: OnRootMismatch
+        supplementalGroups: [44]
+      # nodeSelector:
+      #   intel.feature.node.kubernetes.io/gpu: "true"
+    service:
+      app:
+        type: LoadBalancer
+        ports:
+          http:
+            port: 8409
+    route:
+      app:
+        hostnames:
+          - "tv.${SECRET_DOMAIN}"
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
+    persistence:
+      config:
+        existingClaim: "{{ .Release.Name }}"
+      cache:
+        type: emptyDir
+      tmp:
+        type: emptyDir
+      transcode:
+        type: emptyDir
+      data:
+        type: nfs
+        server: unraid.kvshs.xyz
+        path: /mnt/user/data
+        globalMounts:
+          - path: /data
+            readOnly: true
