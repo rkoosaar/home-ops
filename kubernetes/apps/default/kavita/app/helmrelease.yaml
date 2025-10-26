@@ -1,0 +1,64 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kavita
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: it-tools
+  interval: 1h
+  values:
+    controllers:
+      kavita:
+        # labels:
+        #   nfsMount: "true"
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          app:
+            image:
+              repository: ghcr.io/kareadita/kavita
+              tag: 0.8.7@sha256:b9c671586db2a6a688da3cb4b45f1319cca33b01e6e760c8bf3c19d60101bdf2
+            env:
+              TZ: Europe/London
+            resources:
+              requests:
+                cpu: 50m
+                memory: 1Gi
+              limits:
+                memory: 2Gi
+    service:
+      app:
+        ports:
+          http:
+            port: 5000
+    route:
+      app:
+        hostnames:
+          - "comics.${SECRET_DOMAIN}"
+        parentRefs:
+          - name: envoy-external
+            namespace: network
+            sectionName: https
+    persistence:
+      config:
+        existingClaim: *app
+        globalMounts:
+          - path: /kavita/config
+      cache:
+        type: emptyDir
+        globalMounts:
+          - path: /kavita/config/cache
+      logs:
+        type: emptyDir
+        globalMounts:
+          - path: /kavita/config/logs
+      data:
+        type: nfs
+        server: unraid.kvshs.xyz
+        path: /mnt/user/data
+        globalMounts:
+          - path: /data
+            readOnly: true
