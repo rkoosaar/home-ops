@@ -8,5 +8,5 @@ spec:
     devices:
       requests:
         - name: gpu
-          firstAvailable:
+          exactly:
             deviceClassName: gpu.intel.com
