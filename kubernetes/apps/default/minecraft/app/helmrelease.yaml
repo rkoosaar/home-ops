@@ -158,7 +158,7 @@ spec:
             sectionName: https
         rules:
           - backendRefs:
-              - identifier: *app
+              - identifier: app
                 port: *map
     persistence:
       data:
