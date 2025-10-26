@@ -16,8 +16,8 @@ resources:
   - ./ersatztv/ks.yaml
   - ./firefly/ks.yaml
   #- ./ghostfolio/ks.yaml
-  - ./homepage/ks.yaml
-  # - ./it-tools/ks.yaml
+  #- ./homepage/ks.yaml
+  - ./it-tools/ks.yaml
   - ./jellyseerr/ks.yaml
   # - ./kavita/ks.yaml
   # - ./lidarr/ks.yaml
