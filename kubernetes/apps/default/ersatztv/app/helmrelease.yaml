@@ -1,0 +1,85 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: ersatztv
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: ersatztv
+  interval: 1h
+  values:
+    controllers:
+      ersatztv:
+        labels:
+          nfsMount: "true"
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          app:
+            image:
+              repository: jasongdove/ersatztv
+              tag: v25.2.0-vaapi@sha256:71f925801b798e01833548d467a1d1f67731fae522e6b29a7e861554e205c594
+            env:
+              TZ: Europe/London
+              XDG_DATA_HOME: /config # https://github.com/ErsatzTV/ErsatzTV/issues/327
+            probes:
+              liveness:
+                enabled: true
+              readiness:
+                enabled: true
+              startup:
+                enabled: true
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: {drop: ["ALL"]}
+            resources:
+              claims:
+                - name: gpu
+              requests:
+                cpu: 10m
+              limits:
+                memory: 6G
+    defaultPodOptions:
+      automountServiceAccountToken: false
+      resourceClaims:
+        - name: gpu
+          resourceClaimTemplateName: ersatztv
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 100
+        fsGroup: 100
+        fsGroupChangePolicy: OnRootMismatch
+        supplementalGroups: [44]
+    service:
+      app:
+        type: LoadBalancer
+        ports:
+          http:
+            port: 8409
+    route:
+      app:
+        hostnames:
+          - "tv.${SECRET_DOMAIN}"
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
+    persistence:
+      config:
+        existingClaim: "{{ .Release.Name }}"
+      cache:
+        type: emptyDir
+      tmp:
+        type: emptyDir
+      transcode:
+        type: emptyDir
+      data:
+        type: nfs
+        server: unraid.kvshs.xyz
+        path: /mnt/user/data
+        globalMounts:
+          - path: /data
+            readOnly: true

@@ -1,0 +1,29 @@
+---
+# yaml-language-server: $schema=https://my-kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: calibre-web
+spec:
+  components:
+    - ../../../../components/volsync
+  dependsOn:
+    - name: rook-ceph-cluster
+      namespace: rook-ceph
+    - name: calibre
+  interval: 1h
+  path: ./kubernetes/apps/default/calibre-web/app
+  postBuild:
+    substitute:
+      APP: calibre-web
+      GATUS_SUBDOMAIN: books
+      VOLSYNC_CAPACITY: 2Gi
+      VOLSYNC_UID: "2000"
+      VOLSYNC_GID: "2000"
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+    namespace: flux-system
+  targetNamespace: default
+  wait: false

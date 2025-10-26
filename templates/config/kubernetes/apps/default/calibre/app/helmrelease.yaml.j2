@@ -1,0 +1,69 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: calibre
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: calibre
+  interval: 1h
+  values:
+    controllers:
+      calibre:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          app:
+            image:
+              repository: ghcr.io/linuxserver/calibre
+              tag: 8.11.1@sha256:b009735abafca871ae8ed1e3c0b9ef237b351d96db99ec5a7581e9f4f79a114c
+            env:
+              TZ: Europe/London
+              TITLE: Calibre
+              PUID: 1000
+              PGID: 1000
+            probes:
+              liveness:
+                enabled: true
+              readiness:
+                enabled: true
+              startup:
+                enabled: true
+                spec:
+                  failureThreshold: 30
+                  periodSeconds: 5
+            resources:
+              requests:
+                cpu: 15m
+                memory: 604M
+              limits:
+                memory: 1024M
+    service:
+      app:
+        ports:
+          http:
+            port: 8080
+          web:
+            port: 8081
+    route:
+      app:
+        hostnames:
+          - "{{ .Release.Name }}.${SECRET_DOMAIN}"
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
+    persistence:
+      config:
+        existingClaim: "{{ .Release.Name }}"
+        globalMounts:
+          - path: /config
+      data:
+        type: nfs
+        server: unraid.kvshs.xyz
+        path: /mnt/user/data
+        globalMounts:
+          - path: /data
+      # tmp:
+      #   type: emptyDir
