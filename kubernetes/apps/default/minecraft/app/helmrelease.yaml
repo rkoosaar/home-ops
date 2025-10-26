@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: minecraft
+  name: &app minecraft
 spec:
   chartRef:
     kind: OCIRepository
@@ -151,7 +151,7 @@ spec:
             sectionName: https
     persistence:
       data:
-        existingClaim: "{{ .Release.Name }}"
+        existingClaim: *app
         advancedMounts:
           minecraft:
             app:
@@ -171,7 +171,6 @@ spec:
         globalMounts:
           - path: /data/config/Geyser-Fabric/config.yml
             subPath: config.yml
-      #       readOnly: true
       bluemap:
         type: persistentVolumeClaim
         size: 10Gi
