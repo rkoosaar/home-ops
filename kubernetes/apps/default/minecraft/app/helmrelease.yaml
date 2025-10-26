@@ -183,14 +183,17 @@ spec:
             subPath: config.yml
       #       readOnly: true
       bluemap:
-        name: minecraft-bluemap
         type: persistentVolumeClaim
-        size: 10Gi
-        accessMode: ReadWriteOnce
+        volumeSpec:
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 10Gi
+          # storageClassName: ceph-block
         advancedMounts:
-            minecraft:
-              app:
-                - path: /data/config/bluemap
+          minecraft:
+            app:
+              - path: /data/config/bluemap
       bluemap-config:
         type: configMap
         name: minecraft-bluemap
