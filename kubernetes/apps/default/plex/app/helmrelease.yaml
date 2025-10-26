@@ -8,7 +8,7 @@ spec:
   chartRef:
     kind: OCIRepository
     name: plex
-  interval: 15m
+  interval: 15h
   values:
     controllers:
       plex:
@@ -111,7 +111,7 @@ spec:
             readOnly: true
       tmp:
         type: emptyDir
-      # transcode:
-      #   type: emptyDir
-      #   globalMounts:
-      #     - path: /transcode
+      transcode:
+        type: emptyDir
+        globalMounts:
+          - path: /transcode

@@ -16,4 +16,4 @@ spec:
     name: barman-cloud.cloudnative-pg.io
     parameters:
       barmanObjectName: postgres-objectstore
-      serverName: postgres17-v3
+      serverName: postgres17-v4

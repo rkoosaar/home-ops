@@ -90,6 +90,7 @@ patches:
   - "@./patches/global/machine-sysctls.yaml"
   - "@./patches/global/machine-time.yaml"
   - "@./patches/global/machine-udev.yaml"
+  - "@./patches/global/watchdog.yaml"
 
 # Controller patches
 controlPlane:
