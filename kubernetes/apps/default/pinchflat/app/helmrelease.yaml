@@ -68,7 +68,7 @@ spec:
             sectionName: https
     persistence:
       config:
-        existingClaim: *app
+        existingClaim: "{{ .Release.Name }}"
       yt-dlp:
         type: emptyDir
         globalMounts:
