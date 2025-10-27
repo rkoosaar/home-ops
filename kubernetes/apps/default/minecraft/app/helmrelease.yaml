@@ -35,7 +35,7 @@ spec:
               TYPE: FABRIC
               FORCE_REDOWNLOAD:
               # renovate: depName=minecraft datasource=custom.minecraft versioning=semver-coerced
-              VERSION: 1.21.9
+              VERSION: 1.21.10
               MOTD: "RK - Forever Survival Minecraft Server"
               DIFFICULTY: normal
               SPAWN_PROTECTION: 0
