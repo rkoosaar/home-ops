@@ -183,14 +183,12 @@ spec:
             subPath: config.yml
       #       readOnly: true
       bluemap:
-        existingClaim: minecraft-bluemap
         type: persistentVolumeClaim
-        accessModes: ReadWriteOnce
-        size: 10Gi
+        existingClaim: minecraft-bluemap
         advancedMounts:
           minecraft:
             app:
-              - path: /data/config/bluemap
+              - path: /bluemap
       bluemap-config:
         type: configMap
         name: minecraft-bluemap
