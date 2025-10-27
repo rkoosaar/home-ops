@@ -19,7 +19,7 @@ resources:
   - ./jellyseerr/ks.yaml
   - ./kavita/ks.yaml
   - ./minecraft/ks.yaml
-  # - ./pinchflat/ks.yaml
+  - ./pinchflat/ks.yaml
   - ./navidrome/ks.yaml
   - ./plex/ks.yaml
   - ./prowlarr/ks.yaml
