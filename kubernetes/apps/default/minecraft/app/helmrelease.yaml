@@ -189,6 +189,10 @@ spec:
           minecraft:
             app:
               - path: /bluemap
+      bluemap-emptydir:
+        type: emptyDir
+        globalMounts:
+          - path: /data/config/bluemap
       bluemap-config:
         type: configMap
         name: minecraft-bluemap
