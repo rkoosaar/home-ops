@@ -1,0 +1,66 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: dispatcharr
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: dispatcharr
+  interval: 30m
+  values:
+    controllers:
+      dispatcharr:
+        pod:
+          hostUsers: false
+          resourceClaims:
+            - name: gpu
+              resourceClaimTemplateName: dispatcharr
+        containers:
+          app:
+            image:
+              repository: ghcr.io/dispatcharr/dispatcharr
+              tag: 0.11.1@sha256:894aa15b61a45d3238a66dc06411e684ced0d687453a5be21d10a81b12e476a3
+            env:
+              CELERY_BROKER_URL: redis://dragonfly.database.svc.cluster.local:6379/0
+              DISPATCHARR_ENV: aio
+              DISPATCHARR_LOG_LEVEL: info
+              DISPATCHARR_PORT: &port 9191
+              REDIS_HOST: dragonfly.database.svc.cluster.local
+            resources:
+              claims:
+                - name: gpu
+              requests:
+                cpu: 50m
+                memory: 1Gi
+              limits:
+                memory: 3Gi
+    service:
+      app:
+        ports:
+          http:
+            appProtocol: kubernetes.io/wss
+            port: *port
+    persistence:
+      data:
+        existingClaim: "{{ .Release.Name }}"
+        advancedMounts:
+          dispatcharr:
+            app:
+              - path: /data
+                subPath: data
+      tmpfs:
+        type: emptyDir
+        advancedMounts:
+          dispatcharr:
+            app:
+              - path: /tmp
+                subPath: tmp
+    route:
+      app:
+        hostnames:
+          - "{{ .Release.Name }}.${SECRET_DOMAIN}"
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
