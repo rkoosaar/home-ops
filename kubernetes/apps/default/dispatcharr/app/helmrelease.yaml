@@ -12,11 +12,6 @@ spec:
   values:
     controllers:
       dispatcharr:
-        pod:
-          hostUsers: false
-          resourceClaims:
-            - name: gpu
-              resourceClaimTemplateName: dispatcharr
         containers:
           app:
             image:
@@ -36,6 +31,17 @@ spec:
                 memory: 1Gi
               limits:
                 memory: 3Gi
+    defaultPodOptions:
+      resourceClaims:
+        - name: gpu
+          resourceClaimTemplateName: dispatcharr
+      automountServiceAccountToken: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 100
+        fsGroup: 100
+        fsGroupChangePolicy: OnRootMismatch
     service:
       app:
         ports:
