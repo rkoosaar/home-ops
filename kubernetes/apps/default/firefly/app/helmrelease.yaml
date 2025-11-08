@@ -28,7 +28,7 @@ spec:
           app:
             image:
               repository: docker.io/fireflyiii/core
-              tag: version-6.2.9@sha256:769565d8d8ac568d7afc30c69c8d5e8321abcdd69923e1d762dbb4e1b8e2ff10
+              tag: 6.2.21@sha256:b7b0fca5430446c1c90a0918e28f5816ea9d58b9f65f43c866ad983c96b223b9
             env:
               TZ: Europe/London
               APP_DEBUG: true
