@@ -14,16 +14,16 @@
       overridePackageName: "ghcr.io/siderolabs/installer",
     },
     {
-      description: "FireflyIII (core + data-importer): stable semver only, keep digests",
+      description: "FireflyIII (core + data-importer): stable-only version-x.y.z; update tag (+ digest)",
       matchDatasources: ["docker"],
       matchPackagePatterns: ["^(?:docker\\.io/)?fireflyiii/(core|data-importer)$"],
 
-      // Turn 'version-6.2.10' into '6.2.10'
+      // Only look at tags that literally start with 'version-' and are x.y.z
+      allowedTags: "^version-\\d+\\.\\d+\\.\\d+$",
+
+      // Convert 'version-6.2.10' -> '6.2.10' so semver comparison works
       extractVersion: "^version-(?<version>\\d+\\.\\d+\\.\\d+)$",
       versioning: "semver",
-
-      // IMPORTANT: this applies to the *extracted* version
-      allowedVersions: "^\\d+\\.\\d+\\.\\d+$",
 
       // Keep digest pinning (Renovate will refresh it on tag bumps)
       pinDigests: true
