@@ -20,7 +20,7 @@ spec:
           init-db:
             image:
               repository: ghcr.io/rkoosaar/postgres-init
-              tag: 16
+              tag: 17
             envFrom: &envFrom
               - secretRef:
                   name: firefly-secret
