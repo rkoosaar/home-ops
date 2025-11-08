@@ -13,21 +13,5 @@
       matchPackageNames: ["/factory\\.talos\\.dev/"],
       overridePackageName: "ghcr.io/siderolabs/installer",
     },
-    {
-      description: "FireflyIII (core + data-importer): stable tags only; tag includes optional @sha256",
-      matchDatasources: ["docker"],
-      matchPackagePatterns: ["^(?:docker\\.io/)?fireflyiii/(core|data-importer)$"],
-
-      // // Extract just the numeric part before any @sha256…
-      // extractVersion: "^version-(?<version>\\d+\\.\\d+\\.\\d+)(?:@sha256:[a-f0-9]{64})?$",
-      // versioning: "semver",
-
-      // // Only consider stable 'version-x.y.z' tags published by the registry
-      // // (registry tags never include the digest)
-      // allowedVersions: "^version-\\d+\\.\\d+\\.\\d+$",
-
-      // // Keep digest pinning (Renovate will refresh the digest when tag bumps)
-      // pinDigests: true
-    },
   ],
 }

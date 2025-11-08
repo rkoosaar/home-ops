@@ -29,5 +29,31 @@
       ],
       datasourceTemplate: "docker",
     },
+    {
+      "customType": "regex",
+      "description": "FireflyIII (core & data-importer) tag@digest in HelmRelease",
+      "managerFilePatterns": ["/\\.ya?ml(?:\\.j2)?$/"],
+      "matchStrings": [
+        // Match the repo and tag line within the same YAML block
+        // Captures:
+        //   depName  -> docker.io/fireflyiii/core | docker.io/fireflyiii/data-importer (or without docker.io/)
+        //   currentValue -> version-x.y.z@sha256:....
+        "repository:\\s*(?<depName>(?:docker\\.io/)?fireflyiii/(?:core|data-importer))\\s*[\\s\\S]*?\\ntag:\\s*(?<currentValue>version-\\d+\\.\\d+\\.\\d+@sha256:[a-f0-9]{64})"
+      ],
+      "datasourceTemplate": "docker",
+      // Interpret version-6.2.27 as semver (6.2.27)
+      "extractVersionTemplate": "^version-(?<version>\\d+\\.\\d+\\.\\d+)$",
+      "versioningTemplate": "semver",
+
+      // Only accept stable "version-x.y.z" tags
+      "allowedVersionsTemplate": "^version-\\d+\\.\\d+\\.\\d+$",
+
+      // Rewrite the whole matched `tag:` part with the new version and digest
+      // NOTE: autoReplaceStringTemplate replaces the ENTIRE regex match.
+      // We therefore re-emit both the literal 'tag:' and the new value.
+      "autoReplaceStringTemplate": "tag: version-{{{newVersion}}}@{{{newDigest}}}"
+    },
   ],
 }
+
+
