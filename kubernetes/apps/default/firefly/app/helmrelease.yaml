@@ -28,7 +28,7 @@ spec:
           app:
             image:
               repository: ghcr.io/rkoosaar/firefly-iii
-              tag: 6.4.5@sha256:fd278fb604c3bcf67409f06b6848e3268ae15a6684eda1c6225b84d768b83a80
+              tag: v6.4.8@sha256:39033f94d3ed16eeb9047cbeca6ae40dc129c50794556d261b6698b3c5985481
             env:
               TZ: Europe/London
               APP_DEBUG: true
