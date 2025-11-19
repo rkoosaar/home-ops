@@ -79,7 +79,7 @@ spec:
             resources:
               requests:
                 cpu: 600m
-                memory: 400Mi
+                memory: 600Mi
               limits:
                 memory: 10Gi
             securityContext:
@@ -182,7 +182,6 @@ spec:
         globalMounts:
           - path: /data/config/Geyser-Fabric/config.yml
             subPath: config.yml
-            readOnly: true
       bluemap:
         type: persistentVolumeClaim
         existingClaim: minecraft-bluemap
@@ -221,17 +220,3 @@ spec:
           - path: /etc/playit/playit.toml
             subPath: playit.toml
             readOnly: true
-      # mc-whitelist:
-      #   type: configMap
-      #   name: minecraft-whitelist
-      #   globalMounts:
-      #     - path: /data/whitelist.json
-      #       subPath: whitelist.json
-      #       readOnly: true
-      # mc-ops:
-      #   type: configMap
-      #   name: minecraft-ops
-      #   globalMounts:
-      #     - path: /data/ops.json
-      #       subPath: ops.json
-      #       readOnly: true
