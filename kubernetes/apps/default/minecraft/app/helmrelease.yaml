@@ -165,24 +165,25 @@ spec:
     persistence:
       data:
         existingClaim: *app
-        advancedMounts:
-          minecraft:
-            app:
-              - path: /data
-      fabricexporter-config:
-        type: emptyDir
-        globalMounts:
-          - path: /data/config
-      geyser-emptydir:
-        type: emptyDir
-        globalMounts:
-          - path: /data/config/Geyser-Fabric
+        # advancedMounts:
+        #   minecraft:
+        #     app:
+        #       - path: /data
+      # fabricexporter-config:
+      #   type: emptyDir
+      #   globalMounts:
+      #     - path: /data/config
+      # geyser-emptydir:
+      #   type: emptyDir
+      #   globalMounts:
+      #     - path: /data/config/Geyser-Fabric
       geyser:
         type: configMap
         name: geyser-configmap
         globalMounts:
           - path: /data/config/Geyser-Fabric/config.yml
             subPath: config.yml
+            readOnly: true
       bluemap:
         type: persistentVolumeClaim
         existingClaim: minecraft-bluemap

@@ -54,7 +54,7 @@ remote:
   # Authentication type. Can be offline, online, or floodgate (see https://github.com/GeyserMC/Geyser/wiki/Floodgate).
   # For plugin versions, it's recommended to keep the `address` field to "auto" so Floodgate support is automatically configured.
   # If Floodgate is installed and `address:` is set to "auto", then "auth-type: floodgate" will automatically be used.
-  auth-type: floodgate
+  auth-type: online
   # Allow for password-based authentication methods through Geyser. Only useful in online mode.
   # If this is false, users must authenticate to Microsoft using a code provided by Geyser on their desktop.
   allow-password-authentication: true
@@ -107,7 +107,7 @@ ping-passthrough-interval: 3
 forward-player-ping: false
 
 # Maximum amount of players that can connect. This is only visual at this time and does not actually limit player count.
-max-players: 20
+max-players: 10
 
 # If debug messages should be sent through console
 debug-mode: false
