@@ -72,7 +72,7 @@ spec:
               #ENFORCE_WHITELIST: "true"
               #ONLINE_MODE: "false"
               EXISTING_WHITELIST_FILE: "MERGE"
-              WHITELIST: "RicK99274,.RicK99274"
+              WHITELIST: "RicK99274,.RicK99274,.Michito279"
             envFrom:
               - secretRef:
                   name: minecraft-secret
