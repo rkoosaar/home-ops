@@ -172,10 +172,10 @@ spec:
         type: emptyDir
         globalMounts:
           - path: /data/config
-      geyser-emptydir:
-        type: emptyDir
-        globalMounts:
-          - path: /data/config/Geyser-Fabric
+      # geyser-emptydir:
+      #   type: emptyDir
+      #   globalMounts:
+      #     - path: /data/config/Geyser-Fabric
       geyser:
         type: configMap
         name: geyser-configmap
