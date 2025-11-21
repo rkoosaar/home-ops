@@ -27,7 +27,7 @@ resources:
   - ./recyclarr/ks.yaml
   - ./redlib/ks.yaml
   - ./sabnzbd/ks.yaml
-  #- ./searxng/ks.yaml
+  - ./searxng/ks.yaml
   - ./seerr/ks.yaml
   - ./sonarr/ks.yaml
   - ./tautulli/ks.yaml
