@@ -1,36 +1,79 @@
 ---
 use_default_settings: true
 
+engine:
+  - name: bing
+    disabled: false
+
 server:
   limiter: true
   image_proxy: true
-  method: GET # https://github.com/searxng/searxng/pull/3619
+  method: "GET"
+  public_instance: true
 
-redis:
-  url: redis://dragonfly.database.svc.cluster.local:6379?db=10
+valkey:
+  url: redis://dragonfly.database.svc.cluster.local/15
+
+# redis:
+#   url: redis://dragonfly.database.svc.cluster.local:6379?db=10
 
 search:
   autocomplete: duckduckgo
+  favicon_resolver: duckduckgo
+  languages:
+    - en
+    - en-US
+    - all
+  formats:
+    - html
+    - json
 
 general:
-  instance_name: KVShs Search
+  #instance_name: ${SECRET_DOMAIN} Search
+  enable_metrics: false
 
 ui:
-  static_use_hash: true
   default_theme: simple
-  theme_args:
-    simple_style: dark
   infinite_scroll: true
+  query_in_title: true
   results_on_new_tab: true
+  static_use_hash: true
+  theme_args:
+    simple_style: auto
 
-enabled_plugins:
-  - Basic Calculator
-  - Hash plugin
-  - Hostnames plugin
-  - Open Access DOI rewrite
-  - Self Informations
-  - Tracker URL remover
-  - Unit converter plugin
+# categories_as_tabs:
+#   general:
+#   images:
+#   videos:
+#   map:
+
+plugins:
+  searx.plugins.calculator.SXNGPlugin:
+    active: true
+
+  searx.plugins.hash_plugin.SXNGPlugin:
+    active: true
+
+  searx.plugins.self_info.SXNGPlugin:
+    active: true
+
+  searx.plugins.tracker_url_remover.SXNGPlugin:
+    active: true
+
+  searx.plugins.unit_converter.SXNGPlugin:
+    active: true
+
+  searx.plugins.ahmia_filter.SXNGPlugin:
+    active: true
+
+  searx.plugins.hostnames.SXNGPlugin:
+    active: true
+
+  searx.plugins.oa_doi_rewrite.SXNGPlugin:
+    active: true
+
+  searx.plugins.tor_check.SXNGPlugin:
+    active: false
 
 hostnames:
   high_priority:
@@ -44,6 +87,7 @@ hostnames:
     - (.*\.)?stackoverflow.com$
     - (.*\.)?askubuntu.com$
     - (.*\.)?superuser.com$
+    - (.*\.)?wiki.*\..*$
   replace:
     (www\.)?reddit\.com$: redlib.kvshs.xyz
   remove:
