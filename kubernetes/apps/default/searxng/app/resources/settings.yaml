@@ -11,8 +11,8 @@ server:
   method: "GET"
   public_instance: true
 
-valkey:
-  url: valkey://dragonfly.database.svc.cluster.local:6379/10
+# valkey:
+#   url: valkey://dragonfly.database.svc.cluster.local:6379/10
 
 search:
   autocomplete: duckduckgo
