@@ -1,0 +1,44 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/kustomization-kustomize-v1.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: &app forgejo
+  namespace: &namespace gitea
+spec:
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *app
+  components:
+    - ../../../../components/oidc
+    - ../../../../components/volsync
+    - ../../../../components/database
+    - ../../../../components/dragonfly
+    - ../../../../components/gatus/external
+  dependsOn:
+    - name: volsync
+      namespace: volsync-system
+  interval: 1h
+  path: ./kubernetes/apps/gitea/forgejo/app
+  postBuild:
+    substitute:
+      APP: *app
+      NAMESPACE: *namespace
+      SUBDOMAIN: git
+      OIDC_DISPLAY_NAME: Forgejo
+      OIDC_CALLBACK: /user/oauth2/kanidm/callback
+      OIDC_DISABLE_PKCE: "true"
+      OIDC_SCOPES: '["openid", "profile", "email", "groups", "ssh_publickeys"]'
+      OIDC_CLIENT_ID_KEY: key
+      OIDC_CLIENT_SECRET_KEY: secret
+    substituteFrom:
+      - name: cluster-secrets
+        kind: Secret
+  prune: true
+  retryInterval: 2m
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+    namespace: flux-system
+  targetNamespace: *namespace
+  timeout: 5m
