@@ -13,7 +13,7 @@ server:
 
 valkey:
   # url: "redis://dragonfly.database.svc.cluster.local:6379/10"
-  url: redis://dragonfly.database.svc.cluster.local:6379?db=10
+  url: valkey://dragonfly.database.svc.cluster.local:6379/10
 
 search:
   autocomplete: duckduckgo
