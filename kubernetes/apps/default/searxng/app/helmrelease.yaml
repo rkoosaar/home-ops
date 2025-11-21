@@ -96,6 +96,8 @@ spec:
                 subPath: settings.yml
               - path: /etc/searxng/limiter.toml
                 subPath: limiter.toml
+              - path: /etc/searxng/favicons.toml
+                subPath: favicons.toml
       tmp:
         type: emptyDir
         advancedMounts:
