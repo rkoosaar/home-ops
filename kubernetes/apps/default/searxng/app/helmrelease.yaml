@@ -22,9 +22,8 @@ spec:
               repository: ghcr.io/searxng/searxng
               tag: 2025.11.21-b876d0bed@sha256:6e1e739e0d96d08ed8819f4c72c92c37e0f6b6be8f9e41d5ff5298ebc28e6842
             command:
-              - /usr/local/searxng/venv/bin/uwsgi
-              - --master
-              - /usr/local/searxng/.template/uwsgi.ini
+              - /usr/local/searxng/.venv/bin/granian
+              - searx.webapp:app
             env:
               BASE_URL: https://search.${SECRET_DOMAIN}
               UWSGI_WORKERS: "1"
