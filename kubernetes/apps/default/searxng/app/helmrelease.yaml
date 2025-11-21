@@ -26,7 +26,6 @@ spec:
               - searx.webapp:app
             env:
               BASE_URL: https://search.${SECRET_DOMAIN}
-              UWSGI_WORKERS: "1"
             envFrom:
               - secretRef:
                   name: searxng-secret
@@ -51,14 +50,15 @@ spec:
               capabilities:
                 drop:
                   - ALL
-                add:
-                  - CHOWN
-                  - SETGID
-                  - SETUID
-                  - DAC_OVERRIDE
+                # add:
+                #   - CHOWN
+                #   - SETGID
+                #   - SETUID
+                #   - DAC_OVERRIDE
             resources:
               requests:
                 cpu: 10m
+                memory: 256Mi
               limits:
                 memory: 3Gi
     pod:
