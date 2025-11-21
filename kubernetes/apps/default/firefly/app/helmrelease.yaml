@@ -31,15 +31,18 @@ spec:
               tag: v6.4.8@sha256:39033f94d3ed16eeb9047cbeca6ae40dc129c50794556d261b6698b3c5985481
             env:
               TZ: Europe/London
-              APP_DEBUG: true
               APP_ENV: "production"
-              APP_LOG_LEVEL: debug
-              LOG_CHANNEL: stack
+              APP_DEBUG: "false"
+              LOG_CHANNEL: "stdout"
+              APP_LOG_LEVEL: "notice"
+              DEFAULT_LANGUAGE: "en_GB"
+              DEFAULT_LOCALE: "equal"
               APP_URL: "https://{{ .Release.Name }}.${SECRET_DOMAIN}"
+              TRUSTED_PROXIES: "*" # TODO: This should be changed..
+
               VIRTUAL_HOST: firefly.default.svc.cluster.local
               VIRTUAL_PORT: 8080
               MAIL_MAILER: log
-              TRUSTED_PROXIES: "*" # TODO: This should be changed..
               SEND_REGISTRATION_MAIL: false
               SEND_ERROR_MESSAGE: false
               SEND_LOGIN_NEW_IP_WARNING: false
