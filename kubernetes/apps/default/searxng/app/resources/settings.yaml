@@ -11,11 +11,8 @@ server:
   method: "GET"
   public_instance: true
 
-valkey:
-  url: redis://dragonfly.database.svc.cluster.local/15
-
-# redis:
-#   url: redis://dragonfly.database.svc.cluster.local:6379?db=10
+redis:
+  url: redis://dragonfly.database.svc.cluster.local:6379?db=15
 
 search:
   autocomplete: duckduckgo
