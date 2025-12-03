@@ -6,5 +6,5 @@ namespace: security
 components:
   - ../../components/alerts
 resources:
-  # - ./namespace.yaml
+  - ./namespace.yaml
   # - ./kanidm/ks.yaml
