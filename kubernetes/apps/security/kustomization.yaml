@@ -9,7 +9,3 @@ components:
 resources:
   - ./namespace.yaml
   - ./kanidm/ks.yaml
-configMapGenerator:
-  - name: kanidm-configmap
-    files:
-      - server.toml=./resources/server.toml
