@@ -92,7 +92,7 @@ spec:
           app:
             image:
               repository: ghcr.io/rkoosaar/kanidm-provision
-              tag: 1.3.0@sha256:f49b2e579d828702b1c00fb1f71f9b02c3e3394370585d10d0c21c4323965636
+              tag: 1.3.0@sha256:93e19148cf8dde177966d5be982cb10d177c07670865ad97f81ea77db48ebe9b
             env:
               KANIDM_INSTANCE: "https://idm.${SECRET_DOMAIN}"
             envFrom:
