@@ -12,7 +12,8 @@ spec:
     name: letsencrypt-production
   privateKey:
     algorithm: ECDSA
-    size: 384
+    #size: 384
+    size: 256
   secretName: *name
   usages:
     - digital signature
