@@ -35,15 +35,15 @@ spec:
               - secretRef:
                   name: "{{ .Release.Name }}-secret"
             resources:
-              claims:
-                - name: gpu
+              # claims:
+              #   - name: gpu
               requests:
                 cpu: 1000m
 
-    defaultPodOptions:
-      resourceClaims:
-        - name: gpu
-          resourceClaimTemplateName: neko
+    # defaultPodOptions:
+    #   resourceClaims:
+    #     - name: gpu
+    #       resourceClaimTemplateName: neko
 
     service:
       app:
