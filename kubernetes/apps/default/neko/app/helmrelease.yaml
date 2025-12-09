@@ -36,7 +36,7 @@ spec:
                   name: "{{ .Release.Name }}-secret"
             resources:
               requests:
-                cpu: 10m
+                cpu: 1000m
 
     service:
       app:
