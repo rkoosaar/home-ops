@@ -99,9 +99,9 @@ spec:
         #        kind: TLSRoute
         hostnames: [ "idm.${SECRET_DOMAIN}" ]
         parentRefs:
-          - name: envoy-external
-            namespace: network
-            sectionName: https
+          # - name: envoy-external
+          #   namespace: network
+          #   sectionName: https
           - name: envoy-internal
             namespace: network
             sectionName: https
