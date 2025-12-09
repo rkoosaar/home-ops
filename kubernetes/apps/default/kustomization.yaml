@@ -15,12 +15,12 @@ resources:
   - ./calibre-web/ks.yaml
   - ./ersatztv/ks.yaml
   - ./firefly/ks.yaml
-  #- ./fusion/ks.yaml
   - ./it-tools/ks.yaml
   - ./kavita/ks.yaml
   - ./minecraft/ks.yaml
   - ./pinchflat/ks.yaml
   - ./navidrome/ks.yaml
+  - ./neko/ks.yaml
   - ./plex/ks.yaml
   - ./prowlarr/ks.yaml
   - ./radarr/ks.yaml
@@ -33,6 +33,8 @@ resources:
   - ./tautulli/ks.yaml
   - ./dispatcharr/ks.yaml
 
+
+  #- ./fusion/ks.yaml
   # - ./threadfin/ks.yaml
   #- ./xteve/ks.yaml
   #- ./romm/ks.yaml
