@@ -94,10 +94,10 @@ spec:
       #           readOnly: true
       profile:
         existingClaim: "{{ .Release.Name }}"
-        # advancedMounts:
-        #   neko:
-        #     app:
-        #       - path: /home/neko/.mozilla/firefox/profile.default
+        advancedMounts:
+          neko:
+            app:
+              - path: /home/neko/.mozilla/firefox/profile.default
       # dri:
       #   type: hostPath
       #   hostPath: /dev/dri
