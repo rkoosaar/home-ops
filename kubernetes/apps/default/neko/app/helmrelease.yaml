@@ -28,8 +28,8 @@ spec:
               NEKO_TCPMUX: &mux "5101"
               NEKO_UDPMUX: *mux
               NEKO_ICELITE: "true"
-              # NEKO_NAT1TO1: 10.1.1.48
-              NEKO_NAT1TO1: 0.0.0.0
+              NEKO_NAT1TO1: 10.1.1.48
+              #NEKO_NAT1TO1: 0.0.0.0
               NEKO_SESSION_HEARTBEAT_INTERVAL: 30
             envFrom:
               - secretRef:
