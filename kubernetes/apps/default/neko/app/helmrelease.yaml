@@ -19,8 +19,8 @@ spec:
         containers:
           app:
             image:
-              # repository: ghcr.io/m1k1o/neko/intel-firefox
-              repository: ghcr.io/m1k1o/neko/firefox
+              repository: ghcr.io/m1k1o/neko/intel-firefox
+              #repository: ghcr.io/m1k1o/neko/firefox
               tag: "3.0.8"
             env:
               NEKO_DESKTOP_SCREEN: 1280x720@30
@@ -29,7 +29,6 @@ spec:
               NEKO_WEBRTC_UDPMUX: *mux
               NEKO_WEBRTC_ICELITE: "true"
               NEKO_WEBRTC_NAT1TO1: 10.1.1.48
-              #NEKO_WEBRTC_NAT1TO1: 0.0.0.0
               NEKO_SESSION_HEARTBEAT_INTERVAL: 30
             envFrom:
               - secretRef:
@@ -91,9 +90,9 @@ spec:
           neko:
             app:
               - path: /home/neko/.mozilla/firefox/profile.default
-      dri:
-        type: hostPath
-        hostPath: /dev/dri
-      shm:
-        type: hostPath
-        hostPath: /dev/shm
+      # dri:
+      #   type: hostPath
+      #   hostPath: /dev/dri
+      # shm:
+      #   type: hostPath
+      #   hostPath: /dev/shm
