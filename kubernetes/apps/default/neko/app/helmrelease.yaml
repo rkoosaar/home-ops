@@ -83,21 +83,21 @@ spec:
         #       backendRequest: 14400s
 
     persistence:
-      config:
-        type: configMap
-        name: neko-firefox-configmap
-        advancedMounts:
-          neko:
-            app:
-              - path: /usr/lib/firefox/distribution/policies.json
-                subPath: policies.json
-                readOnly: true
+      # config:
+      #   type: configMap
+      #   name: neko-firefox-configmap
+      #   advancedMounts:
+      #     neko:
+      #       app:
+      #         - path: /usr/lib/firefox/distribution/policies.json
+      #           subPath: policies.json
+      #           readOnly: true
       profile:
         existingClaim: "{{ .Release.Name }}"
-        advancedMounts:
-          neko:
-            app:
-              - path: /home/neko/.mozilla/firefox/profile.default
+        # advancedMounts:
+        #   neko:
+        #     app:
+        #       - path: /home/neko/.mozilla/firefox/profile.default
       # dri:
       #   type: hostPath
       #   hostPath: /dev/dri
