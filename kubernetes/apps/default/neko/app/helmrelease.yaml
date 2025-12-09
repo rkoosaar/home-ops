@@ -33,7 +33,7 @@ spec:
               NEKO_SESSION_HEARTBEAT_INTERVAL: 30
             envFrom:
               - secretRef:
-                  name: neko-secret
+                  name: "{{ .Release.Name }}-secret"
             resources:
               requests:
                 cpu: 10m
