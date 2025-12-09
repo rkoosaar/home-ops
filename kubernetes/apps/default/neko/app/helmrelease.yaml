@@ -86,7 +86,7 @@ spec:
                 subPath: policies.json
                 readOnly: true
       profile:
-        existingClaim: neko-firefox-profile
+        existingClaim: "{{ .Release.Name }}"
         advancedMounts:
           neko:
             app:
