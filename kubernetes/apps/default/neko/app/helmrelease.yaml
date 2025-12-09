@@ -80,7 +80,7 @@ spec:
         type: configMap
         name: neko-firefox-configmap
         advancedMounts:
-          neko:
+          app:
             app:
               - path: /usr/lib/firefox/distribution/policies.json
                 subPath: policies.json
