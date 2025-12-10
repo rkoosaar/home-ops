@@ -96,7 +96,6 @@ spec:
         #   neko:
         #     app:
         #       - path: /home/neko/.mozilla/firefox/profile.default
-                        /home/neko/.mozilla/firefox/profile.default
 
       # dri:
       #   type: hostPath
