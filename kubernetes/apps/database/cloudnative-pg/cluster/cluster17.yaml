@@ -16,7 +16,7 @@ spec:
   enableSuperuserAccess: true
   postgresql:
     parameters:
-      max_connections: "400"
+      max_connections: "200"
       shared_buffers: 512MB
       huge_pages: "on"
     shared_preload_libraries:
@@ -27,8 +27,9 @@ spec:
   resources:
     requests:
       cpu: 500m
+      memory: 1Gi
     limits:
-      memory: 4Gi
+      memory: 2Gi
       hugepages-2Mi: 2Gi
   monitoring:
     enablePodMonitor: true
