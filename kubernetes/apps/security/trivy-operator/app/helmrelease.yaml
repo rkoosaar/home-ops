@@ -10,11 +10,16 @@ spec:
     kind: OCIRepository
     name: *app
   values:
-    serviceMonitor:
-      enabled: true
+    operator:
+      builtInTrivyServer: true
     trivy:
+      slow: true # flag is to use less CPU/memory for scanning though it takes more time than normal scanning
       ignoreUnfixed: true
     service:
       headless: false
-    operator:
-      builtInTrivyServer: true
+    # https://github.com/aquasecurity/trivy-operator/issues/2202
+    nodeCollector:
+      useNodeSelector: false
+      excludeNodes: kubernetes.io/arch=amd64
+    serviceMonitor:
+      enabled: true
