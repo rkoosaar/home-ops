@@ -68,19 +68,19 @@ spec:
     namespace: flux-system
   targetNamespace: *namespace
   timeout: 5m
-# ---
-# # yaml-language-server: $schema=https://my-kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
-# apiVersion: kustomize.toolkit.fluxcd.io/v1
-# kind: Kustomization
-# metadata:
-#   name: kanidm-tools
-# spec:
-#   interval: 1h
-#   path: ./kubernetes/apps/security/kanidm/tools
-#   prune: true
-#   sourceRef:
-#     kind: GitRepository
-#     name: flux-system
-#     namespace: flux-system
-#   targetNamespace: security
-#   wait: false
+---
+# yaml-language-server: $schema=https://my-kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: kanidm-tools
+spec:
+  interval: 1h
+  path: ./kubernetes/apps/security/kanidm/tools
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+    namespace: flux-system
+  targetNamespace: security
+  wait: false
