@@ -23,3 +23,12 @@ spec:
               TZ: Europe/London
             command:
               - /bin/sh
+            args:
+              - -c
+              - |
+                echo "Kanidm tools toolbox pod starting..."
+                # trap SIGTERM/SIGINT so K8s can stop cleanly
+                trap 'exit 0' TERM INT
+                while :; do
+                  sleep 3600
+                done
