@@ -1,0 +1,77 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kanidm-tools
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: kanidm-tools
+  interval: 1h
+  values:
+    controllers:
+      kanidm-tools:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          app:
+            image:
+              repository: kanidm/tools
+              tag: 1.8.3@sha256:5eeb5acba318c3a78e5fcc08bbd1efd016c3226789815f5c112477e0ae6a513f
+            env:
+              TZ: Europe/London
+            # probes:
+            #   liveness: &probes
+            #     enabled: true
+            #     custom: true
+            #     spec:
+            #       httpGet:
+            #         path: /health
+            #         port: *port
+            #       initialDelaySeconds: 0
+            #       periodSeconds: 10
+            #       timeoutSeconds: 1
+            #       failureThreshold: 3
+            #   readiness: *probes
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: {drop: ["ALL"]}
+            resources:
+              requests:
+                cpu: 10m
+              limits:
+                memory: 256Mi
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 100
+        fsGroup: 100
+        fsGroupChangePolicy: OnRootMismatch
+    # service:
+    #   app:
+    #     ports:
+    #       http:
+    #         port: *port
+    # route:
+    #   app:
+    #     hostnames:
+    #       - "{{ .Release.Name }}.${SECRET_DOMAIN}"
+    #     parentRefs:
+    #       - name: envoy-internal
+    #         namespace: network
+    #         sectionName: https
+    # persistence:
+    #   config:
+    #     existingClaim: "{{ .Release.Name }}"
+    #   data:
+    #     type: nfs
+    #     server: unraid.kvshs.xyz
+    #     path: /mnt/user/data
+    #     globalMounts:
+    #       - path: /data
+    #   tmp:
+    #     type: emptyDir
+
