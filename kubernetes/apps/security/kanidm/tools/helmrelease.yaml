@@ -21,6 +21,8 @@ spec:
               tag: 1.8.3@sha256:5eeb5acba318c3a78e5fcc08bbd1efd016c3226789815f5c112477e0ae6a513f
             env:
               TZ: Europe/London
+            command:
+              - /bin/sh
             # probes:
             #   liveness: &probes
             #     enabled: true
