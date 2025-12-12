@@ -3,7 +3,7 @@
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
 metadata:
-  name: VolSync
+  name: volsync
 spec:
   allowCrossNamespaceImport: true
   instanceSelector:
