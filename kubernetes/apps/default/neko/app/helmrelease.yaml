@@ -128,3 +128,9 @@ spec:
       # shm:
       #   type: hostPath
       #   hostPath: /dev/shm
+      data:
+        type: nfs
+        server: unraid.kvshs.xyz
+        path: /mnt/user/data
+        globalMounts:
+          - path: /data
