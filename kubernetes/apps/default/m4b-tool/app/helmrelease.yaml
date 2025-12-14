@@ -23,7 +23,7 @@ spec:
         containers:
           app:
             image:
-              repository: sandreas/m4b-tool
+              repository: docker.io/sandreas/m4b-tool
               tag: 0.5.2@sha256:3154399019ed6a2d26fd477f71a1367e4c60e605d0188699028ad3444afd3c70
             command: ["/bin/sh", "-lc"]
             args:
