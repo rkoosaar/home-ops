@@ -42,26 +42,26 @@ spec:
                 cpu: "2"
                 memory: 2Gi
 
-          gluetun:
-            image:
-              repository: ghcr.io/qdm12/gluetun
-              tag: latest
-            securityContext:
-              capabilities:
-                add:
-                  - NET_ADMIN
-            env:
-              VPN_SERVICE_PROVIDER: nordvpn
-              VPN_TYPE: wireguard
-              SERVER_COUNTRIES: Netherlands
-              #FIREWALL: "off"
-              FIREWALL_DEBUG: "on"
-              FIREWALL_OUTBOUND_SUBNETS: "10.1.2.0/24,10.1.1.0/24,10.42.0.0/16,10.43.0.0/16"
-              FIREWALL_INPUT_PORTS: 8080,5101
-              LOG_LEVEL: info
-            envFrom:
-              - secretRef:
-                  name: "{{ .Release.Name }}-secret"
+          # gluetun:
+          #   image:
+          #     repository: ghcr.io/qdm12/gluetun
+          #     tag: latest
+          #   securityContext:
+          #     capabilities:
+          #       add:
+          #         - NET_ADMIN
+          #   env:
+          #     VPN_SERVICE_PROVIDER: nordvpn
+          #     VPN_TYPE: wireguard
+          #     SERVER_COUNTRIES: Netherlands
+          #     #FIREWALL: "off"
+          #     FIREWALL_DEBUG: "on"
+          #     FIREWALL_OUTBOUND_SUBNETS: "10.1.2.0/24,10.1.1.0/24,10.42.0.0/16,10.43.0.0/16"
+          #     FIREWALL_INPUT_PORTS: 8080,5101
+          #     LOG_LEVEL: info
+          #   envFrom:
+          #     - secretRef:
+          #         name: "{{ .Release.Name }}-secret"
     # defaultPodOptions:
     #   resourceClaims:
     #     - name: gpu
