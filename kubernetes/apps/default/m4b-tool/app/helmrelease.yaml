@@ -36,26 +36,13 @@ spec:
             resources:
               requests:
                 cpu: 5m
-                memory: 32Mi
+                memory: 512Mi
               limits:
-                memory: 1Gi
+                memory: 2Gi
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
               capabilities: {drop: ["ALL"]}
-    # service:
-    #   app:
-    #     ports:
-    #       http:
-    #         port: 8080
-    # route:
-    #   app:
-    #     hostnames:
-    #       - "{{ .Release.Name }}.${SECRET_DOMAIN}"
-    #     parentRefs:
-    #       - name: envoy-external
-    #         namespace: network
-    #         sectionName: https
     persistence:
       tmp:
         type: emptyDir
