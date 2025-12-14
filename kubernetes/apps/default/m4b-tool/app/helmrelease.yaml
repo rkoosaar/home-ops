@@ -1,0 +1,68 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: m4b-tool
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: m4b-tool
+  interval: 1h
+  values:
+    controllers:
+      m4b-tool:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        pod:
+          securityContext:
+            runAsUser: 1000
+            runAsGroup: 100
+            fsGroup: 100
+            fsGroupChangePolicy: "OnRootMismatch"
+        containers:
+          app:
+            image:
+              repository: sandreas/m4b-tool
+              tag: 0.5.2@sha256:3154399019ed6a2d26fd477f71a1367e4c60e605d0188699028ad3444afd3c70
+            command: ["/bin/sh", "-lc"]
+            args:
+              - |
+                echo "m4b-tool toolbox pod running"
+                echo "Try: m4b-tool --version"
+                sleep infinity
+            env:
+              TZ: Europe/London
+            resources:
+              requests:
+                cpu: 5m
+                memory: 32Mi
+              limits:
+                memory: 1Gi
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: {drop: ["ALL"]}
+    # service:
+    #   app:
+    #     ports:
+    #       http:
+    #         port: 8080
+    # route:
+    #   app:
+    #     hostnames:
+    #       - "{{ .Release.Name }}.${SECRET_DOMAIN}"
+    #     parentRefs:
+    #       - name: envoy-external
+    #         namespace: network
+    #         sectionName: https
+    persistence:
+      tmp:
+        type: emptyDir
+
+      data:
+        type: nfs
+        server: unraid.kvshs.xyz
+        path: /mnt/user/data
+        globalMounts:
+          - path: /data

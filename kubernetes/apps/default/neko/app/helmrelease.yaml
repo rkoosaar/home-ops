@@ -125,12 +125,6 @@ spec:
             app:
               - path: /home/neko/.mozilla/firefox/profile.default
 
-      # dri:
-      #   type: hostPath
-      #   hostPath: /dev/dri
-      # shm:
-      #   type: hostPath
-      #   hostPath: /dev/shm
       data:
         type: nfs
         server: unraid.kvshs.xyz
