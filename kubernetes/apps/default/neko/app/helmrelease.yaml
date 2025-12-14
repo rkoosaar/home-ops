@@ -63,12 +63,8 @@ spec:
                 172.16.0.0/12
 
               # === Allow inbound ports to the pod ===
-              FIREWALL_INPUT_PORTS: |
-                8080,
-                5101
-
+              FIREWALL_INPUT_PORTS: 8080,5101
               LOG_LEVEL: info
-
             envFrom:
               - secretRef:
                   name: "{{ .Release.Name }}-secret"
