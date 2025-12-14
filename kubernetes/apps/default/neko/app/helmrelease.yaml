@@ -42,7 +42,6 @@ spec:
                 cpu: "2"
                 memory: 2Gi
 
-
           gluetun:
             image:
               repository: ghcr.io/qdm12/gluetun
@@ -55,14 +54,7 @@ spec:
               VPN_SERVICE_PROVIDER: nordvpn
               VPN_TYPE: wireguard
               SERVER_COUNTRIES: Netherlands
-
-              # === Allow LAN + cluster traffic ===
-              FIREWALL_OUTBOUND_SUBNETS: |
-                10.0.0.0/8,
-                192.168.0.0/16,
-                172.16.0.0/12
-
-              # === Allow inbound ports to the pod ===
+              FIREWALL_OUTBOUND_SUBNETS: 10.0.0.0/8,192.168.0.0/16,172.16.0.0/12
               FIREWALL_INPUT_PORTS: 8080,5101
               LOG_LEVEL: info
             envFrom:
