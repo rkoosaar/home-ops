@@ -34,7 +34,6 @@ spec:
               ND_ENABLESHARING: true
               ND_LOGLEVEL: debug
               ND_MUSICFOLDER: /data/media/music
-              ND_PLAYLISTSPATH: ._navidrome/playlists
               ND_PORT: &port 8080
               ND_PROMETHEUS_ENABLED: true
               ND_REVERSEPROXYUSERHEADER: Remote-User
