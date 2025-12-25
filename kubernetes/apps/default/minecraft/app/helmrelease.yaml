@@ -25,7 +25,7 @@ spec:
           app:
             image:
               repository: ghcr.io/itzg/minecraft-server
-              tag: java21@sha256:e8099a3c00e4e1a947d13500bd88919c1fef52c5175e9235b32abc974a315572
+              tag: java21@sha256:4db10e7a4c3d636df314ad33086a88c3164eb504e704cf52e3e2af10718ff805
             env:
               # Server Configuration
               ## General
