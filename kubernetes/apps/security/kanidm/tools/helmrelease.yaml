@@ -47,6 +47,6 @@ spec:
         advancedMounts:
           kanidm-tools:
             app:
-              - path: /etc/kanidm/config
+              - path: /data/config
                 subPath: config
                 readOnly: true
