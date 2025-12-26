@@ -6,7 +6,7 @@ resources:
   - ./helmrelease.yaml
   - ./ocirepository.yaml
 configMapGenerator:
-  - name: kanidm-configmap
+  - name: kanidm-tools-configmap
     files:
       - config=./resources/config
 generatorOptions:

@@ -43,8 +43,10 @@ spec:
     persistence:
       config:
         type: configMap
-        name: kanidm-configmap
-        globalMounts:
-          - path: /etc/kanidm/config
-            subPath: config
-            readOnly: true
+        name: kanidm-tools-configmap
+        advancedMounts:
+          kanidm-tools:
+            app:
+              - path: /etc/kanidm/config
+                subPath: config
+                readOnly: true
