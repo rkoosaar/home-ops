@@ -39,3 +39,12 @@ spec:
         runAsGroup: 499
         fsGroup: 499
         fsGroupChangePolicy: OnRootMismatch
+
+    persistence:
+      config:
+        type: configMap
+        name: kanidm-configmap
+        globalMounts:
+          - path: /etc/kanidm/config
+            subPath: config
+            readOnly: true
