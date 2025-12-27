@@ -8,5 +8,5 @@ components:
   - ../../components/alerts
 resources:
   - ./namespace.yaml
-  #- ./forgejo-runner/ks.yaml
+  - ./forgejo-runner/ks.yaml
   #- ./renovate/ks.yaml
