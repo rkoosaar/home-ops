@@ -5,10 +5,10 @@ kind: HelmRelease
 metadata:
   name: forgejo-runner
 spec:
-  interval: 1h
   chartRef:
     kind: OCIRepository
-    name: app-template
+    name: forgejo-runner
+  interval: 1h
   values:
     controllers:
       forgejo-runner:
@@ -46,11 +46,10 @@ spec:
                   echo "Runner already registered, skipping.";
                 fi
             env:
-              FORGEJO_INSTANCE_URL: http://forgejo-http.gitea.svc.cluster.local:3000
               LABELS: "ubuntu-latest:docker://ghcr.io/catthehacker/ubuntu:act-latest"
             envFrom:
               - secretRef:
-                  name: forgejo-runner-secret
+                  name: "{{ .Release.Name }}-secret"
         containers:
           daemon:
             image:
