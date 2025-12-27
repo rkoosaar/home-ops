@@ -46,7 +46,12 @@ spec:
                   echo "Runner already registered, skipping.";
                 fi
             env:
-              LABELS: "ubuntu-latest:docker://ghcr.io/catthehacker/ubuntu:act-latest"
+              - name: LABELS
+                value: "ubuntu-latest:docker://ghcr.io/catthehacker/ubuntu:act-latest"
+              - name: RUNNER_NAME
+                valueFrom:
+                  fieldRef:
+                    fieldPath: metadata.name
             envFrom:
               - secretRef:
                   name: "{{ .Release.Name }}-secret"
