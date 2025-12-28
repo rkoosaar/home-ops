@@ -3,13 +3,12 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: &app renovate
+  name: renovate
 spec:
-  interval: 1h
   chartRef:
     kind: OCIRepository
     name: app-template
-    namespace: flux-system
+  interval: 1h
   values:
     controllers:
       renovate:
@@ -40,23 +39,23 @@ spec:
               pullPolicy: IfNotPresent
             envFrom:
               - secretRef:
-                  name: renovate-secret
+                  name: "{{ .Release.Name }}-secret"
             env:
               LOG_LEVEL: debug
-              RENOVATE_PLATFORM: 'gitea'
-              RENOVATE_ENDPOINT: 'https://git.${SECRET_DOMAIN}/api/v1'
-              RENOVATE_AUTODISCOVER: 'true'
-              RENOVATE_GIT_AUTHOR: 'Renovate <renovate@${SECRET_DOMAIN}>'
-              RENOVATE_CONFIG_FILE: '/opt/renovate/config.json'
+              RENOVATE_PLATFORM: "gitea"
+              RENOVATE_ENDPOINT: "https://git.${SECRET_DOMAIN}/api/v1"
+              RENOVATE_AUTODISCOVER: "true"
+              RENOVATE_GIT_AUTHOR: "Renovate <renovate@${SECRET_DOMAIN}>"
+              RENOVATE_CONFIG_FILE: "/opt/renovate/config.json"
             resources:
               requests:
                 cpu: 250m
-#                memory: 500Mi
-#                squat.ai/tpmrm: 1
+              #                memory: 500Mi
+              #                squat.ai/tpmrm: 1
               limits:
-                cpu: '2'
-#                memory: 4Gi
-#                squat.ai/tpmrm: 1
+                cpu: "2"
+    #                memory: 4Gi
+    #                squat.ai/tpmrm: 1
     #  service:
     #    renovate:
     #      controller: renovate
