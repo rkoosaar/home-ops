@@ -16,7 +16,7 @@ spec:
           app:
             image:
               repository: ghcr.io/unpoller/unpoller
-              tag: v2.17.2@sha256:81c05a7e120e8cb71f681c73119b700179c8dde9486abd2b88bca0e56759a7a5
+              tag: v2.21.0@sha256:a08b532be181256318211b6170691e316d29ac04575bc54d59620189953f03aa
             env:
               TZ: Europe/London
               UP_PROMETHEUS_HTTP_LISTEN: 0.0.0.0:80
