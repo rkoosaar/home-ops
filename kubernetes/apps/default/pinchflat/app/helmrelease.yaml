@@ -54,7 +54,7 @@ spec:
         runAsGroup: 100
         fsGroup: 100
         fsGroupChangePolicy: OnRootMismatch
-        supplementalGroups: [1003]
+        supplementalGroups: [1003, 44]
     service:
       app:
         ports:
