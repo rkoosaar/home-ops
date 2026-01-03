@@ -35,8 +35,13 @@ spec:
                     ;;
                 esac
 
-                curl -L "https://github.com/yt-dlp/yt-dlp/releases/latest/download/${asset}" \
-                  -o /usr/local/bin/yt-dlp
+                url="https://github.com/yt-dlp/yt-dlp/releases/latest/download/${asset}"
+                echo "Downloading $url"
+
+                curl -fsSL --retry 5 --retry-all-errors \
+                  -o /usr/local/bin/yt-dlp \
+                  "$url"
+
                 chmod +x /usr/local/bin/yt-dlp
                 /usr/local/bin/yt-dlp --version
             securityContext:
