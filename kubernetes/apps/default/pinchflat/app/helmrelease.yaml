@@ -14,37 +14,56 @@ spec:
       pinchflat:
         annotations:
           reloader.stakater.com/auto: "true"
-        containers:
-          app:
-            image:
-              repository: ghcr.io/kieraneglin/pinchflat
-              tag: latest@sha256:01b4f98aabaf3f5fe394213f7a32578c9e84e42080f52e2f8334021a4473b202
-            env:
-              TZ: Europe/London
-              TZ_DATA_DIR: /tmp/elixir_tz_data
-              PORT: &port 80
-            probes:
-              liveness: &probes
-                enabled: true
-                custom: true
-                spec:
-                  httpGet:
-                    path: /healthcheck
-                    port: *port
-                  initialDelaySeconds: 0
-                  periodSeconds: 10
-                  timeoutSeconds: 1
-                  failureThreshold: 3
-              readiness: *probes
-            securityContext:
-              allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
-              capabilities: { drop: ["ALL"] }
-            resources:
-              requests:
-                cpu: 10m
-              limits:
-                memory: 8Gi
+
+      initContainers:
+        yt-dlp-update:
+          image:
+            repository: curlimages/curl
+            tag: 8.10.1
+          command: ["sh", "-lc"]
+          args:
+            - |
+              set -euo pipefail
+              curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp \
+                -o /usr/local/bin/yt-dlp
+              chmod +x /usr/local/bin/yt-dlp
+              /usr/local/bin/yt-dlp --version
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: ["ALL"] }
+
+      containers:
+        app:
+          image:
+            repository: ghcr.io/kieraneglin/pinchflat
+            tag: latest@sha256:01b4f98aabaf3f5fe394213f7a32578c9e84e42080f52e2f8334021a4473b202
+          env:
+            TZ: Europe/London
+            TZ_DATA_DIR: /tmp/elixir_tz_data
+            PORT: &port 80
+          probes:
+            liveness: &probes
+              enabled: true
+              custom: true
+              spec:
+                httpGet:
+                  path: /healthcheck
+                  port: *port
+                initialDelaySeconds: 0
+                periodSeconds: 10
+                timeoutSeconds: 1
+                failureThreshold: 3
+            readiness: *probes
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: ["ALL"] }
+          resources:
+            requests:
+              cpu: 10m
+            limits:
+              memory: 8Gi
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
@@ -73,6 +92,10 @@ spec:
         type: emptyDir
         globalMounts:
           - path: /etc/yt-dlp
+      yt-dlp-bin:
+        type: emptyDir
+        globalMounts:
+          - path: /usr/local/bin
       data:
         type: nfs
         server: unraid.kvshs.xyz
