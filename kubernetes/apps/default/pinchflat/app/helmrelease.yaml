@@ -24,14 +24,26 @@ spec:
             args:
               - |
                 set -euo pipefail
-                curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp \
+
+                arch="$(uname -m)"
+                case "$arch" in
+                  x86_64|amd64)  asset="yt-dlp_linux" ;;
+                  aarch64|arm64) asset="yt-dlp_linux_aarch64" ;;
+                  *)
+                    echo "Unsupported arch: $arch"
+                    exit 1
+                    ;;
+                esac
+
+                curl -L "https://github.com/yt-dlp/yt-dlp/releases/latest/download/${asset}" \
                   -o /usr/local/bin/yt-dlp
                 chmod +x /usr/local/bin/yt-dlp
                 /usr/local/bin/yt-dlp --version
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
-              capabilities: { drop: ["ALL"] }
+              capabilities:
+                drop: ["ALL"]
 
         containers:
           app:
