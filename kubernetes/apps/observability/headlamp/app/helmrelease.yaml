@@ -34,8 +34,8 @@ spec:
         name: create-kubeconfig
         securityContext:
           capabilities:
-            #drop:controller-gen crd paths=./src/... output:crd:dir=charts/renovate-operator/crds
-            - ALL
+            drop:
+              - ALL
           privileged: false
           readOnlyRootFilesystem: true
           runAsGroup: 1001
