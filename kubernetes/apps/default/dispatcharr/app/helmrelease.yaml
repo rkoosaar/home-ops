@@ -23,6 +23,7 @@ spec:
               DISPATCHARR_LOG_LEVEL: info
               DISPATCHARR_PORT: &port 9191
               REDIS_HOST: localhost
+              LIBVA_DRIVER_NAME: iHD
             resources:
               claims:
                 - name: gpu

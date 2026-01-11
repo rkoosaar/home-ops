@@ -84,3 +84,12 @@ spec:
         name: kubeconfig
         readOnly: true
         subPath: config
+
+    route:
+      app:
+        hostnames:
+          - "{{ .Release.Name }}.${SECRET_DOMAIN}"
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
+            sectionName: https
