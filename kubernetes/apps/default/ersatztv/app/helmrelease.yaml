@@ -20,7 +20,7 @@ spec:
           app:
             image:
               repository: ghcr.io/ersatztv/ersatztv
-              tag: v25.9.0@sha256:7fe8ada8500b10d7bc06e0c7ac357cf24e2ef2d069ba08d3a24c57b1b4699d74
+              tag: v26.1.1@sha256:643c17981a6814c54ba83f91df68d2a7e9d5a7193a5c4cdb113a524a3d5f3468
             env:
               TZ: Europe/London
               XDG_DATA_HOME: /config # https://github.com/ErsatzTV/ErsatzTV/issues/327
