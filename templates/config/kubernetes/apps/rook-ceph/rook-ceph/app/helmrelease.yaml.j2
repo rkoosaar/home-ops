@@ -12,7 +12,7 @@ spec:
   values:
     csi:
       cephFSKernelMountOptions: ms_mode=prefer-crc
-      # NOTE: Enable the driver and shnapshotter if you want to use CephFS
+      # NOTE: Enable the driver and shapshotter if you want to use CephFS
       enableCephfsDriver: false
       enableCephfsSnapshotter: false
       enableLiveness: true
@@ -25,6 +25,6 @@ spec:
       enabled: true
     resources:
       requests:
-        memory: 128Mi # unchangable
         cpu: 100m # unchangable
+        memory: 128Mi # unchangable
       limits: {}

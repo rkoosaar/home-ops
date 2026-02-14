@@ -1,4 +1,5 @@
 ---
+# yaml-language-server: $schema=https://my-kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2.json
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
@@ -10,34 +11,32 @@ spec:
   interval: 1h
   values:
     autoDirectNodeRoutes: true
+    bandwidthManager:
+      enabled: true
+      bbr: true
     bpf:
+      datapathMode: netkit
       masquerade: true
-      # Ref: https://github.com/siderolabs/talos/issues/10002
-      hostLegacyRouting: true
+      preallocateMaps: true
+    bpfClockProbe: true
     #% if cilium_bgp_enabled %#
     bgpControlPlane:
       enabled: true
     #% endif %#
-    cni:
-      # Required for pairing with Multus CNI
-      exclusive: false
     cgroup:
       automount:
         enabled: false
       hostRoot: /sys/fs/cgroup
-    # NOTE: devices might need to be set if you have more than one active NIC on your hosts
-    # devices: eno+ eth+
+    cni:
+      exclusive: false
     dashboards:
       enabled: true
+    # NOTE: devices might need to be set if you have more than one active NIC on your hosts
+    # devices: eno+ eth+
     endpointRoutes:
       enabled: true
     envoy:
-      rollOutPods: true
-      prometheus:
-        serviceMonitor:
-          enabled: true
-    gatewayAPI:
-      enabled: true
+      enabled: false
     hubble:
       enabled: false
     ipam:
@@ -48,11 +47,12 @@ spec:
     kubeProxyReplacement: true
     kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
     l2announcements:
-      enabled: true
+      enabled: false
     loadBalancer:
       algorithm: maglev
       mode: "#{ cilium_loadbalancer_mode }#"
-    localRedirectPolicy: true
+    localRedirectPolicies:
+      enabled: true
     operator:
       dashboards:
         enabled: true
@@ -60,8 +60,10 @@ spec:
         enabled: true
         serviceMonitor:
           enabled: true
-      replicas: 1
+      replicas: 2
       rollOutPods: true
+    pmtuDiscovery:
+      enabled: true
     prometheus:
       enabled: true
       serviceMonitor:
@@ -90,4 +92,5 @@ spec:
           - SYS_ADMIN
           - SYS_RESOURCE
     socketLB:
+      enabled: true
       hostNamespaceOnly: true

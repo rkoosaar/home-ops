@@ -13,7 +13,6 @@ spec:
     instance:
       distribution:
         artifact: oci://ghcr.io/controlplaneio-fluxcd/flux-operator-manifests:v0.40.0
-        version: 2.x
       cluster:
         networkPolicy: false
       components:
@@ -34,7 +33,6 @@ spec:
       commonMetadata:
         labels:
           app.kubernetes.io/name: flux
-        interval: 1h
       kustomize:
         patches:
           - # Increase the number of workers
@@ -61,7 +59,7 @@ spec:
                       - name: manager
                         resources:
                           limits:
-                            memory: 2Gi
+                            memory: 1Gi
             target:
               kind: Deployment
               name: (kustomize-controller|helm-controller|source-controller)

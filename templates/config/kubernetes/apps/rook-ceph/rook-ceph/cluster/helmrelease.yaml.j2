@@ -58,6 +58,10 @@ spec:
         provider: host
         connections:
           requireMsgr2: true
+      resources:
+        osd:
+          limits:
+            memory: 8Gi
       storage:
         useAllNodes: true
         useAllDevices: false
@@ -80,9 +84,8 @@ spec:
           mountOptions:
             - discard
           parameters:
-            # TODO: Consider enabling compression on cluster rebuild
-            # compression_mode: aggressive
-            # compression_algorithm: zstd
+            compression_mode: aggressive
+            compression_algorithm: zstd
             imageFormat: "2"
             imageFeatures: layering,fast-diff,object-map,deep-flatten,exclusive-lock
             csi.storage.k8s.io/provisioner-secret-name: rook-csi-rbd-provisioner
@@ -90,7 +93,7 @@ spec:
             csi.storage.k8s.io/controller-expand-secret-name: rook-csi-rbd-provisioner
             csi.storage.k8s.io/controller-expand-secret-namespace: "{{ .Release.Namespace }}"
             csi.storage.k8s.io/node-stage-secret-name: rook-csi-rbd-node
-            csi.storage.k8s.io/node-stage-secret-namespace: "{{ .Release.Namespace }}"
+            csi.storage.k8s.i:o/node-stage-secret-namespace: "{{ .Release.Namespace }}"
             csi.storage.k8s.io/fstype: ext4
     cephBlockPoolsVolumeSnapshotClass:
       enabled: true

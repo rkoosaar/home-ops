@@ -44,8 +44,8 @@ nodes:
               - "#{ item.address }#/#{ node_cidr.split('/') | last }#"
             mtu: #{ item.mtu | default(1500, true) }#
             routes:
-              - network: "0.0.0.0/0"
-                gateway: "#{ node_default_gateway }#"
+              - gateway: "#{ node_default_gateway }#"
+                network: 0.0.0.0/0
             #% if item.controller %#
             vip:
               ip: "#{ cluster_api_addr }#"
@@ -55,8 +55,8 @@ nodes:
         addresses:
           - "#{ item.address }#/#{ node_cidr.split('/') | last }#"
         routes:
-          - network: "0.0.0.0/0"
-            gateway: "#{ node_default_gateway }#"
+          - gateway: "#{ node_default_gateway }#"
+            network: 0.0.0.0/0
         mtu: #{ item.mtu | default(1500, true) }#
         #% if item.controller %#
         vip:
@@ -64,8 +64,9 @@ nodes:
         #% endif %#
         #% endif %#
     #% if talos_patches('%s' % (item.name)) | length == 0 %#
-    #% if item.encrypt_disk | default(false, true) %#
+    #% if item.encrypt_disk | default(false, true) or (item.kernel_modules | default([], true) | length > 0) %#
     patches:
+    #% if item.encrypt_disk | default(false, true) %#
       - # Encrypt system disk with TPM
         |-
         machine:
@@ -74,12 +75,23 @@ nodes:
               provider: luks2
               keys:
                 - slot: 0
-                  tpm: {}
+                 tpm: {}
             ephemeral:
               provider: luks2
               keys:
                 - slot: 0
                   tpm: {}
+    #% endif %#
+    #% if item.kernel_modules | default([], true) | length > 0 %#
+      - # Load kernel modules
+        |-
+        machine:
+          kernel:
+            modules:
+              #% for module in item.kernel_modules %#
+              - name: #{ module }#
+              #% endfor %#
+    #% endif %#
     #% endif %#
     #% else %#
     #% for file in talos_patches('%s' % (item.name)) %#
@@ -99,6 +111,15 @@ nodes:
               keys:
                 - slot: 0
                   tpm: {}
+    #% endif %#
+    #% if item.kernel_modules | default([], true) | length > 0 %#
+      - |-
+        machine:
+          kernel:
+            modules:
+              #% for module in item.kernel_modules %#
+              - name: #{ module }#
+              #% endfor %#
     #% endif %#
     #% endif %#
       - "@./patches/#{ item.name }#/#{ file | basename }#"
