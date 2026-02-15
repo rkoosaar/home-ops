@@ -59,7 +59,7 @@ spec:
                 claimName: grafana-pvc
   httpRoute:
     spec:
-      hostnames: ["{{ .Release.Name }}.${SECRET_DOMAIN}"]
+      hostnames: ["grafana.replace.me"]
       parentRefs:
         - name: envoy-internal
           namespace: network
