@@ -10,6 +10,6 @@ components:
 
 resources:
   - ./namespace.yaml
-  - ./cloudnative-pg/ks.yaml
+  #- ./cloudnative-pg/ks.yaml
   - ./dragonfly/ks.yaml
   - ./pgadmin/ks.yaml
