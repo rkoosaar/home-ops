@@ -1,0 +1,53 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: firefly-data-importer
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: firefly-data-importer
+  interval: 1h
+  values:
+    controllers:
+      firefly-data-importer:
+        pod:
+          enableServiceLinks: false
+          annotations:
+            reloader.stakater.com/auto: "true"
+        containers:
+          app:
+            image:
+              repository: ghcr.io/rkoosaar/firefly-iii-data-importer
+              tag: v2.0.5@sha256:25c4981a0ed07d611c42295fedb87da4bfae8da3345bf35878e932e635d79793
+            env:
+              TRUSTED_PROXIES: "**"
+              FIREFLY_III_URL: "http://firefly.default.svc.cluster.local:8080"
+              VANITY_URL: "firefly.${SECRET_DOMAIN}"
+              CAN_AUTO_IMPORT: 'true'
+              CAN_POST_FILES: 'true'
+              FIREFLY_III_ACCESS_TOKEN:
+                valueFrom:
+                  secretKeyRef:
+                    name: firefly-importer-secret
+                    key: IMPORTER
+            envFrom:
+              - secretRef:
+                  name: firefly-secret
+            resources:
+              requests:
+                memory: 310Mi
+
+    service:
+      app:
+        ports:
+          http:
+            port: 8080
+
+    route:
+      app:
+        hostnames:
+          - "{{ .Release.Name }}.${SECRET_DOMAIN}"
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
