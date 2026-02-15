@@ -86,7 +86,7 @@ nodes:
     machineSpec:
       secureboot: false
     talosImageURL: factory.talos.dev/installer/98232a85637291d7606004f0ef5cdbc8dfed77fde9627ccd1808de3ba32ae630
-    controlPlane: false
+    controlPlane: true
     networkInterfaces:
       - deviceSelector:
           hardwareAddr: "00:e0:4c:68:0b:55"
@@ -97,6 +97,8 @@ nodes:
           - gateway: "10.1.1.1"
             network: 0.0.0.0/0
         mtu: 1500
+        vip:
+          ip: "10.1.1.30"
 
 # Global patches
 patches:
