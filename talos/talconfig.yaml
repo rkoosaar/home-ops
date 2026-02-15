@@ -100,8 +100,8 @@ nodes:
 
 # Global patches
 patches:
-  - "@./patches/global/machine-features.yaml"
   - "@./patches/global/machine-files.yaml"
+  - "@./patches/global/machine-gpu.yaml"
   - "@./patches/global/machine-kubelet.yaml"
   - "@./patches/global/machine-network.yaml"
   - "@./patches/global/machine-openebs-local.yaml"
@@ -114,5 +114,5 @@ patches:
 controlPlane:
   patches:
     - "@./patches/controller/cluster.yaml"
-    - "@./patches/controller/gpu.yaml"
+    - "@./patches/controller/machine-features.yaml"
 
