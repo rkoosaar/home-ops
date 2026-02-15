@@ -60,7 +60,7 @@ spec:
   httpRoute:
     spec:
       hostnames:
-        - grafana.${SECRET_DOMAIN}
+        - "{{ .Release.Name }}.${SECRET_DOMAIN}"
       parentRefs:
         - name: envoy-internal
           namespace: network
