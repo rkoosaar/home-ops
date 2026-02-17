@@ -6,11 +6,10 @@ resources:
   - ./externalsecret.yaml
   - ./helmrelease.yaml
   - ./ocirepository.yaml
+  - ./resourceclaimtemplate.yaml
 configMapGenerator:
-  - name: searxng-configmap
+  - name: neko-firefox-configmap
     files:
-      - settings.yml=./resources/settings.yaml
-      - limiter.toml=./resources/limiter.toml
-      - favicons.toml=./resources/favicons.toml
+      - policies.json=./resources/policies.json
 generatorOptions:
   disableNameSuffixHash: true

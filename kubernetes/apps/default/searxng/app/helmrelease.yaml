@@ -20,14 +20,12 @@ spec:
           app:
             image:
               repository: ghcr.io/searxng/searxng
-              tag: 2025.5.20-7420706@sha256:1ac3eb0c0b271391f446569554548c9f69db14e9dfc33b2414a2f4610b6c12c0
+              tag: 2026.2.6-b5bb27f23@sha256:670bd1076097640fc25221bf92a8af7d344503ce17ba3305abedf28e3634e807
             command:
-              - /usr/local/searxng/venv/bin/uwsgi
-              - --master
-              - /usr/local/searxng/.template/uwsgi.ini
+              - /usr/local/searxng/.venv/bin/granian
+              - searx.webapp:app
             env:
               BASE_URL: https://search.${SECRET_DOMAIN}
-              UWSGI_WORKERS: "1"
             envFrom:
               - secretRef:
                   name: searxng-secret
@@ -52,14 +50,15 @@ spec:
               capabilities:
                 drop:
                   - ALL
-                add:
-                  - CHOWN
-                  - SETGID
-                  - SETUID
-                  - DAC_OVERRIDE
+                # add:
+                #   - CHOWN
+                #   - SETGID
+                #   - SETUID
+                #   - DAC_OVERRIDE
             resources:
               requests:
                 cpu: 10m
+                memory: 256Mi
               limits:
                 memory: 3Gi
     pod:
@@ -97,6 +96,8 @@ spec:
                 subPath: settings.yml
               - path: /etc/searxng/limiter.toml
                 subPath: limiter.toml
+              - path: /etc/searxng/favicons.toml
+                subPath: favicons.toml
       tmp:
         type: emptyDir
         advancedMounts:

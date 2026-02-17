@@ -10,27 +10,31 @@ components:
 resources:
   - ./namespace.yaml
   - ./audiobookshelf/ks.yaml
-  #- ./bazarr/ks.yaml
-  #- ./calibre/ks.yaml
-  #- ./calibre-web/ks.yaml
-  #- ./ersatztv/ks.yaml
-  #- ./firefly/ks.yaml
-  #- ./it-tools/ks.yaml
-  #- ./jellyseerr/ks.yaml
-  #- ./kavita/ks.yaml
-  #- ./minecraft/ks.yaml
-  #- ./pinchflat/ks.yaml
-  #- ./navidrome/ks.yaml
-  #- ./plex/ks.yaml
-  #- ./prowlarr/ks.yaml
-  #- ./radarr/ks.yaml
-  #- ./recyclarr/ks.yaml
-  #- ./redlib/ks.yaml
-  #- ./sabnzbd/ks.yaml
-  #- ./searxng/ks.yaml
-  #- ./sonarr/ks.yaml
-  #- ./tautulli/ks.yaml
+  - ./bazarr/ks.yaml
+  - ./calibre/ks.yaml
+  - ./calibre-web/ks.yaml
+  - ./ersatztv/ks.yaml
+  - ./firefly/ks.yaml
+  - ./it-tools/ks.yaml
+  - ./kavita/ks.yaml
+  - ./minecraft/ks.yaml
+  - ./m4b-tool/ks.yaml
+  - ./navidrome/ks.yaml
+  - ./neko/ks.yaml
+  - ./pinchflat/ks.yaml
+  - ./plex/ks.yaml
+  - ./prowlarr/ks.yaml
+  - ./radarr/ks.yaml
+  - ./recyclarr/ks.yaml
+  - ./redlib/ks.yaml
+  - ./sabnzbd/ks.yaml
+  - ./searxng/ks.yaml
+  - ./seerr/ks.yaml
+  - ./sonarr/ks.yaml
+  - ./tautulli/ks.yaml
+  - ./dispatcharr/ks.yaml
 
+  ##- ./fusion/ks.yaml
   # - ./threadfin/ks.yaml
   #- ./xteve/ks.yaml
   #- ./romm/ks.yaml
