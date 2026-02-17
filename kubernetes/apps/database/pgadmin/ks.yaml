@@ -5,6 +5,9 @@ kind: Kustomization
 metadata:
   name: pgadmin
 spec:
+  dependsOn:
+    - name: postgres17
+      namespace: database
   components:
     - ../../../../components/volsync
   interval: 1h
