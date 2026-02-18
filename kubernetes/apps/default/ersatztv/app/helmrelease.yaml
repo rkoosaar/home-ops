@@ -34,7 +34,7 @@ spec:
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
-              capabilities: {drop: ["ALL"]}
+              capabilities: { drop: ["ALL"] }
             resources:
               claims:
                 - name: gpu
@@ -59,14 +59,14 @@ spec:
       #   intel.feature.node.kubernetes.io/gpu: "true"
     service:
       app:
-#        type: LoadBalancer
+        #        type: LoadBalancer
         ports:
           http:
             port: 8409
     route:
       app:
         hostnames:
-          - "tv.${SECRET_DOMAIN}"
+          - "ersatztv.${SECRET_DOMAIN}"
         parentRefs:
           - name: envoy-internal
             namespace: network
