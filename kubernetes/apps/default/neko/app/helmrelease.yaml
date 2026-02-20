@@ -20,7 +20,7 @@ spec:
           app:
             image:
               repository: ghcr.io/m1k1o/neko/firefox
-              tag: 3.0.9@sha256:1deb8b5bb949a7250cd1b4759f7daee0282216049f71ef7b0c2abdcd7616e74b
+              tag: 3.0.10@sha256:2d7813bb098c97f3cb37239799a621c13a7b6e0e4e5b9692f93c2f4a2c5a2880
             env:
               NEKO_DESKTOP_SCREEN: 1280x720@30
               NEKO_SERVER_PROXY: "true"
