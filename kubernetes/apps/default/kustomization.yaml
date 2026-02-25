@@ -32,7 +32,7 @@ resources:
   - ./seerr/ks.yaml
   - ./sonarr/ks.yaml
   - ./tautulli/ks.yaml
-  - ./dispatcharr/ks.yaml
+  #- ./dispatcharr/ks.yaml
 
   ##- ./fusion/ks.yaml
   # - ./threadfin/ks.yaml
