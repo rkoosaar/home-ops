@@ -17,8 +17,10 @@ spec:
         containers:
           app:
             image:
-              repository: quay.io/redlib/redlib
-              tag: latest@sha256:dffb6c5a22f889d47d8e28e33411db0fb6c5694599f72cf740c912c12f5fc1c6
+              repository: ghcr.io/auricom/redlib
+              tag: rolling@sha256:db6c2104bcaa506b3985e65f883e76fb7543d35bbe394a8f1fcfb0deda798644
+              # repository: quay.io/redlib/redlib
+              # tag: latest@sha256:dffb6c5a22f889d47d8e28e33411db0fb6c5694599f72cf740c912c12f5fc1c6
             env:
               REDLIB_DEFAULT_SHOW_NSFW: on
               REDLIB_DEFAULT_THEME: dark
