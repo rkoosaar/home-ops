@@ -16,6 +16,10 @@ spec:
   interval: 1h
   path: "./kubernetes/apps/renovate/renovate-operator/app"
   prune: true
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: cluster-secrets
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -36,7 +40,11 @@ spec:
     - name: renovate-operator
   interval: 1h
   path: "./kubernetes/apps/renovate/renovate-operator/jobs"
-  prune: true
+  prune: truei
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: cluster-secrets
   sourceRef:
     kind: GitRepository
     name: flux-system
