@@ -5,6 +5,7 @@ kind: Kustomization
 namespace: renovate
 components:
   - ../../components/alerts
+    - ../../components/sops
 resources:
   - ./namespace.yaml
 #  - ./renovate-operator/ks.yaml
