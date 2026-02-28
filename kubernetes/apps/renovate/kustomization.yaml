@@ -8,4 +8,4 @@ components:
   - ../../components/sops
 resources:
   - ./namespace.yaml
-#  - ./renovate-operator/ks.yaml
+  - ./renovate-operator/ks.yaml
