@@ -14,7 +14,7 @@ spec:
     route:
       enabled: true
       hostnames:
-        - "{{ .Release.Name }}.${SECRET_DOMAIN}"
+        - "renovate.${SECRET_DOMAIN}"
       parentRefs:
         - name: envoy-internal
           namespace: network
