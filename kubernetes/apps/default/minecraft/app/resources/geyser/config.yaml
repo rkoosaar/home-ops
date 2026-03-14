@@ -35,8 +35,8 @@ java:
 motd:
   # The MOTD that will be broadcasted to Minecraft: Bedrock Edition clients. This is irrelevant if "passthrough-motd" is set to true.
   # If either of these are empty, the respective string will default to "Geyser"
-  primary-motd: KVS Survival
-  secondary-motd: KVS Survival Geyser server.
+  primary-motd: KVS Geyser server
+  secondary-motd: KVS Geyser server
 
   # Whether Geyser should relay the MOTD from the Java server to Bedrock players.
   passthrough-motd: true
@@ -62,11 +62,11 @@ gameplay:
   server-name: KVS Survival
 
   # Allow a fake cooldown indicator to be sent. Bedrock players otherwise do not see a cooldown as they still use 1.8 combat.
-  # Please note: if the cooldown is enabled, some users may see a black box during the cooldown sequence, like below:
+  # Please note: with the integrated pack disabled, some users may see a black box during the cooldown sequence, like below:
   # https://geysermc.org/img/external/cooldown_indicator.png
-  # This can be disabled by going into Bedrock settings under the accessibility tab and setting "Text Background Opacity" to 0
-  # This setting can be set to "title", "actionbar" or "false"
-  show-cooldown: title
+  # This can be resolved by enabling the integrated pack, or by going into Bedrock settings under the accessibility tab and setting "Text Background Opacity" to 0.
+  # This setting can be set to "crosshair", "hotbar", or "disabled"
+  cooldown-type: crosshair
 
   # Bedrock clients can freeze when opening up the command prompt for the first time if given a lot of commands.
   # Disabling this will prevent command suggestions from being sent and solve freezing for Bedrock clients.
@@ -85,6 +85,11 @@ gameplay:
 
   # Whether to show Bedrock Edition emotes to other Bedrock Edition players.
   emotes-enabled: true
+
+  # Whether to remove legacy text formatting codes sent by Bedrock players.
+  # Unlike on Java Edition, typing section signs for legacy color codes is possible on Bedrock Edition.
+  # See https://minecraft.wiki/w/Formatting_codes for further information.
+  block-legacy-codes: true
 
   # Which item to use to mark unavailable slots in a Bedrock player inventory. Examples of this are the 2x2 crafting grid while in creative,
   # or custom inventory menus with sizes different from the usual 3x9. A barrier block is the default item.
@@ -217,6 +222,10 @@ advanced:
     # IP addresses, subnets, and links to plain text files are supported.
     haproxy-protocol-whitelisted-ips: []
 
+    # Should be enabled if this Geyser instance is behind a WaterdogPE proxy. If enabled, Geyser will
+    # use the xuid / address sent from WaterdogPE and reject clients that do not send it.
+    use-waterdogpe-forwarding: false
+
     # The internet supports a maximum MTU of 1492 but could cause issues with packet fragmentation.
     # 1400 is the default.
     mtu: 1400
@@ -242,4 +251,4 @@ metrics-uuid: 2fb6351f-5411-439e-9372-8b0cc7ad592a
 debug-mode: false
 
 # Do not change!
-config-version: 5
+config-version: 7
