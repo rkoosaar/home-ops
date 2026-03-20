@@ -6,6 +6,6 @@ resources:
   - ./helmrelease.yaml
   - ./ocirepository.yaml
 configMapGenerator:
-  - name: bc-configmap
+  - name: bedrockconnect-configmap
     files:
       - custom_servers.json=./resources/custom_servers.json
