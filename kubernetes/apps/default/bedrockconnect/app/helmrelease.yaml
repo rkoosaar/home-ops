@@ -6,7 +6,7 @@ metadata:
 spec:
   chartRef:
     kind: OCIRepository
-    name: app-template
+    name: bedrockconnect
   interval: 1h
   values:
     controllers:
