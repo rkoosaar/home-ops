@@ -45,7 +45,7 @@ spec:
       app:
         type: LoadBalancer
         annotations:
-          lbipam.cilium.io/ips: "10.1.1.48"
+          lbipam.cilium.io/ips: "10.1.1.49"
         ports:
           bedrock:
             port: 19132
