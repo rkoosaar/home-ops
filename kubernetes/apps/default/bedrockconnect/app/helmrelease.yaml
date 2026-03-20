@@ -53,7 +53,7 @@ spec:
         type: configMap
         name: bc-configmap
         advancedMounts:
-          bc:
+          bedrockconnect:
             app:
               - path: /app/custom_servers.json
                 subPath: custom_servers.json
