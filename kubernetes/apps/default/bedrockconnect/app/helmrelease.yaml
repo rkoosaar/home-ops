@@ -20,7 +20,6 @@ spec:
               tag: 1.65@sha256:878d420e23578c4e44f124cb2f9ca246d2c844737b9286ca085d15ad33e789c0
             env:
               TZ: Europe/London
-              CUSTOM_SERVERS: '{"servers":[{"name":"RK Server","address":"10.1.1.47","port":19132}]}'
             probes:
               liveness:
                 enabled: false
@@ -49,3 +48,13 @@ spec:
           bedrock:
             port: 19132
             protocol: UDP
+    persistence:
+      config:
+        type: configMap
+        name: bc-configmap
+        advancedMounts:
+          bc:
+            app:
+              - path: /app/custom_servers.json
+                subPath: custom_servers.json
+                readOnly: true
