@@ -9,3 +9,5 @@ configMapGenerator:
   - name: bedrockconnect-configmap
     files:
       - custom_servers.json=./resources/custom_servers.json
+generatorOptions:
+  disableNameSuffixHash: true
