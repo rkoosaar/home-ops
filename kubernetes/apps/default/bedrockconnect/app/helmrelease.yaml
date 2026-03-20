@@ -21,6 +21,7 @@ spec:
             env:
               TZ: Europe/London
               BC_CUSTOM_SERVERS: /app/custom_servers.json
+              BC_DEBUG: "true"
             probes:
               liveness:
                 enabled: false
