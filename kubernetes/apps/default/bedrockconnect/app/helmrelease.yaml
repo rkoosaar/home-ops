@@ -16,7 +16,7 @@ spec:
         containers:
           app:
             image:
-              repository: pugmatt/bedrock-connect
+              repository: docker.io/pugmatt/bedrock-connect
               tag: latest
             env:
               TZ: Europe/London
