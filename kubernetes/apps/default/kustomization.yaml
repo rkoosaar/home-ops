@@ -11,6 +11,7 @@ resources:
   - ./namespace.yaml
   - ./audiobookshelf/ks.yaml
   - ./bazarr/ks.yaml
+  - ./bedrockconnect/ks.yaml
   - ./calibre/ks.yaml
   - ./calibre-web/ks.yaml
   - ./ersatztv/ks.yaml
