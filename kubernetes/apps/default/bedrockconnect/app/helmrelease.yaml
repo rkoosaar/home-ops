@@ -17,7 +17,7 @@ spec:
           app:
             image:
               repository: docker.io/pugmatt/bedrock-connect
-              tag: 1.65@sha256:878d420e23578c4e44f124cb2f9ca246d2c844737b9286ca085d15ad33e789c0
+              tag: 1.66@sha256:6fbbe37a4d94af7d60fb399d0b55cd70a00c5dfee76dbb859844a48cf74ebcf6
             env:
               TZ: Europe/London
               BC_CUSTOM_SERVERS: /app/custom_servers.json
