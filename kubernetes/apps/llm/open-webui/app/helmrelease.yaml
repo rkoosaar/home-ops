@@ -23,9 +23,9 @@ spec:
               WEBUI_URL: https://chat.${SECRET_DOMAIN}
               OLLAMA_BASE_URL: "http://sloppix.${SECRET_DOMAIN}:11434"
               TZ: "Europe/London"
-            envFrom:
-              - secretRef:
-                  name: "{{ .Release.Name }}-secret"
+            #            envFrom:
+            #              - secretRef:
+            #                  name: "{{ .Release.Name }}-secret"
             resources:
               requests:
                 cpu: 500m
