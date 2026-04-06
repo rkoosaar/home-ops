@@ -8,7 +8,7 @@ spec:
   components:
     - ../../../../components/volsync
   interval: 1h
-  path: ./kubernetes/apps/default/open-webui/app
+  path: ./kubernetes/apps/llm/open-webui/app
   postBuild:
     substitute:
       APP: open-webui
