@@ -20,7 +20,7 @@ spec:
           app:
             image:
               repository: ghcr.io/searxng/searxng
-              tag: 2026.2.6-b5bb27f23@sha256:670bd1076097640fc25221bf92a8af7d344503ce17ba3305abedf28e3634e807
+              tag: 2026.4.13-ee66b070a@sha256:4c6b4f3e1fc10a907a40b7eaaf5b92d50f5b4097d6fb5b02041c0f9926233b36
             command:
               - /usr/local/searxng/.venv/bin/granian
               - searx.webapp:app
