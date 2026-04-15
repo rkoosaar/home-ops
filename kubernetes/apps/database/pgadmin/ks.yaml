@@ -6,7 +6,7 @@ metadata:
   name: pgadmin
 spec:
   dependsOn:
-    - name: postgres17
+    - name: cluster
       namespace: database
   components:
     - ../../../../components/volsync
