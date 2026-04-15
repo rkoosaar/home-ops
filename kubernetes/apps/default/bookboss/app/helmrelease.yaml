@@ -1,0 +1,106 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: bookboss
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: bookboss
+  interval: 30m
+  values:
+    controllers:
+      bookboss:
+        annotations:
+          secret.reloader.stakater.com/reload: bookboss-secret
+        pod:
+          securityContext:
+            fsGroup: 100
+            fsGroupChangePolicy: OnRootMismatch
+            runAsGroup: 100
+            runAsNonRoot: true
+            runAsUser: 1000
+        containers:
+          app:
+            image:
+              repository: ghcr.io/szinn/bookboss
+              tag: v0.8.8
+            env:
+              BOOKBOSS__DATABASE__DATABASE_URL: sqlite:///config/bookboss.db?mode=rwc
+              BOOKBOSS__FRONTEND__BASE_URL: https://bookboss.${SECRET_DOMAIN}
+              BOOKBOSS__FRONTEND__LISTEN_PORT: &httpPort 8080
+              BOOKBOSS__LIBRARY__LIBRARY_PATH: /library/books
+              BOOKBOSS__IMPORT__BOOKDROP_PATH: /library/bookdrop
+              BOOKBOSS__IMPORT__POLL_INTERVAL_SECS: 60
+              BOOKBOSS__IMPORT__WORKER_POLL_INTERVAL_SECS: 5
+            envFrom:
+              - secretRef:
+                  name: bookboss-secret
+            probes:
+              liveness:
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /healthz
+                    port: *httpPort
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness:
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /readyz
+                    port: *httpPort
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+            resources:
+              requests:
+                cpu: 10m
+                memory: 128Mi
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities:
+                drop:
+                  - ALL
+    persistence:
+      data:
+        existingClaim: "{{ .Release.Name }}"
+        advancedMounts:
+          bookboss:
+            app:
+              - path: /config
+      nfs-nas-media:
+        type: nfs
+        server: unraid.kvshs.xyz
+        path: /mnt/user/data
+        advancedMounts:
+          bookboss:
+            app:
+              - path: /library/books
+                subPath: media/booklibrary/books
+              - path: /library/bookdrop
+                subPath: media/booklibrary/bookdrop
+      tmp:
+        type: emptyDir
+        globalMounts:
+          - path: /tmp
+    route:
+      app:
+        hostnames:
+          - "bb.${SECRET_DOMAIN}"
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
+    service:
+      app:
+        ports:
+          http:
+            port: *httpPort
