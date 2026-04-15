@@ -27,7 +27,7 @@ spec:
               repository: ghcr.io/szinn/bookboss
               tag: v0.8.8
             env:
-              BOOKBOSS__DATABASE__DATABASE_URL: sqlite:///config/bookboss.db?mode=rwc
+              BOOKBOSS__DATABASE__DATABASE_URL: sqlite:///data/bookboss.db?mode=rwc
               BOOKBOSS__FRONTEND__BASE_URL: https://bookboss.${SECRET_DOMAIN}
               BOOKBOSS__FRONTEND__LISTEN_PORT: &httpPort 8080
               BOOKBOSS__LIBRARY__LIBRARY_PATH: /library/books
@@ -76,7 +76,8 @@ spec:
         advancedMounts:
           bookboss:
             app:
-              - path: /config
+              - path: /data
+                subPath: data
       nfs-nas-media:
         type: nfs
         server: unraid.kvshs.xyz
