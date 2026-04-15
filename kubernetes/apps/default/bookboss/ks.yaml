@@ -9,12 +9,12 @@ spec:
     labels:
       app.kubernetes.io/name: bookboss
   components:
-    - ../../../../components/volsync
+  #    - ../../../../components/volsync
   dependsOn:
     - name: rook-ceph-cluster
       namespace: rook-ceph
   interval: 1h
-  path: "./kubernetes/apps/default/bookboss/app"
+  path: ./kubernetes/apps/default/bookboss/app
   postBuild:
     substitute:
       APP: bookboss
