@@ -5,9 +5,6 @@ kind: Kustomization
 metadata:
   name: bookboss
 spec:
-  commonMetadata:
-    labels:
-      app.kubernetes.io/name: bookboss
   components:
     - ../../../../components/volsync
   dependsOn:
@@ -19,7 +16,6 @@ spec:
     substitute:
       APP: bookboss
       VOLSYNC_CAPACITY: 7Gi
-      #VOLSYNC_SCHEDULE: "*/7 * * * *" # Every 7 min
   prune: true
   sourceRef:
     kind: GitRepository
