@@ -72,11 +72,11 @@ spec:
                   - ALL
     persistence:
       data:
-        existingClaim: bookboss
+        existingClaim: "{{ .Release.Name }}"
         advancedMounts:
           bookboss:
             app:
-              - path: /data
+              - path: /config
                 subPath: bb_data
       nfs-nas-media:
         type: nfs
