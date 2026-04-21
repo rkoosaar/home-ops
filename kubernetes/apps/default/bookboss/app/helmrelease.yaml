@@ -73,11 +73,11 @@ spec:
     persistence:
       data:
         existingClaim: "{{ .Release.Name }}"
-        advancedMounts:
-          bookboss:
-            app:
-              - path: /config
-                subPath: bb_data
+      #    advancedMounts:
+      #       bookboss:
+      #          app:
+      #             - path: /config
+      #                subPath: bb_data
       nfs-nas-media:
         type: nfs
         server: unraid.kvshs.xyz
