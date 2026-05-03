@@ -13,4 +13,4 @@ resources:
   - ./openebs/ks.yaml
   - ./kopia/ks.yaml
   - ./snapshot-controller/ks.yaml
-  - ./volsync/ks.yaml
+  #- ./volsync/ks.yaml
