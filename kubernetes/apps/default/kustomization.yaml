@@ -12,7 +12,7 @@ resources:
   - ./audiobookshelf/ks.yaml
   - ./bazarr/ks.yaml
   - ./bedrockconnect/ks.yaml
-  - ./bookboss/ks.yaml
+  #  - ./bookboss/ks.yaml
   - ./calibre/ks.yaml
   - ./calibre-web/ks.yaml
   - ./ersatztv/ks.yaml
