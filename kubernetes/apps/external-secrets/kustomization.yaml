@@ -12,4 +12,4 @@ resources:
   - ./namespace.yaml
   - ./external-secrets/ks.yaml
   - ./onepassword/ks.yaml
-  - ./onepassword-connect/ks.yaml
+  #- ./onepassword-connect/ks.yaml
