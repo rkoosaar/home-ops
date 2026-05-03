@@ -6,7 +6,7 @@ metadata:
   name: dragonfly-operator
 spec:
   dependsOn:
-    - name: onepassword
+    - name: onepassword-connect
       namespace: external-secrets
   interval: 1h
   path: ./kubernetes/apps/database/dragonfly/app
