@@ -17,7 +17,7 @@ spec:
         serviceMonitor:
           enabled: true
       credentialsName: onepassword-connect-secret
-      credentialsKey: 1password-credentials.json
+      credentials_base64: 1password-credentials.json
       #credentialsName: onepassword-connect-credentials-secret
       sync:
         imageRepository: ghcr.io/1password/connect-sync
