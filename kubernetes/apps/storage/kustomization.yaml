@@ -11,5 +11,6 @@ components:
 resources:
   - ./namespace.yaml
   - ./openebs/ks.yaml
+  - ./kopia/ks.yaml
   - ./snapshot-controller/ks.yaml
   - ./volsync/ks.yaml
