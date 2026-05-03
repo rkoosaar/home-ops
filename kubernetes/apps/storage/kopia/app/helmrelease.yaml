@@ -95,8 +95,8 @@ spec:
             subPath: repository.config
       repository:
         type: nfs
-        server: expanse.internal
-        path: /mnt/ceres/Kopia
+        server: unraid.kvshs.xyz
+        path: /mnt/user/backups/kopia
         globalMounts:
           - path: /repository
       tmpfs:

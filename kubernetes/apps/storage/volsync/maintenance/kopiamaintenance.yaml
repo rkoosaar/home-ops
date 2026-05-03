@@ -12,7 +12,7 @@ spec:
     - mountPath: repository
       volumeSource:
         nfs:
-          path: /mnt/ceres/Kopia
-          server: expanse.internal
+          path: /mnt/user/backups/kopia
+          server: unraid.kvshs.xyz
   repository:
     repository: volsync-maintenance-secret
