@@ -26,7 +26,7 @@ spec:
         volumeSource:
           nfs:
             path: /mnt/user/backups/kopia
-            server: expanse.internal
+            server: unraid.kvshs.xyz
     parallelism: 2
     repository: ${APP}-volsync-secret
     retain:
