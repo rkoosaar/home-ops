@@ -13,8 +13,8 @@ resources:
   - ./bazarr/ks.yaml
   - ./bedrockconnect/ks.yaml
   - ./bookboss/ks.yaml
-  - ./calibre/ks.yaml
-  - ./calibre-web/ks.yaml
+  #- ./calibre/ks.yaml
+  #- ./calibre-web/ks.yaml
   - ./ersatztv/ks.yaml
   - ./firefly/ks.yaml
   - ./it-tools/ks.yaml
