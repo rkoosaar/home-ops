@@ -25,7 +25,7 @@ spec:
           app:
             image:
               repository: ghcr.io/szinn/bookboss
-              tag: v0.8.23@sha256:bf6484b37d0e0d1124bae3528fc3be76003f201083f569f4a2c139df84c70980
+              tag: v0.8.25@sha256:e7427b4879aa65de81280e8e260df230e2b16e7e518cd5ec46fb31b0c142b16e
             env:
               BOOKBOSS__DATABASE__DATABASE_URL: sqlite:///data/bookboss.db?mode=rwc
               BOOKBOSS__FRONTEND__BASE_URL: https://bb.${SECRET_DOMAIN}
