@@ -6,8 +6,8 @@ metadata:
   name: recyclarr
 spec:
   components:
-    - ../../../../components/volsync
-    - ../../../../components/zeroscaler
+    #- ../../../../components/volsync
+    #- ../../../../components/zeroscaler
   dependsOn:
     - name: rook-ceph-cluster
       namespace: rook-ceph
