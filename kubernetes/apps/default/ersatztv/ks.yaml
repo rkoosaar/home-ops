@@ -11,7 +11,6 @@ spec:
   dependsOn:
     - name: rook-ceph-cluster
       namespace: rook-ceph
-    - name: calibre
   interval: 1h
   path: ./kubernetes/apps/default/ersatztv/app
   postBuild:
