@@ -18,7 +18,7 @@ spec:
           app:
             image:
               repository: kanidm/tools
-              tag: 1.10.0@sha256:b48385461ffa5ecbec018cd7ef9b79b868a92cd4b198a51e0520748eff62f8c2
+              tag: 1.10.2@sha256:745fbf552d7aa11ce0f7b603c88ea20dcfb52f2d541499677529b08d446eb407
             env:
               TZ: Europe/London
             command:
