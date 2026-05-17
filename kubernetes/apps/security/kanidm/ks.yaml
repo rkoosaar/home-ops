@@ -40,8 +40,6 @@ spec:
     - ../../../../components/volsync
     - ../../../../components/zeroscaler
   dependsOn:
-    # - name: kaniop
-    #   namespace: kanidm
     - name: volsync
       namespace: storage
   #  healthChecks:

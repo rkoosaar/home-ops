@@ -8,5 +8,5 @@ components:
   - ../../components/alerts
 resources:
   - ./namespace.yaml
-  #- ./kanidm/ks.yaml
+  - ./kanidm/ks.yaml
   #- ./trivy-operator/ks.yaml
