@@ -25,11 +25,11 @@ resources:
   - ./neko/ks.yaml
   - ./pinchflat/ks.yaml
   - ./plex/ks.yaml
-  #- ./prowlarr/ks.yaml
+  - ./prowlarr/ks.yaml
   - ./radarr/ks.yaml
   - ./recyclarr/ks.yaml
   - ./redlib/ks.yaml
-  - ./sabnzbd/ks.yaml
+  #- ./sabnzbd/ks.yaml
   - ./searxng/ks.yaml
   - ./seerr/ks.yaml
   - ./sonarr/ks.yaml
