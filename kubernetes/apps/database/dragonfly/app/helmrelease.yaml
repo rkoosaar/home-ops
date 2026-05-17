@@ -9,12 +9,12 @@ spec:
     kind: OCIRepository
     name: dragonfly-operator
   interval: 30m
-values:
-  manager:
-    image:
-      repository: ghcr.io/dragonflydb/operator
-  grafanaDashboard:
-    enabled: true
-    grafanaOperator:
+  values:
+    manager:
+      image:
+        repository: ghcr.io/dragonflydb/operator
+    grafanaDashboard:
       enabled: true
-    folder: Dragonfly
+      grafanaOperator:
+        enabled: true
+      folder: Dragonfly
