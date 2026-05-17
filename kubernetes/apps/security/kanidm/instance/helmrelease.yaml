@@ -11,6 +11,7 @@ spec:
   interval: 30h
   values:
     defaultPodOptions:
+      automountServiceAccountToken: true
       securityContext:
         seccompProfile:
           type: RuntimeDefault
