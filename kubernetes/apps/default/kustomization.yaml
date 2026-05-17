@@ -25,7 +25,7 @@ resources:
   - ./neko/ks.yaml
   - ./pinchflat/ks.yaml
   - ./plex/ks.yaml
-  - ./prowlarr/ks.yaml
+  #- ./prowlarr/ks.yaml
   - ./radarr/ks.yaml
   - ./recyclarr/ks.yaml
   - ./redlib/ks.yaml
