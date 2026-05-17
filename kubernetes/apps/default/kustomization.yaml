@@ -20,7 +20,7 @@ resources:
   - ./it-tools/ks.yaml
   - ./kavita/ks.yaml
   - ./minecraft/ks.yaml
-  - ./m4b-tool/ks.yaml
+  #- ./m4b-tool/ks.yaml
   - ./navidrome/ks.yaml
   - ./neko/ks.yaml
   - ./pinchflat/ks.yaml
