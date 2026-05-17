@@ -8,7 +8,7 @@ spec:
   chartRef:
     kind: OCIRepository
     name: kanidm
-  interval: 1h
+  interval: 30h
   values:
     defaultPodOptions:
       securityContext:
@@ -102,12 +102,8 @@ spec:
 
     route:
       app:
-        #        kind: TLSRoute
         hostnames: ["idm.${SECRET_DOMAIN}"]
         parentRefs:
-          # - name: envoy-external
-          #   namespace: network
-          #   sectionName: https
           - name: envoy-internal
             namespace: network
             sectionName: https
