@@ -71,10 +71,11 @@ spec:
         containers:
           app:
             image:
-              repository: ghcr.io/rkoosaar/kanidm-provision
-              tag: 1.3.0@sha256:f68d12821a8e9f0877b4f41a842dceb297e15e9ad94c500bc6eb76b1393f778f
+              repository: ghcr.io/m00nwtchr/kanidm-provision
+              tag: main@sha256:bc6b74f818661d369c98b9f3414bf31421450e888455405a4a7a112b5d6f2614
             env:
               KANIDM_INSTANCE: "https://idm.${SECRET_DOMAIN}"
+              KANIDM_NAMESPACE: security
             envFrom:
               - secretRef:
                   name: "{{ .Release.Name }}-secret"
@@ -82,7 +83,6 @@ spec:
               capabilities:
                 drop:
                   - ALL
-
     service:
       app:
         controller: *app
@@ -97,7 +97,7 @@ spec:
     route:
       app:
         #        kind: TLSRoute
-        hostnames: [ "idm.${SECRET_DOMAIN}" ]
+        hostnames: ["idm.${SECRET_DOMAIN}"]
         parentRefs:
           # - name: envoy-external
           #   namespace: network
@@ -154,15 +154,15 @@ spec:
         kanidm-write-secret:
           type: ClusterRole
           rules:
-            - apiGroups: [ "" ]
-              resources: [ "secrets" ]
-              verbs: [ "create", "patch" ]
+            - apiGroups: [""]
+              resources: ["secrets"]
+              verbs: ["create", "patch"]
         kanidm-read-cm:
           type: Role
           rules:
-            - apiGroups: [ "" ]
-              resources: [ "configmaps" ]
-              verbs: [ "get", "list", "watch" ]
+            - apiGroups: [""]
+              resources: ["configmaps"]
+              verbs: ["get", "list", "watch"]
       bindings:
         kanidm-write-secret:
           type: ClusterRoleBinding
@@ -178,4 +178,4 @@ spec:
             - identifier: *app
 
     serviceAccount:
-      *app : { }
+      *app : {}
