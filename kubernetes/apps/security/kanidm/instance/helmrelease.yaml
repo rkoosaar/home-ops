@@ -81,7 +81,7 @@ spec:
                 memory: 100Mi
             env:
               KANIDM_INSTANCE: "https://idm.${SECRET_DOMAIN}"
-              #KANIDM_NAMESPACE: security
+              KANIDM_NAMESPACE: security
             envFrom:
               - secretRef:
                   name: "{{ .Release.Name }}-secret"
