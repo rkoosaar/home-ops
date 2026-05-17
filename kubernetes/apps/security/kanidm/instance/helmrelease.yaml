@@ -75,7 +75,7 @@ spec:
               tag: main@sha256:bc6b74f818661d369c98b9f3414bf31421450e888455405a4a7a112b5d6f2614
             env:
               KANIDM_INSTANCE: "https://idm.${SECRET_DOMAIN}"
-              KANIDM_NAMESPACE: security
+              KANIDM_NAMESPACE: "security"
             envFrom:
               - secretRef:
                   name: "{{ .Release.Name }}-secret"
