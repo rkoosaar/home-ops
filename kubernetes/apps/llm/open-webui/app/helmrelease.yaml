@@ -21,7 +21,8 @@ spec:
               tag: v0.9.5@sha256:e045bde3b004cc7f8c319412345eb56c87ea6ac57031534a31ca37ad5424beb3
             env:
               WEBUI_URL: https://chat.${SECRET_DOMAIN}
-              OLLAMA_BASE_URL: "http://sloppix.${SECRET_DOMAIN}:11434"
+              ENABLE_RAG_LOCAL_WEB_FETCH: true
+              #OLLAMA_BASE_URL: "http://sloppix.${SECRET_DOMAIN}:11434"
               TZ: "Europe/London"
             #            envFrom:
             #              - secretRef:
