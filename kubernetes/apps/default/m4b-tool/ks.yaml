@@ -5,7 +5,6 @@ kind: Kustomization
 metadata:
   name: m4b-tool
 spec:
-
   interval: 1h
   path: ./kubernetes/apps/default/m4b-tool/app
   postBuild:
