@@ -8,7 +8,7 @@ spec:
   chartRef:
     kind: OCIRepository
     name: convertx
-  interval: 1h
+  interval: 30m
   values:
     controllers:
       convertx:
