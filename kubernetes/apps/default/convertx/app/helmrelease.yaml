@@ -1,0 +1,67 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: convertx
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: convertx
+  interval: 1h
+  values:
+    controllers:
+      convertx:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          app:
+            image:
+              repository: ghcr.io/c4illin/convertx
+              tag: v0.17.0@sha256:e1f85be04bbaf8a55ead9261194c3ae0fa0957d303ea537127154860b2552afd
+            env:
+              TZ: ${TIMEZONE}
+              ACCOUNT_REGISTRATION: false
+              HTTP_ALLOWED: false
+              ALLOW_UNAUTHENTICATED: true
+              AUTO_DELETE_EVERY_N_HOURS: 1
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
+            resources:
+              requests:
+                cpu: 10m
+                memory: 100Mi
+              limits:
+                memory: 2Gi
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+    service:
+      app:
+        ports:
+          http:
+            port: 3000
+    route:
+      app:
+        annotations:
+          gatus.home-operations.com/enabled: "false"
+        hostnames:
+          - "{{ .Release.Name }}.${SECRET_DOMAIN}"
+        parentRefs:
+          - name: envoy-internal
+            namespace: networking
+    persistence:
+      data:
+        existingClaim: "{{ .Release.Name }}"
+        globalMounts:
+          - path: /app/data
+      tmpfs:
+        type: emptyDir
+        globalMounts:
+          - path: /tmp
