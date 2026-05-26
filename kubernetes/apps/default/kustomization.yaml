@@ -13,7 +13,7 @@ resources:
   - ./bazarr/ks.yaml
   - ./bedrockconnect/ks.yaml
   - ./bookboss/ks.yaml
-  #- ./convertx/ks.yaml
+  - ./convertx/ks.yaml
   #- ./calibre/ks.yaml
   #- ./calibre-web/ks.yaml
   - ./ersatztv/ks.yaml
