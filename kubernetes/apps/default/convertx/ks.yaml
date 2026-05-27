@@ -16,6 +16,7 @@ spec:
   postBuild:
     substitute:
       APP: convertx
+      VOLSYNC_CAPACITY: 2Gi
   prune: true
   sourceRef:
     kind: GitRepository
