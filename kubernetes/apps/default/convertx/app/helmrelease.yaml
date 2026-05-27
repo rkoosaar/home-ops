@@ -49,13 +49,11 @@ spec:
             port: 3000
     route:
       app:
-        annotations:
-          gatus.home-operations.com/enabled: "false"
         hostnames:
           - "{{ .Release.Name }}.${SECRET_DOMAIN}"
         parentRefs:
           - name: envoy-internal
-            namespace: networking
+            namespace: network
     persistence:
       data:
         existingClaim: "{{ .Release.Name }}"
