@@ -216,10 +216,16 @@ spec:
           - path: /data/config/bluemap/maps/overworld.conf
             subPath: overworld.conf
             readOnly: true
-      playit-config:
-        type: configMap
-        name: playit-configmap
-        globalMounts:
-          - path: /etc/playit/playit.toml
-            subPath: playit.toml
-            readOnly: true
+      playit-runtime:
+        type: emptyDir
+        advancedMounts:
+          minecraft:
+            playit:
+              - path: /run/playit
+#      playit-config:
+#        type: configMap
+#        name: playit-configmap
+#        globalMounts:
+#          - path: /etc/playit/playit.toml
+#            subPath: playit.toml
+#            readOnly: true
