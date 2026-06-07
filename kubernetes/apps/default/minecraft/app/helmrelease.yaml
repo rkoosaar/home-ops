@@ -222,10 +222,3 @@ spec:
           minecraft:
             playit:
               - path: /run/playit
-#      playit-config:
-#        type: configMap
-#        name: playit-configmap
-#        globalMounts:
-#          - path: /etc/playit/playit.toml
-#            subPath: playit.toml
-#            readOnly: true
