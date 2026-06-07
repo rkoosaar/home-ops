@@ -1,5 +1,0 @@
-[server]
-forwarding_rules = [
-  { type = "minecraft", listen_port = 25565, target = "127.0.0.1:25565" },
-  { type = "bedrock", listen_port = 19132, target = "127.0.0.1:19132" }
-]
