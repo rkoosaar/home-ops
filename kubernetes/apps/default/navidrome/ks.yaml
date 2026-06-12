@@ -16,7 +16,7 @@ spec:
   postBuild:
     substitute:
       APP: navidrome
-      VOLSYNC_CAPACITY: 2Gi
+      VOLSYNC_CAPACITY: 3Gi
   prune: true
   sourceRef:
     kind: GitRepository
