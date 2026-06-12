@@ -28,7 +28,7 @@ spec:
               requests:
                 cpu: 10m
               limits:
-                memory: 64Mi
+                memory: 128Mi
             restartPolicy: Always
         containers:
           app:
@@ -36,6 +36,7 @@ spec:
               repository: ghcr.io/twin/gatus
               tag: v5.36.0@sha256:c5f210d095fa78e6efaa20ffeb14803f2ba4f10615e16a6d12087697149617f0
             env:
+              GATUS_DELAY_START_SECONDS: 5
               GATUS_CONFIG_PATH: /config
               GATUS_WEB_PORT: &port 80
               TZ: Europe/London
@@ -50,7 +51,7 @@ spec:
                   httpGet:
                     path: /health
                     port: *port
-                  initialDelaySeconds: 5
+                  initialDelaySeconds: 0
                   periodSeconds: 10
                   timeoutSeconds: 1
                   failureThreshold: 3
@@ -58,7 +59,7 @@ spec:
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
-              capabilities: {add: ["NET_RAW"], drop: ["ALL"]}
+              capabilities: { drop: ["ALL"] }
             resources:
               requests:
                 cpu: 100m
@@ -71,7 +72,13 @@ spec:
               accessMode: ReadWriteOnce
               size: 5Gi
     defaultPodOptions:
-      hostUsers: false
+      automountServiceAccountToken: true
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 100
+        fsGroup: 100
+        fsGroupChangePolicy: OnRootMismatch
     service:
       app:
         ports:
@@ -120,8 +127,6 @@ spec:
             identifier: gatus
           subjects:
             - identifier: gatus
-    serviceAccount:
-      gatus: {}
     persistence:
       config-file:
         type: configMap
