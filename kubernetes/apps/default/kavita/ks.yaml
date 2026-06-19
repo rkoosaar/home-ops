@@ -17,7 +17,7 @@ spec:
     substitute:
       APP: kavita
       GATUS_SUBDOMAIN: comics
-      VOLSYNC_CAPACITY: 2Gi
+      VOLSYNC_CAPACITY: 3Gi
   prune: true
   sourceRef:
     kind: GitRepository
