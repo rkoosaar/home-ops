@@ -66,6 +66,7 @@ spec:
               # fabricexporter,
               # https://vanillatweaks.net/share#oNYxlz
               #VANILLA_TWEAKS_SHARE_CODES: oNYxlz # Coord HUD, Anti-Endermen Griefing
+              ENFORCE_SECURE_PROFILE: "false"
               OPS: "RicK99274"
               # Whitelist
               ENABLE_WHITELIST: "true"
