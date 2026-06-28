@@ -9,7 +9,7 @@ server:
   limiter: true
   image_proxy: true
   method: "GET"
-  public_instance: true
+  public_instance: false
 
 search:
   autocomplete: duckduckgo
