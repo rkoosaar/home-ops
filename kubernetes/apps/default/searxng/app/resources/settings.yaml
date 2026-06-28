@@ -1,12 +1,12 @@
 ---
 use_default_settings: true
 
-engine:
+engines:
   - name: bing
     disabled: false
 
 server:
-  limiter: true
+  limiter: false
   image_proxy: true
   method: "GET"
   public_instance: false
