@@ -35,7 +35,7 @@ spec:
           app:
             image:
               repository: ghcr.io/renovatebot/renovate
-              tag: 43.243.2@sha256:9e7084cd44ac8be22639b08c15d81617c2f2c9b9188f062d522a2a696984ef26
+              tag: 43.251.0@sha256:c42ddcaa72e5364809557a07a551917eac835c6e8c0818e32b2964f71383114e
               pullPolicy: IfNotPresent
             envFrom:
               - secretRef:
