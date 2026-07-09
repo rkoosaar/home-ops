@@ -62,7 +62,7 @@ spec:
                 lithium,
                 ferrite-core,
                 anti-enderman-grief,
-                fabricexporter,
+              #  fabricexporter,
               # c2me-fabric,
               # fabricexporter,
               # https://vanillatweaks.net/share#oNYxlz
