@@ -17,7 +17,7 @@ spec:
     substitute:
       APP: audiobookshelf
       GATUS_SUBDOMAIN: audiobooks
-      VOLSYNC_CAPACITY: 3Gi
+      VOLSYNC_CAPACITY: 5Gi
   prune: true
   sourceRef:
     kind: GitRepository
