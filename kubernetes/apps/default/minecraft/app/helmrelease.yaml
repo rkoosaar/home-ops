@@ -61,7 +61,8 @@ spec:
                 bluemap,
                 lithium,
                 ferrite-core,
-              # fabricexporter,
+                anti-enderman-grief,
+                fabricexporter,
               # c2me-fabric,
               # fabricexporter,
               # https://vanillatweaks.net/share#oNYxlz
