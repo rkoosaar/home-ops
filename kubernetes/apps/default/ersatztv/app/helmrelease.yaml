@@ -19,7 +19,7 @@ spec:
         containers:
           app:
             image:
-              repository: ghcr.io/ersatztv/ersatztv
+              repository: ghcr.io/ersatztv/legacy
               tag: v26.3.0@sha256:25e340e1d2f2c033821444aa5f26642728b2d33712f88abe3fc084b6f09dd6b4
             env:
               TZ: Europe/London
