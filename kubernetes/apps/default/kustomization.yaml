@@ -12,7 +12,7 @@ resources:
   - ./audiobookshelf/ks.yaml
   - ./bazarr/ks.yaml
   - ./bedrockconnect/ks.yaml
-  - #./bookboss/ks.yaml
+  #- ./bookboss/ks.yaml
   - ./convertx/ks.yaml
   #- ./calibre/ks.yaml
   #- ./calibre-web/ks.yaml
@@ -36,7 +36,6 @@ resources:
   - ./sonarr/ks.yaml
   - ./tautulli/ks.yaml
   #- ./dispatcharr/ks.yaml
-
   ##- ./fusion/ks.yaml
   # - ./threadfin/ks.yaml
   #- ./xteve/ks.yaml
