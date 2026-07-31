@@ -12,7 +12,7 @@ resources:
   - ./audiobookshelf/ks.yaml
   - ./bazarr/ks.yaml
   - ./bedrockconnect/ks.yaml
-  - ./bookboss/ks.yaml
+  #- ./bookboss/ks.yaml
   - ./convertx/ks.yaml
   #- ./calibre/ks.yaml
   #- ./calibre-web/ks.yaml
@@ -46,4 +46,4 @@ resources:
   #- ./ghostfolio/ks.yaml
   #- ./homepage/ks.yaml
   # - ./readarr/ks.yaml
-  #- ./stirling-pdf/ks.yaml
+  https://github.com/ErsatzTV/ErsatzTV/issues/327#- ./stirling-pdf/ks.yaml
