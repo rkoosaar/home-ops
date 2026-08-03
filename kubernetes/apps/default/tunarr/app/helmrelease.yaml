@@ -21,7 +21,7 @@ spec:
             image:
               repository: public.ecr.aws/docker/library/busybox
               tag: "1.38"
-            command: ["sh", "-c", "chown -R 1000:100 /config && chmod -R u+rwX,g+rwX /config"]
+            command: ["sh", "-c", "chown -R 0:0 /config && chmod -R u+rwX /config"]
             securityContext:
               runAsUser: 0
         containers:
@@ -74,9 +74,9 @@ spec:
           resourceClaimTemplateName: tunarr
       automountServiceAccountToken: false
       securityContext:
-        runAsUser: 1000
-        runAsGroup: 100
-        fsGroup: 100
+        runAsUser: 0
+        runAsGroup: 0
+        fsGroup: 0
         fsGroupChangePolicy: OnRootMismatch
         supplementalGroups: [44]
     service:
