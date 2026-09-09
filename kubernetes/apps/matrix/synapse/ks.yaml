@@ -8,7 +8,7 @@ spec:
   components:
     - ../../../../components/volsync
   interval: 1h
-  path: ./kubernetes/apps/default/synapse/app
+  path: ./kubernetes/apps/matrix/synapse/app
   postBuild:
     substitute:
       APP: synapse
@@ -20,5 +20,5 @@ spec:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
-  targetNamespace: default
+  targetNamespace: matrix
   wait: false

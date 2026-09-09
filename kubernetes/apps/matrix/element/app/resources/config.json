@@ -1,0 +1,11 @@
+{
+  "default_server_config": {
+    "m.homeserver": {
+      "base_url": "https://matrix.${SECRET_DOMAIN}",
+      "server_name": "${SECRET_DOMAIN}"
+    }
+  },
+  "disable_custom_urls": false,
+  "disable_guests": true,
+  "default_theme": "dark"
+}
