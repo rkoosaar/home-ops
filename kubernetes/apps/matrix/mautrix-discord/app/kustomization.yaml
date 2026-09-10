@@ -10,6 +10,7 @@ configMapGenerator:
   - name: mautrix-discord-configmap
     files:
       - config.yaml=./resources/config.yaml
+      - double-puppet-registration.yaml=./resources/double-puppet-registration.yaml
       - registration.yaml=./resources/registration.yaml
 generatorOptions:
   disableNameSuffixHash: true
