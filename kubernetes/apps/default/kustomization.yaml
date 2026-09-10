@@ -34,7 +34,6 @@ resources:
   - ./searxng/ks.yaml
   - ./seerr/ks.yaml
   - ./sonarr/ks.yaml
-  - ./synapse/ks.yaml
   - ./tautulli/ks.yaml
   - ./tunarr/ks.yaml
   #- ./dispatcharr/ks.yaml
