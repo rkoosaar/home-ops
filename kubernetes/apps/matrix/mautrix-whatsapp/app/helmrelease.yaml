@@ -1,0 +1,79 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: mautrix-whatsapp
+spec:
+  interval: 1h
+  chartRef:
+    kind: OCIRepository
+    name: mautrix-whatsapp
+  values:
+    controllers:
+      mautrix-whatsapp:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        initContainers:
+          init-db:
+            image:
+              repository: ghcr.io/rkoosaar/postgres-init
+              tag: "17"
+            envFrom:
+              - secretRef:
+                  name: mautrix-whatsapp-db-secret
+        containers:
+          app:
+            image:
+              repository: dock.mau.dev/mautrix/whatsapp
+              tag: v0.2608.0
+            command: ["/usr/bin/mautrix-whatsapp"]
+            args: ["-c", "/data/config.yaml", "--no-update"]
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities:
+                drop: ["ALL"]
+            resources:
+              requests:
+                cpu: 10m
+                memory: 128Mi
+              limits:
+                memory: 512Mi
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+    service:
+      app:
+        ports:
+          http:
+            port: 8000
+    route:
+      app:
+        hostnames:
+          - "mautrix-whatsapp.${SECRET_DOMAIN}"
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
+    persistence:
+      config:
+        type: secret
+        name: mautrix-whatsapp-secret
+        globalMounts:
+          - path: /data/config.yaml
+            subPath: config.yaml
+            readOnly: true
+          - path: /data/registration.yaml
+            subPath: registration.yaml
+            readOnly: true
+      tmpfs:
+        type: emptyDir
+        advancedMounts:
+          mautrix-whatsapp:
+            app:
+              - path: /tmp
+                subPath: tmp

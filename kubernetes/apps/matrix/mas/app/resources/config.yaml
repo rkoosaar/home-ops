@@ -1,0 +1,84 @@
+---
+http:
+  listeners:
+    - name: web
+      resources:
+        - name: discovery
+        - name: human
+        - name: oauth
+        - name: compat
+        - name: graphql
+        - name: assets
+      binds:
+        - address: '[::]:8080'
+      proxy_protocol: false
+    - name: internal
+      resources:
+        - name: health
+      binds:
+        - host: localhost
+          port: 8081
+      proxy_protocol: false
+  trusted_proxies:
+    - 10.42.0.0/16
+    - 10.43.0.0/16
+  public_base: "https://mas.${SECRET_DOMAIN}"
+database:
+  host: postgres17-rw.database.svc.cluster.local
+  port: 5432
+  username: "{{ .MAS_POSTGRES_USER }}"
+  password: "{{ .MAS_POSTGRES_PASSWORD }}"
+  database: "{{ .MAS_POSTGRES_DB }}"
+  max_connections: 10
+  min_connections: 0
+  connect_timeout: 30
+  idle_timeout: 600
+  max_lifetime: 1800
+secrets:
+  encryption: "{{ .SECRETS_ENCRYPTION }}"
+  keys:
+    - kid: "{{ .SECRETS_KEYS_0_KID }}"
+      key: "{{ .SECRETS_KEYS_0_KEY }}"
+passwords:
+  enabled: true
+  schemes:
+    - version: 1
+      algorithm: bcrypt
+    - version: 2
+      algorithm: argon2id
+  minimum_complexity: 3
+matrix:
+  kind: synapse
+  homeserver: "${SECRET_DOMAIN}"
+  secret: "{{ .SYNAPSE_ADMIN_TOKEN }}"
+  endpoint: http://synapse-matrix-synapse.matrix.svc.cluster.local:8008
+clients:
+  - client_id: 0000000000000000000SYNAPSE
+    client_auth_method: client_secret_basic
+    client_secret: "{{ .SYNAPSE_MAS_CLIENT_SECRET }}"
+    redirect_uris:
+      - "https://matrix.${SECRET_DOMAIN}/_synapse/client/oidc/callback"
+      - "https://element.${SECRET_DOMAIN}"
+      - "element://vector/webapp"
+      - "vector://vector/webapp"
+upstream_oauth2:
+  providers:
+    - id: "{{ .KANIDM_PROVIDER_ID }}"
+      human_name: Kanidm
+      issuer: "https://id.${SECRET_DOMAIN}/oauth2/openid/{{ .KANIDM_CLIENT_ID }}"
+      id_token_signed_response_alg: ES256
+      client_id: "{{ .KANIDM_CLIENT_ID }}"
+      client_secret: "{{ .KANIDM_CLIENT_SECRET }}"
+      token_endpoint_auth_method: client_secret_basic
+      scope: "openid profile email"
+      claims_imports:
+        localpart:
+          action: require
+          template: "{{ `{{ user.preferred_username }}` }}"
+        displayname:
+          action: suggest
+          template: "{{ `{{ user.name }}` }}"
+        email:
+          action: suggest
+          template: "{{ `{{ user.email }}` }}"
+          set_email_verification: always

@@ -1,0 +1,21 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: mautrix-whatsapp
+spec:
+  dependsOn:
+    - name: onepassword-connect
+      namespace: external-secrets
+    - name: synapse
+      namespace: matrix
+  interval: 1h
+  path: ./kubernetes/apps/matrix/mautrix-whatsapp/app
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+    namespace: flux-system
+  targetNamespace: matrix
+  wait: false
