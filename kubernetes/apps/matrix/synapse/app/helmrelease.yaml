@@ -59,6 +59,17 @@ spec:
         prometheus.io/scrape: "true"
         prometheus.io/path: "/_synapse/metrics"
         prometheus.io/port: "9090"
+      extraVolumes:
+        - name: synapse-mas-secret
+          secret:
+            secretName: synapse-mas-secret
+      extraVolumeMounts:
+        # Synapse loads everything in conf.d, so the MAS section arrives as just
+        # another config file next to the chart's generated secrets file.
+        - name: synapse-mas-secret
+          mountPath: /synapse/config/conf.d/mas_config.yaml
+          subPath: mas_config.yaml
+          readOnly: true
       resources:
         requests:
           cpu: 100m
@@ -66,10 +77,13 @@ spec:
         limits:
           memory: 2Gi
 
-    # Client-to-server API access (federation is deferred — needs apex-domain
-    # routing + a public inbound path for the federation port).
+    # Client-to-server API access. The chart's own HTTPRoute is disabled because the
+    # route now has to send the MAS auth endpoints to a different backend — see
+    # app/httproute.yaml, which is a superset of what the chart rendered (federation
+    # is still deferred: it needs apex-domain routing + a public inbound path for the
+    # federation port).
     gateway:
-      enabled: true
+      enabled: false
       csHosts:
         - "matrix.${SECRET_DOMAIN}"
       includeServerName: false

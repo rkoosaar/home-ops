@@ -1,0 +1,10 @@
+---
+# Rendered into a Secret (mas_config.yaml key) by the `synapse-mas` ExternalSecret and
+# mounted as another file in synapse's conf.d directory, so Synapse loads it alongside
+# the chart-generated config.
+matrix_authentication_service:
+  enabled: true
+  # Shared secret between Synapse and MAS: this is the same 1Password field MAS reads
+  # as `matrix.secret`, so the two can never drift apart.
+  secret: "{{ .SYNAPSE_ADMIN_TOKEN }}"
+  endpoint: "http://mas.matrix.svc.cluster.local:8080"
