@@ -38,12 +38,27 @@ secrets:
   encryption: "{{ .SECRETS_ENCRYPTION }}"
   keys:
     - kid: "{{ .SECRETS_KEYS_0_KID }}"
-      key: "{{ .SECRETS_KEYS_0_KEY }}"
+      key: |
+        {{- .SECRETS_KEYS_0_KEY | nindent 8 }}
+    - kid: "{{ .SECRETS_KEYS_1_KID }}"
+      key: |
+        {{- .SECRETS_KEYS_1_KEY | nindent 8 }}
+    - kid: "{{ .SECRETS_KEYS_2_KID }}"
+      key: |
+        {{- .SECRETS_KEYS_2_KEY | nindent 8 }}
+    - kid: "{{ .SECRETS_KEYS_3_KID }}"
+      key: |
+        {{- .SECRETS_KEYS_3_KEY | nindent 8 }}
 passwords:
   enabled: true
   schemes:
+    # version 1 (bcrypt) exists to verify the password hashes imported from
+    # Synapse by syn2mas: Synapse applies NFKC normalization before hashing,
+    # so the scheme must match or migrated passwords fail to verify.
     - version: 1
       algorithm: bcrypt
+      unicode_normalization: true
+    # new passwords are hashed with the highest version
     - version: 2
       algorithm: argon2id
   minimum_complexity: 3
@@ -65,12 +80,17 @@ upstream_oauth2:
   providers:
     - id: "{{ .KANIDM_PROVIDER_ID }}"
       human_name: Kanidm
-      issuer: "https://id.${SECRET_DOMAIN}/oauth2/openid/{{ .KANIDM_CLIENT_ID }}"
+      issuer: "https://idm.${SECRET_DOMAIN}/oauth2/openid/{{ .KANIDM_CLIENT_ID }}"
       id_token_signed_response_alg: ES256
       client_id: "{{ .KANIDM_CLIENT_ID }}"
       client_secret: "{{ .KANIDM_CLIENT_SECRET }}"
       token_endpoint_auth_method: client_secret_basic
       scope: "openid profile email"
+      # localpart.action is `require` with the default `on_conflict: fail`:
+      # a login whose Kanidm username matches an EXISTING Matrix account is not
+      # silently linked; the user gets the confirm-link page instead. That is
+      # the safe default (auto-linking is an account-takeover vector if the
+      # provider's username claim isn't trustworthy).
       claims_imports:
         localpart:
           action: require
@@ -81,4 +101,3 @@ upstream_oauth2:
         email:
           action: suggest
           template: "{{ `{{ user.email }}` }}"
-          set_email_verification: always

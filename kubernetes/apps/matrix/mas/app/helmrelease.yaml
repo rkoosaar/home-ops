@@ -28,6 +28,7 @@ spec:
               repository: ghcr.io/element-hq/matrix-authentication-service
               tag: 1.24.0@sha256:52c18ffcc940220a3b6aa5985b7e09d24ac27f5ed10a4d660c312e48f73ff105
             env:
+              TZ: Europe/London
               MAS_CONFIG: /config/config.yaml
             securityContext:
               allowPrivilegeEscalation: false
