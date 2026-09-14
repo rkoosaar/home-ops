@@ -1,6 +1,8 @@
-# Tuwunel configuration. Rendered into a Secret by the `tuwunel` ExternalSecret:
-# {{ .FIELD }} placeholders resolve against the 1Password `matrix` item, and
-# ${SECRET_DOMAIN} is substituted by Flux's postBuild before that.
+# Tuwunel configuration, materialised as a Secret (see the tuwunel ExternalSecret).
+# External Secrets executes this entire file as a Go template, comments included,
+# so placeholder syntax must never appear in a comment. Secret fields from the
+# 1Password `matrix` item are interpolated below, and ${SECRET_DOMAIN} is
+# substituted by Flux's postBuild before that.
 [global]
 server_name = "${SECRET_DOMAIN}"
 
