@@ -1,0 +1,99 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app tuwunel
+spec:
+  interval: 1h
+  chartRef:
+    kind: OCIRepository
+    name: tuwunel
+  values:
+    controllers:
+      tuwunel:
+        strategy: Recreate
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          app:
+            image:
+              repository: ghcr.io/matrix-construct/tuwunel
+              tag: v1.9.1@sha256:634609b554f05d90960ce096dda13e39cf45b692518e8cf734e255e1b9bddbe5
+            env:
+              TZ: Europe/London
+              TUWUNEL_CONFIG: /etc/tuwunel/tuwunel.toml
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities:
+                drop: ["ALL"]
+            probes:
+              # A migrating server does not serve, so the startup budget has to
+              # cover the longest migration: while it fails, neither the
+              # liveness nor the readiness probe runs, and nothing kills the pod.
+              startup:
+                enabled: true
+                custom: true
+                spec:
+                  exec:
+                    command: ["tuwunel", "--health-check"]
+                  periodSeconds: 10
+                  failureThreshold: 180
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  exec:
+                    command: ["tuwunel", "--health-check"]
+                  periodSeconds: 10
+                  failureThreshold: 3
+              readiness: *probes
+            resources:
+              requests:
+                cpu: 100m
+                memory: 512Mi
+              limits:
+                memory: 4Gi
+    defaultPodOptions:
+      # Default is 30s, which kills a database migration half way through.
+      terminationGracePeriodSeconds: 1800
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+    service:
+      app:
+        controller: tuwunel
+        ports:
+          http:
+            port: 8008
+    route:
+      app:
+        hostnames:
+          - "matrix.${SECRET_DOMAIN}"
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
+        rules:
+          - backendRefs:
+              - identifier: app
+                port: 8008
+    persistence:
+      config:
+        type: secret
+        name: tuwunel-secret
+        globalMounts:
+          - path: /etc/tuwunel/tuwunel.toml
+            subPath: tuwunel.toml
+            readOnly: true
+      data:
+        existingClaim: *app
+        globalMounts:
+          - path: /var/lib/tuwunel
+      tmp:
+        type: emptyDir
+        globalMounts:
+          - path: /tmp

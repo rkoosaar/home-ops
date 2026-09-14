@@ -1,0 +1,42 @@
+# Tuwunel configuration. Rendered into a Secret by the `tuwunel` ExternalSecret:
+# {{ .FIELD }} placeholders resolve against the 1Password `matrix` item, and
+# ${SECRET_DOMAIN} is substituted by Flux's postBuild before that.
+[global]
+server_name = "${SECRET_DOMAIN}"
+
+# Defaults to loopback only, which a Service and the gateway cannot reach.
+address = ["0.0.0.0"]
+port = 8008
+
+# LAN-only deployment; no federation, so no 8448 listener is needed either.
+allow_federation = false
+
+# There is no registration token and no open-registration flag, so this alone
+# does not let anyone register over the client API — it is what permits the
+# identity provider below to create accounts on first SSO login.
+allow_registration = true
+
+# RocksDB sizes its thread pool from the host core count and can blow past the
+# container's task limit, failing startup with `EAGAIN ... Resource temporarily
+# unavailable`. 512 is ample for a two-person instance.
+db_pool_max_workers = 512
+
+# Managed online backups live inside the PVC: `!admin server backup-database`
+# writes RocksDB-consistent snapshots, and volsync ships the PVC off-box.
+database_backup_path = "/var/lib/tuwunel/backups"
+database_backups_to_keep = 7
+
+# Kanidm as an upstream OIDC provider. The client_id is the Kanidm OAuth2 client
+# name and it appears in the callback path, so it is taken from the same
+# 1Password field the Kanidm client was created with (`kanidm system oauth2
+# create <name> ...`) — both ends have to agree on it.
+[[global.identity_provider]]
+brand = "Kanidm"
+client_id = "{{ .KANIDM_CLIENT_ID }}"
+client_secret = "{{ .KANIDM_CLIENT_SECRET }}"
+issuer_url = "https://idm.${SECRET_DOMAIN}/oauth2/openid/{{ .KANIDM_CLIENT_ID }}"
+callback_url = "https://matrix.${SECRET_DOMAIN}/_matrix/client/unstable/login/sso/callback/{{ .KANIDM_CLIENT_ID }}"
+scope = ["openid", "profile", "email"]
+# Localpart comes from the Kanidm short username; `sub` would take precedence
+# over it and hand out UUID localparts, so it is deliberately absent.
+userid_claims = ["preferred_username"]
