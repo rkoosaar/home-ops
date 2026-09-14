@@ -3,11 +3,12 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
+  - ./externalsecret.yaml
   - ./ocirepository.yaml
   - ./helmrelease.yaml
 configMapGenerator:
-  - name: synapse-admin-configmap
+  - name: tuwunel-configmap
     files:
-      - config.json=./resources/config.json
+      - tuwunel.toml=./resources/tuwunel.toml
 generatorOptions:
   disableNameSuffixHash: true

@@ -50,13 +50,3 @@ spec:
       ports:
         - protocol: TCP
           port: 6379
-    - from:
-        - namespaceSelector:
-            matchLabels:
-              kubernetes.io/metadata.name: matrix
-          podSelector:
-            matchLabels:
-              app.kubernetes.io/name: matrix-synapse
-      ports:
-        - protocol: TCP
-          port: 6379
