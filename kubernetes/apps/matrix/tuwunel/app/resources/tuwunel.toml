@@ -13,10 +13,13 @@ port = 8008
 # LAN-only deployment; no federation, so no 8448 listener is needed either.
 allow_federation = false
 
-# There is no registration token and no open-registration flag, so this alone
-# does not let anyone register over the client API — it is what permits the
-# identity provider below to create accounts on first SSO login.
-allow_registration = true
+# Off, deliberately. Tuwunel refuses to start when this is true without a
+# registration token unless the open-registration danger flag is also set, and
+# with an IdP-only setup there is nothing here for it to gate: upstream SSO
+# account creation is governed by the provider's own `registration` flag below,
+# and `!admin users create_user` bypasses registration entirely. This only
+# controls client-API password signup.
+allow_registration = false
 
 # RocksDB sizes its thread pool from the host core count and can blow past the
 # container's task limit, failing startup with `EAGAIN ... Resource temporarily
@@ -34,6 +37,9 @@ database_backups_to_keep = 7
 # create <name> ...`) — both ends have to agree on it.
 [[global.identity_provider]]
 brand = "Kanidm"
+# The first SSO login for an unknown localpart creates the account. This is what
+# gates SSO registration, not `allow_registration`.
+registration = true
 client_id = "{{ .KANIDM_CLIENT_ID }}"
 client_secret = "{{ .KANIDM_CLIENT_SECRET }}"
 issuer_url = "https://idm.${SECRET_DOMAIN}/oauth2/openid/{{ .KANIDM_CLIENT_ID }}"
