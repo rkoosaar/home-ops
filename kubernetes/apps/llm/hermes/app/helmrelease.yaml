@@ -29,12 +29,15 @@ spec:
           app:
             image: &image
               repository: nousresearch/hermes-agent
-              tag: v2026.9.7@sha256:63bfb6d732f49a55d453e801057273785cc61e0f6ee43db3fa2f2a79846301b7
+              tag: v2026.9.14@sha256:99641e57ec762c59e54cb44aa6746b7fc68c18b3c5ddb088af54234c613d9294
             command: ["hermes", "gateway", "run", "--no-supervise"]
             env:
               API_SERVER_ENABLED: "true"
               API_SERVER_HOST: 0.0.0.0
               API_SERVER_PORT: &gatewayPort 8642
+              # The image ships libolm + mautrix[encryption]; optional keeps
+              # unencrypted rooms working if crypto cannot initialise.
+              MATRIX_E2EE_MODE: optional
               HERMES_HOME: &dataDir /opt/data
               HOME: *dataDir
               PATH: /opt/hermes/.venv/bin:/opt/data/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
