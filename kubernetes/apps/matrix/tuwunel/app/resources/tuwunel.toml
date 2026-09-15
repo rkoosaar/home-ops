@@ -31,6 +31,9 @@ db_pool_max_workers = 512
 database_backup_path = "/var/lib/tuwunel/backups"
 database_backups_to_keep = 7
 
+[global.well_known]
+client = "https://matrix.${SECRET_DOMAIN}"
+
 # Kanidm as an upstream OIDC provider. The client_id is the Kanidm OAuth2 client
 # name and it appears in the callback path, so it is taken from the same
 # 1Password field the Kanidm client was created with (`kanidm system oauth2
