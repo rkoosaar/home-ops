@@ -8,9 +8,19 @@ spec:
   chartRef:
     kind: OCIRepository
     name: hermes
+  install:
+    remediation:
+      retries: -1
   interval: 1h
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
   values:
     defaultPodOptions:
+      # The gateway drains a live Matrix sync on shutdown; the 30s default gets it
+      # SIGKILLed mid-drain (exit 137, "no exit path ran" in the lifecycle ledger).
+      terminationGracePeriodSeconds: 120
       securityContext:
         runAsUser: 10000
         runAsGroup: 10000
