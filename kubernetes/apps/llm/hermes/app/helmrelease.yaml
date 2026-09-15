@@ -48,6 +48,7 @@ spec:
               # The image ships libolm + mautrix[encryption]; optional keeps
               # unencrypted rooms working if crypto cannot initialise.
               MATRIX_E2EE_MODE: optional
+              MATRIX_RECOVERY_KEY_OUTPUT_FILE: /opt/data/matrix-recovery-key.txt
               HERMES_HOME: &dataDir /opt/data
               HOME: *dataDir
               PATH: /opt/hermes/.venv/bin:/opt/data/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
