@@ -16,7 +16,7 @@ spec:
   postBuild:
     substitute:
       APP: ersatztv
-      VOLSYNC_CAPACITY: 6Gi
+      VOLSYNC_CAPACITY: 7Gi
       #GATUS_SUBDOMAIN: ersatztv
   prune: true
   sourceRef:
