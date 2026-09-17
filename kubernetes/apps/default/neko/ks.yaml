@@ -13,7 +13,7 @@ spec:
   postBuild:
     substitute:
       APP: neko
-      VOLSYNC_CAPACITY: 15Gi
+      VOLSYNC_CAPACITY: 16Gi
       #SUBDOMAIN: movienight
       #VOLSYNC_SCHEDULE: "0 */3 * * *" # Every 3hrs
   prune: true
