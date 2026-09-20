@@ -18,6 +18,11 @@ spec:
     substitute:
       APP: tautulli
       VOLSYNC_CAPACITY: 7Gi
+      # Migrated to kopiur and verified by a restore from the garage repository
+      # (tautulli.db + config.ini + cache/logs, 93.9M). This stops the NFS-side
+      # ReplicationSource, whose kopia cache is corrupted and looping. The NFS
+      # repository keeps every snapshot it already has.
+      VOLSYNC_PAUSED: "true"
   prune: true
   sourceRef:
     kind: GitRepository
