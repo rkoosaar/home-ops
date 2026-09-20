@@ -6,6 +6,10 @@ namespace: default
 components:
   - ../../components/sops
   - ../../components/alerts
+  # Repository credentials for kopiur movers. Movers read the S3 keys and
+  # KOPIA_PASSWORD from a namespace-LOCAL Secret, so every namespace that runs a
+  # SnapshotPolicy needs this.
+  - ../../components/kopiur/secret
 
 resources:
   - ./namespace.yaml
