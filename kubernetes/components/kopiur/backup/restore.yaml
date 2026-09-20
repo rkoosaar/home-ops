@@ -1,0 +1,19 @@
+---
+# yaml-language-server: $schema=https://k8s-schemas.home-operations.com/kopiur.home-operations.com/restore_v1alpha1.json
+# Passive restore: the PVC above points at this object, so it hydrates the
+# volume while it is being provisioned. onMissingSnapshot: Continue means an app
+# with no snapshot yet comes up empty instead of wedging (deploy-or-restore).
+apiVersion: kopiur.home-operations.com/v1alpha1
+kind: Restore
+metadata:
+  name: ${APP}
+spec:
+  policy:
+    onMissingSnapshot: Continue
+  source:
+    fromPolicy:
+      name: ${APP}
+      # 0 = latest snapshot
+      offset: 0
+  target:
+    populator: {}
