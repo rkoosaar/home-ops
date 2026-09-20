@@ -12,7 +12,9 @@ spec:
       bucket: kopiur
       # Bare host[:port], NO scheme — kopia assumes HTTPS, which this endpoint
       # serves (public CA, so no tls.caBundleRef and no tls.disableTls).
-      endpoint: s3g.kvshs.xyz
+      # SECRET_DOMAIN comes from the cluster-secrets Secret that every child
+      # Kustomization substitutes via postBuild.
+      endpoint: "s3g.${SECRET_DOMAIN}"
       # Garage's s3_region; the value it echoes in its own S3 error XML.
       region: garage
       auth:
