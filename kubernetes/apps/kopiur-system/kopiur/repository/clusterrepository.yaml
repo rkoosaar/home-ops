@@ -1,0 +1,64 @@
+---
+# yaml-language-server: $schema=https://k8s-schemas.home-operations.com/kopiur.home-operations.com/clusterrepository_v1alpha1.json
+apiVersion: kopiur.home-operations.com/v1alpha1
+kind: ClusterRepository
+metadata:
+  name: garage
+spec:
+  allowedNamespaces:
+    all: true
+  backend:
+    s3:
+      bucket: kopiur
+      # Bare host[:port], NO scheme — kopia assumes HTTPS, which this endpoint
+      # serves (public CA, so no tls.caBundleRef and no tls.disableTls).
+      # SECRET_DOMAIN comes from the cluster-secrets Secret that every child
+      # Kustomization substitutes via postBuild.
+      endpoint: "s3g.${SECRET_DOMAIN}"
+      # Garage's s3_region; the value it echoes in its own S3 error XML.
+      region: garage
+      auth:
+        secretRef:
+          name: kopiur-repository-secret
+          namespace: kopiur-system
+  encryption:
+    passwordSecretRef:
+      name: kopiur-repository-secret
+      namespace: kopiur-system
+      key: KOPIA_PASSWORD
+  # Greenfield repository: initialize it if the bucket has no repo yet. Once
+  # status.uniqueId is pinned, kopiur will never re-create an empty repository
+  # over this backend (a wiped bucket parks at Failed/RepositoryReinitializeBlocked).
+  create:
+    enabled: true
+  # No catalog block: there is nothing to discover in a repository kopiur
+  # created itself (the discovery knobs only matter when adopting an existing
+  # kopia repository).
+  maintenance:
+    schedule:
+      timezone: Europe/London
+      # Hourly quick maintenance with jitter, plus a daily full run. Kopia only
+      # advances/compacts an epoch during a maintenance run, so running quick
+      # hourly keeps the live index-blob set small instead of pinned at
+      # "current + previous epoch" (which trips TooManyIndexBlobs).
+      quick:
+        cron: 0 * * * *
+        jitter: 10m
+      full:
+        cron: 0 3 * * *
+        jitter: 1h
+  moverDefaults:
+    cache:
+      # Kopia's own defaults are 5000 MiB EACH for content and metadata, which
+      # is larger than the whole 5Gi cache PVC — the sweeper then never runs and
+      # the cache fills the volume (the no-space-left failure class). These are
+      # hard budgets, sized to the smallest cache PVC in the fleet. The metadata
+      # budget applies twice: kopia caps its index-blobs cache at the same size.
+      contentCacheSizeMb: 512
+      metadataCacheSizeMb: 1024
+  parameters:
+    epoch:
+      # kopia requires refreshFrequency (default 20m) x 3 <= minDuration.
+      minDuration: 1h
+  scheduleDefaults:
+    timezone: Europe/London

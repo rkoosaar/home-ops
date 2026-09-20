@@ -1,0 +1,19 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization
+apiVersion: kustomize.config.k8s.io/v1alpha1
+kind: Component
+resources:
+  - ./snapshotpolicy.yaml
+  - ./snapshotschedule.yaml
+  # The PVC + Restore below are the deploy-or-restore (disaster recovery) half of
+  # this component. They stay OFF until an existing app's PVC can be recreated:
+  # a PVC's spec is immutable after creation (only volumeName once,
+  # resources.requests.storage and volumeAttributesClassName may change), so
+  # Flux cannot repoint a live PVC's dataSourceRef from the VolSync
+  # ReplicationDestination to a kopiur Restore — the apply is rejected with
+  # "spec is immutable after creation". Cut over with the ReplicationSource
+  # disabled and these two off, then do the swap as a deliberate per-app DR
+  # drill (restore into a throwaway PVC first, then delete the PVC in a window
+  # and let the populator hydrate it), at which point uncomment both.
+  #- ./pvc.yaml
+  #- ./restore.yaml

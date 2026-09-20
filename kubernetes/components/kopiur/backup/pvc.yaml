@@ -1,0 +1,21 @@
+---
+# The app's data PVC, restored by the passive Restore volume-populator below.
+# NOT enabled in kustomization.yaml yet: this app already has a PVC whose
+# dataSourceRef points at the VolSync ReplicationDestination, and a PVC's spec is
+# immutable after creation, so applying this manifest over the live PVC is
+# rejected. Only flip it on when recreating the PVC in a DR drill.
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ${APP}
+spec:
+  accessModes:
+    - ${KOPIUR_ACCESSMODES:=ReadWriteOnce}
+  dataSourceRef:
+    apiGroup: kopiur.home-operations.com
+    kind: Restore
+    name: ${APP}
+  resources:
+    requests:
+      storage: ${KOPIUR_CAPACITY:=5Gi}
+  storageClassName: ${KOPIUR_STORAGECLASS:=ceph-block}

@@ -1,0 +1,17 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: kopiur-system
+
+components:
+  - ../../components/sops
+  - ../../components/alerts
+  # Repository credential Secret. Movers read the kopia password (and the S3
+  # keys) from a namespace-LOCAL Secret, so every namespace that runs a
+  # SnapshotPolicy needs this component. App namespaces add it as they cut over.
+  - ../../components/kopiur/secret
+
+resources:
+  - ./namespace.yaml
+  - ./kopiur/ks.yaml

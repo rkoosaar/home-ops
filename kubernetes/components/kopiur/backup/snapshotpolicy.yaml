@@ -1,0 +1,34 @@
+---
+# yaml-language-server: $schema=https://k8s-schemas.home-operations.com/kopiur.home-operations.com/snapshotpolicy_v1alpha1.json
+apiVersion: kopiur.home-operations.com/v1alpha1
+kind: SnapshotPolicy
+metadata:
+  name: ${APP}
+spec:
+  repository:
+    kind: ClusterRepository
+    name: garage
+  sources:
+    - pvc:
+        name: ${APP}
+  copyMethod: Snapshot
+  compression:
+    compressor: zstd
+  # GFS window. Matches the VolSync retention this replaces (retain.hourly 24 /
+  # daily 7) plus a weekly window; keepLatest always holds the freshest copies.
+  retention:
+    keepLatest: 3
+    keepHourly: 24
+    keepDaily: 7
+    keepWeekly: 4
+  mover:
+    cache:
+      # Ephemeral cache (emptyDir, GC'd with the mover Job) — no per-app cache
+      # PVC to fill up. Switch to Persistent + capacity/storageClassName only if
+      # you want a warm cache across runs; the repository-level budgets in the
+      # ClusterRepository are what keep it from filling the volume either way.
+      mode: Ephemeral
+    securityContext:
+      runAsUser: ${KOPIUR_PUID:=1000}
+      runAsGroup: ${KOPIUR_PGID:=100}
+  volumeSnapshotClassName: ${KOPIUR_SNAPSHOTCLASS:=csi-ceph-blockpool}
