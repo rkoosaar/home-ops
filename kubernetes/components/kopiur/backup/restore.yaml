@@ -17,3 +17,8 @@ spec:
       offset: 0
   target:
     populator: {}
+  # Same fsGroup as the policy's mover: a DR restore writes into the app's own
+  # volume, so the group it stamps has to match what the running app expects.
+  mover:
+    podSecurityContext:
+      fsGroup: ${KOPIUR_PGID:=100}
