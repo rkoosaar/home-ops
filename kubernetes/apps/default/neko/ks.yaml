@@ -15,6 +15,9 @@ spec:
     substitute:
       APP: neko
       VOLSYNC_CAPACITY: 17Gi
+      # kopiur migration: snapshot + restore from the garage repository verified
+      # (160/160 files, 113.4M). Stops the NFS-side ReplicationSource.
+      VOLSYNC_PAUSED: "true"
       #SUBDOMAIN: movienight
       #VOLSYNC_SCHEDULE: "0 */3 * * *" # Every 3hrs
   prune: true
