@@ -6,6 +6,7 @@ namespace: llm
 components:
   - ../../components/sops
   - ../../components/alerts
+  - ../../components/kopiur/secret
 resources:
   - ./namespace.yaml
   - ./open-webui/ks.yaml

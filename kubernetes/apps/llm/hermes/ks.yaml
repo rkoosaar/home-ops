@@ -7,11 +7,16 @@ metadata:
 spec:
   components:
     - ../../../../components/volsync
+    - ../../../../components/kopiur/backup
   interval: 1h
   path: ./kubernetes/apps/llm/hermes/app
   postBuild:
     substitute:
       APP: hermes
+      # mover parity: this app pins 10000:10000, so the default 1000:100 mover can
+      # read files the workload creates as 10000.
+      KOPIUR_PUID: "10000"
+      KOPIUR_PGID: "10000"
       VOLSYNC_CAPACITY: 10Gi
       VOLSYNC_PUID: "10000"
       VOLSYNC_PGID: "10000"
