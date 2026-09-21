@@ -5,3 +5,10 @@ metadata:
   name: default
   annotations:
     kustomize.toolkit.fluxcd.io/prune: disabled
+    # kopiur privileged-mover opt-in. tunarr writes its state as root
+    # (.local/share/tunarr/data.ms/*.mdb) and the mover's staged source is
+    # read-only, so fsGroup cannot help and only a root mover can read it.
+    # This grants the PERMISSION only: every other mover here stays 1000:100
+    # unless its own policy asks for elevation, and a refusal is a clean
+    # MoverPermitted=False condition rather than a broken snapshot.
+    kopiur.home-operations.com/privileged-movers: "true"
