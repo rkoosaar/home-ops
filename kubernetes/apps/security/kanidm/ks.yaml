@@ -54,6 +54,11 @@ spec:
     substitute:
       APP: *app
       SUBDOMAIN: idm
+      # mover parity: kanidm's data is 999:999-owned (the old mover ran as
+      # VOLSYNC_PUID/PGID 999 for the same reason), so the kopiur mover reads
+      # as the owner instead of 1000:100.
+      KOPIUR_PUID: "999"
+      KOPIUR_PGID: "999"
       VOLSYNC_PUID: "999"
       VOLSYNC_PGID: "999"
       VOLSYNC_CAPACITY: 5Gi
