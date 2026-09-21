@@ -17,6 +17,12 @@ spec:
   postBuild:
     substitute:
       APP: tunarr
+      # tunarr runs as root, so its PVC is root-owned; the mover's staged source
+      # is read-only, which rules out an fsGroup grant, so this is the documented
+      # root-mover case. One-shot verified: 132 files / 410706157 bytes, matching
+      # VolSync's own count for the same volume.
+      KOPIUR_PUID: "0"
+      KOPIUR_RUNASNONROOT: "false"
       VOLSYNC_CAPACITY: 5Gi
       GATUS_SUBDOMAIN: tv
   prune: true
