@@ -28,6 +28,13 @@ spec:
       # you want a warm cache across runs; the repository-level budgets in the
       # ClusterRepository are what keep it from filling the volume either way.
       mode: Ephemeral
+    # Parity with the VolSync component this replaces: its mover pod ran with
+    # fsGroup = PGID, so the kubelet's group grant landed on the group the mover
+    # process actually uses. kopiur's mover pod otherwise keeps its own default
+    # (65532) while the process runs 1000:100, which leaves data owned by another
+    # UID unreadable and fails the snapshot with PermissionDenied.
+    podSecurityContext:
+      fsGroup: ${KOPIUR_PGID:=100}
     securityContext:
       runAsUser: ${KOPIUR_PUID:=1000}
       runAsGroup: ${KOPIUR_PGID:=100}
