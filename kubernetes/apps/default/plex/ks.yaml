@@ -19,6 +19,9 @@ spec:
   postBuild:
     substitute:
       APP: plex
+      # kopiur migration: snapshot + restore from the garage repository verified
+      # (89496/89496 files, 13.6GiB restored).
+      VOLSYNC_PAUSED: "true"
       VOLSYNC_CAPACITY: 50Gi
       VOLSYNC_CACHE_CAPACITY: 50Gi
       #VOLSYNC_SCHEDULE: "0 */3 * * *" # Every 3hrs
