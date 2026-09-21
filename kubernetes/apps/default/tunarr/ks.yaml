@@ -23,6 +23,8 @@ spec:
       # VolSync's own count for the same volume.
       KOPIUR_PUID: "0"
       KOPIUR_RUNASNONROOT: "false"
+      # Restore verified: 132/132 files out of the root-mover snapshot.
+      VOLSYNC_PAUSED: "true"
       VOLSYNC_CAPACITY: 5Gi
       GATUS_SUBDOMAIN: tv
   prune: true
