@@ -17,6 +17,8 @@ spec:
   postBuild:
     substitute:
       APP: convertx
+      # kopiur migration: snapshot + restore from the garage repository verified
+      VOLSYNC_PAUSED: "true"
   prune: true
   sourceRef:
     kind: GitRepository

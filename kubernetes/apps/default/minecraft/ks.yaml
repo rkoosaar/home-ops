@@ -20,6 +20,8 @@ spec:
   postBuild:
     substitute:
       APP: *app
+      # kopiur migration: snapshot + restore from the garage repository verified
+      VOLSYNC_PAUSED: "true"
       GATUS_SUBDOMAIN: mcmap
       VOLSYNC_CAPACITY: 16Gi
       VOLSYNC_CACHE_CAPACITY: 4Gi

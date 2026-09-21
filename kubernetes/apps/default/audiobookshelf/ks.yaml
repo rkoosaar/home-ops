@@ -17,6 +17,8 @@ spec:
   postBuild:
     substitute:
       APP: audiobookshelf
+      # kopiur migration: snapshot + restore from the garage repository verified
+      VOLSYNC_PAUSED: "true"
       GATUS_SUBDOMAIN: audiobooks
       VOLSYNC_CAPACITY: 7Gi
   prune: true
