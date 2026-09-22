@@ -20,6 +20,14 @@ spec:
             dashboards: grafana
       prometheusRule:
         enabled: true
+        # The chart's default is 172800 (48h), which is far too slow for an
+        # hourly fleet: a policy that silently stops producing snapshots — no
+        # CRs, no Events, no log lines — would go unnoticed for two days. 4h
+        # tolerates three consecutive missed ticks while still alerting the same
+        # day, and it complements KopiurBackupConsecutiveFailures (3 failures,
+        # ~3h) rather than duplicating it: that one covers policies that FAIL,
+        # this one covers policies that go QUIET.
+        backupStaleAfterSeconds: 14400
       serviceMonitor:
         enabled: true
     podSecurityContext:
