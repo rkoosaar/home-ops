@@ -2,20 +2,15 @@
 # yaml-language-server: $schema=https://json.schemastore.org/kustomization
 apiVersion: kustomize.config.k8s.io/v1alpha1
 kind: Component
+# Backups: the half every app needs, included from each app's ks.yaml.
+#
+# The deploy-or-restore half - the app's PVC plus the Restore populator that
+# hydrates it - lives in components/kopiur/restore and is included per app at
+# cutover, NOT here. Enabling it fleet-wide in one reconcile would repoint 26 LIVE
+# claims simultaneously, and a PVC's spec is immutable after creation, so every one
+# of those applies would be rejected and the Kustomizations would wedge. Upstream
+# keeps all four files in one component because his rollout was big-bang; ours
+# cannot be.
 resources:
   - ./snapshotpolicy.yaml
   - ./snapshotschedule.yaml
-  # The PVC + Restore below are the deploy-or-restore (disaster recovery) half of
-  # this component. They stay OFF until an existing app's PVC can be recreated:
-  # a PVC's spec is immutable after creation (only volumeName once,
-  # resources.requests.storage and volumeAttributesClassName may change), so
-  # Flux cannot repoint a live PVC's dataSourceRef from the VolSync
-  # ReplicationDestination to a kopiur Restore — the apply is rejected with
-  # "spec is immutable after creation". Cut over with the ReplicationSource
-  # disabled and these two off, then do the swap as a deliberate per-app DR
-  # drill (restore into a throwaway PVC first, then delete the PVC in a window
-  # and let the populator hydrate it), at which point uncomment both.
-  #- ./pvc.yaml
-  #- ./restore.yaml
-  # When they are enabled, the Restore inherits the identity recorded on the
-  # backup, so per-app mover pins are not needed on the restore side.

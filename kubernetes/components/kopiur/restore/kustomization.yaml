@@ -1,0 +1,25 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization
+apiVersion: kustomize.config.k8s.io/v1alpha1
+kind: Component
+# Deploy-or-restore: the app's own data PVC, plus the passive Restore the PVC's
+# dataSourceRef points at, so the volume is hydrated from the latest snapshot of
+# that app's SnapshotPolicy while it is being provisioned.
+#
+# Include this per app, as part of that app's cutover - never fleet-wide, and never
+# while the app's existing claim is still live: a PVC's spec is immutable after
+# creation, so an apply that changes dataSourceRef on an existing claim is rejected
+# and the Kustomization wedges NotReady.
+#
+# The cutover is two applies, in this order:
+#   1. drop `components/volsync` from the app's ks.yaml - that prunes the VolSync
+#      PVC (with its ReplicationDestination dataSourceRef), the ReplicationSource
+#      and the app's volsync secret; the app goes down with no claim.
+#   2. add this component - a fresh claim of the same name is created, and the
+#      populator hydrates it from the newest kopiur snapshot.
+# Verify the app afterwards, including file OWNERSHIP: the restore runs as the
+# identity recorded on the backup, so files come back owned by the app's own uid,
+# not 65532 (see restore.yaml).
+resources:
+  - ./pvc.yaml
+  - ./restore.yaml
