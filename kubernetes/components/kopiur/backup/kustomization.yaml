@@ -17,3 +17,5 @@ resources:
   # and let the populator hydrate it), at which point uncomment both.
   #- ./pvc.yaml
   #- ./restore.yaml
+  # When they are enabled, the Restore inherits the identity recorded on the
+  # backup, so per-app mover pins are not needed on the restore side.
