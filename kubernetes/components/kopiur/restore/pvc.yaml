@@ -1,9 +1,10 @@
 ---
-# The app's data PVC, restored by the passive Restore volume-populator below.
-# NOT enabled in kustomization.yaml yet: this app already has a PVC whose
-# dataSourceRef points at the VolSync ReplicationDestination, and a PVC's spec is
-# immutable after creation, so applying this manifest over the live PVC is
-# rejected. Only flip it on when recreating the PVC in a DR drill.
+# The app's data PVC, hydrated by the passive Restore volume-populator below.
+# Included per app at cutover - see kustomization.yaml for the two-apply recipe.
+# A PVC's spec is immutable after creation, so this can only ever be CREATED:
+# applying it over a live claim (e.g. the VolSync one, whose dataSourceRef points
+# at a ReplicationDestination) is rejected and wedges the Kustomization, so the old
+# claim is pruned first - which is why the drill is ordered that way.
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
