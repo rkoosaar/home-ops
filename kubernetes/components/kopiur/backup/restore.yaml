@@ -22,3 +22,13 @@ spec:
   mover:
     podSecurityContext:
       fsGroup: ${KOPIUR_PGID:=100}
+    # Run as the identity RECORDED on the backup (Snapshot.status.recorded,
+    # decoded from the kopiur-meta tag) rather than the restore mover's own uid.
+    # Without this every restored file is stamped 65532, which leaves an app
+    # unable to write its own data: kanidm runs as 999 and tunarr as root.
+    # Upstream has no mover block at all because every app of his runs as 1000;
+    # ours does not, so this is a deliberate local addition. The privileged-mover
+    # gate still applies: a recorded ROOT identity (tunarr) is only permitted
+    # because namespace default carries the privileged-movers annotation.
+    inheritSecurityContextFrom:
+      snapshot: {}
