@@ -23,9 +23,9 @@ spec:
       # kopiur migration: snapshot + restore from the garage repository verified
       VOLSYNC_PAUSED: "true"
       GATUS_SUBDOMAIN: mcmap
-      # DR PVC sizing: 1.77 GB today, but worlds grow and the current claim is
-      # 16Gi - keep the recreated volume the same size, not the 5Gi default.
-      KOPIUR_CAPACITY: 16Gi
+      # DR PVC sizing: 1.77 GB today with room for world growth; less than
+      # the current 16Gi claim, which is the deliberate trade.
+      KOPIUR_CAPACITY: 10Gi
       VOLSYNC_CAPACITY: 16Gi
       VOLSYNC_CACHE_CAPACITY: 4Gi
       #VOLSYNC_SCHEDULE: "0 */3 * * *" # Every 3hrs

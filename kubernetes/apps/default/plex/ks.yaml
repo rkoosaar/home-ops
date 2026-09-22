@@ -22,10 +22,10 @@ spec:
       # kopiur migration: snapshot + restore from the garage repository verified
       # (89496/89496 files, 13.6GiB restored).
       VOLSYNC_PAUSED: "true"
-      # DR PVC sizing: 13.35 GiB of data against the component's 5Gi default,
-      # so the populator would have been handed a volume too small to hydrate.
-      # Same value as upstream's plex override.
-      KOPIUR_CAPACITY: 50Gi
+      # DR PVC sizing: 13.35 GiB of data; 30Gi leaves ~2.2x headroom.
+      # Note this is below the current 50Gi claim, so a DR would recreate the
+      # volume smaller - fine, since ceph expansion is grow-only later.
+      KOPIUR_CAPACITY: 30Gi
       VOLSYNC_CAPACITY: 50Gi
       VOLSYNC_CACHE_CAPACITY: 50Gi
       #VOLSYNC_SCHEDULE: "0 */3 * * *" # Every 3hrs
