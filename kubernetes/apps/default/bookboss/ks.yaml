@@ -6,7 +6,6 @@ metadata:
   name: bookboss
 spec:
   components:
-    - ../../../../components/volsync
     - ../../../../components/kopiur/backup
     - ../../../../components/zeroscaler
   dependsOn:
@@ -18,8 +17,8 @@ spec:
     substitute:
       APP: bookboss
       # kopiur migration: snapshot + restore from the garage repository verified
-      VOLSYNC_PAUSED: "true"
-      VOLSYNC_CAPACITY: 10Gi
+      # (3 files / 7004360 bytes, re-verified 2026-09-22). VolSync removed; the DR
+      # PVC comes from components/kopiur/restore at the 5Gi default.
   prune: true
   sourceRef:
     kind: GitRepository
