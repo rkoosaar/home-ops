@@ -7,6 +7,12 @@ TALOSCONFIG = "{{config_root}}/talos/clusterconfig/talosconfig"
 [tools]
 "python" = "3.14.7"
 "pipx:makejinja" = "2.9.1"
+# The kopiur CLI ships the `kubectl kopiur` plugin (snapshots list, status, doctor,
+# logs, restore). Not in the aqua registry (verified against the generated
+# registry.yaml), so it uses the github backend; keep this version in step with
+# the operator chart in kubernetes/apps/kopiur-system, since the CLI talks to the
+# CRDs of that release.
+"github:home-operations/kopiur" = "0.10.9"
 "aqua:derailed/k9s" = "0.51.0"
 "aqua:budimanjojo/talhelper" = "3.1.17"
 "aqua:cilium/cilium-cli" = "0.20.0"
