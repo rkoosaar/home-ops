@@ -17,10 +17,6 @@ spec:
   postBuild:
     substitute:
       APP: pgadmin
-      # mover parity: this app pins 5050:5050, so the default 1000:100 mover can
-      # read files the workload creates as 5050.
-      KOPIUR_PUID: "5050"
-      KOPIUR_PGID: "5050"
       VOLSYNC_CAPACITY: 1Gi
   prune: true
   retryInterval: 2m
