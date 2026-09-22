@@ -53,6 +53,8 @@ spec:
   postBuild:
     substitute:
       APP: *app
+      # Restore verified from the garage repository (exact file-count match).
+      VOLSYNC_PAUSED: "true"
       SUBDOMAIN: idm
       # mover parity: kanidm's data is 999:999-owned (the old mover ran as
       # VOLSYNC_PUID/PGID 999 for the same reason), so the kopiur mover reads

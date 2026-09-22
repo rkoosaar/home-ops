@@ -16,6 +16,8 @@ spec:
   postBuild:
     substitute:
       APP: tuwunel
+      # Restore verified from the garage repository (exact file-count match).
+      VOLSYNC_PAUSED: "true"
       VOLSYNC_CAPACITY: 10Gi
       VOLSYNC_PUID: "1000"
       VOLSYNC_PGID: "1000"

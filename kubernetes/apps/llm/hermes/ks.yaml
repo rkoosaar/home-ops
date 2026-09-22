@@ -13,6 +13,8 @@ spec:
   postBuild:
     substitute:
       APP: hermes
+      # Restore verified from the garage repository (exact file-count match).
+      VOLSYNC_PAUSED: "true"
       # mover parity: this app pins 10000:10000, so the default 1000:100 mover can
       # read files the workload creates as 10000.
       KOPIUR_PUID: "10000"

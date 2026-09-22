@@ -14,6 +14,8 @@ spec:
   postBuild:
     substitute:
       APP: open-webui
+      # Restore verified from the garage repository (exact file-count match).
+      VOLSYNC_PAUSED: "true"
       VOLSYNC_CAPACITY: 7Gi
   prune: true
   sourceRef:
