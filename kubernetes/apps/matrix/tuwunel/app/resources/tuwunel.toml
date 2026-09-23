@@ -31,6 +31,10 @@ db_pool_max_workers = 512
 database_backup_path = "/var/lib/tuwunel/backups"
 database_backups_to_keep = 7
 
+# Default true; pinned so a future default change cannot silently drop the
+# phishing protection for unvetted dynamically-registered clients.
+oidc_require_client_approval = true
+
 [global.well_known]
 client = "https://matrix.${SECRET_DOMAIN}"
 
