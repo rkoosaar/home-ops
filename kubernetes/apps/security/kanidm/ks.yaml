@@ -37,7 +37,6 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   components:
-    - ../../../../components/volsync
     - ../../../../components/kopiur/backup
     - ../../../../components/zeroscaler
   dependsOn:
@@ -54,16 +53,14 @@ spec:
     substitute:
       APP: *app
       # Restore verified from the garage repository (exact file-count match).
-      VOLSYNC_PAUSED: "true"
+      # VolSync detached 2026-09-24 - the claim now comes from components/kopiur/restore
+      # and kopiur/restore + components/volsync must never be included together.
       SUBDOMAIN: idm
       # mover parity: kanidm's data is 999:999-owned (the old mover ran as
       # VOLSYNC_PUID/PGID 999 for the same reason), so the kopiur mover reads
       # as the owner instead of 1000:100.
       KOPIUR_PUID: "999"
       KOPIUR_PGID: "999"
-      VOLSYNC_PUID: "999"
-      VOLSYNC_PGID: "999"
-      VOLSYNC_CAPACITY: 5Gi
     # substituteFrom:
     #   - name: cluster-secrets
     #     kind: Secret
