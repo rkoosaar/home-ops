@@ -6,7 +6,6 @@ metadata:
   name: hermes
 spec:
   components:
-    - ../../../../components/volsync
     - ../../../../components/kopiur/backup
   interval: 1h
   path: ./kubernetes/apps/llm/hermes/app
@@ -14,14 +13,12 @@ spec:
     substitute:
       APP: hermes
       # Restore verified from the garage repository (exact file-count match).
-      VOLSYNC_PAUSED: "true"
+      # VolSync detached 2026-09-24 - the claim now comes from components/kopiur/restore
+      # and kopiur/restore + components/volsync must never be included together.
       # mover parity: this app pins 10000:10000, so the default 1000:100 mover can
       # read files the workload creates as 10000.
       KOPIUR_PUID: "10000"
       KOPIUR_PGID: "10000"
-      VOLSYNC_CAPACITY: 10Gi
-      VOLSYNC_PUID: "10000"
-      VOLSYNC_PGID: "10000"
   prune: true
   sourceRef:
     kind: GitRepository

@@ -6,7 +6,6 @@ metadata:
   name: sonarr
 spec:
   components:
-    - ../../../../components/volsync
     - ../../../../components/kopiur/backup
     - ../../../../components/zeroscaler
   dependsOn:
@@ -17,9 +16,9 @@ spec:
   postBuild:
     substitute:
       APP: sonarr
-      VOLSYNC_CAPACITY: 7Gi
       # kopiur migration: snapshot + restore from the garage repository verified
-      VOLSYNC_PAUSED: "true"
+      # VolSync detached 2026-09-24 - the claim now comes from components/kopiur/restore
+      # and kopiur/restore + components/volsync must never be included together.
   prune: true
   sourceRef:
     kind: GitRepository
