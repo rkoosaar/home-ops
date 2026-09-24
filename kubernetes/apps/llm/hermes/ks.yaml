@@ -7,6 +7,7 @@ metadata:
 spec:
   components:
     - ../../../../components/kopiur/backup
+    - ../../../../components/kopiur/restore
   interval: 1h
   path: ./kubernetes/apps/llm/hermes/app
   postBuild:
