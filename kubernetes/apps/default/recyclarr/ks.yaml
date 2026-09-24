@@ -6,7 +6,6 @@ metadata:
   name: recyclarr
 spec:
   components:
-    - ../../../../components/volsync
     - ../../../../components/kopiur/backup
     - ../../../../components/zeroscaler
   dependsOn:
@@ -18,8 +17,8 @@ spec:
     substitute:
       APP: recyclarr
       # kopiur migration: snapshot + restore from the garage repository verified
-      VOLSYNC_PAUSED: "true"
-      VOLSYNC_CAPACITY: 1Gi
+      # VolSync detached 2026-09-23 - the claim now comes from components/kopiur/restore
+      # and kopiur/restore + components/volsync must never be included together.
   prune: true
   sourceRef:
     kind: GitRepository
