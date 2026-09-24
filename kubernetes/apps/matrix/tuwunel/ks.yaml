@@ -10,6 +10,7 @@ spec:
       namespace: external-secrets
   components:
     - ../../../../components/kopiur/backup
+    - ../../../../components/kopiur/restore
   interval: 1h
   path: ./kubernetes/apps/matrix/tuwunel/app
   postBuild:
