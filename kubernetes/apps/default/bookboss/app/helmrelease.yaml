@@ -30,8 +30,8 @@ spec:
               BOOKBOSS__DATABASE__DATABASE_URL: sqlite:///data/bookboss.db?mode=rwc
               BOOKBOSS__FRONTEND__BASE_URL: https://bb.${SECRET_DOMAIN}
               BOOKBOSS__FRONTEND__LISTEN_PORT: &httpPort 8080
-              BOOKBOSS__LIBRARY__LIBRARY_PATH: /library/books
-              BOOKBOSS__IMPORT__BOOKDROP_PATH: /library/bookdrop
+              BOOKBOSS__LIBRARY__LIBRARY_PATH: /library/media/booklibrary/books
+              BOOKBOSS__IMPORT__BOOKDROP_PATH: /library/media/booklibrary/bookdrop
               BOOKBOSS__IMPORT__POLL_INTERVAL_SECS: 60
               BOOKBOSS__IMPORT__WORKER_POLL_INTERVAL_SECS: 5
               RUST_LOG: trace
@@ -83,13 +83,8 @@ spec:
         type: nfs
         server: unraid.kvshs.xyz
         path: /mnt/user/data
-        advancedMounts:
-          bookboss:
-            app:
-              - path: /library/books
-                subPath: media/booklibrary/books
-              - path: /library/bookdrop
-                subPath: media/booklibrary/bookdrop
+        globalMounts:
+          - path: /library
       tmp:
         type: emptyDir
         globalMounts:
