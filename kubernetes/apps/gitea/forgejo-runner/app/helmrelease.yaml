@@ -59,7 +59,7 @@ spec:
           daemon:
             image:
               repository: docker
-              tag: 29.8.0-dind-rootless@sha256:e17fa54c2ffd511d8407c746eec77f7814e6f74fe20caf822dad1870599984c0
+              tag: 29.9.0-dind-rootless@sha256:54155db4950e2f9af3bb829fcfe627030576fc7ae235018be63175fca7326171
             securityContext:
               privileged: true
             env:
