@@ -1,0 +1,26 @@
+---
+# yaml-language-server: $schema=https://my-kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: wsab
+spec:
+  components:
+    - ../../../../components/kopiur/backup
+    - ../../../../components/kopiur/restore
+    - ../../../../components/zeroscaler
+  dependsOn:
+    - name: rook-ceph-cluster
+      namespace: rook-ceph
+  interval: 1h
+  path: ./kubernetes/apps/default/wsab/app
+  postBuild:
+    substitute:
+      APP: wsab
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+    namespace: flux-system
+  targetNamespace: default
+  wait: false
