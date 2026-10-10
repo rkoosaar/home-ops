@@ -19,7 +19,7 @@ spec:
           app:
             image:
               repository: ghcr.io/matrix-construct/tuwunel
-              tag: v1.9.1@sha256:634609b554f05d90960ce096dda13e39cf45b692518e8cf734e255e1b9bddbe5
+              tag: v1.9.4@sha256:0e86c6164d6c9f5b60291938eb61ad8395021c37fe58d47a963ea7edddbedaec
             env:
               TZ: Europe/London
               TUWUNEL_CONFIG: /etc/tuwunel/tuwunel.toml
