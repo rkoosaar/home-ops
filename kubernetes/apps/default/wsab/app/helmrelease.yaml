@@ -80,11 +80,11 @@ spec:
         type: emptyDir
         globalMounts:
           - path: /config/logs
-      data:
+      w:
         type: nfs
         server: unraid.kvshs.xyz
-        path: /mnt/user/data/usenet
+        path: /mnt/user/w/usenet
         globalMounts:
-          - path: /data/usenet
+          - path: /w/usenet
       tmp:
         type: emptyDir

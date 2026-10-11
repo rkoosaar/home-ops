@@ -71,9 +71,11 @@ spec:
     persistence:
       config:
         existingClaim: "{{ .Release.Name }}"
-      data:
+      w:
         type: nfs
         server: unraid.kvshs.xyz
-        path: /mnt/user/data
+        path: /mnt/user/w/data
         globalMounts:
           - path: /data
+      tmp:
+        type: emptyDir
