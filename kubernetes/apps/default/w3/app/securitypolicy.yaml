@@ -15,6 +15,7 @@ spec:
       - action: Allow
         principal:
           clientCIDRs:
+            - 10.0.11.2/32
             - 10.0.11.3/32
             - 10.1.2.244/32
             - 10.42.0.0/16
