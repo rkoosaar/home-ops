@@ -49,6 +49,14 @@ spec:
               # unencrypted rooms working if crypto cannot initialise.
               MATRIX_E2EE_MODE: optional
               MATRIX_RECOVERY_KEY_OUTPUT_FILE: /opt/data/matrix-recovery-key.txt
+              # Conversation routing. Explicit values matching the host gateway;
+              # defaults are auto / true / false / true. session_scope=thread gives
+              # each answered room message its own session (real threads still key
+              # on their root); dm_auto_thread threads every answer in a DM.
+              MATRIX_SESSION_SCOPE: thread
+              MATRIX_AUTO_THREAD: "true"
+              MATRIX_DM_AUTO_THREAD: "true"
+              MATRIX_REQUIRE_MENTION: "true"
               HERMES_HOME: &dataDir /opt/data
               HOME: *dataDir
               PATH: /opt/hermes/.venv/bin:/opt/data/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
