@@ -229,15 +229,36 @@ newest snapshot's `stats` before sizing):
 ## Phase 3 — retire VolSync
 
 ### 6. Remove the VolSync stack
-Per app: drop the `components/volsync` include (already gone for swapped apps) and
-the `${APP}-volsync-secret` ExternalSecret. Then the cluster pieces:
-`apps/storage/volsync` (fork HelmRelease + `KopiaMaintenance` CronJob), the volsync
-CRD entry in `bootstrap/helmfile.d/00-crds.yaml`, `apps/storage/volsync-old`, and
-any Renovate entry for the fork chart.
-Catches found while swapping: **kanidm's `ks.yaml` has `dependsOn: volsync` (ns
-`storage`)** — that blocks its Kustomization once the volsync KS is gone, so drop the
-dependency in the same commit. Also check every `dependsOn: volsync` across the
-fleet (`grep -rn "name: volsync" kubernetes/apps`), not just kanidm's.
+Per app: the `components/volsync` include is gone from the swapped apps and the DROPs already
+pruned each app's rendered `${APP}-volsync-secret` with the rest of the component's output, so
+nothing per-app remains here.
+
+**The live stack** (verified against the tree 2026-10-06):
+- `apps/storage/volsync/` — `ks.yaml` carries two Kustomizations (`volsync` →
+  `./volsync/app`, and `volsync-maintenance` → `./volsync/maintenance`); `app/` holds the fork
+  HelmRelease (`ghcr.io/perfectra1n/volsync` via the `home-operations/charts-mirror` chart),
+  its OCIRepository, a grafana dashboard, a mutating admission policy and a PrometheusRule;
+  `maintenance/` holds the `KopiaMaintenance` and its ExternalSecret.
+- `apps/storage/kopia/` — the kopia instance that reads/serves the old NFS repository.
+- Both are listed in `apps/storage/kustomization.yaml`.
+- **Debris: `apps/storage/volsync-old/`** — a *second* `ks.yaml` named `volsync` pointing at the
+  same `./volsync/app` path, plus a full pre-fork `app/` dir. It is NOT in the namespace
+  kustomization, so it has never been applied; delete it with the stack.
+
+**Two plan items corrected 2026-10-06, having read the repo rather than assumed it:**
+- There is **no volsync entry in `bootstrap/helmfile.d/00-crds.yaml`**. The CRDs come from the
+  operator chart, and Helm retains CRDs on uninstall, so they outlive the release — either leave
+  them (harmless with zero CRs present) or delete them by hand as a separate, later step.
+- There is **no Renovate rule for the fork**. The `# renovate:` annotations live on the manifests
+  being deleted, so tracking ends with them.
+
+**The `dependsOn` catch — two apps, and the second is the dangerous one.** `kanidm` declares
+`dependsOn: volsync` (its only dependency) AND **`rook-ceph-cluster` declares it too**. When the
+volsync Kustomization disappears, a `dependsOn` naming a missing Kustomization parks the
+dependent NotReady forever — and since every app depends on `rook-ceph-cluster`, that stalls
+reconciliation cluster-wide rather than breaking backups. `PR #2617` drops both dependencies
+**before** the stack deletion, which is a no-op today and keeps the deletion independently
+revertible. Verified with `git grep -n "name: volsync"` across the rendered tree.
 
 Two more catches from the fleet inventory (2026-10-06):
 
