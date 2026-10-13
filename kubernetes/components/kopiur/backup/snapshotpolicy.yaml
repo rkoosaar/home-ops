@@ -44,3 +44,10 @@ spec:
       # namespace must also carry the opt-in annotation.
       runAsNonRoot: ${KOPIUR_RUNASNONROOT:=true}
   volumeSnapshotClassName: ${KOPIUR_SNAPSHOTCLASS:=csi-ceph-blockpool}
+  verification:
+    quick:
+      schedule:
+        cron: "0 4 * * *"
+        jitter: 30m
+    verifyFilesPercent: 10
+    successExpr: "stats.files > 0 && stats.errors == 0"
