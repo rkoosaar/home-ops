@@ -52,7 +52,6 @@ spec:
       storageClassName: ceph-block
     quick:
       schedule:
-        cron: "0 4 * * *"
-        jitter: 30m
+        cron: "H 3 * * *"
     verifyFilesPercent: 10
     successExpr: "stats.files > 0 && stats.errors == 0"
