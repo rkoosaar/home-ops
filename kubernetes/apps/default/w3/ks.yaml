@@ -17,6 +17,7 @@ spec:
   postBuild:
     substitute:
       APP: w3
+      KOPIUR_CAPACITY: 20Gi
   prune: true
   sourceRef:
     kind: GitRepository

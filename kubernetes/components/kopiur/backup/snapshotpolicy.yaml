@@ -54,4 +54,4 @@ spec:
       schedule:
         cron: "H 3 * * *"
     verifyFilesPercent: 10
-    successExpr: "stats.files > 0 && stats.errors == 0"
+    successExpr: "tier == 'deep' ? (restored.files > 0 && restored.checksumMatches) : stats.errors == 0"
