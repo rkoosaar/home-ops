@@ -40,9 +40,9 @@ resources:
   - ./sonarr/ks.yaml
   - ./tautulli/ks.yaml
   - ./tunarr/ks.yaml
-  - ./w2/ks.yaml
-  - ./w3/ks.yaml
-  - ./wsab/ks.yaml
+  #- ./w2/ks.yaml
+  #- ./w3/ks.yaml
+  #- ./wsab/ks.yaml
   #- ./dispatcharr/ks.yaml
   ##- ./fusion/ks.yaml
   # - ./threadfin/ks.yaml
